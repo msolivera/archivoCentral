@@ -1,0 +1,13 @@
+COMANDOS USADOS
+Crear proyecto:
+composer create-project laravel/laravel archivo_central 
+
+Crear modulos de autenticacion:
+composer require laravel/ui
+Crear modulos de roles y permisos:
+composer require spatie/laravel-permission
+
+php artisan ui vue --auth
+
+Para crear modelos nuevos:
+php artisan:make model Persona -m (-m para que cree la migracion)
