@@ -10,4 +10,4 @@ composer require spatie/laravel-permission
 php artisan ui vue --auth
 
 Para crear modelos nuevos:
-php artisan:make model Persona -m (-m para que cree la migracion)
+php artisan make:model Pais --migration (-m para que cree la migracion)
