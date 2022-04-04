@@ -11,3 +11,14 @@ php artisan ui vue --auth
 
 Para crear modelos nuevos:
 php artisan make:model Pais --migration (-m para que cree la migracion)
+
+Como interactuar con la BD desde aca:
+php artisan tinker
+ej crear un usuario:
+$user = new User;
+$user->name = 'Micaela';
+$user->email = 'molivera@mail.com';
+$user->password = bcrypt('123');
+$user->save();
+
+
