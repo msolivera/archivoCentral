@@ -21,7 +21,7 @@
     <!-- /.login-logo -->
     <div class="card card-outline card-primary">
       <div class="card-header text-center">
-        <a href="../../index.html" class="h1"><b>Archivo Central</b></a>
+        <p  class="h1"><b>Archivo Central</b></p>
       </div>
       <div class="card-body">
         <form method="POST" action="{{ route('login') }}">

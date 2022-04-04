@@ -13,9 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tipo_estudios', function (Blueprint $table) {
+        Schema::create('fichaPersonal_unidad', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
+            $table->unsignedInteger('fichaPersonal_Id');
+            $table->unsignedInteger('unidad_Id');
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tipo_estudios');
+        Schema::dropIfExists('fichaPersonal_unidad');
     }
 };

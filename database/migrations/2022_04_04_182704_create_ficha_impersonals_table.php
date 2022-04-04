@@ -13,9 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('estados', function (Blueprint $table) {
+        Schema::create('ficha_impersonals', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('estados');
+        Schema::dropIfExists('ficha_impersonals');
     }
 };

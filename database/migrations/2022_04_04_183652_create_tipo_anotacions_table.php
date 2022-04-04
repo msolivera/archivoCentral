@@ -13,9 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tipo_estudios', function (Blueprint $table) {
+        Schema::create('tipo_anotacions', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
+            $table->string('nombre')->unique();
+            
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tipo_estudios');
+        Schema::dropIfExists('tipo_anotacions');
     }
 };

@@ -11,6 +11,14 @@ php artisan ui vue --auth
 
 Para crear modelos nuevos:
 php artisan make:model Pais --migration (-m para que cree la migracion)
+Si abro el pyoyecto en otro lado correr para instalar todos los paquetes:
+                                    composer install
+                                    composer update
+
+php artisan migrate
+
+como correr los seed de una: 
+ php artisan db:seed
 
 Como interactuar con la BD desde aca:
 php artisan tinker
@@ -21,4 +29,9 @@ $user->email = 'molivera@mail.com';
 $user->password = bcrypt('123');
 $user->save();
 
+para correr todas la migraciones de nuevo y hacer seed a la vez:
+php artisan migrate:refresh --seed
 
+
+Para crear relacion N-N necesitamos una migracion, no necesitamos modelo entonces usamos el codigo:
+php artisan make:migration create_fichaPersonal_unidad_table --create=fichaPersonal_unidad

@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('anotacions', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
+            $table->unsignedBigInteger('tipoAnotacion_id')->nullable()->default(0);
             $table->timestamps();
         });
     }

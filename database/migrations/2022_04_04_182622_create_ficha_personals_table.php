@@ -13,9 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tipo_estudios', function (Blueprint $table) {
+        Schema::create('ficha_personals', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
+            $table->integer('cedula')->nullable();
+            $table->string('PrimerNombre');
+            $table->string('PrimerApellido');
+            $table->unsignedInteger('paisId')->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tipo_estudios');
+        Schema::dropIfExists('ficha_personals');
     }
 };
