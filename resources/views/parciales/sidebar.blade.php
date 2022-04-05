@@ -16,7 +16,7 @@
         </a>
         <ul class="nav nav-treeview" style="display: none;">
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{route('mvc.fichasPersonales.index')}}" class="nav-link">
               <i class="fa fa-eye nav-icon"></i>
               <p>Ver Fichas Personales</p>
             </a>
