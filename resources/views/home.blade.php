@@ -3,7 +3,6 @@
 
 @section('content')
 <!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container-fluid">
@@ -16,9 +15,7 @@
         </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
-    <div class="content">
-       
+    <div class="content">     
     </div>
-</div>
 <!-- /.content-wrapper -->
 @stop

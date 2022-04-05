@@ -1,6 +1,7 @@
 <?php 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use App\Models\FichaPersonal;
 
 class FichasPersonalesController extends Controller
 {
@@ -21,6 +22,7 @@ class FichasPersonalesController extends Controller
      */
     public function index()
     {
-        return view('mvc.fichasPersonales.index');
+        $fichasPer = FichaPersonal::all();
+        return view('mvc.fichasPersonales.index',compact('fichasPer'));
     }
 }
