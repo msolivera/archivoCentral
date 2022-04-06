@@ -15,12 +15,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+//Aca adentro tienen que ir todas las paginas que necesitan estar autenticadas
 Route::group(['middleware' => 'auth'], 
 
 function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/fichasPersonales', [App\Http\Controllers\FichasPersonalesController::class, 'index'])->name('mvc.fichasPersonales.index');
-    //Route::get('/fichasPersonales/create', [App\Http\Controllers\FichasPersonalesController::class, 'create'])->name('fichasPersonales.create');
+    Route::get('/crearFichasPersonales', [App\Http\Controllers\FichasPersonalesController::class, 'create'])->name('mvc.fichasPersonales.crearFicha');
     //Route::post('/fichasPersonales', [App\Http\Controllers\FichasPersonalesController::class, 'store'])->name('fichasPersonales.store');
     //Route::get('/fichasPersonales/{fichaPersona}', [App\Http\Controllers\FichasPersonalesController::class, 'show'])->name('fichasPersonales.show');
     //Route::get('/fichasPersonales/{fichaPersona}/edit', [App\Http\Controllers\FichasPersonalesController::class, 'edit'])->name('fichasPersonales.edit');

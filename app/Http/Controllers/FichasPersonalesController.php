@@ -25,4 +25,11 @@ class FichasPersonalesController extends Controller
         $fichasPer = FichaPersonal::all();
         return view('mvc.fichasPersonales.index',compact('fichasPer'));
     }
+
+    public function create()
+    {
+        return view('mvc.fichasPersonales.crearFicha');
+    }
+
+
 }

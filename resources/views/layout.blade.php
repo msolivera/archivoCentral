@@ -89,7 +89,8 @@
 <script src="../adminLTE/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="../adminLTE/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 <!-- FIN DataTables  & Plugins -->
-
+<!-- bs-custom-file-input -->
+<script src="../adminLTE/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../adminLTE/js/adminlte.min.js"></script>
 

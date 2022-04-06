@@ -3,9 +3,9 @@
 @section('header')
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-           <h2> Fichas Personales
-        <small>Opciones</small>
-        </h2>
+      <h4> Fichas Personales
+        <small>• Ver</small>
+        </h4>
     </ol>
 
   </nav>
@@ -68,3 +68,4 @@
 
 
 @stop
+
