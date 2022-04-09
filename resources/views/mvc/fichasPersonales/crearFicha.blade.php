@@ -81,6 +81,9 @@
               <label for="unidad">Unidad</label>
               <select class="form-control">
                 <option value=""> Seleccione una Unidad</option>
+                @foreach ($unidades as $unidad)
+                  <option value={{$unidad->id}}> {{$unidad->nombre}}</option>
+                @endforeach
               </select>  
             </div>
           </div>

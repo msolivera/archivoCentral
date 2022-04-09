@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\FichaPersonal;
+use App\Models\Unidad;
 
 class FichasPersonalesController extends Controller
 {
@@ -28,7 +29,8 @@ class FichasPersonalesController extends Controller
 
     public function create()
     {
-        return view('mvc.fichasPersonales.crearFicha');
+        $unidades = Unidad::all();
+        return view('mvc.fichasPersonales.crearFicha' ,compact('unidades'));
     }
 
 
