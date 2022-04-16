@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Unidad extends Model
 {
     use HasFactory;
+
+
+    public function fichasPersonales(){
+        return $this->belongsToMany(FichaPersonal::class);
+    }
 }

@@ -18,29 +18,29 @@ class FichaPersonalTableSeeder extends Seeder
         FichaPersonal::truncate();
         $persona = new FichaPersonal();
         $persona->cedula = 5234220;
-        $persona->PrimerNombre = 'micaela';
-        $persona->PrimerApellido = 'olivera';
+        $persona->primerNombre = 'micaela';
+        $persona->primerApellido = 'olivera';
         $persona->paisId = 1;
         $persona->save();
         
         $persona = new FichaPersonal();
         $persona->cedula = 4596553;
-        $persona->PrimerNombre = 'federico';
-        $persona->PrimerApellido = 'alonso';
+        $persona->primerNombre = 'federico';
+        $persona->primerApellido = 'alonso';
         $persona->paisId = 1;
         $persona->save();
         
         $persona = new FichaPersonal();
         $persona->cedula = 8795664;
-        $persona->PrimerNombre = 'cristian';
-        $persona->PrimerApellido = 'palma';
+        $persona->primerNombre = 'cristian';
+        $persona->primerApellido = 'palma';
         $persona->paisId = 1;
         $persona->save();
         
         $persona = new FichaPersonal();
         $persona->cedula = 42165332;
-        $persona->PrimerNombre = 'marcelo';
-        $persona->PrimerApellido = 'olivera';
+        $persona->primerNombre = 'marcelo';
+        $persona->primerApellido = 'olivera';
         $persona->paisId = 1;
         $persona->save();
     }

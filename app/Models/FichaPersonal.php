@@ -19,8 +19,8 @@ class FichaPersonal extends Model
         $this->belongsTo(Pais::class);
     }
     //Relacion N->N
-    public function unidad(){
-        $this->belongsToMany(Unidad::class);
+    public function unidads(){
+        return $this->belongsToMany(Unidad::class);
     }
    
 }

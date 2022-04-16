@@ -8,9 +8,9 @@
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="../adminLTE/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="/adminLTE/plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="../adminLTE/css/adminlte.min.css">
+  <link rel="stylesheet" href="/adminLTE/css/adminlte.min.css">
 
 @stack('styles')
 </head>
@@ -27,25 +27,11 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a  class="brand-link">
-      <img src="../adminLTE/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">Menu Principal</span>
     </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
-
-      <!-- SidebarSearch Form -->
-     <!-- <div class="form-inline">
-        <div class="input-group" data-widget="sidebar-search">
-          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-          <div class="input-group-append">
-            <button class="btn btn-sidebar">
-              <i class="fas fa-search fa-fw"></i>
-            </button>
-          </div>
-        </div>
-      </div>-->
-
       <!-- Sidebar Menu -->
       @include('parciales.sidebar')
       <!-- /.sidebar-menu -->
@@ -57,6 +43,13 @@
   <section class="content-header">
     @yield('header')
   </section>
+
+  @if (session()->has('flash'))
+    <div class="alert alert-success">
+      {{ session('flash') }}
+    </div>
+  @endif
+
   @yield('content')
 
 </div>
@@ -67,17 +60,15 @@
 <!-- REQUIRED SCRIPTS -->
 
 <!-- jQuery -->
-<script src="../adminLTE/plugins/jquery/jquery.min.js"></script>
+<script src="/adminLTE/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="../adminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/adminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 
 @stack('scripts')
 <!-- bs-custom-file-input -->
-<script src="../adminLTE/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+<script src="/adminLTE/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 <!-- AdminLTE App -->
-<script src="../adminLTE/js/adminlte.min.js"></script>
-
-
+<script src="/adminLTE/js/adminlte.min.js"></script>
 </body>
 </html>

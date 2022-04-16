@@ -25,19 +25,19 @@
         </a>
         <ul class="nav nav-treeview" style="display: {{request()->is('fichasPersonales*') ? 'block' : 'none'}};">
           <li class="nav-item">
-            <a href="{{route('mvc.fichasPersonales.index')}}" class="nav-link {{request()->is('fichasPersonales*') ? 'active' : ''}}">
+            <a href="{{route('fichasPersonales.index')}}" class="nav-link {{request()->is('fichasPersonales*') ? 'active' : ''}}">
               <i class="fa fa-users nav-icon"></i>
               <p>Fichas Personales <i class="fas fa-angle-left right"></i></p>
             </a>
             <ul class="nav nav-treeview" style="display: {{request()->is('fichasPersonales*') ? 'block' : 'none'}};">
               <li class="nav-item">
-                <a href="{{route('mvc.fichasPersonales.index')}}" class="nav-link" {{request()->is('fichasPersonales*') ? 'style=color:#3498db' : ''}}>
+                <a href="{{route('fichasPersonales.index')}}" class="nav-link" {{request()->is('fichasPersonales*') ? 'style=color:#3498db' : ''}}>
                   <i class="fa fa-user nav-icon"></i>
                   <p>Ver Fichas Personales</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{route('mvc.fichasPersonales.crearFicha')}}" class="nav-link" {{request()->is('crearFichasPersonales*') ? 'style=color:#3498db' : ''}}>
+                <a href="{{route('fichasPersonales.crearFicha')}}" class="nav-link" {{request()->is('crearFichasPersonales*') ? 'style=color:#3498db' : ''}}>
                   <i class="fa fa-user-plus nav-icon"></i>
                   <p>Crear Fichas Personales</p>
                 </a>
@@ -47,13 +47,13 @@
         </ul>
         <ul class="nav nav-treeview" style="display: none;">
           <li class="nav-item">
-            <a href="{{route('mvc.fichasPersonales.index')}}" class="nav-link active">
+            <a href="{{route('fichasPersonales.index')}}" class="nav-link active">
               <i class="fa fa-ship nav-icon"></i>
               <p>Fichas Impersonales <i class="fas fa-angle-left right"></i></p>
             </a>
             <ul class="nav nav-treeview" style="display: none;">
               <li class="nav-item">
-                <a href="{{route('mvc.fichasPersonales.index')}}" class="nav-link" >
+                <a href="{{route('fichasPersonales.index')}}" class="nav-link" >
                   <i class="fa fa-eye nav-icon"></i>
                   <p>Ver Fichas Impersonales</p>
                 </a>

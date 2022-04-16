@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('fichaPersonal_unidad', function (Blueprint $table) {
+        Schema::create('ficha_Personal_unidad', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('fichaPersonal_Id');
+            $table->unsignedInteger('ficha_Personal_Id');
             $table->unsignedInteger('unidad_Id');
             $table->timestamps();
         });
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fichaPersonal_unidad');
+        Schema::dropIfExists('ficha_Personal_unidad');
     }
 };
