@@ -1,0 +1,18 @@
+abrir el httpd.conf ( del apache) para editarlo
+
+pegar esto:
+
+# Virtual hosts
+Include conf/extra/httpd-vhosts.conf
+
+Listen 8080
+<VirtualHost localhost:8080>
+DocumentRoot "C:\xampp\htdocs\archivoCentral\public"
+ServerName localhost
+
+<Directory "C:\xampp\htdocs\archivoCentral\public">
+	Options Indexes FollowSymLinks Includes ExecCGI
+	AllowOverride All
+	Require all granted
+</Directory>
+</VirtualHost>
