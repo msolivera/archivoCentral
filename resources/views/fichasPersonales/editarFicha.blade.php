@@ -86,7 +86,7 @@
                                   class="form-control select2" 
                                   style="width: 100%;" 
                                   id="paisId">
-                            <option value=""> Seleccione un Pais</option>
+                            <option value="{{$fichaPais->id}}"> Seleccione un Pais</option>
                                 @foreach ($paises as $pais)
                                 <option value="{{$pais->id}}"
                                     {{old('paisId', $fichaPer->paisId) == $pais->id ? 'selected' : ''}}>
@@ -102,7 +102,8 @@
                                   class="select2" 
                                   multiple="multiple" 
                                   data-placeholder="Seleccione Una o mas unidades" 
-                                  style="width: 100%;">
+                                  style="width: 100%;"
+                                  > 
                                 @foreach ($unidades as $unidad)
                                 <option {{collect(old('unidades', /*$fichaPer->unidades->pluck('id')*/))->contains($unidad->id) ? 'selected' : ''}} 
                                     value={{$unidad->id}}> {{$unidad->nombre}}

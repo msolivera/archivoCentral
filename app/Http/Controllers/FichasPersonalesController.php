@@ -51,7 +51,6 @@ class FichasPersonalesController extends Controller
         $fichaPer->cedula = $request->cedula;
         $fichaPer->fechaNac = $request->fechaNac;
         $fichaPer->paisId = $request->paisId;
-        //falta unidades aca
         $fichaPer->save();
 
         
@@ -83,7 +82,14 @@ class FichasPersonalesController extends Controller
         $fichaPer = FichaPersonal::find($fichaPersonalId);
         $unidades = Unidad::all();
         $paises = Pais::all();
-        return view('fichasPersonales.editarFicha', compact('fichaPer', 'unidades', 'paises'));
+        //consigo el pais de la persona
+        $resPais = Pais::where('id', $fichaPer->id)->get()->all();
+        $fichaPais= $resPais[0];
+        //consigo las unidades de la persona
+        $fichaUnidades = Unidad::join('ficha_personal_unidad','unidad_Id','=','unidads.id' )
+                        ->select('unidads.nombre')
+                        ->where('ficha_Personal_Id', $fichaPer->id)->get()->all();
+        return view('fichasPersonales.editarFicha', compact('fichaPer', 'unidades', 'paises', 'fichaPais', 'fichaUnidades'));
     
     }
     public function update(Request $request, $fichaPersonalId)
@@ -99,9 +105,8 @@ class FichasPersonalesController extends Controller
         $fichaPer->cedula = $request->cedula;
         $fichaPer->fechaNac = $request->fechaNac;
         $fichaPer->paisId = $request->paisId;
+        $fichaPer->unidad()->attach($request->get('unidades'));
         $fichaPer->save();
-
-        //$fichaPer->unidad()->attach($request->get('unidades'));
 
         return back()->with('flash', 'Ficha actualizada con exito');
     }
