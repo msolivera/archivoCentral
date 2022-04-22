@@ -15,6 +15,8 @@ Si abro el pyoyecto en otro lado correr para instalar todos los paquetes:
                                     composer install
                                     composer update
 
+php artisan make:controller nombre_Controller
+
 php artisan migrate
 
 como correr los seed de una: 

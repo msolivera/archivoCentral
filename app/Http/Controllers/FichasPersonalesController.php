@@ -87,13 +87,23 @@ class FichasPersonalesController extends Controller
         $fichaPais= $resPais[0];
         //consigo las unidades de la persona
         $fichaUnidades = Unidad::join('ficha_personal_unidad','unidad_Id','=','unidads.id' )
-                        ->select('unidads.nombre')
+                        ->select('*')
                         ->where('ficha_Personal_Id', $fichaPer->id)->get()->all();
-        return view('fichasPersonales.editarFicha', compact('fichaPer', 'unidades', 'paises', 'fichaPais', 'fichaUnidades'));
+        
+                        return view('fichasPersonales.editarFicha', 
+                compact('fichaPer', 'unidades', 'paises', 'fichaPais', 'fichaUnidades'));
+
     
     }
     public function update(Request $request, $fichaPersonalId)
     {
+
+        $fichasViejas = Unidad::join('ficha_personal_unidad','unidad_Id','=','unidads.id' )
+                        ->select('*')
+                        ->where('ficha_Personal_Id', $fichaPersonalId)->get()->all();
+        
+                        
+
         $this->validate($request, [
             'primerNombre' => 'required',
             'primerApellido' => 'required'   
@@ -105,11 +115,32 @@ class FichasPersonalesController extends Controller
         $fichaPer->cedula = $request->cedula;
         $fichaPer->fechaNac = $request->fechaNac;
         $fichaPer->paisId = $request->paisId;
-        $fichaPer->unidad()->attach($request->get('unidades'));
         $fichaPer->save();
 
+        
+        
+       $insertar = collect($fichasViejas)->pluck('unidad_Id');
+
+        //$insertar = array($fichasViejas['unidad_Id']);
+        $fichaPer->unidad()->detach($insertar);
+        $fichaPer->unidad()->attach($request->get('unidades'));
+
+        //return $insertar;
         return back()->with('flash', 'Ficha actualizada con exito');
     }
+
+    public function destroy($fichaPersonalId){
+        $fichaPer = FichaPersonal::find($fichaPersonalId);
+
+        $fichaPer->delete();
+        $fichaPer->unidad()->detach();
+
+        return redirect()
+            ->route('fichasPersonales.index')
+            ->with('flash', 'Ficha eliminada con exito');
+
+    }
+
 
 
 }

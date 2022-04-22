@@ -28,7 +28,13 @@ function () {
     Route::get('/fichasPersonales/{fichaPersonalId}', [App\Http\Controllers\FichasPersonalesController::class, 'show'])->name('fichasPersonales.verFicha');
     Route::get('/fichasPersonales/edit/{fichaPersona}', [App\Http\Controllers\FichasPersonalesController::class, 'edit'])->name('fichasPersonales.editarFicha');
     Route::put('/fichasPersonales/{fichaPersona}', [App\Http\Controllers\FichasPersonalesController::class, 'update'])->name('fichasPersonales.update');
-    //Route::delete('/fichasPersonales/{fichaPersona}', [App\Http\Controllers\FichasPersonalesController::class, 'destroy'])->name('fichasPersonales.destroy');
+    Route::delete('/fichasPersonales/{fichaPersona}', [App\Http\Controllers\FichasPersonalesController::class, 'destroy'])->name('fichasPersonales.destroy');
+
+    //rutas de los metadatos
+    //paises
+    Route::get('/paises', [App\Http\Controllers\PaisController::class, 'index'])->name('paises.index');
+    //falta edit
+    Route::delete('/paises/{pais}', [App\Http\Controllers\PaisController::class, 'destroy'])->name('paises.destroy');
 });
 
 

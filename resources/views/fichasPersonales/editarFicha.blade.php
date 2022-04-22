@@ -94,8 +94,7 @@
                                 @endforeach
                           </select> 
                         </div>
-                        
-                        
+                                                
                         <div class="form-group">
                           <label for="unidad">Unidad</label>
                             <select  name="unidades[]" 
@@ -104,10 +103,12 @@
                                   data-placeholder="Seleccione Una o mas unidades" 
                                   style="width: 100%;"
                                   > 
+                                  
                                 @foreach ($unidades as $unidad)
-                                <option {{collect(old('unidades', /*$fichaPer->unidades->pluck('id')*/))->contains($unidad->id) ? 'selected' : ''}} 
+                                <option {{collect(old('unidades',collect($fichaUnidades)->pluck('unidad_Id')))->contains($unidad->id) ? 'selected' : ''}} 
                                     value={{$unidad->id}}> {{$unidad->nombre}}
                                 </option>
+                                
                                 @endforeach
                             </select>  
                         </div>     

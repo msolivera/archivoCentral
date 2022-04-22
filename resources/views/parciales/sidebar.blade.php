@@ -15,6 +15,7 @@
         </a>
      
       </li>
+      <!--FICHAS -->
       <li class="nav-item ">
         <a href="fichasPersonales" class="nav-link {{request()->is('fichasPersonales*') ? 'active' : ''}}">
           <i class="nav-icon fa fa-id-card"></i>
@@ -69,6 +70,7 @@
         </ul>
        
       </li>
+      <!--DOSSIER -->
       <li class="nav-item">
         <a href="#" class="nav-link">
           <i class="nav-icon fa fa-folder-open"></i>
@@ -92,6 +94,7 @@
           </li>
         </ul>
       </li>
+      <!--DOCUMENTOS -->
       <li class="nav-item">
         <a href="#" class="nav-link">
           <i class="nav-icon fas fa-book"></i>
@@ -115,6 +118,7 @@
           </li>
         </ul>
       </li>
+      <!--ADMINISTRACION -->
       <li class="nav-item">
         <a href="#" class="nav-link">
           <i class="nav-icon fa fa-cogs"></i>
@@ -124,6 +128,7 @@
           </p>
         </a>
         <ul class="nav nav-treeview" style="display:none;">
+          <!--USUARIOS -->
           <li class="nav-item">
             <a href="#" class="nav-link active">
               <i class="fa fa-lock nav-icon"></i>
@@ -144,6 +149,7 @@
               </li>
             </ul>
           </li>
+          <!-- METADATOS -->
           <li class="nav-item">
             <a href="#" class="nav-link active">
               <i class="fa fa-cog nav-icon"></i>
@@ -151,15 +157,15 @@
             </a>
             <ul class="nav nav-treeview" style="display:none;">
               <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="fa fa-eye nav-icon"></i>
-                  <p>Ver Metadatos</p>
+                <a href="{{route('paises.index')}}" class="nav-link">
+                  <i class="fas fa-globe-americas"></i>
+                  <p>Paises</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="#" class="nav-link">
-                  <i class="fa fa-plus-square nav-icon"></i>
-                  <p>Crear Metadatos</p>
+                  <i class="fa-solid fa-plus-square nav-icon"></i>
+                  <p>otro</p>
                 </a>
               </li>
             </ul>

@@ -1,9 +1,8 @@
 @extends('layout')
-
 @section('header')
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <h4> Fichas Personales
+      <h4> Paises
         <small>• Ver</small>
         </h4>
     </ol>
@@ -23,10 +22,11 @@
           <div class="card-header">
             <div class="row">
               <div class="col-8">
-              <h3 class="card-title">Vista General de Fichas Personales</h3>
+              <h3 class="card-title">Vista General de Paises</h3>
               </div>
               <div class="col-4">
-              <a href="{{route('fichasPersonales.crearFicha')}}" style="float: right;" class="btn btn-block btn-outline-primary col-6">Crear Nueva Ficha</a>
+              <!--<a href="{route('paises.crearPais')}}" style="float: right;" class="btn btn-block btn-outline-primary col-6">Crear Nuevo Pais</a>-->
+              <a href="#" style="float: right;" class="btn btn-block btn-outline-primary col-6">Crear Nuevo Pais</a>
               </div>
           
             </div>
@@ -37,25 +37,20 @@
               <thead>
               <tr>
                 <th>ID</th>
-                <th>Cedula</th>
-                <th>Primer Nombre</th>
-                <th>Primer Apellido</th>
-                <th>País ID</th>
+                <th>Nombre</th>
                 <th>Acciones</th>
               </tr>
               </thead>
               <tbody>
-                @foreach ($fichasPer as $ficha)
+                @foreach ($paises as $pais)
                 <tr>
-                  <td>{{$ficha->id}}</td>
-                  <td>{{$ficha->cedula}}</td>
-                  <td>{{$ficha->primerNombre}}</td>
-                  <td>{{$ficha->primerApellido}}</td>
-                  <td>{{$ficha->paisId}}</td>
+                  <td>{{$pais->id}}</td>
+                  <td>{{$pais->nombre}}</td>
                   <td>
-                  <a href="fichasPersonales/{{$ficha->id}}" class="btn btn-xs btn-success"><i class="fa fa-light fa-eye"></i></a>  
-                  <a href="fichasPersonales/edit/{{$ficha->id}}" class="btn btn-xs btn-info"><i class="fa fa-light fa-pen"></i></a>  
-                  <form method="POST" action="{{route('fichasPersonales.destroy',$ficha->id)}}" style="display: inline"> {{ csrf_field() }} {{method_field('DELETE')}}
+                   
+                  <a href="#" class="btn btn-xs btn-info"><i class="fa fa-light fa-pen"></i></a>  
+                  <!--<a href="paises/edit/{$pais->id}}" class="btn btn-xs btn-info"><i class="fa fa-light fa-pen"></i></a>-->  
+                  <form method="POST" action="{{route('paises.destroy',$pais->id)}}" style="display: inline"> {{ csrf_field() }} {{method_field('DELETE')}}
                     <button class="btn btn-xs btn-danger"
                       onclick="return confirm('¿Esta seguro que desea elminirar este registro?')"
                     ><i class="fa fa-light fa-trash"></i></button>
@@ -80,7 +75,6 @@
 
 
 @stop
-
 @push('styles')
 <!--INICIO CSS PARA LAS TABLAS -->
 <link rel="stylesheet" href="adminLTE/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
