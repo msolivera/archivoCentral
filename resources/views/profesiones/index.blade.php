@@ -2,8 +2,8 @@
 @section('header')
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <h4> Paises
-        <small>• Ver</small>
+      <h4> Profesiones
+        <small> • Ver</small>
         </h4>
     </ol>
 
@@ -37,19 +37,19 @@
               <thead>
               <tr>
                 <th>ID</th>
-                <th>Nombre</th>
+                <th>Profesión</th>
                 <th>Acciones</th>
               </tr>
               </thead>
               <tbody>
-                @foreach ($paises as $pais)
+                @foreach ($profesiones as $profesion)
                 <tr>
-                  <td>{{$pais->id}}</td>
-                  <td>{{$pais->nombre}}</td>
+                  <td>{{$profesion->id}}</td>
+                  <td>{{$profesion->nombre}}</td>
                   <td>
                    
-                  <a href="paises/edit/{{$pais->id}}" class="btn btn-xs btn-info"><i class="fa fa-light fa-pen"></i></a>  
-                  <form method="POST" action="{{route('paises.destroy',$pais->id)}}" style="display: inline"> {{ csrf_field() }} {{method_field('DELETE')}}
+                    <a href="profesiones/edit/{{$profesion->id}}" class="btn btn-xs btn-info"><i class="fa fa-light fa-pen"></i></a>  
+                    <form method="POST" action="{{route('profesiones.destroy',$profesion->id)}}" style="display: inline"> {{ csrf_field() }} {{method_field('DELETE')}}
                     <button class="btn btn-xs btn-danger"
                       onclick="return confirm('¿Esta seguro que desea elminirar este registro?')"
                     ><i class="fa fa-light fa-trash"></i></button>
@@ -109,7 +109,7 @@
 <!-- Page specific script DE LA TABLA DE FICHAS -->
 <!-- Modal para insertar -->
 <div class="modal fade" id="insertModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <form method="POST" action="{{route('paises.store')}}">
+  <form method="POST" action="{{route('profesiones.store')}}">
     {{ csrf_field() }}
   <div class="modal-dialog" role="document">
     <div class="modal-content">

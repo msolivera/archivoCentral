@@ -33,8 +33,16 @@ function () {
     //rutas de los metadatos
     //paises
     Route::get('/paises', [App\Http\Controllers\PaisController::class, 'index'])->name('paises.index');
-    //falta edit
+    Route::get('/paises/edit/{pais}', [App\Http\Controllers\PaisController::class, 'edit'])->name('paises.editarFicha');
+    Route::post('/paises', [App\Http\Controllers\PaisController::class, 'store'])->name('paises.store');
+    Route::put('/paises/{pais}', [App\Http\Controllers\PaisController::class, 'update'])->name('paises.update');
     Route::delete('/paises/{pais}', [App\Http\Controllers\PaisController::class, 'destroy'])->name('paises.destroy');
+    //profesiones
+    Route::get('/profesiones', [App\Http\Controllers\ProfesionController::class, 'index'])->name('profesiones.index');
+    Route::get('/profesiones/edit/{profesion}', [App\Http\Controllers\ProfesionController::class, 'edit'])->name('profesiones.editarFicha');
+    Route::post('/profesiones', [App\Http\Controllers\ProfesionController::class, 'store'])->name('profesiones.store');
+    Route::put('/profesiones/{profesion}', [App\Http\Controllers\ProfesionController::class, 'update'])->name('profesiones.update');
+    Route::delete('/profesiones/{profesion}', [App\Http\Controllers\ProfesionController::class, 'destroy'])->name('profesiones.destroy');
 });
 
 

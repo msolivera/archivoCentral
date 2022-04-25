@@ -163,6 +163,12 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="{{route('profesiones.index')}}" class="nav-link">
+                  <i class="fas fa-user-tie"></i>
+                  <p>Profesiones</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="fa-solid fa-plus-square nav-icon"></i>
                   <p>otro</p>
