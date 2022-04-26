@@ -4,9 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Pariente;
+use App\Models\Parentesco;
 
-class ParienteTableSeeder extends Seeder
+class ParentescoTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,106 +16,106 @@ class ParienteTableSeeder extends Seeder
     public function run()
     {
 
-        Pariente::truncate();
+        Parentesco::truncate();
         
-        $madre = new Pariente;
+        $madre = new Parentesco;
         $madre->nombre = 'Madre';
         $madre->save();
 
-        $padre = new Pariente;
+        $padre = new Parentesco;
         $padre->nombre = 'Padre';
         $padre->save();
 
-        $abuelo = new Pariente;
+        $abuelo = new Parentesco;
         $abuelo->nombre = 'Abuelo';
         $abuelo->save();
 
-        $abuela = new Pariente;
+        $abuela = new Parentesco;
         $abuela->nombre = 'Abuela';
         $abuela->save();
 
-        $hermano = new Pariente;
+        $hermano = new Parentesco;
         $hermano->nombre = 'Hermano';
         $hermano->save();
 
-        $hermana = new Pariente;
+        $hermana = new Parentesco;
         $hermana->nombre = 'Hermana';
         $hermana->save();
 
-        $hijo = new Pariente;
+        $hijo = new Parentesco;
         $hijo->nombre = 'Hijo';
         $hijo->save();
 
-        $hija = new Pariente;
+        $hija = new Parentesco;
         $hija->nombre = 'Hija';
         $hija->save();
 
-        $suegro = new Pariente;
+        $suegro = new Parentesco;
         $suegro->nombre = 'Suegro';
         $suegro->save();
 
-        $suegra = new Pariente;
+        $suegra = new Parentesco;
         $suegra->nombre = 'Suegra';
         $suegra->save();
 
-        $yerno = new Pariente;
+        $yerno = new Parentesco;
         $yerno->nombre = 'Yerno';
         $yerno->save();
 
-        $nuera = new Pariente;
+        $nuera = new Parentesco;
         $nuera->nombre = 'Nuera';
         $nuera->save();
 
-        $cunado = new Pariente;
+        $cunado = new Parentesco;
         $cunado->nombre = 'Cuñado';
         $cunado->save();
 
-        $cunada = new Pariente;
+        $cunada = new Parentesco;
         $cunada->nombre = 'Cuñada';
         $cunada->save();
 
-        $tio = new Pariente;
+        $tio = new Parentesco;
         $tio->nombre = 'Tio';
         $tio->save();
 
-        $tia = new Pariente;
+        $tia = new Parentesco;
         $tia->nombre = 'Tia';
         $tia->save();
 
-        $sobrino = new Pariente;
+        $sobrino = new Parentesco;
         $sobrino->nombre = 'Sobrino';
         $sobrino->save();
 
-        $sobrina = new Pariente;
+        $sobrina = new Parentesco;
         $sobrina->nombre = 'Sobrina';
         $sobrina->save();
 
-        $bisabuelo = new Pariente;
+        $bisabuelo = new Parentesco;
         $bisabuelo->nombre = 'Bisabuelo';
         $bisabuelo->save();
 
-        $bisabuela = new Pariente;
+        $bisabuela = new Parentesco;
         $bisabuela->nombre = 'Bisabuela';
         $bisabuela->save();
 
-        $otro = new Pariente;
+        $otro = new Parentesco;
         $otro->nombre = 'Otro';
         $otro->save();
 
 
-        $conyuge_concubino_novio = new Pariente;
+        $conyuge_concubino_novio = new Parentesco;
         $conyuge_concubino_novio->nombre = 'Conyuge, Concubino/a, Novio/a';
         $conyuge_concubino_novio->save();
 
-        $referente = new Pariente;
+        $referente = new Parentesco;
         $referente->nombre = 'Referente';
         $referente->save();
 
-        $tutor = new Pariente;
+        $tutor = new Parentesco;
         $tutor->nombre = 'Tutor';
         $tutor->save();
 
-        $tutorLegal = new Pariente;
+        $tutorLegal = new Parentesco;
         $tutorLegal->nombre = 'Tutor Legal';
         $tutorLegal->save();
 

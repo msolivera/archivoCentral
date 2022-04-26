@@ -3,7 +3,7 @@
 @section('header')
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-           <h4> Paises
+           <h4> Ambitos
         <small>• Editar</small>
         </h4>
         
@@ -16,12 +16,12 @@
 
 @section('content')
 <section class="content">
-    <form method="POST" action="{{route('paises.update', $pais)}}">
+    <form method="POST" action="{{route('ambito.update', $ambito)}}">
         {{ csrf_field() }} {{ method_field('PUT') }}
             <div class="col-md-12">
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h5 class="card-title">Editar Pais</h5>
+                        <h5 class="card-title">Editar </h5>
                         
                     </div>
                     
@@ -33,7 +33,7 @@
                                   class="form-control" 
                                   id="nombre" 
                                   placeholder="..." 
-                                  value="{{old('nombre',$pais->nombre)}}">
+                                  value="{{old('nombre',$ambito->nombre)}}">
                             <!--- Muestro los errores de validacion.-->
                             {!! $errors->first('nombre','<span class=error style=color:red>:message</span>')!!}
                         </div>
@@ -44,7 +44,7 @@
                         <button type="submit" class="btn btn-success btn-block">Guardar</button>
                         </div>
                         <div class="col-md-4" style="float: right;">
-                        <a href="{{route('paises.index')}}"  class="btn btn-block btn-outline-primary">Atrás</a>
+                        <a href="{{route('ambito.index')}}"  class="btn btn-block btn-outline-primary">Atrás</a>
                         </div>
                     </div>
                 </div>

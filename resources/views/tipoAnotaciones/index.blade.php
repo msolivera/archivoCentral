@@ -2,7 +2,7 @@
 @section('header')
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <h4> Paises
+      <h4> Tipo de Anotaciones
         <small>• Ver</small>
         </h4>
     </ol>
@@ -42,14 +42,14 @@
               </tr>
               </thead>
               <tbody>
-                @foreach ($paises as $pais)
+                @foreach ($tipoAnotaciones as $tipoAnotacion)
                 <tr>
-                  <td>{{$pais->id}}</td>
-                  <td>{{$pais->nombre}}</td>
+                  <td>{{$tipoAnotacion->id}}</td>
+                  <td>{{$tipoAnotacion->nombre}}</td>
                   <td>
                    
-                  <a href="paises/edit/{{$pais->id}}" class="btn btn-xs btn-info"><i class="fa fa-light fa-pen"></i></a>  
-                  <form method="POST" action="{{route('paises.destroy',$pais->id)}}" style="display: inline"> {{ csrf_field() }} {{method_field('DELETE')}}
+                  <a href="tipoAnotacion/edit/{{$tipoAnotacion->id}}" class="btn btn-xs btn-info"><i class="fa fa-light fa-pen"></i></a>  
+                  <form method="POST" action="{{route('tipoAnotacion.destroy',$tipoAnotacion->id)}}" style="display: inline"> {{ csrf_field() }} {{method_field('DELETE')}}
                     <button class="btn btn-xs btn-danger"
                       onclick="return confirm('¿Esta seguro que desea elminirar este registro?')"
                     ><i class="fa fa-light fa-trash"></i></button>
@@ -109,7 +109,7 @@
 <!-- Page specific script DE LA TABLA DE FICHAS -->
 <!-- Modal para insertar -->
 <div class="modal fade" id="insertModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <form method="POST" action="{{route('paises.store')}}">
+  <form method="POST" action="{{route('tipoAnotacion.store')}}">
     {{ csrf_field() }}
   <div class="modal-dialog" role="document">
     <div class="modal-content">
