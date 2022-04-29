@@ -21,7 +21,7 @@
             <div class="col-md-12">
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h5 class="card-title">Editar Pais</h5>
+                        <h5 class="card-title">Editar</h5>
                         
                     </div>
                     

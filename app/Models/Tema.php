@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Tema extends Model
 {
     use HasFactory;
+    public function subTemas()
+    {
+       return $this->hasMany(SubTemas::class);
+    }
 }

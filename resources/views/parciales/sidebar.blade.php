@@ -259,11 +259,48 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="fa-solid fa-plus-square nav-icon"></i>
-                  <p>otro</p>
+                <a href="{{route('ubicacion.index')}}" class="nav-link">
+                  <i class="fas fa-user-tie"></i>
+                  <p>Ubicaciones</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{route('tipoDocumento.index')}}" class="nav-link">
+                  <i class="fas fa-user-tie"></i>
+                  <p>Tipos de documentos</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('fuenteDocumento.index')}}" class="nav-link">
+                  <i class="fas fa-user-tie"></i>
+                  <p>Fuente de documentos</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('grado.index')}}" class="nav-link">
+                  <i class="fas fa-user-tie"></i>
+                  <p>Grados</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('armaCuerpo.index')}}" class="nav-link">
+                  <i class="fas fa-user-tie"></i>
+                  <p>Arma/Cuerpos</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('ciudad.index')}}" class="nav-link">
+                  <i class="fas fa-user-tie"></i>
+                  <p>Ciudades</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('subTema.index')}}" class="nav-link">
+                  <i class="fas fa-user-tie"></i>
+                  <p>Sub Temas</p>
+                </a>
+              </li>
+              
             </ul>
           </li>
         </ul>

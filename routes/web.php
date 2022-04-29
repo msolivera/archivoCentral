@@ -133,6 +133,52 @@ function () {
     Route::post('/tipoAnotacion', [App\Http\Controllers\TipoAnotacionController::class, 'store'])->name('tipoAnotacion.store');
     Route::put('/tipoAnotacion/{tipoAnotacion}', [App\Http\Controllers\TipoAnotacionController::class, 'update'])->name('tipoAnotacion.update');
     Route::delete('/tipoAnotacion/{tipoAnotacion}', [App\Http\Controllers\TipoAnotacionController::class, 'destroy'])->name('tipoAnotacion.destroy');
+    //ubicacion
+    Route::get('/ubicacion', [App\Http\Controllers\UbicacionController::class, 'index'])->name('ubicacion.index');
+    Route::get('/ubicacion/edit/{ubicacion}', [App\Http\Controllers\UbicacionController::class, 'edit'])->name('ubicacion.editar');
+    Route::post('/ubicacion', [App\Http\Controllers\UbicacionController::class, 'store'])->name('ubicacion.store');
+    Route::put('/ubicacion/{ubicacion}', [App\Http\Controllers\UbicacionController::class, 'update'])->name('ubicacion.update');
+    Route::delete('/ubicacion/{ubicacion}', [App\Http\Controllers\UbicacionController::class, 'destroy'])->name('ubicacion.destroy');
+    //tipoDocumento
+    Route::get('/tipoDocumento', [App\Http\Controllers\TipoDocumentoController::class, 'index'])->name('tipoDocumento.index');
+    Route::get('/tipoDocumento/edit/{tipoDocumento}', [App\Http\Controllers\TipoDocumentoController::class, 'edit'])->name('tipoDocumento.editar');
+    Route::post('/tipoDocumento', [App\Http\Controllers\TipoDocumentoController::class, 'store'])->name('tipoDocumento.store');
+    Route::put('/tipoDocumento/{tipoDocumento}', [App\Http\Controllers\TipoDocumentoController::class, 'update'])->name('tipoDocumento.update');
+    Route::delete('/tipoDocumento/{tipoDocumento}', [App\Http\Controllers\TipoDocumentoController::class, 'destroy'])->name('tipoDocumento.destroy');
+    //fuenteDocumento
+    Route::get('/fuenteDocumento', [App\Http\Controllers\FuenteDocumentoController::class, 'index'])->name('fuenteDocumento.index');
+    Route::get('/fuenteDocumento/edit/{fuenteDocumento}', [App\Http\Controllers\FuenteDocumentoController::class, 'edit'])->name('fuenteDocumento.editar');
+    Route::post('/fuenteDocumento', [App\Http\Controllers\FuenteDocumentoController::class, 'store'])->name('fuenteDocumento.store');
+    Route::put('/fuenteDocumento/{fuenteDocumento}', [App\Http\Controllers\FuenteDocumentoController::class, 'update'])->name('fuenteDocumento.update');
+    Route::delete('/fuenteDocumento/{fuenteDocumento}', [App\Http\Controllers\FuenteDocumentoController::class, 'destroy'])->name('fuenteDocumento.destroy');
+    //grados
+    Route::get('/grado', [App\Http\Controllers\GradoController::class, 'index'])->name('grado.index');
+    Route::get('grados/crear', [App\Http\Controllers\GradoController::class, 'create'])->name('grados.crear');
+    Route::get('/grado/edit/{grado}', [App\Http\Controllers\GradoController::class, 'edit'])->name('grado.editar');
+    Route::post('/grado', [App\Http\Controllers\GradoController::class, 'store'])->name('grado.store');
+    Route::put('/grado/{grado}', [App\Http\Controllers\GradoController::class, 'update'])->name('grado.update');
+    Route::delete('/grado/{grado}', [App\Http\Controllers\GradoController::class, 'destroy'])->name('grado.destroy');
+    //armaCuerpo
+    Route::get('/armaCuerpo', [App\Http\Controllers\ArmaCuerpoController::class, 'index'])->name('armaCuerpo.index');
+    Route::get('armaCuerpo/crear', [App\Http\Controllers\ArmaCuerpoController::class, 'create'])->name('armaCuerpo.crear');
+    Route::get('/armaCuerpo/edit/{armaCuerpo}', [App\Http\Controllers\ArmaCuerpoController::class, 'edit'])->name('armaCuerpo.editar');
+    Route::post('/armaCuerpo', [App\Http\Controllers\ArmaCuerpoController::class, 'store'])->name('armaCuerpo.store');
+    Route::put('/armaCuerpo/{armaCuerpo}', [App\Http\Controllers\ArmaCuerpoController::class, 'update'])->name('armaCuerpo.update');
+    Route::delete('/armaCuerpo/{armaCuerpo}', [App\Http\Controllers\ArmaCuerpoController::class, 'destroy'])->name('armaCuerpo.destroy');
+    //ciudad
+    Route::get('/ciudad', [App\Http\Controllers\CiudadController::class, 'index'])->name('ciudad.index');
+    Route::get('ciudades/crear', [App\Http\Controllers\CiudadController::class, 'create'])->name('ciudades.crear');
+    Route::get('/ciudad/edit/{ciudad}', [App\Http\Controllers\CiudadController::class, 'edit'])->name('ciudad.editar');
+    Route::post('/ciudad', [App\Http\Controllers\CiudadController::class, 'store'])->name('ciudad.store');
+    Route::put('/ciudad/{ciudad}', [App\Http\Controllers\CiudadController::class, 'update'])->name('ciudad.update');
+    Route::delete('/ciudad/{ciudad}', [App\Http\Controllers\CiudadController::class, 'destroy'])->name('ciudad.destroy');
+    //subtema
+    Route::get('/subTema', [App\Http\Controllers\SubTemaController::class, 'index'])->name('subTema.index');
+    Route::get('subTema/crear', [App\Http\Controllers\SubTemaController::class, 'create'])->name('subTema.crear');
+    Route::get('/subTema/edit/{subTema}', [App\Http\Controllers\SubTemaController::class, 'edit'])->name('subTema.editar');
+    Route::post('/subTema', [App\Http\Controllers\SubTemaController::class, 'store'])->name('subTema.store');
+    Route::put('/subTema/{subTema}', [App\Http\Controllers\SubTemaController::class, 'update'])->name('subTema.update');
+    Route::delete('/subTema/{subTema}', [App\Http\Controllers\SubTemaController::class, 'destroy'])->name('subTema.destroy');
     
 
 });

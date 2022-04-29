@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('grados', function (Blueprint $table) {
             $table->id();
             $table->string('nombre')->unique();
+            $table->string('sigla')->unique();
             $table->unsignedInteger('fuerza_id')->nullable()->default(0);
             $table->timestamps();
         });

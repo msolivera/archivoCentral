@@ -6,14 +6,17 @@
 <!-- Theme style -->
 <link rel="stylesheet" href="adminLTE/css/adminlte.min.css">
 @section('header')
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-           <h4> Fichas Personales
-        <small>• Ver</small>
-        </h4>
-    </ol>
+<div class="card-header">
+  <div class="row">
+    <div class="col-8">
+    <h3 class="card-title">Fichas Personales • Vista General</h3>
+    </div>
+    <div class="col-4">
+      <a href="{{route('fichasPersonales.index')}}" style="float: right;" class="btn btn-block btn-outline-primary col-6">Atrás</a>
+    </div>
 
-  </nav>
+  </div>
+</div>
 
 @stop
 

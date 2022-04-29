@@ -21,7 +21,7 @@
             <div class="col-md-12">
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h5 class="card-title">Editar tipoAnotacion</h5>
+                        <h5 class="card-title">Editar Tipo Anotacion</h5>
                         
                     </div>
                     

@@ -68,7 +68,12 @@
                     </div>
 
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-primary btn-block">Guardar</button>
+                        <div class="col-md-4" style="float: left;">
+                            <button type="submit" class="btn btn-success btn-block">Guardar</button>
+                            </div>
+                            <div class="col-md-4" style="float: right;">
+                            <a href="{{route('fichasPersonales.index')}}"  class="btn btn-block btn-outline-primary">Atrás</a>
+                            </div>
                     </div>
                 </div>
             </div>

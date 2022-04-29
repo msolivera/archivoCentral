@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class SubTema extends Model
 {
     use HasFactory;
+
+
+    public function temas(){
+        $this->belongsTo(Tema::class);
+    }
 }

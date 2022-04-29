@@ -3,7 +3,7 @@
 @section('header')
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-           <h4> Clasificacion
+           <h4> Clasificación
         <small>• Editar</small>
         </h4>
         
@@ -21,7 +21,7 @@
             <div class="col-md-12">
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h5 class="card-title">Editar Pais</h5>
+                        <h5 class="card-title">Editar Clasificación</h5>
                         
                     </div>
                     

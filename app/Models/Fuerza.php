@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Fuerza extends Model
 {
     use HasFactory;
+
+    public function grados()
+    {
+       return $this->hasMany(Grado::class);
+    }
 }
