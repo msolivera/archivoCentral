@@ -15,10 +15,7 @@ return new class extends Migration
     {
         Schema::create('tipo_estudios', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->string('fechaInicio')->default(0);
-            $table->string('FechaFin')->default(0);
-            
+            $table->string('nombre');            
             $table->timestamps();
         });
     }

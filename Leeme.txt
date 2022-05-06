@@ -37,3 +37,6 @@ php artisan migrate:refresh --seed
 
 Para crear relacion N-N necesitamos una migracion, no necesitamos modelo entonces usamos el codigo:
 php artisan make:migration create_fichaPersonal_unidad_table --create=fichaPersonal_unidad
+
+link sobre como hacer upload de imagenes.
+https://www.devopsschool.com/blog/how-to-upload-profile-image-of-users-in-laravel/

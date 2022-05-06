@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->string('sigla')->unique();
             $table->string('nombre')->unique();
-            $table->unsignedInteger('grado_id')->nullable()->default(0);
             $table->timestamps();
         });
     }

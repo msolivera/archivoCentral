@@ -30,7 +30,7 @@ class TipoEstudioTableSeeder extends Seeder
         $bachillerato->save();
 
         $universitario = new TipoEstudio();
-        $universitario->nombre = 'Universitario';
+        $universitario->nombre = 'Terciario';
         $universitario->save();
         
         $curso = new TipoEstudio();

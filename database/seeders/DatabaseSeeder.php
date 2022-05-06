@@ -24,5 +24,13 @@ class DatabaseSeeder extends Seeder
         $this->call(UserTableSeeder::class);
         $this->call(FichaPersonalTableSeeder::class);
         $this->call(UnidadTableSeeder::class);
+        $this->call(ClasificacionTableSeeder::class);
+        $this->call(FuerzaTableSeeder::class);
+        $this->call(ArmaCuerpoTableSeeder::class);
+        $this->call(GradoTableSeeder::class);
+        $this->call(SituacionTableSeeder::class);
+        $this->call(UbicacionTableSeeder::class);
+        $this->call(TipoAnotacionTableSeeder::class);
+
     }
 }
