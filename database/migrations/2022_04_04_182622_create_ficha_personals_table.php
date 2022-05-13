@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('ficha_personals', function (Blueprint $table) {
             $table->id();
             $table->integer('cedula')->nullable();
+            $table->string('otroDocNombre')->nullable();
+            $table->integer('otroDocNumero')->nullable();
             $table->string('primerNombre')->nullable();
             $table->string('segundoNombre')->nullable();
             $table->string('primerApellido')->nullable();
@@ -27,7 +29,8 @@ return new class extends Migration
             $table->string('correoElectronico')->nullable();
             $table->string('seccionalPolicial')->nullable();
             $table->unsignedInteger('paisId')->nullable();
-            $table->unsignedInteger('barrioId')->nullable();
+            $table->unsignedInteger('ciudadId')->nullable();
+            $table->unsignedInteger('departamentoId')->nullable();
             $table->unsignedInteger('estadoCivilId')->nullable();
             $table->unsignedInteger('situacionId')->nullable();
             $table->unsignedInteger('fuerzaId')->nullable();

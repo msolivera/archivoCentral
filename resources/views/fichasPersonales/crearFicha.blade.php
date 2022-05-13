@@ -30,8 +30,6 @@
             <div class="row">
               <div class="col-md-3">
                 <div class="card-body">
-                  
-                <img class="image rounded-circle" src="{{asset('/storage/images/user.png')}}" alt="profile_image" style="width: 80px;height: 80px; padding: 10px; margin: 0px; ">  
               </div>
                 <div class="form-group {{$errors->has('numeroPaquete') ? 'has-error' : ''}} ">
                   <label for="numeroPaquete">Nro. Paquete de Ingreso</label>
