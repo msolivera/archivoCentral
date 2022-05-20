@@ -44,6 +44,7 @@ class FichasPersonalesController extends Controller
         $fichasPer = FichaPersonal::all();
         $temas = Tema::all();
         $clasificaciones = Clasificacion::all();
+        
         return view('fichasPersonales.index',compact('fichasPer',
                                                     'paises', 
                                                     'ciudades',
@@ -57,13 +58,6 @@ class FichasPersonalesController extends Controller
                                                     'clasificaciones'));
     }
 
-    public function create()
-    {
-        $unidades = Unidad::all();
-        $paises = Pais::all();
-        return view('fichasPersonales.crearFicha' ,compact('unidades', 'paises'));
-    }
-
     public function store(Request $request)
     {        
        /* $this->validate($request, [
@@ -71,6 +65,19 @@ class FichasPersonalesController extends Controller
             'primerApellido' => 'required'   
         ]);
         */
+        $paises = Pais::all();
+        $ciudades = Ciudad::all();
+        $departamentos = Departamento::all();
+        $estadosCiviles = EstadoCivil::all();
+        $situaciones = Situacion::all();
+        $fuerzas = Fuerza::all();
+        $grados = Grado::all();
+        $cuerpos = ArmaCuerpo::all();
+        $unidades = Unidad::all();
+        $temas = Tema::all();
+        $clasificaciones = Clasificacion::all();
+   
+        
         //validacion falta
         $fichaPer = new FichaPersonal();
         $fichaPer->primerNombre = $request->primerNombre;
@@ -98,13 +105,154 @@ class FichasPersonalesController extends Controller
         $fichaPer->cuerpoId = $request->cuerpoId;
         $fichaPer->clasificacionId = $request->clasificacionId;
 
+        //return $fichaPer; 
         $fichaPer->save();
-        
-        return view('fichasPersonales.editarFicha' ,compact('fichaPer'));
+
+        //consigo las unidades de la persona
+        $fichaUnidades = Unidad::join('ficha_personal_unidad','unidad_Id','=','unidads.id' )
+                        ->select('*')
+                        ->where('ficha_Personal_Id', $fichaPer->id)->get()->all();
+        //consigo LOS TEMAS de la persona
+        $fichaTemas = Tema::join('ficha_personal_tema','tema_Id','=','temas.id' )
+                        ->select('*')
+                        ->where('ficha_Personal_Id', $fichaPer->id)->get()->all();
+
+                        return view('fichasPersonales.editarFicha', 
+                                compact('fichaPer',
+                                        'paises',
+                                        'ciudades',
+                                        'departamentos',
+                                        'estadosCiviles',
+                                        'situaciones',
+                                        'fuerzas',
+                                        'grados',
+                                        'cuerpos',
+                                        'clasificaciones',
+                                        'unidades',
+                                        'temas',
+                                        'fichaUnidades',
+                                        'fichaTemas'
+                                            ));
  
         
     }
 
+
+    public function edit($fichaPersonalId)
+    {
+        //primero que nada traigo todos los datos genericos.
+        $paises = Pais::all();
+        $ciudades = Ciudad::all();
+        $departamentos = Departamento::all();
+        $estadosCiviles = EstadoCivil::all();
+        $situaciones = Situacion::all();
+        $fuerzas = Fuerza::all();
+        $grados = Grado::all();
+        $cuerpos = ArmaCuerpo::all();
+        $unidades = Unidad::all();
+        $temas = Tema::all();
+        $clasificaciones = Clasificacion::all();
+        //busco la info de la ficha a editar
+        $fichaPer = FichaPersonal::find($fichaPersonalId);
+       
+
+        //consigo las unidades de la persona
+        $fichaUnidades = Unidad::join('ficha_personal_unidad','unidad_Id','=','unidads.id' )
+                        ->select('*')
+                        ->where('ficha_Personal_Id', $fichaPer->id)->get()->all();
+
+        //consigo LOS TEMAS de la persona
+        $fichaTemas = Tema::join('ficha_personal_tema','tema_Id','=','temas.id' )
+                        ->select('*')
+                        ->where('ficha_Personal_Id', $fichaPer->id)->get()->all();
+
+                      
+                        return view('fichasPersonales.editarFicha', 
+                                compact('fichaPer',
+                                        'paises',
+                                        'ciudades',
+                                        'departamentos',
+                                        'estadosCiviles',
+                                        'situaciones',
+                                        'fuerzas',
+                                        'grados',
+                                        'cuerpos',
+                                        'clasificaciones',
+                                        'unidades',
+                                        'temas',
+                                        'fichaTemas',
+                                        'fichaUnidades'  ));
+
+    
+    }
+    public function update(Request $request, $fichaPersonalId)
+    {
+
+        $fichasUniViejas = Unidad::join('ficha_personal_unidad','unidad_Id','=','unidads.id' )
+                        ->select('*')
+                        ->where('ficha_Personal_Id', $fichaPersonalId)->get()->all();
+        $fichasTemasViejos = Tema::join('ficha_personal_tema','tema_Id','=','temas.id' )
+                        ->select('*')
+                        ->where('ficha_Personal_Id', $fichaPersonalId)->get()->all();
+                
+        $fichaPer = FichaPersonal::find($fichaPersonalId);
+        $fichaPer->primerNombre = $request->primerNombre;
+        $fichaPer->primerApellido = $request->primerApellido;
+        $fichaPer->cedula = $request->cedula;
+        $fichaPer->otroDocNombre = $request->otroDocNombre;
+        $fichaPer->otroDocNumero = $request->otroDocNumero;
+        $fichaPer->paisId = $request->paisId;
+        $fichaPer->departamentoId = $request->departamentoId;
+        $fichaPer->correoElectronico = $request->correoElectronico;
+        $fichaPer->sexo = $request->sexo;
+        $fichaPer->estadoIngreso = $request->estadoIngreso;
+        $fichaPer->numeroPaquete = $request->numeroPaquete;
+        $fichaPer->segundoNombre = $request->segundoNombre;
+        $fichaPer->segundoApellido = $request->segundoApellido;
+        $fichaPer->credencial = $request->credencial;
+        $fichaPer->fechaNac = $request->fechaNac;
+        $fichaPer->ciudadId = $request->ciudadId;
+        $fichaPer->estadoCivilId = $request->estadoCivilId;
+        $fichaPer->seccionalPolicial = $request->seccionalPolicial;
+        $fichaPer->fechaDef = $request->fechaDef;
+        $fichaPer->situacionId = $request->situacionId;
+        $fichaPer->fuerzaId = $request->fuerzaId;
+        $fichaPer->gradoId = $request->gradoId;
+        $fichaPer->cuerpoId = $request->cuerpoId;
+        $fichaPer->clasificacionId = $request->clasificacionId;
+
+        //return $fichaPer; 
+        $fichaPer->save();
+
+        $unidadesInsertar = collect($fichasUniViejas)->pluck('unidad_Id');
+        $temasInsertar = collect($fichasTemasViejos)->pluck('tema_Id');
+
+        //esto para actualizar la informacio de las unidades de la ficha
+        $fichaPer->unidad()->detach($unidadesInsertar);
+        $fichaPer->unidad()->attach($request->get('unidades'));
+        $fichaPer->tema()->detach($temasInsertar);
+        $fichaPer->tema()->attach($request->get('temas'));
+
+        //return $insertar;
+        return back()->with('flash', 'Ficha actualizada con exito');
+        
+    }
+
+    public function destroy($fichaPersonalId){
+        $fichaPer = FichaPersonal::find($fichaPersonalId);
+
+        $fichaPer->delete();
+        //esto para sacar la relacion de las unidades con la ficha
+        $fichaPer->unidad()->detach();
+        $fichaPer->tema()->detach();
+
+        return redirect()
+            ->route('fichasPersonales.index')
+            ->with('flash', 'Ficha eliminada con exito');
+
+    }
+
+    
     public function show($fichaPersonalId)
     {
         //consigo la info basica de la persona
@@ -121,117 +269,14 @@ class FichasPersonalesController extends Controller
         return view('fichasPersonales.verFicha', compact('fichaPer','pais','unidades'));
     }
 
-    public function edit($fichaPersonalId)
+    //se comenta porque no se va a utilizar por el momento.
+
+    /*public function create()
     {
-        //primero que nada traigo todos los datos genericos.
-        $paises = Pais::all();
-        $ciudades = Ciudad::all();
-        $departamentos = Departamento::all();
-        $estadosCiviles = EstadoCivil::all();
-        $situaciones = Situacion::all();
-        $fuerzas = Fuerza::all();
-        $grados = Grado::all();
-        $cuerpos = ArmaCuerpo::all();
         $unidades = Unidad::all();
-        $clasificaciones = Clasificacion::all();
-        //busco la info de la ficha a editar
-        $fichaPer = FichaPersonal::find($fichaPersonalId);
-       
-
-        //consigo el pais de la persona
-        $resPais = Pais::where('id', $fichaPer->id)->get()->all();
-        $fichaPais= $resPais[0];
-        //consigo el ciudad de la persona
-        $resCiudad = Ciudad::where('id', $fichaPer->id)->get()->all();
-        $fichaCiudad= $resCiudad[0];
-        //consigo departamento de la persona.
-        $resDepartamento = Departamento::where('id', $fichaPer->id)->get()->all();
-        $fichaDepartamento= $resDepartamento[0];
-        //consigo estado civil de la persona.
-        $resEstadoCivil = EstadoCivil::where('id', $fichaPer->id)->get()->all();
-        $fichaEstadoCivil= $resEstadoCivil[0];
-        //consigo fuerza de la persona.
-        $resFuerza = Fuerza::where('id', $fichaPer->id)->get()->all();
-        $fichaFuerza= $resFuerza[0];
-        //consigo grado de la persona.
-        $resGrado = Grado::where('id', $fichaPer->id)->get()->all();
-        $fichaGrado= $resGrado[0];
-        //consigo situacion de la persona.
-        $resSituacion = Situacion::where('id', $fichaPer->id)->get()->all();
-        $fichaSituacion= $resSituacion[0];
-        //consigo cuerpó de la persona.
-        $resArmaCuerpo = ArmaCuerpo::where('id', $fichaPer->id)->get()->all();
-        $fichaArmaCuerpo= $resArmaCuerpo[0];
-        //consigo Clasificacion de la persona.
-        $resClasificacion = Clasificacion::where('id', $fichaPer->id)->get()->all();
-        $fichaClasificacion = $resClasificacion[0];
-        //consigo las unidades de la persona
-        $fichaUnidades = Unidad::join('ficha_personal_unidad','unidad_Id','=','unidads.id' )
-                        ->select('*')
-                        ->where('ficha_Personal_Id', $fichaPer->id)->get()->all();
-
-                        return view('fichasPersonales.editarFicha', 
-                                compact('fichaPer',
-                                        'paises',
-                                        'ciudades',
-                                        'departamentos',
-                                        'estadosCiviles',
-                                        'situaciones',
-                                        'fuerzas',
-                                        'grados',
-                                        'cuerpos',
-                                        'unidades',
-                                        'fichaPais', 
-                                        'fichaCiudad',
-                                        'fichaDepartamento',
-                                        'fichaEstadoCivil',
-                                        'fichaFuerza',
-                                        'fichaGrado',
-                                        'fichaSituacion',
-                                        'fichaArmaCuerpo',
-                                        'clasificaciones',
-                                        'fichaClasificacion',
-                                        'fichaUnidades'  ));
-
-    
-    }
-    public function update(Request $request, $fichaPersonalId)
-    {
-
-        $fichasViejas = Unidad::join('ficha_personal_unidad','unidad_Id','=','unidads.id' )
-                        ->select('*')
-                        ->where('ficha_Personal_Id', $fichaPersonalId)->get()->all();
-                
-        $fichaPer = FichaPersonal::find($fichaPersonalId);
-        $fichaPer->primerNombre = $request->primerNombre;
-        $fichaPer->primerApellido = $request->primerApellido;
-        $fichaPer->cedula = $request->cedula;
-        $fichaPer->fechaNac = $request->fechaNac;
-        $fichaPer->paisId = $request->paisId;
-        $fichaPer->save();
-
-       $insertar = collect($fichasViejas)->pluck('unidad_Id');
-
-        //$insertar = array($fichasViejas['unidad_Id']);
-        $fichaPer->unidad()->detach($insertar);
-        $fichaPer->unidad()->attach($request->get('unidades'));
-
-        //return $insertar;
-        return back()->with('flash', 'Ficha actualizada con exito');
-        
-    }
-
-    public function destroy($fichaPersonalId){
-        $fichaPer = FichaPersonal::find($fichaPersonalId);
-
-        $fichaPer->delete();
-        $fichaPer->unidad()->detach();
-
-        return redirect()
-            ->route('fichasPersonales.index')
-            ->with('flash', 'Ficha eliminada con exito');
-
-    }
+        $paises = Pais::all();
+        return view('fichasPersonales.crearFicha' ,compact('unidades', 'paises'));
+    }*/
 
 
 

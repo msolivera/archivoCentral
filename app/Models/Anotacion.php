@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Anotacion extends Model
 {
     use HasFactory;
+    public function fichasPersonales(){
+        return $this->belongsToMany(FichaPersonal::class);
+    }
 }

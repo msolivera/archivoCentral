@@ -49,7 +49,7 @@
                                       class="form-control select2" 
                                       style="width: 100%;" 
                                       id="clasificacionId">
-                                      <option value="/*{$fichaClasificacion->id}}*/"> Seleccione una Clasificación</option>
+                                      <option value=""> Seleccione una Clasificación</option>
                                       @foreach ($clasificaciones as $clasificacion)
                                       <option value="{{$clasificacion->id}}"
                                           {{old('clasificacionId', $fichaPer->clasificacionId) == $clasificacion->id ? 'selected' : ''}}>
@@ -61,16 +61,17 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="temas">Temas</label>
-                                    <select  name="unidades[]" 
+                                    <select  name="temas[]" 
                                         class="select2" 
                                         multiple="multiple" 
                                         data-placeholder="Seleccione Uno o mas temas" 
                                         style="width: 100%;">
-                                        @foreach ($unidades as $unidad)
-                                            <option {{collect(old('unidades'))->contains($unidad->id) ? 'selected' : ''}} 
-                                            value={{$unidad->id}}> {{$unidad->nombre}}
+                                        @foreach ($temas as $tema)
+                                            <option {{collect(old('temas[]',collect($fichaTemas)->pluck('tema_Id')))->contains($tema->id) ? 'selected' : ''}} 
+                                            value={{$tema->id}}> {{$tema->nombre}}
                                             </option>
                                         @endforeach
+                                      
                                     </select>  
                                 </div> 
                             </div>
@@ -115,23 +116,24 @@
                           <div class="form-group">
                             <label for="otroDocNombre">Otro Documento</label>
                             <div class="row">
-                            <div class="col-md-6" >
-                              <select name="otroDocNombre" 
-                                class="form-control select2" 
-                                style="width: 100%;" 
-                                id="otroDocNombre">
-                                <option value="{{$fichaPer->otroDocNombre}}"> Seleccione un Documento</option> 
-                                <option value="dni">DNI</option>      
-                                <option value="libretaEmbarque">Libreta de Embarque</option>      
-                              </select> 
-                            </div>
-                            <div class="col-md-6" style= "display: inline-block; float: right;">
-                              <input name = "otroDocNumero" 
-                              type="imput" 
-                              class="form-control" 
-                              id="otroDocNumero" placeholder="..."
-                              value="{{old('otroDocNumero',$fichaPer->otroDocNumero)}}">
-                            </div>
+                              <div class="col-md-6" >
+                                  <select name="otroDocNombre" 
+                                    class="form-control select2" 
+                                    style="width: 100%;" 
+                                    id="otroDocNombre">
+                                    <option value="" > Seleccione un Documento</option> 
+                                    <option value="dni" {{("dni" == $fichaPer->otroDocNombre) ? "selected=true" : "" }}>DNI</option>      
+                                    <option value="libretaEmbarque" {{("libretaEmbarque" == $fichaPer->otroDocNombre) ? "selected=true" : "" }}>Libreta de Embarque</option>      
+                                  </select> 
+                              </div>
+                                
+                              <div class="col-md-6" style= "display: inline-block; float: right;">
+                                <input name = "otroDocNumero" 
+                                type="imput" 
+                                class="form-control" 
+                                id="otroDocNumero" placeholder="..."
+                                value="{{old('otroDocNumero',$fichaPer->otroDocNumero)}}">
+                              </div>
                             </div>
           
                           </div>
@@ -142,7 +144,7 @@
                                     class="form-control select2" 
                                     style="width: 100%;" 
                                     id="paisId">
-                                    <option value="{{$fichaPais->id}}"> Seleccione un Pais</option>
+                                    <option value=""> Seleccione un Pais</option>
                                     @foreach ($paises as $pais)
                                     <option value="{{$pais->id}}"
                                         {{old('paisId', $fichaPer->paisId) == $pais->id ? 'selected' : ''}}>
@@ -156,7 +158,7 @@
                             <select name = "departamentoId" 
                                     class="form-control select2"  
                                     id="departamento"> 
-                                    <option value="{{$fichaDepartamento->id}}"> Seleccione un Departamento</option>
+                                    <option value=""> Seleccione un Departamento</option>
                                     @foreach ($departamentos as $departamento)
                                     <option value="{{$departamento->id}}"
                                         {{old('departamentoId', $fichaPer->departamentoId) == $departamento->id ? 'selected' : ''}}>
@@ -180,11 +182,13 @@
                           <div class="form-group" style= 'margin-bottom: 35px;'>
                             <label for="sexo">Sexo</label>
                             <div class="custom-control custom-radio">
-                              <input class="custom-control-input" type="radio" id="sexo1" name="sexo">
+                              <input class="custom-control-input" type="radio" id="sexo1" 
+                                      name="sexo" value="Hombre" {{($fichaPer->sexo == "Hombre") ? "checked=true" : "" }}>
                               <label for="sexo1" class="custom-control-label">Hombre</label>
                             </div>
                             <div class="custom-control custom-radio" >
-                              <input class="custom-control-input" type="radio" id="sexo2" name="sexo" >
+                              <input class="custom-control-input" type="radio" id="sexo2" 
+                                    name="sexo" value="Mujer" {{($fichaPer->sexo == "Mujer") ? "checked=true" : "" }}>
                               <label for="sexo2" class="custom-control-label">Mujer</label>
                             </div>
                           </div>
@@ -192,19 +196,23 @@
                           <div class="form-group">
                             <label for="estadoIngreso">Estado de Ingreso</label>
                             <div class="custom-control custom-radio">
-                              <input class="custom-control-input" type="radio" id="estado0" name="estado">
+                              <input class="custom-control-input" type="radio" id="estado0" 
+                                    name="estadoIngreso" value="No Aplica"{{("No Aplica" == $fichaPer->estadoIngreso) ? "checked=true" : "" }}>
                               <label for="estado0" class="custom-control-label">No Aplica</label>
                             </div>
                             <div class="custom-control custom-radio">
-                              <input class="custom-control-input" type="radio" id="estado1" name="estado">
+                              <input class="custom-control-input" type="radio" id="estado1" 
+                                    name="estadoIngreso" value="Primera Vez"{{("Primera Vez" == $fichaPer->estadoIngreso) ? "checked=true" : "" }}>
                               <label for="estado1" class="custom-control-label">Primera Vez</label>
                             </div>
                             <div class="custom-control custom-radio" >
-                              <input class="custom-control-input" type="radio" id="estado2" name="estado" >
+                              <input class="custom-control-input" type="radio" id="estado2" 
+                                  name="estadoIngreso" value="Reingreso"{{("Reingreso" == $fichaPer->estadoIngreso) ? "checked=true" : "" }}>
                               <label for="estado2" class="custom-control-label">Reingreso</label>
                             </div>
                             <div class="custom-control custom-radio">
-                              <input class="custom-control-input" type="radio" id="estado3" name="estado" >
+                              <input class="custom-control-input" type="radio" id="estado3" 
+                                  name="estadoIngreso" value="Sol. Anteriores"{{("Sol. Anteriores" == $fichaPer->estadoIngreso) ? "checked=true" : "" }}>
                               <label for="estado3" class="custom-control-label">Sol. Anteriores</label>
                             </div>
                           </div>
@@ -213,12 +221,12 @@
                             
                             <div class="row">
                               <div class="col-md-6" >
-                                <label for="fuerza">Fuerza</label>
-                                <select name="fuerza" 
+                                <label for="fuerzaId">Fuerza</label>
+                                <select name="fuerzaId" 
                                   class="form-control select2" 
                                   style="width: 100%;" 
-                                  id="fuerza">
-                                  <option value="{{$fichaFuerza->id}}"> Seleccione una Fuerza</option>
+                                  id="fuerzaId">
+                                  <option value=""> Seleccione una Fuerza</option>
                                   @foreach ($fuerzas as $fuerza)
                                   <option value="{{$fuerza->id}}"
                                       {{old('fuerzaId', $fichaPer->fuerzaId) == $fuerza->id ? 'selected' : ''}}>
@@ -227,12 +235,12 @@
                                 </select> 
                               </div>
                               <div class="col-md-6" style= "display: inline-block; float: right;">
-                                <label for="grado">Grado</label>
-                                <select name="grado" 
+                                <label for="gradoId">Grado</label>
+                                <select name="gradoId" 
                                   class="form-control select2" 
                                   style="width: 100%;" 
-                                  id="grado">
-                                  <option value="{{$fichaGrado->id}}"> Seleccione un Grado</option>
+                                  id="gradoId">
+                                  <option value=""> Seleccione un Grado</option>
                                   @foreach ($grados as $grado)
                                   <option value="{{$grado->id}}"
                                       {{old('gradoId', $fichaPer->gradoId) == $grado->id ? 'selected' : ''}}>
@@ -298,7 +306,7 @@
                                     class="form-control select2" 
                                     style="width: 100%;" 
                                     id="ciudadId">
-                              <option value="{{$fichaCiudad->id}}"> Seleccione una Ciudad - Barrio</option>
+                              <option value=""> Seleccione una Ciudad - Barrio</option>
                               @foreach ($ciudades as $ciudad)
                                 <option value="{{$ciudad->id}}"
                                     {{old('ciudadId', $fichaPer->ciudadId) == $ciudad->id ? 'selected' : ''}}>
@@ -313,7 +321,7 @@
                                     class="form-control select2" 
                                     style="width: 100%;" 
                                     id="estadoCivilId">
-                              <option value="{{$fichaEstadoCivil->id}}"> Seleccione un Estado Civil</option>
+                              <option value=""> Seleccione un Estado Civil</option>
                               @foreach ($estadosCiviles as $estadoCivil)
                                 <option value="{{$estadoCivil->id}}"
                                   {{old('estadoCivilId',$fichaPer->estadoCivilId) == $estadoCivil->id ? 'selected' : ''}}>
@@ -323,15 +331,15 @@
                           </div>
           
                           <div class="form-group {{$errors->has('seccional') ? 'has-error' : ''}} ">
-                            <label for="seccional">Seccional Policial</label>
-                            <input name = "seccional" 
+                            <label for="seccionalPolicial">Seccional Policial</label>
+                            <input name = "seccionalPolicial" 
                                   type="imput" 
                                   class="form-control" 
-                                  id="seccional" 
+                                  id="seccionalPolicial" 
                                   placeholder="..." 
-                                  value="{{old('seccional',$fichaPer->seccionalPolicial)}}">
+                                  value="{{old('seccionalPolicial',$fichaPer->seccionalPolicial)}}">
                             <!--- Muestro los errores de validacion.-->
-                            {!! $errors->first('seccional','<span class=error style=color:red>:message</span>')!!}
+                            {!! $errors->first('seccionalPolicial','<span class=error style=color:red>:message</span>')!!}
                           </div>
           
                           <div class="form-group">
@@ -369,7 +377,7 @@
                                     class="form-control select2" 
                                     style="width: 100%;" 
                                     id="situacionId">
-                              <option value="{{$fichaSituacion->id}}"> Seleccione un Situación</option>
+                              <option value=""> Seleccione un Situación</option>
                               @foreach ($situaciones as $situacion)
                                 <option value="{{$situacion->id}}"
                                   {{old('situacionId',$fichaPer->situacionId) == $situacion->id ? 'selected' : ''}}>
@@ -379,12 +387,12 @@
                           </div>
           
                           <div class="form-group">
-                            <label for="cuerpo">Cuerpo/Arma</label>
+                            <label for="cuerpoId">Cuerpo/Arma</label>
                             <select name="cuerpoId" 
                                     class="form-control select2" 
                                     style="width: 100%;" 
                                     id="cuerpoId">
-                                    <option value="{{$fichaArmaCuerpo->id}}"> Seleccione Cuerpo/Arma</option>
+                                    <option value=""> Seleccione Cuerpo/Arma</option>
                                     @foreach ($cuerpos as $cuerpo)
                                       <option value="{{$cuerpo->id}}"
                                         {{old('cuerpoId',$fichaPer->cuerpoId) == $cuerpo->id ? 'selected' : ''}}>
@@ -394,439 +402,17 @@
                           </div>
                         
                         </div>
+
                       </div>
-          
-                      <div class="row">
-                        <div class="col-12">
-                          <div class="card" style="background-color: #E6EFF6;">
-                            <div class="card-body">
-                              <div class="row">
-                              <div class="col-8">
-                                <h3 class="card-title">Ideologias</h3>
-                                </div>
-                                <div class="col-4">
-                                <button style="float: right; padding: 15px;" class="btn btn-xs btn-warning" 
-                                data-toggle="modal" data-target="#insertModal"><i class="fa fa-regular fa-plus"></i></button>
-                                </div>
-                              </div>
-                              <table id="example1" class="table table-bordered table-striped">
-                                <thead>
-                                <tr>
-                                  <th>ID</th>
-                                  <th>Ideologias</th>
-                                  <th>Acciones</th>
-                                </tr>
-                                </thead>
-                                <tbody>        
-                                  <tr>
-                                    <td>1</td>
-                                    <td>prueba</td>
-                                    <td>  
-                                    <a href="#" class="btn btn-xs btn-info"><i class="fa fa-light fa-pen"></i></a>  
-                                    <form method="POST" action="#" style="display: inline"> {{ csrf_field() }} {{method_field('DELETE')}}
-                                      <button class="btn btn-xs btn-danger"
-                                        onclick="return confirm('¿Esta seguro que desea elminirar este registro?')"
-                                      ><i class="fa fa-light fa-trash"></i></button>
-                                    </form> 
-                                    </td> 
-                                  </tr> 
-                                 
-                                            
-                                </tbody>
-                              </table>
-                            </div>
-                            <!-- /.card-body -->
-                          </div>
-                        </div>
-          
-                        <div class="col-12">
-                          <div class="card" style="background-color: #E6EFF6;">
-                            <div class="card-body">
-                              <div class="row">
-                              <div class="col-8">
-                                <h3 class="card-title">Profesiones</h3>
-                                </div>
-                                <div class="col-4">
-                                <button style="float: right; padding: 15px;" class="btn btn-xs btn-warning" 
-                                data-toggle="modal" data-target="#insertModal"><i class="fa fa-regular fa-plus"></i></button>
-                                </div>
-                              </div>
-                              <table id="example1" class="table table-bordered table-striped">
-                                <thead>
-                                <tr>
-                                  <th>ID</th>
-                                  <th>Ideologias</th>
-                                  <th>Acciones</th>
-                                </tr>
-                                </thead>
-                                <tbody>        
-                                  <tr>
-                                    <td>1</td>
-                                    <td>prueba</td>
-                                    <td>  
-                                    <a href="#" class="btn btn-xs btn-info"><i class="fa fa-light fa-pen"></i></a>  
-                                    <form method="POST" action="#" style="display: inline"> {{ csrf_field() }} {{method_field('DELETE')}}
-                                      <button class="btn btn-xs btn-danger"
-                                        onclick="return confirm('¿Esta seguro que desea elminirar este registro?')"
-                                      ><i class="fa fa-light fa-trash"></i></button>
-                                    </form> 
-                                    </td> 
-                                  </tr> 
-                                 
-                                            
-                                </tbody>
-                              </table>
-                            </div>
-                            <!-- /.card-body -->
-                          </div>
-                        </div>
-          
-                        <div class="col-12">
-                          <div class="card" style="background-color: #E6EFF6;">
-                            <div class="card-body">
-                              <div class="row">
-                              <div class="col-8">
-                                <h3 class="card-title">Domicilios</h3>
-                                </div>
-                                <div class="col-4">
-                                <button style="float: right; padding: 15px;" class="btn btn-xs btn-warning" 
-                                data-toggle="modal" data-target="#insertModal"><i class="fa fa-regular fa-plus"></i></button>
-                                </div>
-                              </div>
-                              <table id="example1" class="table table-bordered table-striped">
-                                <thead>
-                                <tr>
-                                  <th>ID</th>
-                                  <th>Ideologias</th>
-                                  <th>Acciones</th>
-                                </tr>
-                                </thead>
-                                <tbody>        
-                                  <tr>
-                                    <td>1</td>
-                                    <td>prueba</td>
-                                    <td>  
-                                    <a href="#" class="btn btn-xs btn-info"><i class="fa fa-light fa-pen"></i></a>  
-                                    <form method="POST" action="#" style="display: inline"> {{ csrf_field() }} {{method_field('DELETE')}}
-                                      <button class="btn btn-xs btn-danger"
-                                        onclick="return confirm('¿Esta seguro que desea elminirar este registro?')"
-                                      ><i class="fa fa-light fa-trash"></i></button>
-                                    </form> 
-                                    </td> 
-                                  </tr> 
-                                 
-                                            
-                                </tbody>
-                              </table>
-                            </div>
-                            <!-- /.card-body -->
-                          </div>
-                        </div>
-          
-                        <div class="col-12">
-                          <div class="card" style="background-color: #E6EFF6;">
-                            <div class="card-body">
-                              <div class="row">
-                              <div class="col-8">
-                                <h3 class="card-title">Estudios</h3>
-                                </div>
-                                <div class="col-4">
-                                <button style="float: right; padding: 15px;" class="btn btn-xs btn-warning" 
-                                data-toggle="modal" data-target="#insertModal"><i class="fa fa-regular fa-plus"></i></button>
-                                </div>
-                              </div>
-                              <table id="example1" class="table table-bordered table-striped">
-                                <thead>
-                                <tr>
-                                  <th>ID</th>
-                                  <th>Ideologias</th>
-                                  <th>Acciones</th>
-                                </tr>
-                                </thead>
-                                <tbody>        
-                                  <tr>
-                                    <td>1</td>
-                                    <td>prueba</td>
-                                    <td>  
-                                    <a href="#" class="btn btn-xs btn-info"><i class="fa fa-light fa-pen"></i></a>  
-                                    <form method="POST" action="#" style="display: inline"> {{ csrf_field() }} {{method_field('DELETE')}}
-                                      <button class="btn btn-xs btn-danger"
-                                        onclick="return confirm('¿Esta seguro que desea elminirar este registro?')"
-                                      ><i class="fa fa-light fa-trash"></i></button>
-                                    </form> 
-                                    </td> 
-                                  </tr> 
-                                 
-                                            
-                                </tbody>
-                              </table>
-                            </div>
-                            <!-- /.card-body -->
-                          </div>
-                        </div>
-          
-                        <div class="col-12">
-                          <div class="card" style="background-color: #E6EFF6;">
-                            <div class="card-body">
-                              <div class="row">
-                              <div class="col-8">
-                                <h3 class="card-title">Organizaciones</h3>
-                                </div>
-                                <div class="col-4">
-                                <button style="float: right; padding: 15px;" class="btn btn-xs btn-warning" 
-                                data-toggle="modal" data-target="#insertModal"><i class="fa fa-regular fa-plus"></i></button>
-                                </div>
-                              </div>
-                              <table id="example1" class="table table-bordered table-striped">
-                                <thead>
-                                <tr>
-                                  <th>ID</th>
-                                  <th>Ideologias</th>
-                                  <th>Acciones</th>
-                                </tr>
-                                </thead>
-                                <tbody>        
-                                  <tr>
-                                    <td>1</td>
-                                    <td>prueba</td>
-                                    <td>  
-                                    <a href="#" class="btn btn-xs btn-info"><i class="fa fa-light fa-pen"></i></a>  
-                                    <form method="POST" action="#" style="display: inline"> {{ csrf_field() }} {{method_field('DELETE')}}
-                                      <button class="btn btn-xs btn-danger"
-                                        onclick="return confirm('¿Esta seguro que desea elminirar este registro?')"
-                                      ><i class="fa fa-light fa-trash"></i></button>
-                                    </form> 
-                                    </td> 
-                                  </tr> 
-                                 
-                                            
-                                </tbody>
-                              </table>
-                            </div>
-                            <!-- /.card-body -->
-                          </div>
-                        </div>
-          
-                        <div class="col-12">
-                          <div class="card" style="background-color: #E6EFF6;">
-                            <div class="card-body">
-                              <div class="row">
-                              <div class="col-8">
-                                <h3 class="card-title">Anotaciones</h3>
-                                </div>
-                                <div class="col-4">
-                                <button style="float: right; padding: 15px;" class="btn btn-xs btn-warning" 
-                                data-toggle="modal" data-target="#insertModal"><i class="fa fa-regular fa-plus"></i></button>
-                                </div>
-                              </div>
-                              <table id="example1" class="table table-bordered table-striped">
-                                <thead>
-                                <tr>
-                                  <th>ID</th>
-                                  <th>Ideologias</th>
-                                  <th>Acciones</th>
-                                </tr>
-                                </thead>
-                                <tbody>        
-                                  <tr>
-                                    <td>1</td>
-                                    <td>prueba</td>
-                                    <td>  
-                                    <a href="#" class="btn btn-xs btn-info"><i class="fa fa-light fa-pen"></i></a>  
-                                    <form method="POST" action="#" style="display: inline"> {{ csrf_field() }} {{method_field('DELETE')}}
-                                      <button class="btn btn-xs btn-danger"
-                                        onclick="return confirm('¿Esta seguro que desea elminirar este registro?')"
-                                      ><i class="fa fa-light fa-trash"></i></button>
-                                    </form> 
-                                    </td> 
-                                  </tr> 
-                                 
-                                            
-                                </tbody>
-                              </table>
-                            </div>
-                            <!-- /.card-body -->
-                          </div>
-                        </div>
-          
-                        <div class="col-12">
-                          <div class="card" style="background-color: #E6EFF6;">
-                            <div class="card-body">
-                              <div class="row">
-                              <div class="col-8">
-                                <h3 class="card-title">Fichas personales relacionadas</h3>
-                                </div>
-                                <div class="col-4">
-                                <button style="float: right; padding: 15px;" class="btn btn-xs btn-warning" 
-                                data-toggle="modal" data-target="#insertModal"><i class="fa fa-regular fa-plus"></i></button>
-                                </div>
-                              </div>
-                              <table id="example1" class="table table-bordered table-striped">
-                                <thead>
-                                <tr>
-                                  <th>ID</th>
-                                  <th>Ideologias</th>
-                                  <th>Acciones</th>
-                                </tr>
-                                </thead>
-                                <tbody>        
-                                  <tr>
-                                    <td>1</td>
-                                    <td>prueba</td>
-                                    <td>  
-                                    <a href="#" class="btn btn-xs btn-info"><i class="fa fa-light fa-pen"></i></a>  
-                                    <form method="POST" action="#" style="display: inline"> {{ csrf_field() }} {{method_field('DELETE')}}
-                                      <button class="btn btn-xs btn-danger"
-                                        onclick="return confirm('¿Esta seguro que desea elminirar este registro?')"
-                                      ><i class="fa fa-light fa-trash"></i></button>
-                                    </form> 
-                                    </td> 
-                                  </tr> 
-                                 
-                                            
-                                </tbody>
-                              </table>
-                            </div>
-                            <!-- /.card-body -->
-                          </div>
-                        </div>
-          
-                        <div class="col-12">
-                          <div class="card" style="background-color: #E6EFF6;">
-                            <div class="card-body">
-                              <div class="row">
-                              <div class="col-8">
-                                <h3 class="card-title">Fichas Impersonales Relacionadas</h3>
-                                </div>
-                                <div class="col-4">
-                                <button style="float: right; padding: 15px;" class="btn btn-xs btn-warning" 
-                                data-toggle="modal" data-target="#insertModal"><i class="fa fa-regular fa-plus"></i></button>
-                                </div>
-                              </div>
-                              <table id="example1" class="table table-bordered table-striped">
-                                <thead>
-                                <tr>
-                                  <th>ID</th>
-                                  <th>Ideologias</th>
-                                  <th>Acciones</th>
-                                </tr>
-                                </thead>
-                                <tbody>        
-                                  <tr>
-                                    <td>1</td>
-                                    <td>prueba</td>
-                                    <td>  
-                                    <a href="#" class="btn btn-xs btn-info"><i class="fa fa-light fa-pen"></i></a>  
-                                    <form method="POST" action="#" style="display: inline"> {{ csrf_field() }} {{method_field('DELETE')}}
-                                      <button class="btn btn-xs btn-danger"
-                                        onclick="return confirm('¿Esta seguro que desea elminirar este registro?')"
-                                      ><i class="fa fa-light fa-trash"></i></button>
-                                    </form> 
-                                    </td> 
-                                  </tr> 
-                                 
-                                            
-                                </tbody>
-                              </table>
-                            </div>
-                            <!-- /.card-body -->
-                          </div>
-                        </div>
-          
-                        <div class="col-12">
-                          <div class="card" style="background-color: #E6EFF6;">
-                            <div class="card-body">
-                              <div class="row">
-                              <div class="col-8">
-                                <h3 class="card-title">Dossier Relacionados</h3>
-                                </div>
-                                <div class="col-4">
-                                <button style="float: right; padding: 15px;" class="btn btn-xs btn-warning" 
-                                data-toggle="modal" data-target="#insertModal"><i class="fa fa-regular fa-plus"></i></button>
-                                </div>
-                              </div>
-                              <table id="example1" class="table table-bordered table-striped">
-                                <thead>
-                                <tr>
-                                  <th>ID</th>
-                                  <th>Ideologias</th>
-                                  <th>Acciones</th>
-                                </tr>
-                                </thead>
-                                <tbody>        
-                                  <tr>
-                                    <td>1</td>
-                                    <td>prueba</td>
-                                    <td>  
-                                    <a href="#" class="btn btn-xs btn-info"><i class="fa fa-light fa-pen"></i></a>  
-                                    <form method="POST" action="#" style="display: inline"> {{ csrf_field() }} {{method_field('DELETE')}}
-                                      <button class="btn btn-xs btn-danger"
-                                        onclick="return confirm('¿Esta seguro que desea elminirar este registro?')"
-                                      ><i class="fa fa-light fa-trash"></i></button>
-                                    </form> 
-                                    </td> 
-                                  </tr> 
-                                 
-                                            
-                                </tbody>
-                              </table>
-                            </div>
-                            <!-- /.card-body -->
-                          </div>
-                        </div>
-          
-                        <div class="col-12">
-                          <div class="card" style="background-color: #E6EFF6;">
-                            <div class="card-body">
-                              <div class="row">
-                              <div class="col-8">
-                                <h3 class="card-title">Documentos Relacionados</h3>
-                                </div>
-                                <div class="col-4">
-                                <button style="float: right; padding: 15px;" class="btn btn-xs btn-warning" 
-                                data-toggle="modal" data-target="#insertModal"><i class="fa fa-regular fa-plus"></i></button>
-                                </div>
-                              </div>
-                              <table id="example1" class="table table-bordered table-striped">
-                                <thead>
-                                <tr>
-                                  <th>ID</th>
-                                  <th>Ideologias</th>
-                                  <th>Acciones</th>
-                                </tr>
-                                </thead>
-                                <tbody>        
-                                  <tr>
-                                    <td>1</td>
-                                    <td>prueba</td>
-                                    <td>  
-                                    <a href="#" class="btn btn-xs btn-info"><i class="fa fa-light fa-pen"></i></a>  
-                                    <form method="POST" action="#" style="display: inline"> {{ csrf_field() }} {{method_field('DELETE')}}
-                                      <button class="btn btn-xs btn-danger"
-                                        onclick="return confirm('¿Esta seguro que desea elminirar este registro?')"
-                                      ><i class="fa fa-light fa-trash"></i></button>
-                                    </form> 
-                                    </td> 
-                                  </tr> 
-                                 
-                                            
-                                </tbody>
-                              </table>
-                            </div>
-                            <!-- /.card-body -->
-                          </div>
-                        </div>
-          
-          
-          
-                    </div>
+                      <!-- row de tablas inicio -->
+                      
                     <!-- /.card-body -->
                   
                     <div class="card-footer">
-                      <div class="col-md-4" style="float: left;">
-                        <button type="submit" class="btn btn-success btn-block">Guardar</button>
+                      <div class="col-md-6" style="float: left;">
+                        <button type="submit" class="btn btn-success btn-block">Guardar esta información</button>
                         </div>
-                        <div class="col-md-4" style="float: right;">
+                        <div class="col-md-6" style="float: right;">
                         <a href="{{route('fichasPersonales.index')}}"  class="btn btn-block btn-outline-primary">Atrás</a>
                         </div>
                     </div>
@@ -839,6 +425,428 @@
 
         </div>
     </form>
+    <div class="row">
+      <div class="col-12">
+        <div class="card" style="background-color: #E6EFF6;">
+          <div class="card-body">
+            <div class="row">
+            <div class="col-8">
+              <h3 class="card-title">Ideologias</h3>
+              </div>
+              <div class="col-4">
+              <button style="float: right; padding: 15px;" class="btn btn-xs btn-warning" 
+              data-toggle="modal" data-target="#insertModal"><i class="fa fa-regular fa-plus"></i></button>
+              </div>
+            </div>
+            <table id="example1" class="table table-bordered table-striped">
+              <thead>
+              <tr>
+                <th>ID</th>
+                <th>Ideologias</th>
+                <th>Acciones</th>
+              </tr>
+              </thead>
+              <tbody>        
+                <tr>
+                  <td>1</td>
+                  <td>prueba</td>
+                  <td>  
+                  <a href="#" class="btn btn-xs btn-info"><i class="fa fa-light fa-pen"></i></a>  
+                  <form method="POST" action="#" style="display: inline"> {{ csrf_field() }} {{method_field('DELETE')}}
+                    <button class="btn btn-xs btn-danger"
+                      onclick="return confirm('¿Esta seguro que desea elminirar este registro?')"
+                    ><i class="fa fa-light fa-trash"></i></button>
+                  </form> 
+                  </td> 
+                </tr> 
+               
+                          
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="card" style="background-color: #E6EFF6;">
+          <div class="card-body">
+            <div class="row">
+            <div class="col-8">
+              <h3 class="card-title">Profesiones</h3>
+              </div>
+              <div class="col-4">
+              <button style="float: right; padding: 15px;" class="btn btn-xs btn-warning" 
+              data-toggle="modal" data-target="#insertModal"><i class="fa fa-regular fa-plus"></i></button>
+              </div>
+            </div>
+            <table id="example1" class="table table-bordered table-striped">
+              <thead>
+              <tr>
+                <th>ID</th>
+                <th>Ideologias</th>
+                <th>Acciones</th>
+              </tr>
+              </thead>
+              <tbody>        
+                <tr>
+                  <td>1</td>
+                  <td>prueba</td>
+                  <td>  
+                  <a href="#" class="btn btn-xs btn-info"><i class="fa fa-light fa-pen"></i></a>  
+                  <form method="POST" action="#" style="display: inline"> {{ csrf_field() }} {{method_field('DELETE')}}
+                    <button class="btn btn-xs btn-danger"
+                      onclick="return confirm('¿Esta seguro que desea elminirar este registro?')"
+                    ><i class="fa fa-light fa-trash"></i></button>
+                  </form> 
+                  </td> 
+                </tr> 
+               
+                          
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="card" style="background-color: #E6EFF6;">
+          <div class="card-body">
+            <div class="row">
+            <div class="col-8">
+              <h3 class="card-title">Domicilios</h3>
+              </div>
+              <div class="col-4">
+              <button style="float: right; padding: 15px;" class="btn btn-xs btn-warning" 
+              data-toggle="modal" data-target="#insertModal"><i class="fa fa-regular fa-plus"></i></button>
+              </div>
+            </div>
+            <table id="example1" class="table table-bordered table-striped">
+              <thead>
+              <tr>
+                <th>ID</th>
+                <th>Ideologias</th>
+                <th>Acciones</th>
+              </tr>
+              </thead>
+              <tbody>        
+                <tr>
+                  <td>1</td>
+                  <td>prueba</td>
+                  <td>  
+                  <a href="#" class="btn btn-xs btn-info"><i class="fa fa-light fa-pen"></i></a>  
+                  <form method="POST" action="#" style="display: inline"> {{ csrf_field() }} {{method_field('DELETE')}}
+                    <button class="btn btn-xs btn-danger"
+                      onclick="return confirm('¿Esta seguro que desea elminirar este registro?')"
+                    ><i class="fa fa-light fa-trash"></i></button>
+                  </form> 
+                  </td> 
+                </tr> 
+               
+                          
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="card" style="background-color: #E6EFF6;">
+          <div class="card-body">
+            <div class="row">
+            <div class="col-8">
+              <h3 class="card-title">Estudios</h3>
+              </div>
+              <div class="col-4">
+              <button style="float: right; padding: 15px;" class="btn btn-xs btn-warning" 
+              data-toggle="modal" data-target="#insertModal"><i class="fa fa-regular fa-plus"></i></button>
+              </div>
+            </div>
+            <table id="example1" class="table table-bordered table-striped">
+              <thead>
+              <tr>
+                <th>ID</th>
+                <th>Ideologias</th>
+                <th>Acciones</th>
+              </tr>
+              </thead>
+              <tbody>        
+                <tr>
+                  <td>1</td>
+                  <td>prueba</td>
+                  <td>  
+                  <a href="#" class="btn btn-xs btn-info"><i class="fa fa-light fa-pen"></i></a>  
+                  <form method="POST" action="#" style="display: inline"> {{ csrf_field() }} {{method_field('DELETE')}}
+                    <button class="btn btn-xs btn-danger"
+                      onclick="return confirm('¿Esta seguro que desea elminirar este registro?')"
+                    ><i class="fa fa-light fa-trash"></i></button>
+                  </form> 
+                  </td> 
+                </tr> 
+               
+                          
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="card" style="background-color: #E6EFF6;">
+          <div class="card-body">
+            <div class="row">
+            <div class="col-8">
+              <h3 class="card-title">Organizaciones</h3>
+              </div>
+              <div class="col-4">
+              <button style="float: right; padding: 15px;" class="btn btn-xs btn-warning" 
+              data-toggle="modal" data-target="#insertModal"><i class="fa fa-regular fa-plus"></i></button>
+              </div>
+            </div>
+            <table id="example1" class="table table-bordered table-striped">
+              <thead>
+              <tr>
+                <th>ID</th>
+                <th>Ideologias</th>
+                <th>Acciones</th>
+              </tr>
+              </thead>
+              <tbody>        
+                <tr>
+                  <td>1</td>
+                  <td>prueba</td>
+                  <td>  
+                  <a href="#" class="btn btn-xs btn-info"><i class="fa fa-light fa-pen"></i></a>  
+                  <form method="POST" action="#" style="display: inline"> {{ csrf_field() }} {{method_field('DELETE')}}
+                    <button class="btn btn-xs btn-danger"
+                      onclick="return confirm('¿Esta seguro que desea elminirar este registro?')"
+                    ><i class="fa fa-light fa-trash"></i></button>
+                  </form> 
+                  </td> 
+                </tr> 
+               
+                          
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="card" style="background-color: #E6EFF6;">
+          <div class="card-body">
+            <div class="row">
+            <div class="col-8">
+              <h3 class="card-title">Anotaciones</h3>
+              </div>
+              <div class="col-4">
+              <button style="float: right; padding: 15px;" class="btn btn-xs btn-warning" 
+              data-toggle="modal" data-target="#insertModal"><i class="fa fa-regular fa-plus"></i></button>
+              </div>
+            </div>
+            <table id="example1" class="table table-bordered table-striped">
+              <thead>
+              <tr>
+                <th>ID</th>
+                <th>Ideologias</th>
+                <th>Acciones</th>
+              </tr>
+              </thead>
+              <tbody>        
+                <tr>
+                  <td>1</td>
+                  <td>prueba</td>
+                  <td>  
+                  <a href="#" class="btn btn-xs btn-info"><i class="fa fa-light fa-pen"></i></a>  
+                  <form method="POST" action="#" style="display: inline"> {{ csrf_field() }} {{method_field('DELETE')}}
+                    <button class="btn btn-xs btn-danger"
+                      onclick="return confirm('¿Esta seguro que desea elminirar este registro?')"
+                    ><i class="fa fa-light fa-trash"></i></button>
+                  </form> 
+                  </td> 
+                </tr> 
+               
+                          
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="card" style="background-color: #E6EFF6;">
+          <div class="card-body">
+            <div class="row">
+            <div class="col-8">
+              <h3 class="card-title">Fichas personales relacionadas</h3>
+              </div>
+              <div class="col-4">
+              <button style="float: right; padding: 15px;" class="btn btn-xs btn-warning" 
+              data-toggle="modal" data-target="#insertModal"><i class="fa fa-regular fa-plus"></i></button>
+              </div>
+            </div>
+            <table id="example1" class="table table-bordered table-striped">
+              <thead>
+              <tr>
+                <th>ID</th>
+                <th>Ideologias</th>
+                <th>Acciones</th>
+              </tr>
+              </thead>
+              <tbody>        
+                <tr>
+                  <td>1</td>
+                  <td>prueba</td>
+                  <td>  
+                  <a href="#" class="btn btn-xs btn-info"><i class="fa fa-light fa-pen"></i></a>  
+                  <form method="POST" action="#" style="display: inline"> {{ csrf_field() }} {{method_field('DELETE')}}
+                    <button class="btn btn-xs btn-danger"
+                      onclick="return confirm('¿Esta seguro que desea elminirar este registro?')"
+                    ><i class="fa fa-light fa-trash"></i></button>
+                  </form> 
+                  </td> 
+                </tr> 
+               
+                          
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="card" style="background-color: #E6EFF6;">
+          <div class="card-body">
+            <div class="row">
+            <div class="col-8">
+              <h3 class="card-title">Fichas Impersonales Relacionadas</h3>
+              </div>
+              <div class="col-4">
+              <button style="float: right; padding: 15px;" class="btn btn-xs btn-warning" 
+              data-toggle="modal" data-target="#insertModal"><i class="fa fa-regular fa-plus"></i></button>
+              </div>
+            </div>
+            <table id="example1" class="table table-bordered table-striped">
+              <thead>
+              <tr>
+                <th>ID</th>
+                <th>Ideologias</th>
+                <th>Acciones</th>
+              </tr>
+              </thead>
+              <tbody>        
+                <tr>
+                  <td>1</td>
+                  <td>prueba</td>
+                  <td>  
+                  <a href="#" class="btn btn-xs btn-info"><i class="fa fa-light fa-pen"></i></a>  
+                  <form method="POST" action="#" style="display: inline"> {{ csrf_field() }} {{method_field('DELETE')}}
+                    <button class="btn btn-xs btn-danger"
+                      onclick="return confirm('¿Esta seguro que desea elminirar este registro?')"
+                    ><i class="fa fa-light fa-trash"></i></button>
+                  </form> 
+                  </td> 
+                </tr> 
+               
+                          
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="card" style="background-color: #E6EFF6;">
+          <div class="card-body">
+            <div class="row">
+            <div class="col-8">
+              <h3 class="card-title">Dossier Relacionados</h3>
+              </div>
+              <div class="col-4">
+              <button style="float: right; padding: 15px;" class="btn btn-xs btn-warning" 
+              data-toggle="modal" data-target="#insertModal"><i class="fa fa-regular fa-plus"></i></button>
+              </div>
+            </div>
+            <table id="example1" class="table table-bordered table-striped">
+              <thead>
+              <tr>
+                <th>ID</th>
+                <th>Ideologias</th>
+                <th>Acciones</th>
+              </tr>
+              </thead>
+              <tbody>        
+                <tr>
+                  <td>1</td>
+                  <td>prueba</td>
+                  <td>  
+                  <a href="#" class="btn btn-xs btn-info"><i class="fa fa-light fa-pen"></i></a>  
+                  <form method="POST" action="#" style="display: inline"> {{ csrf_field() }} {{method_field('DELETE')}}
+                    <button class="btn btn-xs btn-danger"
+                      onclick="return confirm('¿Esta seguro que desea elminirar este registro?')"
+                    ><i class="fa fa-light fa-trash"></i></button>
+                  </form> 
+                  </td> 
+                </tr> 
+               
+                          
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="card" style="background-color: #E6EFF6;">
+          <div class="card-body">
+            <div class="row">
+            <div class="col-8">
+              <h3 class="card-title">Documentos Relacionados</h3>
+              </div>
+              <div class="col-4">
+              <button style="float: right; padding: 15px;" class="btn btn-xs btn-warning" 
+              data-toggle="modal" data-target="#insertModal"><i class="fa fa-regular fa-plus"></i></button>
+              </div>
+            </div>
+            <table id="example1" class="table table-bordered table-striped">
+              <thead>
+              <tr>
+                <th>ID</th>
+                <th>Ideologias</th>
+                <th>Acciones</th>
+              </tr>
+              </thead>
+              <tbody>        
+                <tr>
+                  <td>1</td>
+                  <td>prueba</td>
+                  <td>  
+                  <a href="#" class="btn btn-xs btn-info"><i class="fa fa-light fa-pen"></i></a>  
+                  <form method="POST" action="#" style="display: inline"> {{ csrf_field() }} {{method_field('DELETE')}}
+                    <button class="btn btn-xs btn-danger"
+                      onclick="return confirm('¿Esta seguro que desea elminirar este registro?')"
+                    ><i class="fa fa-light fa-trash"></i></button>
+                  </form> 
+                  </td> 
+                </tr> 
+               
+                          
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+      </div>
+    <!-- row de tablas fin -->
+     </div>
 </section>
 @stop
 
@@ -890,7 +898,7 @@
 <script>
     $(function () {
       $("#example1").DataTable({
-        "responsive": true, "lengthChange": false, "autoWidth": false,
+        "responsive": true, "lengthChange": true, "autoWidth": true,
         "buttons": ["copy", /*"csv",*/ "excel", "pdf", "print", "colvis"]
       }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     });

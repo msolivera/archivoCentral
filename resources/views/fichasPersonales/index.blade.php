@@ -35,35 +35,71 @@
             <table id="example1" class="table table-bordered table-striped">
               <thead>
               <tr>
+                <th>Acciones</th>
                 <th>Cedula</th>
                 <th>Primer Nombre</th>
+                <th>Segundo Nombre</th>
                 <th>Primer Apellido</th>
+                <th>Segundo Apellido</th>
+                <th>Fecha Nac.</th>
+                <th>Fecha Def.</th>
+                <th>Credencial</th>
+                <th>Sexo</th>
+                <th>Correo</th>
+                <th>Sec. Policial</th>
                 <th>País ID</th>
+                <th>Departamento ID</th>
+                <th>Ciudad ID</th>
+                <th>Estado Civil ID</th>
                 <th>Estado Ingreso</th>
+                <th>Nro.Paq. Ingreso</th>
+                <th>Situacion ID</th>
                 <th>Fuerza</th>
                 <th>Grado</th>
-                <th>Acciones</th>
+                <th>Arma</th>
+                <th>clasificacion ID</th>
+                <th>Otro Doc.</th>
+                <th>Numero Doc.</th>
+                
               </tr>
               </thead>
               <tbody>
-                @foreach ($fichasPer as $ficha)
+                @foreach ($fichasPer as $fichaPer)
                 <tr>
-                  <td>{{$ficha->cedula}}</td>
-                  <td>{{$ficha->primerNombre}}</td>
-                  <td>{{$ficha->primerApellido}}</td>
-                  <td>{{$ficha->paisId}}</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
                   <td>
-                  <a href="fichasPersonales/{{$ficha->id}}" class="btn btn-xs btn-success"><i class="fa fa-light fa-eye"></i></a>  
-                  <a href="fichasPersonales/edit/{{$ficha->id}}" class="btn btn-xs btn-info"><i class="fa fa-light fa-pen"></i></a>  
-                  <form method="POST" action="{{route('fichasPersonales.destroy',$ficha->id)}}" style="display: inline"> {{ csrf_field() }} {{method_field('DELETE')}}
-                    <button class="btn btn-xs btn-danger"
-                      onclick="return confirm('¿Esta seguro que desea elminirar este registro?')"
-                    ><i class="fa fa-light fa-trash"></i></button>
-                  </form> 
-                  </td> 
+                    <a href="fichasPersonales/{{$fichaPer->id}}" class="btn btn-xs btn-success"><i class="fa fa-light fa-eye"></i></a>  
+                    <a href="fichasPersonales/edit/{{$fichaPer->id}}" class="btn btn-xs btn-info"><i class="fa fa-light fa-pen"></i></a>  
+                    <form method="POST" action="{{route('fichasPersonales.destroy',$fichaPer->id)}}" style="display: inline"> {{ csrf_field() }} {{method_field('DELETE')}}
+                      <button class="btn btn-xs btn-danger"
+                        onclick="return confirm('¿Esta seguro que desea elminirar este registro?')"
+                      ><i class="fa fa-light fa-trash"></i></button>
+                    </form> 
+                    </td> 
+                    <td>{{$fichaPer->cedula}}</td>
+                    <td>{{$fichaPer->primerNombre}}</td>
+                    <td>{{$fichaPer->segundoNombre}}</td>
+                    <td>{{$fichaPer->primerApellido}}</td>
+                    <td>{{$fichaPer->segundoApellido}}</td>
+                    <td>{{$fichaPer->fechaNac}}</td>
+                    <td>{{$fichaPer->fechaDef}}</td>
+                    <td>{{$fichaPer->credencial}}</td>
+                    <td>{{$fichaPer->sexo}}</td>
+                    <td>{{$fichaPer->correoElectronico}}</td>
+                    <td>{{$fichaPer->seccionalPolicial}}</td>
+                    <td>{{ $fichaPer->paisId}}</td>
+                    <td>{{$fichaPer->departamentoId}}</td>
+                    <td>{{$fichaPer->ciudadId}}</td>
+                    <td>{{$fichaPer->estadoCivilId}}</td>
+                    <td>{{$fichaPer->estadoIngreso}}</td>
+                    <td>{{$fichaPer->numeroPaquete}}</td>
+                    <td>{{$fichaPer->situacionId}}</td>
+                    <td>{{$fichaPer->fuerzaId}}</td>
+                    <td>{{$fichaPer->gradoId}}</td>
+                    <td>{{$fichaPer->cuerpoId}}</td>
+                    <td>{{$fichaPer->clasificacionId}}</td>
+                    <td>{{$fichaPer->otroDocNombre}}</td>
+                    <td>{{$fichaPer->otroDocNumero}}</td>
+                  
                 </tr> 
                 @endforeach
                           
@@ -149,6 +185,14 @@
     $("input[data-bootstrap-switch]").each(function(){
       $(this).bootstrapSwitch('state', $(this).prop('checked'));
     }) 
+
+    //Date picker
+    $('#reservationdate2').datetimepicker({
+      format: 'DD/MM/YYYY'
+    });
+    $("input[data-bootstrap-switch]").each(function(){
+      $(this).bootstrapSwitch('state', $(this).prop('checked'));
+    }) 
   })
 </script>
 <!-- Page specific script DE LA TABLA DE FICHAS -->
@@ -165,52 +209,20 @@
         <h4 class="modal-title" id="myModalLabel">Crear</h4>
       </div>
       <div class="modal-body">
-        <div class="row">
-          <div class="col-md-4">
-              <div class="form-group {{$errors->has('numeroPaquete') ? 'has-error' : ''}} ">
-                  <label for="numeroPaquete">Nro. Paquete de Ingreso</label>
-                  <input name = "numeroPaquete" 
-                      type="imput" 
-                      class="form-control" 
-                      id="numeroPaquete" 
-                      placeholder="..." 
-                      value="{{old('numeroPaquete')}}">
-                  <!--- Muestro los errores de validacion.-->
-                  {!! $errors->first('numeroPaquete','<span class=error style=color:red>:message</span>')!!}
-              </div>
-          </div>    
-          <div class="col-md-4">
-              <div class="form-group {{$errors->has('clasificacion') ? 'has-error' : ''}} ">
-                <label for="clasificacionId">Clasificación</label>
-                <select name="clasificacionId" 
-                class="form-control select2" 
-                style="width: 100%;" 
-                id="clasificacionId">
-                <option value=""> Seleccione una Clasificación</option>
-                    @foreach ($clasificaciones as $clasificacion)
-                    <option value="{{$clasificacion->id}}">{{$clasificacion->nombre}}</option>
-                    @endforeach
-        </select>
-              </div>
-          </div>
-          <div class="col-md-4">
-              <div class="form-group">
-                  <label for="temas">Temas</label>
-                  <select  name="unidades[]" 
-                      class="select2" 
-                      multiple="multiple" 
-                      data-placeholder="Seleccione Uno o mas temas" 
-                      style="width: 100%;">
-                      <option value=""> Seleccione un Temas</option>
-                    @foreach ($temas as $tema)
-                    <option value="{{$tema->id}}">{{$tema->nombre}}</option>
-                    @endforeach
-                  </select>  
-              </div> 
-          </div>
-           
-      </div>
+        <div class="row">    
+
         <div class="col-md-6" style= "display: inline-block;" >
+          <div class="form-group {{$errors->has('numeroPaquete') ? 'has-error' : ''}} ">
+            <label for="numeroPaquete">Nro. Paquete de Ingreso</label>
+            <input name = "numeroPaquete" 
+                type="imput" 
+                class="form-control" 
+                id="numeroPaquete" 
+                placeholder="..." 
+                value="{{old('numeroPaquete')}}">
+            <!--- Muestro los errores de validacion.-->
+            {!! $errors->first('numeroPaquete','<span class=error style=color:red>:message</span>')!!}
+          </div>
           <div class="form-group {{$errors->has('primerNombre') ? 'has-error' : ''}} ">
             <label for="nombre">Primer Nombre</label>
             <input name = "primerNombre" 
@@ -350,6 +362,18 @@
         </div>
 
         <div class="col-md-6" style= "display: inline-block; float: right;" >
+          <div class="form-group {{$errors->has('clasificacionId') ? 'has-error' : ''}} ">
+            <label for="clasificacionId">Clasificación</label>
+            <select name="clasificacionId" 
+            class="form-control select2" 
+            style="width: 100%;" 
+            id="clasificacionId">
+            <option value=""> Seleccione una Clasificación</option>
+                @foreach ($clasificaciones as $clasificacion)
+                <option value="{{$clasificacion->id}}">{{$clasificacion->nombre}}</option>
+                @endforeach
+            </select>
+          </div>
           <div class="form-group {{$errors->has('segundoNombre') ? 'has-error' : ''}} ">
             <label for="nombre">Segundo Nombre</label>
             <input name = "segundoNombre" 
@@ -436,17 +460,19 @@
 
           <div class="form-group">
             <label>Fecha de Defuncion</label>
-              <div class="input-group date" id="reservationdate" data-target-input="nearest">
+              <div class="input-group date" id="reservationdate2" data-target-input="nearest">
                   <input name = "fechaDef" 
                         type="text" 
                         class="form-control datetimepicker-input" 
-                        data-target="#reservationdate"
+                        data-target="#reservationdate2"
                         value="{{old('fechaDef')}}"/>
-                        <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                        <div class="input-group-append" data-target="#reservationdate2" data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                   </div>
               </div>
           </div>
+
+          
       
           <div class="form-group">
             <label for="situacionId">Situación</label>

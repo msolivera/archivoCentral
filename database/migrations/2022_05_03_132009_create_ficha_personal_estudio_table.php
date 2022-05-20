@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('fichaPersonal_estudio', function (Blueprint $table) {
+        Schema::create('ficha_Personal_estudio', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
         });
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fichaPersonal_estudio');
+        Schema::dropIfExists('ficha_Personal_estudio');
     }
 };

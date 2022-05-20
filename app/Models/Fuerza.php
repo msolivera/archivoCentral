@@ -13,4 +13,8 @@ class Fuerza extends Model
     {
        return $this->hasMany(Grado::class);
     }
+    public function fichasPersonales()
+    {
+       return $this->hasMany(FichaPersonal::class);
+    }
 }

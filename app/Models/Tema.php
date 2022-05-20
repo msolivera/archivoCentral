@@ -11,5 +11,9 @@ class Tema extends Model
     public function subTemas()
     {
        return $this->hasMany(SubTemas::class);
+       
+    }
+    public function fichasPersonales(){
+        return $this->belongsToMany(FichaPersonal::class);
     }
 }

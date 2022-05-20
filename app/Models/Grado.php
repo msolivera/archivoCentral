@@ -13,4 +13,8 @@ class Grado extends Model
     public function fuerzas(){
         $this->belongsTo(Fuerza::class);
     }
+    public function fichasPersonales()
+    {
+       return $this->hasMany(FichaPersonal::class);
+    }
 }

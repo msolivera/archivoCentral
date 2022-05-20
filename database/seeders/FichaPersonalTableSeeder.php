@@ -18,14 +18,14 @@ class FichaPersonalTableSeeder extends Seeder
         FichaPersonal::truncate();
         $persona = new FichaPersonal();
         $persona->cedula = 111111111;
-        $persona->otroDocNombre = 'DNI';
+        $persona->otroDocNombre = 'dni';
         $persona->otroDocNumero = 1234;
         $persona->primerNombre = 'micaela';
         $persona->segundoNombre = 'stephanie';
         $persona->primerApellido = 'olivera';
         $persona->segundoApellido = 'cardozo';
         $persona->credencial = 'bdb 78987';
-        $persona->sexo = 'Mujer';
+        $persona->sexo = 'Hombre';
         $persona->fechaNac = '25/05/2022';
         $persona->fechaDef = '25/05/3022';
         $persona->correoElectronico = 'correo@micaela.com';
