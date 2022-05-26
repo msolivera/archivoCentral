@@ -36,10 +36,10 @@
                     alt="Foto del sujeto">
               </div>
 
-              <h3 class="profile-username text-center">{{$fichaPer->primerNombre}} {{ $fichaPer->primerApellido}} - {{ $fichaPer->situacion->nombre}}</h3>
+              <h3 class="profile-username text-center">General</h3>
 
               
-                <div class= "col-sm-4"style="display: inline-block;">
+                <div class= "col-sm-4"style="display: inline-block; vertical-align: top;">
                   <li class="list-group-item">
                     <b>Nombres:</b> <a class="float-right">{{$fichaPer->primerNombre}} {{ $fichaPer->segundoNombre}}</a>
                   </li>
@@ -49,10 +49,19 @@
                   <li class="list-group-item">
                     <b>Fecha Nac</b> <a class="float-right">{{ $fichaPer->fechaNac}}</a>
                   </li>
+                  <li class="list-group-item">
+                    <b>Pais</b> <a class="float-right">{{ $fichaPer->pais->nombre}}</a>
+                  </li>
+                  <li class="list-group-item">
+                    <b>Secc. Policial</b> <a class="float-right">{{ $fichaPer->seccionalPolicial}}</a>
+                  </li>
                 </div>
-                <div class= "col-sm-3" style="display: inline-block;">
+                <div class= "col-sm-3" style="display: inline-block; vertical-align: top;">
                   <li class="list-group-item">
                     <b>Cedula</b> <a class="float-right">{{ $fichaPer->cedula}}</a>
+                  </li>
+                  <li class="list-group-item">
+                    <b>Otro doc</b> <a class="float-right">{{ $fichaPer->otroDocNombre}} {{ $fichaPer->otroDocNumero}}</a>
                   </li>
                   <li class="list-group-item">
                     <b>Sexo</b> <a class="float-right">{{ $fichaPer->sexo}}</a>
@@ -60,8 +69,12 @@
                   <li class="list-group-item">
                     <b>Credencial</b> <a class="float-right">{{ $fichaPer->credencial}} </a>
                   </li>
+                  <li class="list-group-item">
+                    <b>Depto.</b> <a class="float-right">{{ $fichaPer->departamento->nombre}} </a>
+                  </li>
+                  
                 </div>
-                <div class= "col-sm-4" style="display: inline-block;">
+                <div class= "col-sm-4" style="display: inline-block; vertical-align: top;">
                   <li class="list-group-item">
                     <b>Estado Civil</b> <a class="float-right">{{ $fichaPer->estadoCivil->nombre}} </a>
                   </li>
@@ -71,46 +84,42 @@
                   <li class="list-group-item">
                     <b>Fecha def</b> <a class="float-right">{{ $fichaPer->fechaDef}}</a>
                   </li>
+                  <li class="list-group-item">
+                    <b>Barrio</b> <a class="float-right">{{ $fichaPer->ciudad->nombre}}</a>
+                  </li>
+                 
                 </div>
               
               
             </div>
         
-            <div class="card-body">
-              <h3 class="profile-username text-center">{{$fichaPer->primerNombre}} {{ $fichaPer->primerApellido}}</h3>
+            <div class="card-body" style="padding-top: 1px">
+              <h3 class="profile-username text-center">Militar</h3>
                     
-                <div class= "col-sm-4"style="display: inline-block;">
+                <div class= "col-sm-4"style="display: inline-block; vertical-align: top;">
                   <li class="list-group-item">
-                    <b>Nombres:</b> <a class="float-right">{{$fichaPer->primerNombre}} {{ $fichaPer->segundoNombre}}</a>
+                    <b>Fuerza</b> <a class="float-right">{{ $fichaPer->fuerza->nombre}}</a>
                   </li>
                   <li class="list-group-item">
-                    <b>Apellidos:</b> <a class="float-right">{{ $fichaPer->primerApellido}} {{ $fichaPer->segundoApellido}}</a>
-                  </li>
-                  <li class="list-group-item">
-                    <b>Fecha Nac</b> <a class="float-right">{{ $fichaPer->fechaNac}}</a>
+                    <b>Situacion</b> <a class="float-right">{{ $fichaPer->situacion->nombre}}</a>
                   </li>
                 </div>
-                <div class= "col-sm-3" style="display: inline-block;">
+                <div class= "col-sm-3" style="display: inline-block; vertical-align: top;">
                   <li class="list-group-item">
-                    <b>Cedula</b> <a class="float-right">{{ $fichaPer->cedula}}</a>
+                    <b>Grado</b> <a class="float-right">{{ $fichaPer->grado->nombre}}</a>
                   </li>
                   <li class="list-group-item">
-                    <b>Sexo</b> <a class="float-right">{{ $fichaPer->sexo}}</a>
-                  </li>
-                  <li class="list-group-item">
-                    <b>Credencial</b> <a class="float-right">{{ $fichaPer->credencial}} </a>
+                    <b>Paquete Ingreso</b> <a class="float-right">{{ $fichaPer->numeroPaquete}}</a>
                   </li>
                 </div>
-                <div class= "col-sm-4" style="display: inline-block;">
+                <div class= "col-sm-4" style="display: inline-block; vertical-align: top;">
                   <li class="list-group-item">
-                    <b>Estado Civil</b> <a class="float-right">{{ $fichaPer->estadoCivil->nombre}} </a>
+                    <b>Especialidad</b> <a class="float-right">{{ $fichaPer->armaCuerpo->nombre}} </a>
                   </li>
                   <li class="list-group-item">
-                    <b>Email</b> <a class="float-right">{{ $fichaPer->correoElectronico}} </a>
+                    <b>Estado Ingreso</b> <a class="float-right">{{ $fichaPer->estadoIngreso}} </a>
                   </li>
-                  <li class="list-group-item">
-                    <b>Fecha def</b> <a class="float-right">{{ $fichaPer->fechaDef}}</a>
-                  </li>
+                  
                 </div>
               
               
