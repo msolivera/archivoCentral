@@ -86,17 +86,17 @@
                     <td>{{$fichaPer->sexo}}</td>
                     <td>{{$fichaPer->correoElectronico}}</td>
                     <td>{{$fichaPer->seccionalPolicial}}</td>
-                    <td>{{ $fichaPer->paisId}}</td>
-                    <td>{{$fichaPer->departamentoId}}</td>
-                    <td>{{$fichaPer->ciudadId}}</td>
-                    <td>{{$fichaPer->estadoCivilId}}</td>
+                    <td>{{$fichaPer->pais->nombre}}</td>
+                    <td>{{$fichaPer->departamento}}</td>
+                    <td>{{$fichaPer->ciudad}}</td>
+                    <td>{{$fichaPer->estadoCivil}}</td>
                     <td>{{$fichaPer->estadoIngreso}}</td>
                     <td>{{$fichaPer->numeroPaquete}}</td>
-                    <td>{{$fichaPer->situacionId}}</td>
-                    <td>{{$fichaPer->fuerzaId}}</td>
-                    <td>{{$fichaPer->gradoId}}</td>
-                    <td>{{$fichaPer->cuerpoId}}</td>
-                    <td>{{$fichaPer->clasificacionId}}</td>
+                    <td>{{$fichaPer->situacion}}</td>
+                    <td>{{$fichaPer->fuerza}}</td>
+                    <td>{{$fichaPer->grado}}</td>
+                    <td>{{$fichaPer->armaCuerpo}}</td>
+                    <td>{{$fichaPer->clasificacion}}</td>
                     <td>{{$fichaPer->otroDocNombre}}</td>
                     <td>{{$fichaPer->otroDocNumero}}</td>
                   

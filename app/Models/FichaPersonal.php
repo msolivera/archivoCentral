@@ -16,32 +16,32 @@ class FichaPersonal extends Model
 
     //Relaciones N->1
     public function pais(){
-        $this->belongsTo(Pais::class);
+       return $this->belongsTo(Pais::class, 'paisId');
     }
     //Relacion N->1
     public function clasificacion(){
-        $this->belongsTo(Clasificacion::class);
+        return $this->belongsTo(Clasificacion::class, 'clasificacionId');
     }
     public function departamento(){
-        $this->belongsTo(Departamento::class);
+        return $this->belongsTo(Departamento::class, 'departamentoId');
     }
     public function estadoCivil(){
-        $this->belongsTo(EstadoCivil::class);
+        return $this->belongsTo(EstadoCivil::class, 'estadoCivilId');
     }
     public function ciudad(){
-        $this->belongsTo(Ciudad::class);
+        return $this->belongsTo(Ciudad::class, 'ciudadId');
     }
     public function fuerza(){
-        $this->belongsTo(Fuerza::class);
+        return $this->belongsTo(Fuerza::class, 'fuerzaId');
     }
     public function grado(){
-        $this->belongsTo(Grado::class);
+        return $this->belongsTo(Grado::class, 'gradoId');
     }
     public function armaCuerpo(){
-        $this->belongsTo(ArmaCuerpo::class);
+        return $this->belongsTo(ArmaCuerpo::class, 'cuerpoId');
     }
     public function situacion(){
-        $this->belongsTo(Situacion::class);
+        return $this->belongsTo(Situacion::class, 'situacionId');
     }
 
 

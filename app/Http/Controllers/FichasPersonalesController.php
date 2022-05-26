@@ -257,16 +257,13 @@ class FichasPersonalesController extends Controller
     {
         //consigo la info basica de la persona
         $fichaPer = FichaPersonal::find($fichaPersonalId);
-        //consigo el pais de la persona
-        $resPais = Pais::where('id', $fichaPer->id)->get()->all();
-        $pais= $resPais[0];
-        //consigo las unidades de la persona
+                //consigo las unidades de la persona
         $unidades = Unidad::join('ficha_personal_unidad','unidad_Id','=','unidads.id' )
                         ->select('unidads.nombre')
                         ->where('ficha_Personal_Id', $fichaPer->id)->get()->all();
  
         
-        return view('fichasPersonales.verFicha', compact('fichaPer','pais','unidades'));
+        return view('fichasPersonales.verFicha', compact('fichaPer','unidades'));
     }
 
     //se comenta porque no se va a utilizar por el momento.

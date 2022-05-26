@@ -10,7 +10,7 @@ class Ciudad extends Model
     use HasFactory;
 
     public function departamento(){
-        $this->belongsTo(Departamento::class);
+        return $this->belongsTo(Departamento::class,'departamentoId');
     }
     public function fichasPersonales()
     {
