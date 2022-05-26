@@ -24,7 +24,7 @@ class FichaPersonal extends Model
     }
     public function departamento(){
         return $this->belongsTo(Departamento::class, 'departamentoId');
-    }
+     }
     public function estadoCivil(){
         return $this->belongsTo(EstadoCivil::class, 'estadoCivilId');
     }

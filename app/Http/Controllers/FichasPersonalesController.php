@@ -45,7 +45,7 @@ class FichasPersonalesController extends Controller
         $temas = Tema::all();
         $clasificaciones = Clasificacion::all();
         
-        return view('fichasPersonales.index',compact('fichasPer',
+       return view('fichasPersonales.index',compact('fichasPer',
                                                     'paises', 
                                                     'ciudades',
                                                     'departamentos',
@@ -56,6 +56,19 @@ class FichasPersonalesController extends Controller
                                                     'cuerpos',
                                                     'temas',
                                                     'clasificaciones'));
+        //return $fichasPer;
+    }
+    public function show($fichaPersonalId)
+    {
+        //consigo la info basica de la persona
+        $fichaPer = FichaPersonal::find($fichaPersonalId);
+                //consigo las unidades de la persona
+        $unidades = Unidad::join('ficha_personal_unidad','unidad_Id','=','unidads.id' )
+                        ->select('unidads.nombre')
+                        ->where('ficha_Personal_Id', $fichaPer->id)->get()->all();
+ 
+        
+        return view('fichasPersonales.verFicha', compact('fichaPer','unidades'));
     }
 
     public function store(Request $request)
@@ -253,18 +266,7 @@ class FichasPersonalesController extends Controller
     }
 
     
-    public function show($fichaPersonalId)
-    {
-        //consigo la info basica de la persona
-        $fichaPer = FichaPersonal::find($fichaPersonalId);
-                //consigo las unidades de la persona
-        $unidades = Unidad::join('ficha_personal_unidad','unidad_Id','=','unidads.id' )
-                        ->select('unidads.nombre')
-                        ->where('ficha_Personal_Id', $fichaPer->id)->get()->all();
- 
-        
-        return view('fichasPersonales.verFicha', compact('fichaPer','unidades'));
-    }
+   
 
     //se comenta porque no se va a utilizar por el momento.
 

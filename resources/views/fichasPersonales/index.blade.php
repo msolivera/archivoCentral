@@ -47,7 +47,7 @@
                 <th>Sexo</th>
                 <th>Correo</th>
                 <th>Sec. Policial</th>
-                <th>País ID</th>
+                <th>País</th>
                 <th>Departamento ID</th>
                 <th>Ciudad ID</th>
                 <th>Estado Civil ID</th>
