@@ -86,7 +86,7 @@
                     <td>{{$fichaPer->sexo}}</td>
                     <td>{{$fichaPer->correoElectronico}}</td>
                     <td>{{$fichaPer->seccionalPolicial}}</td>
-                    <td>{{$fichaPer->pais->nombre}}</td>
+                    <td>{{$fichaPer->pais}}</td>
                     <td>{{$fichaPer->departamento}}</td>
                     <td>{{$fichaPer->ciudad}}</td>
                     <td>{{$fichaPer->estadoCivil}}</td>

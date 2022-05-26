@@ -13,6 +13,8 @@ use App\Models\ArmaCuerpo;
 use App\Models\Pais;
 use App\Models\Clasificacion;
 use App\Models\Tema;
+use App\Models\Ideologia;
+use App\Models\FichaPersonalIdeologia;
 
 class FichasPersonalesController extends Controller
 {
@@ -165,6 +167,7 @@ class FichasPersonalesController extends Controller
         $unidades = Unidad::all();
         $temas = Tema::all();
         $clasificaciones = Clasificacion::all();
+        $ideologias = Ideologia::all();
         //busco la info de la ficha a editar
         $fichaPer = FichaPersonal::find($fichaPersonalId);
        
@@ -178,8 +181,12 @@ class FichasPersonalesController extends Controller
         $fichaTemas = Tema::join('ficha_personal_tema','tema_Id','=','temas.id' )
                         ->select('*')
                         ->where('ficha_Personal_Id', $fichaPer->id)->get()->all();
+        //obtengo las ideologias de la ficha
+        $fichasIdeologias = FichaPersonalIdeologia::select()
+                            ->where('fichaPersonal_id', $fichaPer->id)
+                            ->get()->all();
 
-                      
+                    
                         return view('fichasPersonales.editarFicha', 
                                 compact('fichaPer',
                                         'paises',
@@ -194,7 +201,9 @@ class FichasPersonalesController extends Controller
                                         'unidades',
                                         'temas',
                                         'fichaTemas',
-                                        'fichaUnidades'  ));
+                                        'fichaUnidades',
+                                        'ideologias',
+                                        'fichasIdeologias'  ));
 
     
     }
@@ -264,8 +273,6 @@ class FichasPersonalesController extends Controller
             ->with('flash', 'Ficha eliminada con exito');
 
     }
-
-    
    
 
     //se comenta porque no se va a utilizar por el momento.

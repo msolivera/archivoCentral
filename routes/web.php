@@ -180,6 +180,10 @@ function () {
     Route::post('/subTema', [App\Http\Controllers\SubTemaController::class, 'store'])->name('subTema.store');
     Route::put('/subTema/{subTema}', [App\Http\Controllers\SubTemaController::class, 'update'])->name('subTema.update');
     Route::delete('/subTema/{subTema}', [App\Http\Controllers\SubTemaController::class, 'destroy'])->name('subTema.destroy');
+
+    //relaciones N-N
+    Route::post('/fichasPersonalesIdeologia/{fichaPersona}', [App\Http\Controllers\FichaPersonalIdeologiaController::class, 'store'])->name('fichasPersonalesIdeologia.store');
+    Route::delete('/fichasPersonalesIdeologia/{fichaPersona}', [App\Http\Controllers\FichaPersonalIdeologiaController::class, 'destroy'])->name('fichasPersonalesIdeologia.destroy');
     
 
 });
