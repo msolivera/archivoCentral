@@ -20,6 +20,7 @@ class FichaPersonalIdeologiaController extends Controller
         $fichaPerIdeo = new FichaPersonalIdeologia();
         $fichaPerIdeo->ideologia_id=$request->ideologia;
         $fichaPerIdeo->fichaPersonal_id= $fichaPersonalId;
+        $fichaPerIdeo->observacion= $request->observacion;
         
         $fichaPerIdeo->save();
 

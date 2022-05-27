@@ -444,6 +444,7 @@
               <tr>
                 <th>ID</th>
                 <th>Ideologias</th>
+                <th>Observación</th>
                 <th>Acciones</th>
               </tr>
               </thead>
@@ -451,7 +452,8 @@
                 @foreach ($fichasIdeologias as $fichaIdeologia)        
                 <tr>
                   <td>{{$fichaIdeologia->id}}</td>
-                  <td>{{$fichaIdeologia->ideologia_id}}</td>
+                  <td>{{$fichaIdeologia->ideologia->nombre}}</td>
+                  <td>{{$fichaIdeologia->observacion}}</td>
                   <td>  
                   <form method="POST" action="{{route('fichasPersonalesIdeologia.destroy',$fichaIdeologia->id)}}" style="display: inline"> {{ csrf_field() }} {{method_field('DELETE')}}
                     <button class="btn btn-xs btn-danger"
@@ -979,6 +981,15 @@
                         {{$ideologia->nombre}}</option>
                     @endforeach
             </select> 
+          </div>
+          <div class="form-group">
+            <label for="observacion">Observación</label>
+            <input name = "observacion" 
+                type="imput" 
+                class="form-control" 
+                id="observacion" 
+                placeholder="..." 
+                value="{{old('observacion')}}">
           </div>
         </div>
       </div>

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->integer('fichaPersonal_id');
             $table->integer('ideologia_id');
+            $table->string('observacion');
             $table->timestamps();
         });
     }

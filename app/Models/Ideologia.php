@@ -11,4 +11,9 @@ class Ideologia extends Model
     public function fichasPersonales(){
         return $this->belongsToMany(FichaPersonal::class);
     }
+
+    public function fichaPersonalIdeologia()
+{
+   return $this->hasMany(FichaPersonalIdeologia::class);
+}
 }

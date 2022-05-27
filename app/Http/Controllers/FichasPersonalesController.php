@@ -90,6 +90,7 @@ class FichasPersonalesController extends Controller
         $cuerpos = ArmaCuerpo::all();
         $unidades = Unidad::all();
         $temas = Tema::all();
+        $ideologias = Ideologia::all();
         $clasificaciones = Clasificacion::all();
    
         
@@ -131,6 +132,11 @@ class FichasPersonalesController extends Controller
         $fichaTemas = Tema::join('ficha_personal_tema','tema_Id','=','temas.id' )
                         ->select('*')
                         ->where('ficha_Personal_Id', $fichaPer->id)->get()->all();
+        
+        //obtengo las ideologias de la ficha
+        $fichasIdeologias = FichaPersonalIdeologia::select('*')
+        ->where('fichaPersonal_id', $fichaPer->id)
+        ->get()->all();
 
                         return view('fichasPersonales.editarFicha', 
                                 compact('fichaPer',
@@ -146,7 +152,9 @@ class FichasPersonalesController extends Controller
                                         'unidades',
                                         'temas',
                                         'fichaUnidades',
-                                        'fichaTemas'
+                                        'fichaTemas',
+                                        'ideologias',
+                                        'fichasIdeologias'
                                             ));
  
         
@@ -181,8 +189,9 @@ class FichasPersonalesController extends Controller
         $fichaTemas = Tema::join('ficha_personal_tema','tema_Id','=','temas.id' )
                         ->select('*')
                         ->where('ficha_Personal_Id', $fichaPer->id)->get()->all();
+        
         //obtengo las ideologias de la ficha
-        $fichasIdeologias = FichaPersonalIdeologia::select()
+        $fichasIdeologias = FichaPersonalIdeologia::select('*')
                             ->where('fichaPersonal_id', $fichaPer->id)
                             ->get()->all();
 

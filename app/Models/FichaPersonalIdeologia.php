@@ -14,4 +14,10 @@ class FichaPersonalIdeologia extends Model
         'ideologia_id',
    
     ];
+    public function fichaPersonal(){
+        return $this->belongsTo(FichaPersonal::class, 'fichaPersonal_id');
+     }
+     public function ideologia(){
+        return $this->belongsTo(Ideologia::class, 'ideologia_id');
+     }
 }

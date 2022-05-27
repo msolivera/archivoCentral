@@ -77,5 +77,10 @@ class FichaPersonal extends Model
         return $this->belongsToMany(Estudio::class);
     }
 
+    public function fichaPersonalIdeologia()
+{
+   return $this->hasMany(FichaPersonalIdeologia::class);
+}
+
    
 }
