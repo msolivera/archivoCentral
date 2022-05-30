@@ -121,9 +121,46 @@
                   </li>
                   
                 </div>
-              
-              
             </div>
+
+            <div class="card-body" style="padding-top: 1px">
+              <h3 class="profile-username text-center">Unidades</h3>
+              <table class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>Sigla</th>
+                  <th>Nombre</th>
+                </tr>
+                </thead>
+                <tbody>  
+                  @foreach ($unidades as $unidad)          
+                  <tr>
+                    <td>{{$unidad->sigla}}</td>
+                    <td>{{$unidad->nombre}}</td> 
+                  </tr> 
+                  @endforeach     
+                </tbody>
+              </table>               
+            </div>
+
+            <div class="card-body" style="padding-top: 1px">
+              <h3 class="profile-username text-center">Ideologias</h3>
+              <table class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>Ideologia</th>
+                  <th>Observación</th>
+                </tr>
+                </thead>
+                <tbody>            
+                  <tr>
+                    <td>Ideologia</td>
+                    <td>Observación</td> 
+                  </tr>      
+                </tbody>
+              </table>               
+            </div>
+
             <a href="#" class="btn btn-primary btn-block"><b>Descargar Ficha PDF</b></a>
             <!-- /.card-body -->
 
