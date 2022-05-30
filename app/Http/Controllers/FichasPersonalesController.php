@@ -14,7 +14,9 @@ use App\Models\Pais;
 use App\Models\Clasificacion;
 use App\Models\Tema;
 use App\Models\Ideologia;
+use App\Models\Profesion;
 use App\Models\FichaPersonalIdeologia;
+use App\Models\FichaPersonalProfesion;
 
 class FichasPersonalesController extends Controller
 {
@@ -91,6 +93,7 @@ class FichasPersonalesController extends Controller
         $unidades = Unidad::all();
         $temas = Tema::all();
         $ideologias = Ideologia::all();
+        $profesiones = Profesion::all();
         $clasificaciones = Clasificacion::all();
    
         
@@ -137,6 +140,9 @@ class FichasPersonalesController extends Controller
         $fichasIdeologias = FichaPersonalIdeologia::select('*')
         ->where('fichaPersonal_id', $fichaPer->id)
         ->get()->all();
+        $fichasProfesiones = FichaPersonalProfesion::select('*')
+        ->where('fichaPersonal_id', $fichaPer->id)
+        ->get()->all();
 
                         return view('fichasPersonales.editarFicha', 
                                 compact('fichaPer',
@@ -154,6 +160,8 @@ class FichasPersonalesController extends Controller
                                         'fichaUnidades',
                                         'fichaTemas',
                                         'ideologias',
+                                        'profesiones',
+                                        'fichasProfesiones',
                                         'fichasIdeologias'
                                             ));
  
@@ -176,6 +184,7 @@ class FichasPersonalesController extends Controller
         $temas = Tema::all();
         $clasificaciones = Clasificacion::all();
         $ideologias = Ideologia::all();
+        $profesiones = Profesion::all();
         //busco la info de la ficha a editar
         $fichaPer = FichaPersonal::find($fichaPersonalId);
        
@@ -192,6 +201,9 @@ class FichasPersonalesController extends Controller
         
         //obtengo las ideologias de la ficha
         $fichasIdeologias = FichaPersonalIdeologia::select('*')
+                            ->where('fichaPersonal_id', $fichaPer->id)
+                            ->get()->all();
+        $fichasProfesiones = FichaPersonalProfesion::select('*')
                             ->where('fichaPersonal_id', $fichaPer->id)
                             ->get()->all();
 
@@ -212,7 +224,9 @@ class FichasPersonalesController extends Controller
                                         'fichaTemas',
                                         'fichaUnidades',
                                         'ideologias',
-                                        'fichasIdeologias'  ));
+                                        'profesiones',
+                                        'fichasIdeologias',
+                                        'fichasProfesiones'  ));
 
     
     }

@@ -11,4 +11,9 @@ class Profesion extends Model
     public function fichasPersonales(){
         return $this->belongsToMany(FichaPersonal::class);
     }
+
+    public function fichaPersonalProfesion()
+    {
+       return $this->hasMany(FichaPersonalProfesion::class);
+    }
 }

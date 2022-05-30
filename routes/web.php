@@ -184,7 +184,8 @@ function () {
     //relaciones N-N
     Route::post('/fichasPersonalesIdeologia/{fichaPersona}', [App\Http\Controllers\FichaPersonalIdeologiaController::class, 'store'])->name('fichasPersonalesIdeologia.store');
     Route::delete('/fichasPersonalesIdeologia/{fichaPersona}', [App\Http\Controllers\FichaPersonalIdeologiaController::class, 'destroy'])->name('fichasPersonalesIdeologia.destroy');
-    
+    Route::post('/fichasPersonalesProfesion/{fichaPersona}', [App\Http\Controllers\FichaPersonalProfesionController::class, 'store'])->name('fichasPersonalesProfesion.store');
+    Route::delete('/fichasPersonalesProfesion/{fichaPersona}', [App\Http\Controllers\FichaPersonalProfesionController::class, 'destroy'])->name('fichasPersonalesProfesion.destroy');
 
 });
 
