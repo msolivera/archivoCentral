@@ -365,7 +365,7 @@
                                     style="width: 100%;">
                                     @foreach ($unidades as $unidad)
                                       <option {{collect(old('unidades[]',collect($fichaUnidades)->pluck('unidad_Id')))->contains($unidad->id) ? 'selected' : ''}} 
-                                        value={{$unidad->id}}> {{$unidad->nombre}}
+                                        value={{$unidad->id}}> {{$unidad->sigla}}
                                       </option>
                                     @endforeach
                             </select>  

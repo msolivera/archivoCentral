@@ -37,6 +37,7 @@ class UnidadController extends Controller
         
         //validacion falta
         $unidad = new Unidad();
+        $unidad->sigla = $request->sigla;
         $unidad->nombre = $request->nombre;
         $unidad->save();
 
@@ -61,6 +62,7 @@ class UnidadController extends Controller
 
         $unidad = Unidad::find($unidadId);
         $unidad->nombre = $request->nombre;
+        $unidad->sigla = $request->sigla;
         $unidad->save();
 
         return back()->with('flash', 'Unidad actualizada con exito');        

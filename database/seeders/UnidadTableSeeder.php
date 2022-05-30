@@ -17,19 +17,23 @@ class UnidadTableSeeder extends Seeder
     {
         Unidad::truncate();
        $unidad = new Unidad();
-       $unidad->nombre="SEGIT";
+       $unidad->sigla="SEGIT";
+       $unidad->nombre="Servicio de Gestion Informatica y telecomunicaciones de la armada";
        $unidad->save();
        
        $unidad = new Unidad();
-       $unidad->nombre="EMINT";
+       $unidad->sigla="EMINT";
+       $unidad->nombre="estado mayor de inteligencia";
        $unidad->save();
        
        $unidad = new Unidad();
-       $unidad->nombre="SOHMA";
+       $unidad->sigla="SOHMA";
+       $unidad->nombre="servicio de oceanografia hidrografia y meteorologia de la armada";
        $unidad->save();
        
        $unidad = new Unidad();
-       $unidad->nombre="EMCOM";
+       $unidad->sigla="EMCOM";
+       $unidad->nombre="estado mayor de comunicaciones";
        $unidad->save();
        
     }

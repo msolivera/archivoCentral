@@ -68,7 +68,7 @@ class FichasPersonalesController extends Controller
         $fichaPer = FichaPersonal::find($fichaPersonalId);
                 //consigo las unidades de la persona
         $unidades = Unidad::join('ficha_personal_unidad','unidad_Id','=','unidads.id' )
-                        ->select('unidads.nombre')
+                        ->select('*')
                         ->where('ficha_Personal_Id', $fichaPer->id)->get()->all();
  
         
