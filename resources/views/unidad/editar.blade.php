@@ -26,6 +26,17 @@
                     </div>
                     
                     <div class="card-body">
+                        <div class="form-group {{$errors->has('sigla') ? 'has-error' : ''}} ">
+                            <label for="sigla">Sigla</label>
+                            <input name = "sigla" 
+                                  type="imput" 
+                                  class="form-control" 
+                                  id="sigla" 
+                                  placeholder="..." 
+                                  value="{{old('sigla',$unidad->sigla)}}">
+                            <!--- Muestro los errores de validacion.-->
+                            {!! $errors->first('sigla','<span class=error style=color:red>:message</span>')!!}
+                        </div>
                         <div class="form-group {{$errors->has('nombre') ? 'has-error' : ''}} ">
                             <label for="nombre">Nombre</label>
                             <input name = "nombre" 

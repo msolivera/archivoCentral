@@ -37,6 +37,7 @@
               <thead>
               <tr>
                 <th>ID</th>
+                <th>Sigla</th>
                 <th>Nombre</th>
                 <th>Acciones</th>
               </tr>
@@ -45,6 +46,7 @@
                 @foreach ($unidades as $unidad)
                 <tr>
                   <td>{{$unidad->id}}</td>
+                  <td>{{$unidad->sigla}}</td>
                   <td>{{$unidad->nombre}}</td>
                   <td>
                    
@@ -118,6 +120,17 @@
         <h4 class="modal-title" id="myModalLabel">Crear</h4>
       </div>
       <div class="modal-body">
+        <div class="form-group {{$errors->has('sigla') ? 'has-error' : ''}} ">
+          <label for="sigla">Sigla</label>
+          <input name = "sigla" 
+                type="imput" 
+                class="form-control" 
+                id="sigla" 
+                placeholder="..." 
+                value="{{old('sigla')}}">
+          <!--- Muestro los errores de validacion.-->
+          {!! $errors->first('sigla','<span class=error style=color:red>:message</span>')!!}
+        </div>
         <div class="form-group {{$errors->has('nombre') ? 'has-error' : ''}} ">
           <label for="nombre">Nombre</label>
           <input name = "nombre" 
