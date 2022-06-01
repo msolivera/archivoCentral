@@ -70,9 +70,14 @@ class FichasPersonalesController extends Controller
         $unidades = Unidad::join('ficha_personal_unidad','unidad_Id','=','unidads.id' )
                         ->select('*')
                         ->where('ficha_Personal_Id', $fichaPer->id)->get()->all();
+        
+        
+        $fichasIdeologias = FichaPersonalIdeologia::select('*')
+                        ->where('fichaPersonal_id', $fichaPer->id)
+                        ->get()->all();
  
         
-        return view('fichasPersonales.verFicha', compact('fichaPer','unidades'));
+        return view('fichasPersonales.verFicha', compact('fichaPer','unidades','fichasIdeologias'));
     }
 
     public function store(Request $request)

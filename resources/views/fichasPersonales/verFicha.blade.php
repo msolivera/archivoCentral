@@ -152,11 +152,13 @@
                   <th>Observación</th>
                 </tr>
                 </thead>
-                <tbody>            
+                 <tbody>            
+                  @foreach ($fichasIdeologias as $ideologia)          
                   <tr>
-                    <td>Ideologia</td>
-                    <td>Observación</td> 
-                  </tr>      
+                    <td>{{$ideologia->ideologia->nombre}}</td>
+                    <td>{{$ideologia->observacion}}</td> 
+                  </tr> 
+                  @endforeach    
                 </tbody>
               </table>               
             </div>
