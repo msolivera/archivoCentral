@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('ficha_personal_domicilios', function (Blueprint $table) {
             $table->id();
+            $table->integer('fichaPersonal_id');
+            $table->integer('domicilio_id');
+            $table->string('observacion');
             $table->timestamps();
         });
     }

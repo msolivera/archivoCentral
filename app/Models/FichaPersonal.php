@@ -11,80 +11,102 @@ class FichaPersonal extends Model
     protected $fillable = [
         'primerNombre',
         'primerApellido',
-        'cedula'    
+        'cedula'
     ];
 
     //Relaciones N->1
-    public function pais(){
-       return $this->belongsTo(Pais::class, 'paisId');
+    public function pais()
+    {
+        return $this->belongsTo(Pais::class, 'paisId');
     }
     //Relacion N->1
-    public function clasificacion(){
+    public function clasificacion()
+    {
         return $this->belongsTo(Clasificacion::class, 'clasificacionId');
     }
-    public function departamento(){
+    public function departamento()
+    {
         return $this->belongsTo(Departamento::class, 'departamentoId');
-     }
-    public function estadoCivil(){
+    }
+    public function estadoCivil()
+    {
         return $this->belongsTo(EstadoCivil::class, 'estadoCivilId');
     }
-    public function ciudad(){
+    public function ciudad()
+    {
         return $this->belongsTo(Ciudad::class, 'ciudadId');
     }
-    public function fuerza(){
+    public function fuerza()
+    {
         return $this->belongsTo(Fuerza::class, 'fuerzaId');
     }
-    public function grado(){
+    public function grado()
+    {
         return $this->belongsTo(Grado::class, 'gradoId');
     }
-    public function armaCuerpo(){
+    public function armaCuerpo()
+    {
         return $this->belongsTo(ArmaCuerpo::class, 'cuerpoId');
     }
-    public function situacion(){
+    public function situacion()
+    {
         return $this->belongsTo(Situacion::class, 'situacionId');
     }
 
 
     //Relaciones N->N
-    public function unidad(){
+    public function unidad()
+    {
         return $this->belongsToMany(Unidad::class);
     }
-    public function profesion(){
+    public function profesion()
+    {
         return $this->belongsToMany(Profesion::class);
     }
-    public function ideologia(){
+    public function ideologia()
+    {
         return $this->belongsToMany(Ideologia::class);
     }
-    public function anotacion(){
+    public function anotacion()
+    {
         return $this->belongsToMany(Anotacion::class);
     }
-    public function tema(){
+    public function tema()
+    {
         return $this->belongsToMany(Tema::class);
     }
-    public function organizacion(){
+    public function organizacion()
+    {
         return $this->belongsToMany(Organizacion::class);
     }
-    public function fichaImpersonal(){
+    public function fichaImpersonal()
+    {
         return $this->belongsToMany(FichaImpersonal::class);
     }
-    public function documento(){
+    public function documento()
+    {
         return $this->belongsToMany(Documento::class);
     }
-    public function dossier(){
+    public function dossier()
+    {
         return $this->belongsToMany(Dossier::class);
     }
-    public function estudio(){
+    public function estudio()
+    {
         return $this->belongsToMany(Estudio::class);
     }
 
     public function fichaPersonalIdeologia()
-{
-   return $this->hasMany(FichaPersonalIdeologia::class);
-}
+    {
+        return $this->hasMany(FichaPersonalIdeologia::class);
+    }
     public function fichaPersonalProfesion()
-{
-   return $this->hasMany(FichaPersonalProfesion::class);
-}
+    {
+        return $this->hasMany(FichaPersonalProfesion::class);
+    }
 
-   
+    public function fichaPersonalDomicilio()
+    {
+        return $this->hasMany(FichaPersonalDomicilio::class);
+    }
 }
