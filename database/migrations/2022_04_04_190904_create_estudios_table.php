@@ -15,9 +15,12 @@ return new class extends Migration
     {
         Schema::create('estudios', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
+            $table->unsignedInteger('fichaPersonal_Id');
+            $table->string('nombreEstudio');
             $table->string('completado');
             $table->string('nombreInstituto');
+            $table->string('tipoInstituto');
+            $table->string('nivelAcademico');
             $table->timestamps();
         });
     }

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('domicilios', function (Blueprint $table) {
             $table->id();
-            $table->integer('fichaPersonal_id');
+            $table->unsignedInteger('ficha_Personal_Id');
             $table->string('domicilio');
             $table->timestamps();
         });

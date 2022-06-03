@@ -18,6 +18,7 @@ use App\Models\Tema;
 use App\Models\Ideologia;
 use App\Models\Profesion;
 use App\Models\Domicilio;
+use App\Models\Estudio;
 use App\Models\FichaPersonalIdeologia;
 use App\Models\FichaPersonalProfesion;
 
@@ -156,7 +157,11 @@ class FichasPersonalesController extends Controller
             ->get()->all();
 
         $fichasDomicilios = Domicilio::select('*')
-            ->where('fichaPersonal_id', $fichaPer->id)
+            ->where('ficha_Personal_id', $fichaPer->id)
+            ->get()->all();
+
+        $fichasEstudios = Estudio::select('*')
+            ->where('fichaPersonal_Id', $fichaPer->id)
             ->get()->all();
 
         return view(
@@ -180,7 +185,8 @@ class FichasPersonalesController extends Controller
                 'profesiones',
                 'fichasProfesiones',
                 'fichasIdeologias',
-                'fichasDomicilios'
+                'fichasDomicilios',
+                'fichasEstudios'
             )
         );
     }
@@ -225,7 +231,11 @@ class FichasPersonalesController extends Controller
             ->get()->all();
 
         $fichasDomicilios = Domicilio::select('*')
-            ->where('fichaPersonal_id', $fichaPer->id)
+            ->where('ficha_Personal_id', $fichaPer->id)
+            ->get()->all();
+
+        $fichasEstudios = Estudio::select('*')
+            ->where('fichaPersonal_Id', $fichaPer->id)
             ->get()->all();
 
 
@@ -250,7 +260,8 @@ class FichasPersonalesController extends Controller
                 'profesiones',
                 'fichasIdeologias',
                 'fichasProfesiones',
-                'fichasDomicilios'
+                'fichasDomicilios',
+                'fichasEstudios'
             )
         );
     }
