@@ -38,6 +38,9 @@ function () {
     Route::post('/paises', [App\Http\Controllers\PaisController::class, 'store'])->name('paises.store');
     Route::put('/paises/{pais}', [App\Http\Controllers\PaisController::class, 'update'])->name('paises.update');
     Route::delete('/paises/{pais}', [App\Http\Controllers\PaisController::class, 'destroy'])->name('paises.destroy');
+    //domicilios
+    Route::post('/domicilio', [App\Http\Controllers\DomicilioController::class, 'store'])->name('domicilio.store');
+    Route::delete('/domicilio/{domicilio}', [App\Http\Controllers\DomicilioController::class, 'destroy'])->name('domicilio.destroy');
     //profesiones
     Route::get('/profesiones', [App\Http\Controllers\ProfesionController::class, 'index'])->name('profesiones.index');
     Route::get('/profesiones/edit/{profesion}', [App\Http\Controllers\ProfesionController::class, 'edit'])->name('profesiones.editar');

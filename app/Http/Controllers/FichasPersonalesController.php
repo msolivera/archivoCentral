@@ -1,5 +1,7 @@
-<?php 
+<?php
+
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use App\Models\FichaPersonal;
 use App\Models\Unidad;
@@ -15,6 +17,7 @@ use App\Models\Clasificacion;
 use App\Models\Tema;
 use App\Models\Ideologia;
 use App\Models\Profesion;
+use App\Models\Domicilio;
 use App\Models\FichaPersonalIdeologia;
 use App\Models\FichaPersonalProfesion;
 
@@ -48,41 +51,43 @@ class FichasPersonalesController extends Controller
         $fichasPer = FichaPersonal::all();
         $temas = Tema::all();
         $clasificaciones = Clasificacion::all();
-        
-       return view('fichasPersonales.index',compact('fichasPer',
-                                                    'paises', 
-                                                    'ciudades',
-                                                    'departamentos',
-                                                    'estadosCiviles',
-                                                    'situaciones',
-                                                    'fuerzas',
-                                                    'grados',
-                                                    'cuerpos',
-                                                    'temas',
-                                                    'clasificaciones'));
+
+        return view('fichasPersonales.index', compact(
+            'fichasPer',
+            'paises',
+            'ciudades',
+            'departamentos',
+            'estadosCiviles',
+            'situaciones',
+            'fuerzas',
+            'grados',
+            'cuerpos',
+            'temas',
+            'clasificaciones'
+        ));
         //return $fichasPer;
     }
     public function show($fichaPersonalId)
     {
         //consigo la info basica de la persona
         $fichaPer = FichaPersonal::find($fichaPersonalId);
-                //consigo las unidades de la persona
-        $unidades = Unidad::join('ficha_personal_unidad','unidad_Id','=','unidads.id' )
-                        ->select('*')
-                        ->where('ficha_Personal_Id', $fichaPer->id)->get()->all();
-        
-        
+        //consigo las unidades de la persona
+        $unidades = Unidad::join('ficha_personal_unidad', 'unidad_Id', '=', 'unidads.id')
+            ->select('*')
+            ->where('ficha_Personal_Id', $fichaPer->id)->get()->all();
+
+
         $fichasIdeologias = FichaPersonalIdeologia::select('*')
-                        ->where('fichaPersonal_id', $fichaPer->id)
-                        ->get()->all();
- 
-        
-        return view('fichasPersonales.verFicha', compact('fichaPer','unidades','fichasIdeologias'));
+            ->where('fichaPersonal_id', $fichaPer->id)
+            ->get()->all();
+
+
+        return view('fichasPersonales.verFicha', compact('fichaPer', 'unidades', 'fichasIdeologias'));
     }
 
     public function store(Request $request)
-    {        
-       /* $this->validate($request, [
+    {
+        /* $this->validate($request, [
             'primerNombre' => 'required',
             'primerApellido' => 'required'   
         ]);
@@ -100,8 +105,8 @@ class FichasPersonalesController extends Controller
         $ideologias = Ideologia::all();
         $profesiones = Profesion::all();
         $clasificaciones = Clasificacion::all();
-   
-        
+
+
         //validacion falta
         $fichaPer = new FichaPersonal();
         $fichaPer->primerNombre = $request->primerNombre;
@@ -133,44 +138,51 @@ class FichasPersonalesController extends Controller
         $fichaPer->save();
 
         //consigo las unidades de la persona
-        $fichaUnidades = Unidad::join('ficha_personal_unidad','unidad_Id','=','unidads.id' )
-                        ->select('*')
-                        ->where('ficha_Personal_Id', $fichaPer->id)->get()->all();
+        $fichaUnidades = Unidad::join('ficha_personal_unidad', 'unidad_Id', '=', 'unidads.id')
+            ->select('*')
+            ->where('ficha_Personal_Id', $fichaPer->id)->get()->all();
         //consigo LOS TEMAS de la persona
-        $fichaTemas = Tema::join('ficha_personal_tema','tema_Id','=','temas.id' )
-                        ->select('*')
-                        ->where('ficha_Personal_Id', $fichaPer->id)->get()->all();
-        
+        $fichaTemas = Tema::join('ficha_personal_tema', 'tema_Id', '=', 'temas.id')
+            ->select('*')
+            ->where('ficha_Personal_Id', $fichaPer->id)->get()->all();
+
         //obtengo las ideologias de la ficha
         $fichasIdeologias = FichaPersonalIdeologia::select('*')
-        ->where('fichaPersonal_id', $fichaPer->id)
-        ->get()->all();
-        $fichasProfesiones = FichaPersonalProfesion::select('*')
-        ->where('fichaPersonal_id', $fichaPer->id)
-        ->get()->all();
+            ->where('fichaPersonal_id', $fichaPer->id)
+            ->get()->all();
 
-                        return view('fichasPersonales.editarFicha', 
-                                compact('fichaPer',
-                                        'paises',
-                                        'ciudades',
-                                        'departamentos',
-                                        'estadosCiviles',
-                                        'situaciones',
-                                        'fuerzas',
-                                        'grados',
-                                        'cuerpos',
-                                        'clasificaciones',
-                                        'unidades',
-                                        'temas',
-                                        'fichaUnidades',
-                                        'fichaTemas',
-                                        'ideologias',
-                                        'profesiones',
-                                        'fichasProfesiones',
-                                        'fichasIdeologias'
-                                            ));
- 
-        
+        $fichasProfesiones = FichaPersonalProfesion::select('*')
+            ->where('fichaPersonal_id', $fichaPer->id)
+            ->get()->all();
+
+        $fichasDomicilios = Domicilio::select('*')
+            ->where('fichaPersonal_id', $fichaPer->id)
+            ->get()->all();
+
+        return view(
+            'fichasPersonales.editarFicha',
+            compact(
+                'fichaPer',
+                'paises',
+                'ciudades',
+                'departamentos',
+                'estadosCiviles',
+                'situaciones',
+                'fuerzas',
+                'grados',
+                'cuerpos',
+                'clasificaciones',
+                'unidades',
+                'temas',
+                'fichaUnidades',
+                'fichaTemas',
+                'ideologias',
+                'profesiones',
+                'fichasProfesiones',
+                'fichasIdeologias',
+                'fichasDomicilios'
+            )
+        );
     }
 
 
@@ -192,59 +204,66 @@ class FichasPersonalesController extends Controller
         $profesiones = Profesion::all();
         //busco la info de la ficha a editar
         $fichaPer = FichaPersonal::find($fichaPersonalId);
-       
+
 
         //consigo las unidades de la persona
-        $fichaUnidades = Unidad::join('ficha_personal_unidad','unidad_Id','=','unidads.id' )
-                        ->select('*')
-                        ->where('ficha_Personal_Id', $fichaPer->id)->get()->all();
+        $fichaUnidades = Unidad::join('ficha_personal_unidad', 'unidad_Id', '=', 'unidads.id')
+            ->select('*')
+            ->where('ficha_Personal_Id', $fichaPer->id)->get()->all();
 
         //consigo LOS TEMAS de la persona
-        $fichaTemas = Tema::join('ficha_personal_tema','tema_Id','=','temas.id' )
-                        ->select('*')
-                        ->where('ficha_Personal_Id', $fichaPer->id)->get()->all();
-        
+        $fichaTemas = Tema::join('ficha_personal_tema', 'tema_Id', '=', 'temas.id')
+            ->select('*')
+            ->where('ficha_Personal_Id', $fichaPer->id)->get()->all();
+
         //obtengo las ideologias de la ficha
         $fichasIdeologias = FichaPersonalIdeologia::select('*')
-                            ->where('fichaPersonal_id', $fichaPer->id)
-                            ->get()->all();
+            ->where('fichaPersonal_id', $fichaPer->id)
+            ->get()->all();
         $fichasProfesiones = FichaPersonalProfesion::select('*')
-                            ->where('fichaPersonal_id', $fichaPer->id)
-                            ->get()->all();
+            ->where('fichaPersonal_id', $fichaPer->id)
+            ->get()->all();
 
-                    
-                        return view('fichasPersonales.editarFicha', 
-                                compact('fichaPer',
-                                        'paises',
-                                        'ciudades',
-                                        'departamentos',
-                                        'estadosCiviles',
-                                        'situaciones',
-                                        'fuerzas',
-                                        'grados',
-                                        'cuerpos',
-                                        'clasificaciones',
-                                        'unidades',
-                                        'temas',
-                                        'fichaTemas',
-                                        'fichaUnidades',
-                                        'ideologias',
-                                        'profesiones',
-                                        'fichasIdeologias',
-                                        'fichasProfesiones'  ));
+        $fichasDomicilios = Domicilio::select('*')
+            ->where('fichaPersonal_id', $fichaPer->id)
+            ->get()->all();
 
-    
+
+        return view(
+            'fichasPersonales.editarFicha',
+            compact(
+                'fichaPer',
+                'paises',
+                'ciudades',
+                'departamentos',
+                'estadosCiviles',
+                'situaciones',
+                'fuerzas',
+                'grados',
+                'cuerpos',
+                'clasificaciones',
+                'unidades',
+                'temas',
+                'fichaTemas',
+                'fichaUnidades',
+                'ideologias',
+                'profesiones',
+                'fichasIdeologias',
+                'fichasProfesiones',
+                'fichasDomicilios'
+            )
+        );
     }
     public function update(Request $request, $fichaPersonalId)
     {
 
-        $fichasUniViejas = Unidad::join('ficha_personal_unidad','unidad_Id','=','unidads.id' )
-                        ->select('*')
-                        ->where('ficha_Personal_Id', $fichaPersonalId)->get()->all();
-        $fichasTemasViejos = Tema::join('ficha_personal_tema','tema_Id','=','temas.id' )
-                        ->select('*')
-                        ->where('ficha_Personal_Id', $fichaPersonalId)->get()->all();
-                
+        $fichasUniViejas = Unidad::join('ficha_personal_unidad', 'unidad_Id', '=', 'unidads.id')
+            ->select('*')
+            ->where('ficha_Personal_Id', $fichaPersonalId)->get()->all();
+        $fichasTemasViejos = Tema::join('ficha_personal_tema', 'tema_Id', '=', 'temas.id')
+            ->select('*')
+            ->where('ficha_Personal_Id', $fichaPersonalId)->get()->all();
+
         $fichaPer = FichaPersonal::find($fichaPersonalId);
         $fichaPer->primerNombre = $request->primerNombre;
         $fichaPer->primerApellido = $request->primerApellido;
@@ -285,10 +304,10 @@ class FichasPersonalesController extends Controller
 
         //return $insertar;
         return back()->with('flash', 'Ficha actualizada con exito');
-        
     }
 
-    public function destroy($fichaPersonalId){
+    public function destroy($fichaPersonalId)
+    {
         $fichaPer = FichaPersonal::find($fichaPersonalId);
 
         $fichaPer->delete();
@@ -299,9 +318,8 @@ class FichasPersonalesController extends Controller
         return redirect()
             ->route('fichasPersonales.index')
             ->with('flash', 'Ficha eliminada con exito');
-
     }
-   
+
 
     //se comenta porque no se va a utilizar por el momento.
 
@@ -311,7 +329,4 @@ class FichasPersonalesController extends Controller
         $paises = Pais::all();
         return view('fichasPersonales.crearFicha' ,compact('unidades', 'paises'));
     }*/
-
-
-
 }

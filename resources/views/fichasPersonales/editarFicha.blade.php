@@ -33,7 +33,8 @@
                                     <div class="form-group {{ $errors->has('numeroPaquete') ? 'has-error' : '' }} ">
                                         <label for="numeroPaquete">Nro. Paquete de Ingreso</label>
                                         <input name="numeroPaquete" type="imput" class="form-control" id="numeroPaquete"
-                                            placeholder="..." value="{{ old('numeroPaquete', $fichaPer->numeroPaquete) }}">
+                                            placeholder="..."
+                                            value="{{ old('numeroPaquete', $fichaPer->numeroPaquete) }}">
                                         <!--- Muestro los errores de validacion.-->
                                         {!! $errors->first('numeroPaquete', '<span class=error style=color:red>:message</span>') !!}
                                     </div>
@@ -231,7 +232,8 @@
                                     <div class="form-group {{ $errors->has('segundoNombre') ? 'has-error' : '' }} ">
                                         <label for="nombre">Segundo Nombre</label>
                                         <input name="segundoNombre" type="imput" class="form-control" id="nombre"
-                                            placeholder="..." value="{{ old('segundoNombre', $fichaPer->segundoNombre) }}">
+                                            placeholder="..."
+                                            value="{{ old('segundoNombre', $fichaPer->segundoNombre) }}">
                                         <!--- Muestro los errores de validacion.-->
                                         {!! $errors->first('segundoNombre', '<span class=error style=color:red>:message</span>') !!}
                                     </div>
@@ -409,7 +411,8 @@
                                         <td>
                                             <form method="POST"
                                                 action="{{ route('fichasPersonalesIdeologia.destroy', $fichaIdeologia->id) }}"
-                                                style="display: inline"> {{ csrf_field() }} {{ method_field('DELETE') }}
+                                                style="display: inline"> {{ csrf_field() }}
+                                                {{ method_field('DELETE') }}
                                                 <button class="btn btn-xs btn-danger"
                                                     onclick="return confirm('¿Esta seguro que desea elminirar este registro?')"><i
                                                         class="fa fa-light fa-trash"></i></button>
@@ -456,7 +459,8 @@
                                         <td>
                                             <form method="POST"
                                                 action="{{ route('fichasPersonalesProfesion.destroy', $fichaProfesion->id) }}"
-                                                style="display: inline"> {{ csrf_field() }} {{ method_field('DELETE') }}
+                                                style="display: inline"> {{ csrf_field() }}
+                                                {{ method_field('DELETE') }}
                                                 <button class="btn btn-xs btn-danger"
                                                     onclick="return confirm('¿Esta seguro que desea elminirar este registro?')"><i
                                                         class="fa fa-light fa-trash"></i></button>
@@ -490,24 +494,27 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Ideologias</th>
+                                    <th>Domicilio</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>prueba</td>
-                                    <td>
-                                        <a href="#" class="btn btn-xs btn-info"><i class="fa fa-light fa-pen"></i></a>
-                                        <form method="POST" action="#" style="display: inline"> {{ csrf_field() }}
-                                            {{ method_field('DELETE') }}
-                                            <button class="btn btn-xs btn-danger"
-                                                onclick="return confirm('¿Esta seguro que desea elminirar este registro?')"><i
-                                                    class="fa fa-light fa-trash"></i></button>
-                                        </form>
-                                    </td>
-                                </tr>
+                                @foreach ($fichasDomicilios as $fichaDomicilio)
+                                    <tr>
+                                        <td>{{ $fichaDomicilio->id }}</td>
+                                        <td>{{ $fichaDomicilio->domicilio}}</td>
+                                        <td>
+                                            <form method="POST"
+                                                action="{{ route('domicilio.destroy', $fichaDomicilio->id) }}"
+                                                style="display: inline"> {{ csrf_field() }}
+                                                {{ method_field('DELETE') }}
+                                                <button class="btn btn-xs btn-danger"
+                                                    onclick="return confirm('¿Esta seguro que desea elminirar este registro?')"><i
+                                                        class="fa fa-light fa-trash"></i></button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
 
 
                             </tbody>
@@ -828,8 +835,7 @@
         </div>
     </section>
 
-{{--
-    <div class="modal fade bd-example-modal-lg IdeologiaModal" id="IdeologiaModal" tabindex="-2" role="dialog"
+    {{-- <div class="modal fade bd-example-modal-lg IdeologiaModal" id="IdeologiaModal" tabindex="-2" role="dialog"
         aria-labelledby="ideologiaLabel">
         <form method="POST" action="{{ route('fichasPersonalesIdeologia.store', $fichaPer) }}">
             {{ csrf_field() }}
@@ -916,255 +922,265 @@
         </form>
     </div> --}}
     <!-- Modal -->
-<div class="modal fade" id="IdeologiaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <form method="POST" action="{{ route('fichasPersonalesIdeologia.store', $fichaPer) }}">
-      {{ csrf_field() }}
-      <div class="modal-dialog modal-lg" role="document">
-          <div class="modal-content">
-              <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                          aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title" id="ideologiaLabel">Crear</h4>
-              </div>
-              <div class="modal-body">
-                  <div class="row">
+    <div class="modal fade" id="IdeologiaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <form method="POST" action="{{ route('fichasPersonalesIdeologia.store', $fichaPer) }}">
+                {{ csrf_field() }}
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="ideologiaLabel">Crear</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
 
-                      <div class="col-md-6" style="display: inline-block;">
+                                <div class="col-md-6" style="display: inline-block;">
 
-                          <div class="form-group">
-                              <label for="ideologia">Ideologia</label>
-                              <select name="ideologia" class="form-control select2" style="width: 100%;"
-                                  id="ideologia">
-                                  <option value=""> Seleccione </option>
-                                  @foreach ($ideologias as $ideologia)
-                                      <option value="{{ $ideologia->id }}">
-                                          {{ $ideologia->nombre }}</option>
-                                  @endforeach
-                              </select>
-                          </div>
-                          <div class="form-group">
-                              <label for="observacion">Observación</label>
-                              <input name="observacion" type="imput" class="form-control" id="observacion"
-                                  placeholder="..." value="{{ old('observacion') }}">
-                          </div>
-                      </div>
-                  </div>
-                  <div class="modal-footer">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                      <button class="btn btn-primary">Guardar</button>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </form>
-  </div>
-</div>
-<!-- Modal -->
-<div class="modal fade" id="profesionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <form method="POST" action="{{ route('fichasPersonalesProfesion.store', $fichaPer) }}">
-        {{ csrf_field() }}
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="profesionLabel"></h4>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-  
-                        <div class="col-md-6" style="display: inline-block;">
-  
-                            <div class="form-group">
-                                <label for="profesion">Profesion</label>
-                                <select name="profesion" class="form-control select2" style="width: 100%;"
-                                    id="profesion">
-                                    <option value=""> Seleccione </option>
-                                    @foreach ($profesiones as $profesion)
-                                        <option value="{{ $profesion->id }}">
-                                            {{ $profesion->nombre }}</option>
-                                    @endforeach
-                                </select>
+                                    <div class="form-group">
+                                        <label for="ideologia">Ideologia</label>
+                                        <select name="ideologia" class="form-control select2" style="width: 100%;"
+                                            id="ideologia">
+                                            <option value=""> Seleccione </option>
+                                            @foreach ($ideologias as $ideologia)
+                                                <option value="{{ $ideologia->id }}">
+                                                    {{ $ideologia->nombre }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="observacion">Observación</label>
+                                        <input name="observacion" type="imput" class="form-control" id="observacion"
+                                            placeholder="..." value="{{ old('observacion') }}">
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="observacion">Observación</label>
-                                <input name="observacion" type="imput" class="form-control" id="observacion"
-                                    placeholder="..." value="{{ old('observacion') }}">
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                <button class="btn btn-primary">Guardar</button>
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                        <button class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="profesionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <form method="POST" action="{{ route('fichasPersonalesProfesion.store', $fichaPer) }}">
+                {{ csrf_field() }}
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="profesionLabel"></h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+
+                                <div class="col-md-6" style="display: inline-block;">
+
+                                    <div class="form-group">
+                                        <label for="profesion">Profesion</label>
+                                        <select name="profesion" class="form-control select2" style="width: 100%;"
+                                            id="profesion">
+                                            <option value=""> Seleccione </option>
+                                            @foreach ($profesiones as $profesion)
+                                                <option value="{{ $profesion->id }}">
+                                                    {{ $profesion->nombre }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="observacion">Observación</label>
+                                        <input name="observacion" type="imput" class="form-control" id="observacion"
+                                            placeholder="..." value="{{ old('observacion') }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                <button class="btn btn-primary">Guardar</button>
+                            </div>
+                        </div>
                     </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal fade" id="domicilioModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">domicilioModal</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>
-    </form>
-  </div>
-</div>
+    </div>
 
-<div class="modal fade" id="domicilioModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">domicilioModal</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+    <div class="modal fade" id="estudiosModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">estudiosModal</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
     </div>
-</div>
-    
-<div class="modal fade" id="estudiosModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">estudiosModal</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-</div> 
 
-<div class="modal fade" id="organizacionesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">organizacionesModal</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+    <div class="modal fade" id="organizacionesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">organizacionesModal</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
     </div>
-</div> 
 
-<div class="modal fade" id="anotacionesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">anotacionesModal</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+    <div class="modal fade" id="anotacionesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">anotacionesModal</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
     </div>
-</div> 
 
-<div class="modal fade" id="fichasPerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">fichasPerModal</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+    <div class="modal fade" id="fichasPerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">fichasPerModal</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
     </div>
-</div> 
 
-<div class="modal fade" id="fichasImperModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">fichasImperModal</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+    <div class="modal fade" id="fichasImperModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">fichasImperModal</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
     </div>
-</div> 
 
-<div class="modal fade" id="dossierModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">dossierModal</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+    <div class="modal fade" id="dossierModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">dossierModal</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
     </div>
-</div> 
 
-<div class="modal fade" id="documentosModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">documentosModal</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+    <div class="modal fade" id="documentosModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">documentosModal</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
     </div>
-</div> 
 
 
 @stop

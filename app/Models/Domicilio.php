@@ -8,13 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Domicilio extends Model
 {
     use HasFactory;
-    public function fichasPersonales()
-    {
-        return $this->belongsToMany(FichaPersonal::class);
-    }
 
-    public function fichaPersonalDomicilio()
+    public function fichaPersonal()
     {
-        return $this->hasMany(FichaPersonalDomicilio::class);
+        return $this->belongsTo(FichaPersonal::class, 'paisId');
     }
 }
