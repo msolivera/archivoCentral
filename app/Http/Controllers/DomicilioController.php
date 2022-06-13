@@ -16,9 +16,9 @@ class DomicilioController extends Controller
     //funcion que se encarga de insertar las ideologias de la persona.
     public function store(Request $request, $fichaPersonalId){
 
-        
+       
         $domicilio = new Domicilio();
-        $domicilio->fichaPersonal_id= $fichaPersonalId; 
+        $domicilio->ficha_Personal_id= $fichaPersonalId; 
         $domicilio->domicilio= $request->domicilio;
         
         $domicilio->save();

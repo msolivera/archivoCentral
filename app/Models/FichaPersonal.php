@@ -105,11 +105,6 @@ class FichaPersonal extends Model
         return $this->hasMany(FichaPersonalProfesion::class);
     }
 
-    public function fichaPersonalDomicilio()
-    {
-        return $this->hasMany(FichaPersonalDomicilio::class);
-    }
-
     //Relacion 1->N
     public function domicilio()
     {

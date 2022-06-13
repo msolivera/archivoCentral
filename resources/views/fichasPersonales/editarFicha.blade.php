@@ -502,7 +502,7 @@
                                 @foreach ($fichasDomicilios as $fichaDomicilio)
                                     <tr>
                                         <td>{{ $fichaDomicilio->id }}</td>
-                                        <td>{{ $fichaDomicilio->domicilio}}</td>
+                                        <td>{{ $fichaDomicilio->domicilio }}</td>
                                         <td>
                                             <form method="POST"
                                                 action="{{ route('domicilio.destroy', $fichaDomicilio->id) }}"
@@ -551,25 +551,25 @@
                             </thead>
                             <tbody>
                                 @foreach ($fichasEstudios as $fichaEstudio)
-                                <tr>
-                                    <td>{{ $fichaEstudio->id }}</td>
-                                    <td>{{ $fichaEstudio->nombreEstudio}}</td>
-                                    <td>{{ $fichaEstudio->completado}}</td>
-                                    <td>{{ $fichaEstudio->nombreInstituto}}</td>
-                                    <td>{{ $fichaEstudio->tipoInstituto}}</td>
-                                    <td>{{ $fichaEstudio->nivelAcademico}}</td>
-                                    <td>
-                                        <form method="POST"
-                                            action="{{ route('estudio.destroy', $fichaEstudio->id) }}"
-                                            style="display: inline"> {{ csrf_field() }}
-                                            {{ method_field('DELETE') }}
-                                            <button class="btn btn-xs btn-danger"
-                                                onclick="return confirm('¿Esta seguro que desea elminirar este registro?')"><i
-                                                    class="fa fa-light fa-trash"></i></button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            @endforeach
+                                    <tr>
+                                        <td>{{ $fichaEstudio->id }}</td>
+                                        <td>{{ $fichaEstudio->nombreEstudio }}</td>
+                                        <td>{{ $fichaEstudio->completado }}</td>
+                                        <td>{{ $fichaEstudio->nombreInstituto }}</td>
+                                        <td>{{ $fichaEstudio->tipoInstituto }}</td>
+                                        <td>{{ $fichaEstudio->nivelAcademico }}</td>
+                                        <td>
+                                            <form method="POST"
+                                                action="{{ route('estudio.destroy', $fichaEstudio->id) }}"
+                                                style="display: inline"> {{ csrf_field() }}
+                                                {{ method_field('DELETE') }}
+                                                <button class="btn btn-xs btn-danger"
+                                                    onclick="return confirm('¿Esta seguro que desea elminirar este registro?')"><i
+                                                        class="fa fa-light fa-trash"></i></button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
 
 
                             </tbody>
@@ -912,7 +912,7 @@
                                 <div class="col-md-6" style="display: inline-block;">
 
                                     <div class="form-group">
-                                        <label for="profesion">Profesion</label>
+                                        <label for="profesion">Ocupaciones</label>
                                         <select name="profesion" class="form-control select2" style="width: 100%;"
                                             id="profesion">
                                             <option value=""> Seleccione </option>
@@ -942,29 +942,36 @@
 
     <div class="modal fade" id="domicilioModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">domicilioModal</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+        <form method="POST" action="{{ route('domicilio.store', $fichaPer) }}">
+            {{ csrf_field() }}
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Domicilios</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="domicilio">domicilio</label>
+                            <input name="domicilio" type="imput" class="form-control" id="domicilio" placeholder="..."
+                                value="{{ old('domicilio') }}">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <button class="btn btn-primary">Guardar</button>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
+        </form>
+    </div>
     </div>
 
     <div class="modal fade" id="estudiosModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <form method="POST" action="{{ route('estudio.store',$fichaPer)}}">
+            <form method="POST" action="{{ route('estudio.store', $fichaPer) }}">
                 {{ csrf_field() }}
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
@@ -994,8 +1001,8 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="nombreInstituto">Instituto</label>
-                                        <input name="nombreInstituto" type="imput" class="form-control" id="nombreInstituto"
-                                            placeholder="..." value="{{ old('nombreInstituto') }}">
+                                        <input name="nombreInstituto" type="imput" class="form-control"
+                                            id="nombreInstituto" placeholder="..." value="{{ old('nombreInstituto') }}">
                                     </div>
                                     <div class="form-group">
                                         <label for="tipoInstituto">Tipo Inst.</label>

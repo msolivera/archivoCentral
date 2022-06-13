@@ -11,6 +11,6 @@ class Domicilio extends Model
 
     public function fichaPersonal()
     {
-        return $this->belongsTo(FichaPersonal::class, 'paisId');
+        return $this->belongsTo(FichaPersonal::class, 'ficha_Personal_Id');
     }
 }
