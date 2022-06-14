@@ -21,6 +21,9 @@ use App\Models\Domicilio;
 use App\Models\Estudio;
 use App\Models\FichaPersonalIdeologia;
 use App\Models\FichaPersonalProfesion;
+use App\Models\RolOrganizacion;
+use App\Models\Organizacion;
+
 
 class FichasPersonalesController extends Controller
 {
@@ -105,6 +108,7 @@ class FichasPersonalesController extends Controller
         $temas = Tema::all();
         $ideologias = Ideologia::all();
         $profesiones = Profesion::all();
+        $organizaciones = Organizacion::all();
         $clasificaciones = Clasificacion::all();
 
 
@@ -156,6 +160,12 @@ class FichasPersonalesController extends Controller
             ->where('fichaPersonal_id', $fichaPer->id)
             ->get()->all();
 
+        $fichasOrganizaciones = RolOrganizacion::select('*')
+            ->where('ficha_Personal_id', $fichaPer->id)
+            ->get()->all();
+
+        
+
         $fichasDomicilios = Domicilio::select('*')
             ->where('ficha_Personal_id', $fichaPer->id)
             ->get()->all();
@@ -186,7 +196,9 @@ class FichasPersonalesController extends Controller
                 'fichasProfesiones',
                 'fichasIdeologias',
                 'fichasDomicilios',
-                'fichasEstudios'
+                'fichasEstudios',
+                'fichasOrganizaciones',
+                'organizaciones'
             )
         );
     }
@@ -208,6 +220,7 @@ class FichasPersonalesController extends Controller
         $clasificaciones = Clasificacion::all();
         $ideologias = Ideologia::all();
         $profesiones = Profesion::all();
+        $organizaciones = Organizacion::all();
         //busco la info de la ficha a editar
         $fichaPer = FichaPersonal::find($fichaPersonalId);
 
@@ -228,6 +241,9 @@ class FichasPersonalesController extends Controller
             ->get()->all();
         $fichasProfesiones = FichaPersonalProfesion::select('*')
             ->where('fichaPersonal_id', $fichaPer->id)
+            ->get()->all();
+        $fichasOrganizaciones = RolOrganizacion::select('*')
+            ->where('ficha_Personal_id', $fichaPer->id)
             ->get()->all();
 
         $fichasDomicilios = Domicilio::select('*')
@@ -261,7 +277,9 @@ class FichasPersonalesController extends Controller
                 'fichasIdeologias',
                 'fichasProfesiones',
                 'fichasDomicilios',
-                'fichasEstudios'
+                'fichasEstudios',
+                'organizaciones',
+                'fichasOrganizaciones'
             )
         );
     }

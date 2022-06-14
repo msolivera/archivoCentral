@@ -11,4 +11,10 @@ class Organizacion extends Model
     public function fichasPersonales(){
         return $this->belongsToMany(FichaPersonal::class);
     }
+
+    public function rolOrganizacion()
+    {
+       return $this->hasMany(RolOrganizacion::class);
+    }
+    
 }

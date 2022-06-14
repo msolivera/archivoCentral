@@ -193,6 +193,9 @@ Route::group(
         //estudios
         Route::post('/estudio/{fichaPersona}', [App\Http\Controllers\EstudioController::class, 'store'])->name('estudio.store');
         Route::delete('/estudio/{fichaPersona}', [App\Http\Controllers\EstudioController::class, 'destroy'])->name('estudio.destroy');
+        //rol organizacion
+        Route::post('/rolOrganizacion/{fichaPersona}', [App\Http\Controllers\RolOrganizacionController::class, 'store'])->name('rolOrganizacion.store');
+        Route::delete('/rolOrganizacion/{fichaPersona}', [App\Http\Controllers\RolOrganizacionController::class, 'destroy'])->name('rolOrganizacion.destroy');
     }
 );
 
@@ -206,4 +209,5 @@ Route::post('/login', function () {
 Route::get('/', function () {
     return redirect('/login');
 });
+
 Auth::routes();

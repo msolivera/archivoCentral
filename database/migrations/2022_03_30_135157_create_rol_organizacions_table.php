@@ -16,7 +16,9 @@ return new class extends Migration
         Schema::create('rol_organizacions', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->unsignedInteger('organizacion_id')->nullable()->default(0);
+            $table->string('observacion');
+            $table->unsignedInteger('organizacion_id')->nullable();
+            $table->unsignedInteger('ficha_Personal_id')->nullable();
             $table->timestamps();
         });
     }
