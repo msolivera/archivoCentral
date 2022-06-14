@@ -1057,7 +1057,28 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        ...
+
+                        <div class="form-group">
+                            <label for="nombre">Nombre</label>
+                            <input name="nombre" type="imput" class="form-control" id="nombre"
+                                placeholder="..." value="{{ old('nombre') }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="organizacion">Organizacion</label>
+                            <select name="organizacion" class="form-control select2" style="width: 100%;"
+                                id="organizacion">
+                                <option value=""> Seleccione </option>
+                                @foreach ($organizaciones as $organizacion)
+                                    <option value="{{ $organizacion->id }}">
+                                        {{ $organizacion->nombre }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="observacion">Observación</label>
+                            <input name="observacion" type="imput" class="form-control" id="observacion"
+                                placeholder="..." value="{{ old('observacion') }}">
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
