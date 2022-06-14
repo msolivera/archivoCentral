@@ -9,6 +9,10 @@ class Anotacion extends Model
 {
     use HasFactory;
     public function fichasPersonales(){
-        return $this->belongsToMany(FichaPersonal::class);
+        return $this->belongsTo(FichaPersonal::class);
+    }
+    public function tipoAnotacion()
+    {
+       return $this->belongsTo(TipoAnotacion::class, 'tipo_anotacion_id');
     }
 }

@@ -196,6 +196,9 @@ Route::group(
         //rol organizacion
         Route::post('/rolOrganizacion/{fichaPersona}', [App\Http\Controllers\RolOrganizacionController::class, 'store'])->name('rolOrganizacion.store');
         Route::delete('/rolOrganizacion/{fichaPersona}', [App\Http\Controllers\RolOrganizacionController::class, 'destroy'])->name('rolOrganizacion.destroy');
+        //anotaciones
+        Route::post('/anotacion/{fichaPersona}', [App\Http\Controllers\AnotacionController::class, 'store'])->name('anotacion.store');
+        Route::delete('/anotacion/{fichaPersona}', [App\Http\Controllers\AnotacionController::class, 'destroy'])->name('anotacion.destroy');
     }
 );
 
@@ -210,4 +213,4 @@ Route::get('/', function () {
     return redirect('/login');
 });
 
-Auth::routes();
+//Auth::routes();
