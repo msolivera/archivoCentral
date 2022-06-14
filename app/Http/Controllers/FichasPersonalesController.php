@@ -23,6 +23,8 @@ use App\Models\FichaPersonalIdeologia;
 use App\Models\FichaPersonalProfesion;
 use App\Models\RolOrganizacion;
 use App\Models\Organizacion;
+use App\Models\TipoAnotacion;
+use App\Models\Anotacion;
 
 
 class FichasPersonalesController extends Controller
@@ -55,6 +57,7 @@ class FichasPersonalesController extends Controller
         $fichasPer = FichaPersonal::all();
         $temas = Tema::all();
         $clasificaciones = Clasificacion::all();
+       
 
         return view('fichasPersonales.index', compact(
             'fichasPer',
@@ -110,6 +113,7 @@ class FichasPersonalesController extends Controller
         $profesiones = Profesion::all();
         $organizaciones = Organizacion::all();
         $clasificaciones = Clasificacion::all();
+        $tipoAnotaciones = TipoAnotacion::all();
 
 
         //validacion falta
@@ -164,7 +168,9 @@ class FichasPersonalesController extends Controller
             ->where('ficha_Personal_id', $fichaPer->id)
             ->get()->all();
 
-        
+            $fichasAnotaciones = Anotacion::select('*')
+            ->where('ficha_Personal_id', $fichaPer->id)
+            ->get()->all();
 
         $fichasDomicilios = Domicilio::select('*')
             ->where('ficha_Personal_id', $fichaPer->id)
@@ -198,7 +204,9 @@ class FichasPersonalesController extends Controller
                 'fichasDomicilios',
                 'fichasEstudios',
                 'fichasOrganizaciones',
-                'organizaciones'
+                'organizaciones',
+                'tipoAnotaciones',
+                'fichasAnotaciones'
             )
         );
     }
@@ -221,6 +229,7 @@ class FichasPersonalesController extends Controller
         $ideologias = Ideologia::all();
         $profesiones = Profesion::all();
         $organizaciones = Organizacion::all();
+        $tipoAnotaciones = TipoAnotacion::all();
         //busco la info de la ficha a editar
         $fichaPer = FichaPersonal::find($fichaPersonalId);
 
@@ -243,6 +252,9 @@ class FichasPersonalesController extends Controller
             ->where('fichaPersonal_id', $fichaPer->id)
             ->get()->all();
         $fichasOrganizaciones = RolOrganizacion::select('*')
+            ->where('ficha_Personal_id', $fichaPer->id)
+            ->get()->all();
+        $fichasAnotaciones = Anotacion::select('*')
             ->where('ficha_Personal_id', $fichaPer->id)
             ->get()->all();
 
@@ -279,7 +291,10 @@ class FichasPersonalesController extends Controller
                 'fichasDomicilios',
                 'fichasEstudios',
                 'organizaciones',
-                'fichasOrganizaciones'
+                'fichasOrganizaciones',
+                'tipoAnotaciones',
+                'fichasAnotaciones'
+
             )
         );
     }

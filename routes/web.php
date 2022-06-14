@@ -213,4 +213,4 @@ Route::get('/', function () {
     return redirect('/login');
 });
 
-//Auth::routes();
+Auth::routes();

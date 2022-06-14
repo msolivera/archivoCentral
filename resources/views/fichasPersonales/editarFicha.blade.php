@@ -645,26 +645,30 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Ideologias</th>
+                                    <th>Anotacion</th>
+                                    <th>Tipo</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>prueba</td>
-                                    <td>
-                                        <a href="#" class="btn btn-xs btn-info"><i class="fa fa-light fa-pen"></i></a>
-                                        <form method="POST" action="#" style="display: inline"> {{ csrf_field() }}
-                                            {{ method_field('DELETE') }}
-                                            <button class="btn btn-xs btn-danger"
-                                                onclick="return confirm('¿Esta seguro que desea elminirar este registro?')"><i
-                                                    class="fa fa-light fa-trash"></i></button>
-                                        </form>
-                                    </td>
-                                </tr>
-
-
+                                @foreach ($fichasAnotaciones as $fichaAnotacion)
+                                    <tr>
+                                        <td>{{ $fichaAnotacion->id }}</td>
+                                        <td>{{ $fichaAnotacion->nombre }}</td>
+                                        <td>{{ $fichaAnotacion->tipoAnotacion }}</td>
+                                        
+                                        <td>
+                                            <form method="POST"
+                                                action="{{ route('anotacion.destroy', $fichaAnotacion->id) }}"
+                                                style="display: inline"> {{ csrf_field() }}
+                                                {{ method_field('DELETE') }}
+                                                <button class="btn btn-xs btn-danger"
+                                                    onclick="return confirm('¿Esta seguro que desea elminirar este registro?')"><i
+                                                        class="fa fa-light fa-trash"></i></button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
