@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('sub_temas', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->unsignedBigInteger('tema_id')->nullable()->default(0);
+            $table->unsignedBigInteger('tema_id')->nullable();
             $table->timestamps();
         });
     }

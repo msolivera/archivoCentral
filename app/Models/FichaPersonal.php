@@ -17,40 +17,40 @@ class FichaPersonal extends Model
     //Relaciones N->1
     public function pais()
     {
-        return $this->belongsTo(Pais::class, 'paisId');
+        return $this->belongsTo(Pais::class, 'pais_id');
+    }
+    public function departamentos()
+    {
+        return $this->belongsTo(Departamentos::class, 'departamentos_id');
     }
     //Relacion N->1
     public function clasificacion()
     {
-        return $this->belongsTo(Clasificacion::class, 'clasificacionId');
-    }
-    public function departamento()
-    {
-        return $this->belongsTo(Departamento::class, 'departamentoId');
+        return $this->belongsTo(Clasificacion::class, 'clasificacion_id');
     }
     public function estadoCivil()
     {
-        return $this->belongsTo(EstadoCivil::class, 'estadoCivilId');
+        return $this->belongsTo(EstadoCivil::class, 'estadoCivil_id');
     }
     public function ciudad()
     {
-        return $this->belongsTo(Ciudad::class, 'ciudadId');
+        return $this->belongsTo(Ciudad::class, 'ciudad_id');
     }
     public function fuerza()
     {
-        return $this->belongsTo(Fuerza::class, 'fuerzaId');
+        return $this->belongsTo(Fuerza::class, 'fuerza_id');
     }
     public function grado()
     {
-        return $this->belongsTo(Grado::class, 'gradoId');
+        return $this->belongsTo(Grado::class, 'grado_id');
     }
     public function armaCuerpo()
     {
-        return $this->belongsTo(ArmaCuerpo::class, 'cuerpoId');
+        return $this->belongsTo(ArmaCuerpo::class, 'cuerpo_id');
     }
     public function situacion()
     {
-        return $this->belongsTo(Situacion::class, 'situacionId');
+        return $this->belongsTo(Situacion::class, 'situacion_id');
     }
 
 

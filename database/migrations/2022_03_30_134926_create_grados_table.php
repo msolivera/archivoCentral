@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre')->unique();
             $table->string('sigla')->unique();
-            $table->unsignedInteger('fuerza_id')->nullable()->default(0);
+            $table->unsignedInteger('fuerza_id')->nullable();
             $table->timestamps();
         });
     }

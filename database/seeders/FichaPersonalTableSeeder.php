@@ -30,15 +30,15 @@ class FichaPersonalTableSeeder extends Seeder
         $persona->fechaDef = '25/05/3022';
         $persona->correoElectronico = 'correo@micaela.com';
         $persona->seccionalPolicial = 12;
-        $persona->paisId = 1;
-        $persona->ciudadId = 1;
-        $persona->departamentoId = 1;
-        $persona->estadoCivilId = 1;
-        $persona->situacionId = 1;
-        $persona->fuerzaId = 1;
-        $persona->gradoId = 1;
-        $persona->cuerpoId = 1;
-        $persona->clasificacionId = 1;
+        $persona->pais_id = 1;
+        $persona->ciudad_id = 1;
+        $persona->departamentos_id = 1;
+        $persona->estadoCivil_id = 1;
+        $persona->situacion_id = 1;
+        $persona->fuerza_id = 1;
+        $persona->grado_id = 1;
+        $persona->cuerpo_id = 1;
+        $persona->clasificacion_id = 1;
         $persona->numeroPaquete = 11;
         $persona->estadoIngreso = 'No Aplica';
         $persona->save();
@@ -47,21 +47,21 @@ class FichaPersonalTableSeeder extends Seeder
         $persona->cedula = 4596553;
         $persona->primerNombre = 'federico';
         $persona->primerApellido = 'alonso';
-        $persona->paisId = 1;
+        $persona->pais_id = 1;
         $persona->save();
         
         $persona = new FichaPersonal();
         $persona->cedula = 8795664;
         $persona->primerNombre = 'cristian';
         $persona->primerApellido = 'palma';
-        $persona->paisId = 1;
+        $persona->pais_id = 1;
         $persona->save();
         
         $persona = new FichaPersonal();
         $persona->cedula = 42165332;
         $persona->primerNombre = 'marcelo';
         $persona->primerApellido = 'olivera';
-        $persona->paisId = 1;
+        $persona->pais_id = 1;
         $persona->save();
     }
 }

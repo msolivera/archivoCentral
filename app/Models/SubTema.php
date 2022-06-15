@@ -11,6 +11,6 @@ class SubTema extends Model
 
 
     public function temas(){
-        return  $this->belongsTo(Tema::class,'temaId');
+        return  $this->belongsTo(Tema::class,'tema_id');
     }
 }

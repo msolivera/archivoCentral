@@ -87,7 +87,7 @@
                     <td>{{$fichaPer->correoElectronico}}</td>
                     <td>{{$fichaPer->seccionalPolicial}}</td>
                     <td>{{$fichaPer->pais->nombre}}</td>
-                    <td>{{$fichaPer->departamento}}</td>
+                    <td>{{$fichaPer->departamentos->nombre}}</td>
                     <td>{{$fichaPer->ciudad}}</td>
                     <td>{{$fichaPer->estadoCivil}}</td>
                     <td>{{$fichaPer->estadoIngreso}}</td>
@@ -281,10 +281,10 @@
 
           <div class="form-group">
             <label for="pais">Pais</label>
-            <select name="paisId" 
+            <select name="pais_id" 
                     class="form-control select2" 
                     style="width: 100%;" 
-                    id="paisId">
+                    id="pais_id">
                     <option value=""> Seleccione un Pais</option>
                     @foreach ($paises as $pais)
                     <option value="{{$pais->id}}">{{$pais->nombre}}</option>
@@ -293,10 +293,10 @@
           </div>
 
           <div class="form-group">
-            <label for="departamentoId">Departamento</label>
-            <select name = "departamentoId" 
+            <label for="departamento_id">Departamento</label>
+            <select name = "departamento_id" 
                   class="form-control select2" 
-                  id="departamentoId"> 
+                  id="departamento_id"> 
                   <option value=""> Seleccione un Departamento</option>
                   @foreach ($departamentos as $departamento)
                   <option value="{{$departamento->id}}">{{$departamento->nombre}}</option>
@@ -362,12 +362,12 @@
         </div>
 
         <div class="col-md-6" style= "display: inline-block; float: right;" >
-          <div class="form-group {{$errors->has('clasificacionId') ? 'has-error' : ''}} ">
-            <label for="clasificacionId">Clasificación</label>
-            <select name="clasificacionId" 
+          <div class="form-group {{$errors->has('clasificacion_id') ? 'has-error' : ''}} ">
+            <label for="clasificacion_id">Clasificación</label>
+            <select name="clasificacion_id" 
             class="form-control select2" 
             style="width: 100%;" 
-            id="clasificacionId">
+            id="clasificacion_id">
             <option value=""> Seleccione una Clasificación</option>
                 @foreach ($clasificaciones as $clasificacion)
                 <option value="{{$clasificacion->id}}">{{$clasificacion->nombre}}</option>
@@ -422,10 +422,10 @@
           
           <div class="form-group">
             <label for="ciudad">Ciudad - Barrio</label>
-            <select name="ciudadId" 
+            <select name="ciudad_id" 
                     class="form-control select2" 
                     style="width: 100%;" 
-                    id="ciudadId">
+                    id="ciudad_id">
               <option value=""> Seleccione una Ciudad - Barrio</option>
                 @foreach ($ciudades as $ciudad)
                   <option value="{{$ciudad->id}}">{{$ciudad->nombre}}</option>
@@ -434,11 +434,11 @@
           </div>
 
           <div class="form-group">
-            <label for="estadoCivilId">Estado Civil</label>
-            <select name="estadoCivilId" 
+            <label for="estadoCivil_id">Estado Civil</label>
+            <select name="estadoCivil_id" 
                     class="form-control select2" 
                     style="width: 100%;" 
-                    id="estadoCivilId">
+                    id="estadoCivil_id">
               <option value=""> Seleccione un Estado Civil</option>
                 @foreach ($estadosCiviles as $estadoCivil)
                   <option value="{{$estadoCivil->id}}">{{$estadoCivil->nombre}}</option>
@@ -475,11 +475,11 @@
           
       
           <div class="form-group">
-            <label for="situacionId">Situación</label>
-            <select name="situacionId" 
+            <label for="situacion_id">Situación</label>
+            <select name="situacion_id" 
                     class="form-control select2" 
                     style="width: 100%;" 
-                    id="situacionId">
+                    id="situacion_id">
               <option value=""> Seleccione un Situación</option>
                 @foreach ($situaciones as $situacion)
                   <option value="{{$situacion->id}}">{{$situacion->nombre}}</option>
@@ -490,11 +490,11 @@
           <div class="form-group">
             <div class="row">
               <div class="col-md-6" >
-                <label for="fuerzaId">Fuerza</label>
-                <select name="fuerzaId" 
+                <label for="fuerza_id">Fuerza</label>
+                <select name="fuerza_id" 
                   class="form-control select2" 
                   style="width: 100%;" 
-                  id="fuerzaId">
+                  id="fuerza_id">
                   <option value=""> </option> 
                     @foreach ($fuerzas as $fuerza)
                       <option value="{{$fuerza->id}}">{{$fuerza->nombre}}</option>
@@ -502,11 +502,11 @@
                 </select> 
               </div>
               <div class="col-md-6" style= "display: inline-block; float: right;">
-                <label for="gradoId">Grado</label>
-                <select name="gradoId" 
+                <label for="grado_id">Grado</label>
+                <select name="grado_id" 
                   class="form-control select2" 
                   style="width: 100%;" 
-                  id="gradoId">
+                  id="grado_id">
                   <option value=""> </option> 
                     @foreach ($grados as $grado)
                       <option value="{{$grado->id}}">{{$grado->nombre}}</option>
@@ -517,11 +517,11 @@
           </div>
 
           <div class="form-group">
-            <label for="cuerpoId">Cuerpo/Arma</label>
-            <select name="cuerpoId" 
+            <label for="cuerpo_id">Cuerpo/Arma</label>
+            <select name="cuerpo_id" 
                     class="form-control select2" 
                     style="width: 100%;" 
-                    id="cuerpoId">
+                    id="cuerpo_id">
               <option value=""> Seleccione Cuerpo/Arma</option>
                 @foreach ($cuerpos as $cuerpo)
                   <option value="{{$cuerpo->id}}">{{$cuerpo->nombre}}</option>

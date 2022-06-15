@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('tipo_documentos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->unsignedBigInteger('fuente_doc_id')->nullable()->default(0);
+            $table->unsignedBigInteger('fuente_doc_id')->nullable();
             $table->timestamps();
         });
     }
