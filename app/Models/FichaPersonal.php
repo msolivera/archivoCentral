@@ -21,7 +21,7 @@ class FichaPersonal extends Model
     }
     public function departamentos()
     {
-        return $this->belongsTo(Departamentos::class, 'departamentos_id');
+        return $this->belongsTo(Departamento::class, 'departamentos_id');
     }
     //Relacion N->1
     public function clasificacion()
