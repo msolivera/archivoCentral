@@ -655,8 +655,8 @@
                                     <tr>
                                         <td>{{ $fichaAnotacion->id }}</td>
                                         <td>{{ $fichaAnotacion->nombre }}</td>
-                                        <td>{{ $fichaAnotacion->tipoAnotacion }}</td>
-                                        
+                                        <td>{{ $fichaAnotacion->tipoAnotacion->nombre}}</td>
+
                                         <td>
                                             <form method="POST"
                                                 action="{{ route('anotacion.destroy', $fichaAnotacion->id) }}"
@@ -951,9 +951,9 @@
 
     <div class="modal fade" id="domicilioModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
-        <form method="POST" action="{{ route('domicilio.store', $fichaPer) }}">
-            {{ csrf_field() }}
-            <div class="modal-dialog" role="document">
+        <div class="modal-dialog" role="document">
+            <form method="POST" action="{{ route('domicilio.store', $fichaPer) }}">
+                {{ csrf_field() }}
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Domicilios</h5>
@@ -973,8 +973,8 @@
                         <button class="btn btn-primary">Guardar</button>
                     </div>
                 </div>
-        </form>
-    </div>
+            </form>
+        </div>
     </div>
 
     <div class="modal fade" id="estudiosModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -1055,17 +1055,16 @@
                 {{ csrf_field() }}
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">organizacionesModal</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Roles y Organizaciones</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-
                         <div class="form-group">
                             <label for="nombre">Nombre</label>
-                            <input name="nombre" type="imput" class="form-control" id="nombre"
-                                placeholder="..." value="{{ old('nombre') }}">
+                            <input name="nombre" type="imput" class="form-control" id="nombre" placeholder="..."
+                                value="{{ old('nombre') }}">
                         </div>
                         <div class="form-group">
                             <label for="organizacion">Organizacion</label>
@@ -1096,21 +1095,40 @@
     <div class="modal fade" id="anotacionesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">anotacionesModal</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+            <form method="POST" action="{{ route('anotacion.store', $fichaPer) }}">
+                {{ csrf_field() }}
+                <div class="modal-content">
+                    <div class="modal-header">           
+                        <h5 class="modal-title" id="exampleModalLabel">Anotaciones</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="nombre">Texto</label>
+                            <input name="nombre" type="imput" class="form-control" id="nombre" placeholder="..."
+                                value="{{ old('nombre') }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="tipo_anotacion">Tipo de Anotacion</label>
+                            <select name="tipo_anotacion" class="form-control select2" style="width: 100%;"
+                                id="tipo_anotacion">
+                                <option value=""> Seleccione </option>
+                                @foreach ($tipoAnotaciones as $tipoAnotacion)
+                                    <option value="{{ $tipoAnotacion->id }}">
+                                        {{ $tipoAnotacion->nombre }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <button class="btn btn-primary">Guardar</button>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
+            </form>    
         </div>
     </div>
 

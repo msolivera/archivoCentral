@@ -13,6 +13,6 @@ class Anotacion extends Model
     }
     public function tipoAnotacion()
     {
-       return $this->belongsTo(TipoAnotacion::class, 'tipo_anotacion_id');
+       return $this->belongsTo(TipoAnotacion::class, 'tipo_Anotacion_id');
     }
 }

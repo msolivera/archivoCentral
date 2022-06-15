@@ -20,8 +20,7 @@ class AnotacionController extends Controller
         $anotacion = new Anotacion();
         $anotacion->nombre=$request->nombre;
         $anotacion->ficha_Personal_id= $fichaPersonalId; 
-        $anotacion->observacion= $request->observacion;
-        $anotacion->tipo_anotacion_id= $request->tipo_anotacion;
+        $anotacion->tipo_Anotacion_id= $request->tipo_anotacion;
         
         $anotacion->save();
 

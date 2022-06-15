@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('anotacions', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->unsignedBigInteger('tipoAnotacion_id')->nullable();
+            $table->unsignedBigInteger('tipo_Anotacion_id')->nullable();
             $table->unsignedBigInteger('ficha_Personal_id')->nullable();
             $table->timestamps();
         });
