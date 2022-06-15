@@ -86,8 +86,8 @@ class FichasPersonalesController extends Controller
 
         $fichasIdeologias = FichaPersonalIdeologia::select('*')
             ->where('fichaPersonal_id', $fichaPer->id)
-            ->get()->all();
-
+            ->get()
+            ->all();
 
         return view('fichasPersonales.verFicha', compact('fichaPer', 'unidades', 'fichasIdeologias'));
     }

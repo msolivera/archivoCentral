@@ -87,6 +87,10 @@
                     <td>{{$fichaPer->correoElectronico}}</td>
                     <td>{{$fichaPer->seccionalPolicial}}</td>
                     <td>{{$fichaPer->pais->nombre}}</td>
+                    <?php
+                    // write in console fichaPer
+                    echo $fichaPer);
+                    ?>
                     <td>{{$fichaPer->departamentos}}</td>
                     <td>{{$fichaPer->ciudad}}</td>
                     <td>{{$fichaPer->estadoCivil}}</td>
