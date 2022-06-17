@@ -57,7 +57,7 @@ class FichasPersonalesController extends Controller
         $fichasPer = FichaPersonal::all();
         $temas = Tema::all();
         $clasificaciones = Clasificacion::all();
-       
+
 
         return view('fichasPersonales.index', compact(
             'fichasPer',
@@ -79,17 +79,49 @@ class FichasPersonalesController extends Controller
         //consigo la info basica de la persona
         $fichaPer = FichaPersonal::find($fichaPersonalId);
         //consigo las unidades de la persona
-        $unidades = Unidad::join('ficha_personal_unidad', 'unidad_Id', '=', 'unidads.id')
+        $fichaUnidades = Unidad::join('ficha_personal_unidad', 'unidad_Id', '=', 'unidads.id')
             ->select('*')
             ->where('ficha_Personal_Id', $fichaPer->id)->get()->all();
 
+        //consigo LOS TEMAS de la persona
+        $fichaTemas = Tema::join('ficha_personal_tema', 'tema_Id', '=', 'temas.id')
+            ->select('*')
+            ->where('ficha_Personal_Id', $fichaPer->id)->get()->all();
 
+        //obtengo las ideologias de la ficha
         $fichasIdeologias = FichaPersonalIdeologia::select('*')
             ->where('fichaPersonal_id', $fichaPer->id)
-            ->get()
-            ->all();
+            ->get()->all();
+        $fichasProfesiones = FichaPersonalProfesion::select('*')
+            ->where('fichaPersonal_id', $fichaPer->id)
+            ->get()->all();
+        $fichasOrganizaciones = RolOrganizacion::select('*')
+            ->where('ficha_Personal_id', $fichaPer->id)
+            ->get()->all();
+        $fichasAnotaciones = Anotacion::select('*')
+            ->where('ficha_Personal_id', $fichaPer->id)
+            ->get()->all();
 
-        return view('fichasPersonales.verFicha', compact('fichaPer', 'unidades', 'fichasIdeologias'));
+        $fichasDomicilios = Domicilio::select('*')
+            ->where('ficha_Personal_id', $fichaPer->id)
+            ->get()->all();
+
+        $fichasEstudios = Estudio::select('*')
+            ->where('fichaPersonal_Id', $fichaPer->id)
+            ->get()->all();
+
+
+        return view('fichasPersonales.verFicha', compact(
+            'fichaPer',
+            'fichaUnidades',
+            'fichasIdeologias',
+            'fichaTemas',
+            'fichasProfesiones',
+            'fichasOrganizaciones',
+            'fichasAnotaciones',
+            'fichasDomicilios',
+            'fichasEstudios'
+        ));
     }
 
     public function store(Request $request)
@@ -123,8 +155,8 @@ class FichasPersonalesController extends Controller
         $fichaPer->cedula = $request->cedula;
         $fichaPer->otroDocNombre = $request->otroDocNombre;
         $fichaPer->otroDocNumero = $request->otroDocNumero;
-        $fichaPer->paisId = $request->paisId;
-        $fichaPer->departamentoId = $request->departamentoId;
+        $fichaPer->pais_id = $request->pais_id;
+        $fichaPer->departamentos_id = $request->departamentos_id;
         $fichaPer->correoElectronico = $request->correoElectronico;
         $fichaPer->sexo = $request->sexo;
         $fichaPer->estadoIngreso = $request->estadoIngreso;
@@ -133,15 +165,15 @@ class FichasPersonalesController extends Controller
         $fichaPer->segundoApellido = $request->segundoApellido;
         $fichaPer->credencial = $request->credencial;
         $fichaPer->fechaNac = $request->fechaNac;
-        $fichaPer->ciudadId = $request->ciudadId;
-        $fichaPer->estadoCivilId = $request->estadoCivilId;
+        $fichaPer->ciudad_id = $request->ciudad_id;
+        $fichaPer->estadoCivil_id = $request->estadoCivil_id;
         $fichaPer->seccionalPolicial = $request->seccionalPolicial;
         $fichaPer->fechaDef = $request->fechaDef;
-        $fichaPer->situacionId = $request->situacionId;
-        $fichaPer->fuerzaId = $request->fuerzaId;
-        $fichaPer->gradoId = $request->gradoId;
-        $fichaPer->cuerpoId = $request->cuerpoId;
-        $fichaPer->clasificacionId = $request->clasificacionId;
+        $fichaPer->situacion_id = $request->situacion_id;
+        $fichaPer->fuerza_id = $request->fuerza_id;
+        $fichaPer->grado_id = $request->grado_id;
+        $fichaPer->cuerpo_id = $request->cuerpo_id;
+        $fichaPer->clasificacion_id = $request->clasificacion_id;
 
         //return $fichaPer; 
         $fichaPer->save();
@@ -168,7 +200,7 @@ class FichasPersonalesController extends Controller
             ->where('ficha_Personal_id', $fichaPer->id)
             ->get()->all();
 
-            $fichasAnotaciones = Anotacion::select('*')
+        $fichasAnotaciones = Anotacion::select('*')
             ->where('ficha_Personal_id', $fichaPer->id)
             ->get()->all();
 
@@ -314,8 +346,8 @@ class FichasPersonalesController extends Controller
         $fichaPer->cedula = $request->cedula;
         $fichaPer->otroDocNombre = $request->otroDocNombre;
         $fichaPer->otroDocNumero = $request->otroDocNumero;
-        $fichaPer->paisId = $request->paisId;
-        $fichaPer->departamentoId = $request->departamentoId;
+        $fichaPer->pais_id = $request->pais_id;
+        $fichaPer->departamentos_id = $request->departamentos_id;
         $fichaPer->correoElectronico = $request->correoElectronico;
         $fichaPer->sexo = $request->sexo;
         $fichaPer->estadoIngreso = $request->estadoIngreso;
@@ -324,15 +356,15 @@ class FichasPersonalesController extends Controller
         $fichaPer->segundoApellido = $request->segundoApellido;
         $fichaPer->credencial = $request->credencial;
         $fichaPer->fechaNac = $request->fechaNac;
-        $fichaPer->ciudadId = $request->ciudadId;
-        $fichaPer->estadoCivilId = $request->estadoCivilId;
+        $fichaPer->ciudad_id = $request->ciudad_id;
+        $fichaPer->estadoCivil_id = $request->estadoCivil_id;
         $fichaPer->seccionalPolicial = $request->seccionalPolicial;
         $fichaPer->fechaDef = $request->fechaDef;
-        $fichaPer->situacionId = $request->situacionId;
-        $fichaPer->fuerzaId = $request->fuerzaId;
-        $fichaPer->gradoId = $request->gradoId;
-        $fichaPer->cuerpoId = $request->cuerpoId;
-        $fichaPer->clasificacionId = $request->clasificacionId;
+        $fichaPer->situacion_id = $request->situacion_id;
+        $fichaPer->fuerza_id = $request->fuerza_id;
+        $fichaPer->grado_id = $request->grado_id;
+        $fichaPer->cuerpo_id = $request->cuerpo_id;
+        $fichaPer->clasificacion_id = $request->clasificacion_id;
 
         //return $fichaPer; 
         $fichaPer->save();
