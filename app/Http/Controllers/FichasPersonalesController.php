@@ -74,6 +74,7 @@ class FichasPersonalesController extends Controller
         ));
         //return $fichasPer;
     }
+    
     public function show($fichaPersonalId)
     {
         //consigo la info basica de la persona
@@ -405,4 +406,82 @@ class FichasPersonalesController extends Controller
         $paises = Pais::all();
         return view('fichasPersonales.crearFicha' ,compact('unidades', 'paises'));
     }*/
+
+    //funciones DE LA PARTE DE INGRESOS
+    public function indexIngresos()
+    {
+        $paises = Pais::all();
+        $ciudades = Ciudad::all();
+        $departamentos = Departamento::all();
+        $estadosCiviles = EstadoCivil::all();
+        $situaciones = Situacion::all();
+        $fuerzas = Fuerza::all();
+        $grados = Grado::all();
+        $cuerpos = ArmaCuerpo::all();
+        $temas = Tema::all();
+        $clasificaciones = Clasificacion::all();
+
+        $fichasPer = FichaPersonal::select('*')
+            ->select('*')
+            ->where('situacion_id', 2)->get()->all();
+
+
+        return view('fichasIngresos.index', compact(
+            'fichasPer',
+            'paises',
+            'ciudades',
+            'departamentos',
+            'estadosCiviles',
+            'situaciones',
+            'fuerzas',
+            'grados',
+            'cuerpos',
+            'temas',
+            'clasificaciones'
+        ));
+        //return $fichasPer;
+    }
+
+    public function storeIngreso(Request $request)
+    {
+
+        $fichaPer = new FichaPersonal();
+        $fichaPer->primerNombre = $request->primerNombre;
+        $fichaPer->primerApellido = $request->primerApellido;
+        $fichaPer->cedula = $request->cedula;
+        $fichaPer->otroDocNombre = $request->otroDocNombre;
+        $fichaPer->otroDocNumero = $request->otroDocNumero;
+        $fichaPer->pais_id = $request->pais_id;
+        $fichaPer->departamentos_id = $request->departamentos_id;
+        $fichaPer->correoElectronico = $request->correoElectronico;
+        $fichaPer->sexo = $request->sexo;
+        $fichaPer->estadoIngreso = $request->estadoIngreso;
+        $fichaPer->numeroPaquete = $request->numeroPaquete;
+        $fichaPer->segundoNombre = $request->segundoNombre;
+        $fichaPer->segundoApellido = $request->segundoApellido;
+        $fichaPer->credencial = $request->credencial;
+        $fichaPer->fechaNac = $request->fechaNac;
+        $fichaPer->ciudad_id = $request->ciudad_id;
+        $fichaPer->estadoCivil_id = $request->estadoCivil_id;
+        $fichaPer->seccionalPolicial = $request->seccionalPolicial;
+        $fichaPer->fechaDef = $request->fechaDef;
+        $fichaPer->situacion_id = $request->situacion_id;
+        $fichaPer->fuerza_id = $request->fuerza_id;
+        $fichaPer->grado_id = $request->grado_id;
+        $fichaPer->cuerpo_id = $request->cuerpo_id;
+        $fichaPer->clasificacion_id = $request->clasificacion_id;
+
+        //return $fichaPer; 
+        $fichaPer->save();
+        return back()->with('flash', 'Nuevo ingreso creado con exito');
+    }
+
+    public function updateIngreso($fichaPersonalId)
+    {
+
+        $fichaPer = FichaPersonal::find($fichaPersonalId);
+        $fichaPer->situacion_id = 1;
+        $fichaPer->save();
+        return back()->with('flash', 'Postulante pasado a ACTIVO');
+    }
 }

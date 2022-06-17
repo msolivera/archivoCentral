@@ -24,6 +24,9 @@ Route::group(
 
         //Rutas de las fichas personales
         Route::get('/fichasPersonales', [App\Http\Controllers\FichasPersonalesController::class, 'index'])->name('fichasPersonales.index');
+        Route::get('/fichasIngresos', [App\Http\Controllers\FichasPersonalesController::class, 'indexIngresos'])->name('fichasIngresos.index');
+        Route::post('/fichasIngresos', [App\Http\Controllers\FichasPersonalesController::class, 'storeIngreso'])->name('fichasIngresos.storeIngreso');
+        Route::get('/fichasIngresos/{fichaPersona}', [App\Http\Controllers\FichasPersonalesController::class, 'updateIngreso'])->name('fichasIngresos.updateIngreso');
         //Se comenta porque no se va a utilzar por el momento
         //Route::get('/crearFichasPersonales', [App\Http\Controllers\FichasPersonalesController::class, 'create'])->name('fichasPersonales.crearFicha');
         Route::post('/fichasPersonales', [App\Http\Controllers\FichasPersonalesController::class, 'store'])->name('fichasPersonales.store');

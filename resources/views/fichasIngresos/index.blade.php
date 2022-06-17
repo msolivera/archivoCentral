@@ -3,9 +3,7 @@
 @section('header')
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <h4> Fichas Personales
-        <small>• Ver</small>
-        </h4>
+      
     </ol>
   </nav>
 
@@ -20,11 +18,11 @@
           <div class="card-header">
             <div class="row">
               <div class="col-8">
-              <h3 class="card-title">Vista General de Fichas Personales</h3>
+              <h3 class="card-title">Ingresos • Ver</h3>
               </div>
               <div class="col-4">
               <button style="float: right;" class="btn btn-block btn-outline-primary col-6" 
-                      data-toggle="modal" data-target=".bd-example-modal-lg">Nuevo</button>
+                      data-toggle="modal" data-target=".bd-example-modal-lg">Nuevo Ingreso</button>
               </div>
             </div>
           
@@ -66,9 +64,12 @@
               <tbody>
                 @foreach ($fichasPer as $fichaPer)
                 <tr>
-                  <td>
-                    <a href="fichasPersonales/{{$fichaPer->id}}" class="btn btn-xs btn-success"><i class="fa fa-light fa-eye"></i></a>  
-                    <a href="fichasPersonales/edit/{{$fichaPer->id}}" class="btn btn-xs btn-info"><i class="fa fa-light fa-pen"></i></a>  
+                  <td>  
+                    <form method="GET" action="{{route('fichasIngresos.updateIngreso',$fichaPer->id)}}" style="display: inline"> {{ csrf_field() }} {{method_field('UPDATE')}}
+                      <button class="btn btn-xs btn-success"
+                        onclick="return confirm('¿Esta seguro que desea cambiar el estado del postulante a Activo?')"
+                      ><i class="fa fa-light fa-check"></i></button>
+                    </form> 
                     <form method="POST" action="{{route('fichasPersonales.destroy',$fichaPer->id)}}" style="display: inline"> {{ csrf_field() }} {{method_field('DELETE')}}
                       <button class="btn btn-xs btn-danger"
                         onclick="return confirm('¿Esta seguro que desea elminirar este registro?')"
@@ -200,7 +201,7 @@
 
 <!-- Modal para insertar -->
 <div class="modal fade bd-example-modal-lg" id=".bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <form method="POST" action="{{route('fichasPersonales.store')}}">
+  <form method="POST" action="{{route('fichasIngresos.storeIngreso')}}">
     {{ csrf_field() }}
   <div class="modal-dialog modal-lg"  role="document">
     <div class="modal-content" >
@@ -480,10 +481,7 @@
                     class="form-control select2" 
                     style="width: 100%;" 
                     id="situacion_id">
-              <option value=""> Seleccione un Situación</option>
-                @foreach ($situaciones as $situacion)
-                  <option value="{{$situacion->id}}">{{$situacion->nombre}}</option>
-                @endforeach
+              <option value="2" selected>Postulante</option>
             </select> 
           </div>
 

@@ -286,7 +286,7 @@
                         </table>
                     </div>
 
-                    <a href="#" class="btn btn-primary btn-block"><b>Descargar Ficha PDF</b></a>
+                    <a href="#" class="btn btn-primary btn-block" onclick="window.print();"><b>Descargar Ficha PDF</b></a>
                     <!-- /.card-body -->
 
                 </div>

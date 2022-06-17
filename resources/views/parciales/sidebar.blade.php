@@ -15,6 +15,24 @@
         </a>
      
       </li>
+       <!--INGRESOS -->
+       <li class="nav-item {{request()->is('fichasIngresos*') ? 'active' : ''}}">
+        <a href="fichasIngresos" class="nav-link">
+          <i class="nav-icon fa fa-folder-open"></i>
+          <p>
+            Ingresos
+            <i class="fas fa-angle-left right"></i>
+          </p>
+        </a>
+        <ul class="nav nav-treeview" style="display: {{request()->is('fichasIngresos*') ? 'block' : 'none'}};">
+          <li class="nav-item">
+            <a href="{{route('fichasIngresos.index')}}" class="nav-link" {{request()->is('fichasIngresos*') ? 'style=color:#3498db' : ''}}>
+              <i class="fa fa-eye nav-icon"></i>
+              <p>Ver Fichas</p>
+            </a>
+          </li>
+        </ul>
+      </li>
       <!--FICHAS -->
       <li class="nav-item ">
         <a href="fichasPersonales" class="nav-link {{request()->is('fichasPersonales*') ? 'active' : ''}}">
@@ -95,6 +113,7 @@
           </li>
         </ul>
       </li>
+     
       <!--DOCUMENTOS -->
       <li class="nav-item">
         <a href="#" class="nav-link">
