@@ -101,10 +101,36 @@
 <!-- FIN DataTables  & Plugins -->
 <!-- Page specific script DE LA TABLA DE FICHAS -->
 <script>
-  $(function () {
+$(function () {
     $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["copy", /*"csv",*/ "excel", "pdf", "print", "colvis"]
+      "responsive": true, "lengthChange": true, "autoWidth": true,
+      buttons: [
+            {
+                extend: 'copy',
+                exportOptions: {
+                  columns: ':visible'
+                }
+            },
+            {
+                extend: 'excel',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },
+            {
+                extend: 'pdf',
+                exportOptions: {
+                  columns: ':visible'
+                }
+            },
+            {
+                extend: 'print',
+                exportOptions: {
+                  columns: ':visible'
+                }
+            },
+            'colvis'
+        ]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
   });
 </script>
