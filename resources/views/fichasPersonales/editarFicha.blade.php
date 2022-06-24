@@ -123,7 +123,8 @@
 
                                     <div class="form-group">
                                         <label for="pais">Pais</label>
-                                        <select name="pais_id" class="form-control select2" style="width: 100%;" id="pais_id">
+                                        <select name="pais_id" class="form-control select2" style="width: 100%;"
+                                            id="pais_id">
                                             <option value=""> Seleccione un Pais</option>
                                             @foreach ($paises as $pais)
                                                 <option value="{{ $pais->id }}"
@@ -157,13 +158,15 @@
                                     <div class="form-group" style='margin-bottom: 35px;'>
                                         <label for="sexo">Sexo</label>
                                         <div class="custom-control custom-radio">
-                                            <input class="custom-control-input" type="radio" id="sexo1" name="sexo"
-                                                value="Hombre" {{ $fichaPer->sexo == 'Hombre' ? 'checked=true' : '' }}>
+                                            <input class="custom-control-input" type="radio" id="sexo1"
+                                                name="sexo" value="Hombre"
+                                                {{ $fichaPer->sexo == 'Hombre' ? 'checked=true' : '' }}>
                                             <label for="sexo1" class="custom-control-label">Hombre</label>
                                         </div>
                                         <div class="custom-control custom-radio">
-                                            <input class="custom-control-input" type="radio" id="sexo2" name="sexo"
-                                                value="Mujer" {{ $fichaPer->sexo == 'Mujer' ? 'checked=true' : '' }}>
+                                            <input class="custom-control-input" type="radio" id="sexo2"
+                                                name="sexo" value="Mujer"
+                                                {{ $fichaPer->sexo == 'Mujer' ? 'checked=true' : '' }}>
                                             <label for="sexo2" class="custom-control-label">Mujer</label>
                                         </div>
                                     </div>
@@ -201,8 +204,8 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label for="fuerza_id">Fuerza</label>
-                                                <select name="fuerza_id" class="form-control select2" style="width: 100%;"
-                                                    id="fuerza_id">
+                                                <select name="fuerza_id" class="form-control select2"
+                                                    style="width: 100%;" id="fuerza_id">
                                                     <option value=""> Seleccione una Fuerza</option>
                                                     @foreach ($fuerzas as $fuerza)
                                                         <option value="{{ $fuerza->id }}"
@@ -255,8 +258,8 @@
                                     <div class="form-group">
                                         <label>Fecha de Nacimiento</label>
                                         <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                                            <input name="fechaNac" type="text" class="form-control datetimepicker-input"
-                                                data-target="#reservationdate"
+                                            <input name="fechaNac" type="text"
+                                                class="form-control datetimepicker-input" data-target="#reservationdate"
                                                 value="{{ old('fechaNac', $fichaPer->fechaNac) }}" />
                                             <div class="input-group-append" data-target="#reservationdate"
                                                 data-toggle="datetimepicker">
@@ -303,8 +306,8 @@
                                     <div class="form-group">
                                         <label>Fecha de Defuncion</label>
                                         <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                                            <input name="fechaDef" type="text" class="form-control datetimepicker-input"
-                                                data-target="#reservationdate"
+                                            <input name="fechaDef" type="text"
+                                                class="form-control datetimepicker-input" data-target="#reservationdate"
                                                 value="{{ old('fechaDef', $fichaPer->fechaDef) }}" />
                                             <div class="input-group-append" data-target="#reservationdate"
                                                 data-toggle="datetimepicker">
@@ -393,7 +396,7 @@
                                         class="fa fa-regular fa-plus"></i></button>
                             </div>
                         </div>
-                        <table id="ideologiaTable" class="table table-bordered table-striped">
+                        <table id="ideologiaTable" class="table table-bordered table-striped table-sm">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -441,7 +444,7 @@
                                         class="fa fa-regular fa-plus"></i></button>
                             </div>
                         </div>
-                        <table id="profesionTable" class="table table-bordered table-striped">
+                        <table id="profesionTable" class="table table-bordered table-striped table-sm">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -490,7 +493,7 @@
                                         class="fa fa-regular fa-plus"></i></button>
                             </div>
                         </div>
-                        <table id="domicilioTable" class="table table-bordered table-striped">
+                        <table id="domicilioTable" class="table table-bordered table-striped table-sm">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -537,7 +540,7 @@
                                         class="fa fa-regular fa-plus"></i></button>
                             </div>
                         </div>
-                        <table id="estudiosTable" class="table table-bordered table-striped">
+                        <table id="estudiosTable" class="table table-bordered table-striped table-sm">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -592,7 +595,7 @@
                                         class="fa fa-regular fa-plus"></i></button>
                             </div>
                         </div>
-                        <table id="organizacionTable" class="table table-bordered table-striped">
+                        <table id="organizacionTable" class="table table-bordered table-striped table-sm">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -641,7 +644,7 @@
                                         class="fa fa-regular fa-plus"></i></button>
                             </div>
                         </div>
-                        <table id="anotacionesTable" class="table table-bordered table-striped">
+                        <table id="anotacionesTable" class="table table-bordered table-striped table-sm">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -655,7 +658,7 @@
                                     <tr>
                                         <td>{{ $fichaAnotacion->id }}</td>
                                         <td>{{ $fichaAnotacion->nombre }}</td>
-                                        <td>{{ $fichaAnotacion->tipoAnotacion->nombre}}</td>
+                                        <td>{{ $fichaAnotacion->tipoAnotacion->nombre }}</td>
 
                                         <td>
                                             <form method="POST"
@@ -689,7 +692,7 @@
                                         class="fa fa-regular fa-plus"></i></button>
                             </div>
                         </div>
-                        <table id="example1" class="table table-bordered table-striped">
+                        <table id="example1" class="table table-bordered table-striped table-sm">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -702,8 +705,10 @@
                                     <td>1</td>
                                     <td>prueba</td>
                                     <td>
-                                        <a href="#" class="btn btn-xs btn-info"><i class="fa fa-light fa-pen"></i></a>
-                                        <form method="POST" action="#" style="display: inline"> {{ csrf_field() }}
+                                        <a href="#" class="btn btn-xs btn-info"><i
+                                                class="fa fa-light fa-pen"></i></a>
+                                        <form method="POST" action="#" style="display: inline">
+                                            {{ csrf_field() }}
                                             {{ method_field('DELETE') }}
                                             <button class="btn btn-xs btn-danger"
                                                 onclick="return confirm('¿Esta seguro que desea elminirar este registro?')"><i
@@ -733,7 +738,7 @@
                                         class="fa fa-regular fa-plus"></i></button>
                             </div>
                         </div>
-                        <table id="example1" class="table table-bordered table-striped">
+                        <table id="example1" class="table table-bordered table-striped table-sm">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -746,8 +751,10 @@
                                     <td>1</td>
                                     <td>prueba</td>
                                     <td>
-                                        <a href="#" class="btn btn-xs btn-info"><i class="fa fa-light fa-pen"></i></a>
-                                        <form method="POST" action="#" style="display: inline"> {{ csrf_field() }}
+                                        <a href="#" class="btn btn-xs btn-info"><i
+                                                class="fa fa-light fa-pen"></i></a>
+                                        <form method="POST" action="#" style="display: inline">
+                                            {{ csrf_field() }}
                                             {{ method_field('DELETE') }}
                                             <button class="btn btn-xs btn-danger"
                                                 onclick="return confirm('¿Esta seguro que desea elminirar este registro?')"><i
@@ -777,7 +784,7 @@
                                         class="fa fa-regular fa-plus"></i></button>
                             </div>
                         </div>
-                        <table id="example1" class="table table-bordered table-striped">
+                        <table id="example1" class="table table-bordered table-striped table-sm">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -790,8 +797,10 @@
                                     <td>1</td>
                                     <td>prueba</td>
                                     <td>
-                                        <a href="#" class="btn btn-xs btn-info"><i class="fa fa-light fa-pen"></i></a>
-                                        <form method="POST" action="#" style="display: inline"> {{ csrf_field() }}
+                                        <a href="#" class="btn btn-xs btn-info"><i
+                                                class="fa fa-light fa-pen"></i></a>
+                                        <form method="POST" action="#" style="display: inline">
+                                            {{ csrf_field() }}
                                             {{ method_field('DELETE') }}
                                             <button class="btn btn-xs btn-danger"
                                                 onclick="return confirm('¿Esta seguro que desea elminirar este registro?')"><i
@@ -821,7 +830,7 @@
                                         class="fa fa-regular fa-plus"></i></button>
                             </div>
                         </div>
-                        <table id="example1" class="table table-bordered table-striped">
+                        <table id="example1" class="table table-bordered table-striped table-sm">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -834,8 +843,10 @@
                                     <td>1</td>
                                     <td>prueba</td>
                                     <td>
-                                        <a href="#" class="btn btn-xs btn-info"><i class="fa fa-light fa-pen"></i></a>
-                                        <form method="POST" action="#" style="display: inline"> {{ csrf_field() }}
+                                        <a href="#" class="btn btn-xs btn-info"><i
+                                                class="fa fa-light fa-pen"></i></a>
+                                        <form method="POST" action="#" style="display: inline">
+                                            {{ csrf_field() }}
                                             {{ method_field('DELETE') }}
                                             <button class="btn btn-xs btn-danger"
                                                 onclick="return confirm('¿Esta seguro que desea elminirar este registro?')"><i
@@ -962,8 +973,8 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="domicilio">domicilio</label>
-                            <input name="domicilio" type="imput" class="form-control" id="domicilio" placeholder="..."
-                                value="{{ old('domicilio') }}">
+                            <input name="domicilio" type="imput" class="form-control" id="domicilio"
+                                placeholder="..." value="{{ old('domicilio') }}">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -993,8 +1004,8 @@
                                 <div class="col-md-6" style="display: inline-block;">
                                     <div class="form-group">
                                         <label for="nombreEstudio">Nombre</label>
-                                        <input name="nombreEstudio" type="imput" class="form-control" id="nombreEstudio"
-                                            placeholder="..." value="{{ old('nombreEstudio') }}">
+                                        <input name="nombreEstudio" type="imput" class="form-control"
+                                            id="nombreEstudio" placeholder="..." value="{{ old('nombreEstudio') }}">
                                     </div>
 
                                     <div class="form-group">
@@ -1009,7 +1020,8 @@
                                     <div class="form-group">
                                         <label for="nombreInstituto">Instituto</label>
                                         <input name="nombreInstituto" type="imput" class="form-control"
-                                            id="nombreInstituto" placeholder="..." value="{{ old('nombreInstituto') }}">
+                                            id="nombreInstituto" placeholder="..."
+                                            value="{{ old('nombreInstituto') }}">
                                     </div>
                                     <div class="form-group">
                                         <label for="tipoInstituto">Tipo Inst.</label>
@@ -1095,7 +1107,7 @@
             <form method="POST" action="{{ route('anotacion.store', $fichaPer) }}">
                 {{ csrf_field() }}
                 <div class="modal-content">
-                    <div class="modal-header">           
+                    <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Anotaciones</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -1118,29 +1130,80 @@
                                 @endforeach
                             </select>
                         </div>
-                        
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                         <button class="btn btn-primary">Guardar</button>
                     </div>
                 </div>
-            </form>    
+            </form>
         </div>
     </div>
 
     <div class="modal fade" id="fichasPerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">fichasPerModal</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Parientes</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    ...
+                    <div class="form-group">
+                        <label for="estadoCivil">Relacion con la ficha actual</label>
+                        <select name="parentesco_id" class="form-control select2" style="width: 100%;"
+                            id="parentesco_id">
+                            <option value=""> Seleccione un Parentesco</option>
+                            @foreach ($parentescos as $parentesco)
+                                <option value="{{ $parentesco->id }}"
+                                    {{ old('parentesco_id', $fichaPer->parentesco_id) == $parentesco->id ? 'selected' : '' }}>
+                                    {{ $parentesco->nombre }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <table id="parientesTable" class="table table-bordered table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th>Acciones</th>
+                                <th>Cedula</th>
+                                <th>Nombres</th>
+                                <th>Apellidos</th>
+                                <th>Fecha Nac.</th>
+                                <th>Fecha Def.</th>
+                                <th>Situacion ID</th>
+                                <th>Fuerza</th>
+                                <th>Grado</th>
+                                
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($fichasPerParientes as $fichaPerPariente)
+                                <tr>
+                                    <td>
+                                        <a href="#" class="btn btn-xs btn-success"><i
+                                                class="fa fa-light fa-check"></i></a>
+                                                <a href="#" class="btn btn-xs btn-info"><i
+                                                    class="fa fa-light fa-eye"></i></a>
+                                    </td>
+                                    <td>{{ $fichaPerPariente->cedula }}</td>
+                                    <td>{{ $fichaPerPariente->primerNombre }} {{ $fichaPerPariente->segundoNombre }}</td>
+                                    <td>{{ $fichaPerPariente->primerApellido }} {{ $fichaPerPariente->segundoApellido }}</td>
+                                    <td>{{ $fichaPerPariente->fechaNac }}</td>
+                                    <td>{{ $fichaPerPariente->fechaDef }}</td>
+                                    <td>{{ $fichaPerPariente->situacion}}</td>
+                                    <td>{{ $fichaPerPariente->fuerza }}</td>
+                                    <td>{{ $fichaPerPariente->grado }}</td>
+                                    
+
+                                </tr>
+                            @endforeach
+
+                        </tbody>
+                    </table>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -1222,7 +1285,7 @@
     <link rel="stylesheet" href="/adminLTE/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="/adminLTE/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="/adminLTE/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
-
+    <!--FIN CSS PARA LAS TABLAS -->
     <!--ESTILOS PARA CALENDARIO daterange picker -->
     <link rel="stylesheet" href="/adminLTE/plugins/daterangepicker/daterangepicker.css">
     <link rel="stylesheet" href="/adminLTE/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
@@ -1249,8 +1312,10 @@
     <script src="/adminLTE/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
     <script src="/adminLTE/plugins/datatables-buttons/js/buttons.print.min.js"></script>
     <script src="/adminLTE/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+
     <!-- FIN DataTables  & Plugins -->
     <!-- INICIO TODO ESTO PARA CALENDARIO -->
+
     <!-- date-range-picker -->
     <script src="/adminLTE/plugins/daterangepicker/daterangepicker.js"></script>
     <!-- Select2 -->
@@ -1261,13 +1326,74 @@
     <!-- Tempusdominus Bootstrap 4 -->
     <script src="/adminLTE/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
 
+
     <script>
+        $(function() {
+            $("#parientesTable").DataTable({
+
+                "responsive": true,
+                "lengthChange": true,
+                "autoWidth": true,
+                buttons: [{
+                        extend: 'copy',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'excel',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'pdf',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'print',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    'colvis'
+                ]
+
+            }).buttons().container().appendTo('#example1_wrapper .col-sm-6:eq(0)');
+        });
         $(function() {
             $("#ideologiaTable").DataTable({
                 "responsive": true,
                 "lengthChange": true,
                 "autoWidth": true,
-                "buttons": ["copy", /*"csv",*/ "excel", "pdf", "print", "colvis"]
+                buttons: [{
+                        extend: 'copy',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'excel',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'pdf',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'print',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    'colvis'
+                ]
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         });
         $(function() {
@@ -1275,7 +1401,32 @@
                 "responsive": true,
                 "lengthChange": true,
                 "autoWidth": true,
-                "buttons": ["copy", /*"csv",*/ "excel", "pdf", "print", "colvis"]
+                buttons: [{
+                        extend: 'copy',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'excel',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'pdf',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'print',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    'colvis'
+                ]
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         });
         $(function() {
@@ -1283,7 +1434,32 @@
                 "responsive": true,
                 "lengthChange": true,
                 "autoWidth": true,
-                "buttons": ["copy", /*"csv",*/ "excel", "pdf", "print", "colvis"]
+                buttons: [{
+                        extend: 'copy',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'excel',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'pdf',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'print',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    'colvis'
+                ]
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         });
         $(function() {
@@ -1291,7 +1467,32 @@
                 "responsive": true,
                 "lengthChange": true,
                 "autoWidth": true,
-                "buttons": ["copy", /*"csv",*/ "excel", "pdf", "print", "colvis"]
+                buttons: [{
+                        extend: 'copy',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'excel',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'pdf',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'print',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    'colvis'
+                ]
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         });
         $(function() {
@@ -1299,7 +1500,32 @@
                 "responsive": true,
                 "lengthChange": true,
                 "autoWidth": true,
-                "buttons": ["copy", /*"csv",*/ "excel", "pdf", "print", "colvis"]
+                buttons: [{
+                        extend: 'copy',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'excel',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'pdf',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'print',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    'colvis'
+                ]
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         });
         $(function() {
@@ -1307,7 +1533,32 @@
                 "responsive": true,
                 "lengthChange": true,
                 "autoWidth": true,
-                "buttons": ["copy", /*"csv",*/ "excel", "pdf", "print", "colvis"]
+                buttons: [{
+                        extend: 'copy',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'excel',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'pdf',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
+                        extend: 'print',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    'colvis'
+                ]
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         });
         $(function() {

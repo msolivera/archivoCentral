@@ -110,10 +110,15 @@ class FichaPersonal extends Model
         return $this->hasMany(RolOrganizacion::class);
     }
 
+
     //Relacion 1->N
     public function domicilio()
     {
        return $this->hasMany(Domicilio::class);
+    }
+    public function pariente()
+    {
+        return $this->hasMany(Parientes::class);
     }
 
 }

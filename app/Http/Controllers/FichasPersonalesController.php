@@ -25,6 +25,8 @@ use App\Models\RolOrganizacion;
 use App\Models\Organizacion;
 use App\Models\TipoAnotacion;
 use App\Models\Anotacion;
+use App\Models\Parientes;
+use App\Models\Parentesco;
 
 
 class FichasPersonalesController extends Controller
@@ -44,6 +46,8 @@ class FichasPersonalesController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+
+     //funcion que se ejecuta cuando abro el meni de ver todas la fichas personales
     public function index()
     {
         $paises = Pais::all();
@@ -72,9 +76,9 @@ class FichasPersonalesController extends Controller
             'temas',
             'clasificaciones'
         ));
-        //return $fichasPer;
     }
     
+    //funcion que se ejecuta cuando quiero ver toda la informacion de una sola ficha
     public function show($fichaPersonalId)
     {
         //consigo la info basica de la persona
@@ -125,13 +129,10 @@ class FichasPersonalesController extends Controller
         ));
     }
 
+    //funcion que se ejecuta cuando creo una nueva ficha y se redirecciona a la vista de editar
     public function store(Request $request)
     {
-        /* $this->validate($request, [
-            'primerNombre' => 'required',
-            'primerApellido' => 'required'   
-        ]);
-        */
+
         $paises = Pais::all();
         $ciudades = Ciudad::all();
         $departamentos = Departamento::all();
@@ -147,6 +148,7 @@ class FichasPersonalesController extends Controller
         $organizaciones = Organizacion::all();
         $clasificaciones = Clasificacion::all();
         $tipoAnotaciones = TipoAnotacion::all();
+        $parentescos = Parentesco::all();
 
 
         //validacion falta
@@ -179,6 +181,10 @@ class FichasPersonalesController extends Controller
         //return $fichaPer; 
         $fichaPer->save();
 
+        $fichasPerParientes = FichaPersonal::select('*')
+        ->where('id','<>', $fichaPer->id)
+        ->get()->all();
+
         //consigo las unidades de la persona
         $fichaUnidades = Unidad::join('ficha_personal_unidad', 'unidad_Id', '=', 'unidads.id')
             ->select('*')
@@ -212,6 +218,9 @@ class FichasPersonalesController extends Controller
         $fichasEstudios = Estudio::select('*')
             ->where('fichaPersonal_Id', $fichaPer->id)
             ->get()->all();
+        $fichasParientes = Parientes::select('*')
+            ->where('ficha_personal_id', $fichaPer->id)
+            ->get()->all();
 
         return view(
             'fichasPersonales.editarFicha',
@@ -239,12 +248,16 @@ class FichasPersonalesController extends Controller
                 'fichasOrganizaciones',
                 'organizaciones',
                 'tipoAnotaciones',
-                'fichasAnotaciones'
+                'fichasAnotaciones',
+                'fichasPerParientes',
+                'fichasParientes',
+                'parentescos'
             )
         );
     }
 
 
+    //funcion que se ejecuta cuando quiero editar una ficha personal ya existente
     public function edit($fichaPersonalId)
     {
         //primero que nada traigo todos los datos genericos.
@@ -263,10 +276,14 @@ class FichasPersonalesController extends Controller
         $profesiones = Profesion::all();
         $organizaciones = Organizacion::all();
         $tipoAnotaciones = TipoAnotacion::all();
+        $parentescos = Parentesco::all();
         //busco la info de la ficha a editar
         $fichaPer = FichaPersonal::find($fichaPersonalId);
 
 
+        $fichasPerParientes = FichaPersonal::select('*')
+        ->where('id','<>', $fichaPer->id)
+        ->get()->all();
         //consigo las unidades de la persona
         $fichaUnidades = Unidad::join('ficha_personal_unidad', 'unidad_Id', '=', 'unidads.id')
             ->select('*')
@@ -299,6 +316,10 @@ class FichasPersonalesController extends Controller
             ->where('fichaPersonal_Id', $fichaPer->id)
             ->get()->all();
 
+        $fichasParientes = Parientes::select('*')
+            ->where('ficha_personal_id', $fichaPer->id)
+            ->get()->all();
+
 
         return view(
             'fichasPersonales.editarFicha',
@@ -326,11 +347,16 @@ class FichasPersonalesController extends Controller
                 'organizaciones',
                 'fichasOrganizaciones',
                 'tipoAnotaciones',
-                'fichasAnotaciones'
+                'fichasAnotaciones',
+                'fichasParientes',
+                'fichasPerParientes',
+                'parentescos'
 
             )
         );
     }
+
+    //funcion que se ejecuto cuando actualizo la informacion basica de la ficha personal
     public function update(Request $request, $fichaPersonalId)
     {
 
@@ -383,6 +409,7 @@ class FichasPersonalesController extends Controller
         return back()->with('flash', 'Ficha actualizada con exito');
     }
 
+    //funcion que se ejecuta cuando quiero borrar una ficha personal en la vista general
     public function destroy($fichaPersonalId)
     {
         $fichaPer = FichaPersonal::find($fichaPersonalId);
@@ -397,17 +424,9 @@ class FichasPersonalesController extends Controller
             ->with('flash', 'Ficha eliminada con exito');
     }
 
-
-    //se comenta porque no se va a utilizar por el momento.
-
-    /*public function create()
-    {
-        $unidades = Unidad::all();
-        $paises = Pais::all();
-        return view('fichasPersonales.crearFicha' ,compact('unidades', 'paises'));
-    }*/
-
     //funciones DE LA PARTE DE INGRESOS
+
+    //funcion que se ejecuta cuando quiero ver los postulantes en vista de ingresos
     public function indexIngresos()
     {
         $paises = Pais::all();
@@ -439,9 +458,9 @@ class FichasPersonalesController extends Controller
             'temas',
             'clasificaciones'
         ));
-        //return $fichasPer;
     }
 
+    //funcion que se ejecuta cuando creo un nuevo ingreso en el modal principal
     public function storeIngreso(Request $request)
     {
 
@@ -476,6 +495,8 @@ class FichasPersonalesController extends Controller
         return back()->with('flash', 'Nuevo ingreso creado con exito');
     }
 
+
+    //funcion que cambia el estado de postulante a activo
     public function updateIngreso($fichaPersonalId)
     {
 

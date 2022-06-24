@@ -15,7 +15,9 @@ return new class extends Migration
     {
         Schema::create('parientes', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
+            $table->unsignedInteger('ficha_personal_id');
+            $table->unsignedInteger('ficha_pariente_id');
+            $table->unsignedInteger('parentesco_id');
             $table->timestamps();
         });
     }
