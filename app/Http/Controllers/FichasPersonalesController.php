@@ -492,7 +492,8 @@ class FichasPersonalesController extends Controller
 
         //return $fichaPer; 
         $fichaPer->save();
-        return back()->with('flash', 'Nuevo ingreso creado con exito');
+        //return back()->with('flash', 'Persona creada con exito');
+        return back()->with('flash', 'Persona creada con exito');
     }
 
 

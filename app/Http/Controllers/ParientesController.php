@@ -28,7 +28,7 @@ class ParientesController extends Controller
 
     }
 
-    public function store(Request $request)
+    public function store(Request $request, $fichaPerId)
     {
         
         $this->validate($request, [
@@ -37,12 +37,14 @@ class ParientesController extends Controller
         
         //validacion falta
         $pariente = new Parientes();
-        $pariente->ficha_personal_id = $request->ficha_personal_id;
+        $pariente->ficha_personal_id = $fichaPerId;
         $pariente->ficha_pariente_id = $request->ficha_pariente_id;
         $pariente->parentesco_id = $request->parentesco_id;
         $pariente->save();
 
-        return back()->with('flash', 'Pariente creado con exito');        
+        return $pariente;
+
+        //return back()->with('flash', 'Pariente creado con exito');        
         
     }
     public function edit($parienteId)
