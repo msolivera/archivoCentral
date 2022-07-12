@@ -755,7 +755,7 @@
                                                 <button class="btn btn-primary">Crear</button>
                                             </td>
                                             <td><select name="parentesco_id" class="form-control select2"
-                                                    style="width: 100%;" id="parentesco_id">
+                                                    style="width: 100%;" >
                                                     <option value=""> Seleccione</option>
                                                     @foreach ($parentescos as $parentesco)
                                                         <option value="{{ $parentesco->id }}"
@@ -1220,7 +1220,7 @@
                         <div class="row">
 
                             <div class="col-md-6" style="display: inline-block;">
-                                <div class="form-group {{ $errors->has('numeroPaquete') ? 'has-error' : '' }} ">
+                                <div class="form-group {{ $errors->has('numeroPaquete') ? 'has-error' : '' }} " style="display:none">
                                     <label for="numeroPaquete">Nro. Paquete de Ingreso</label>
                                     <input name="numeroPaquete" type="imput" class="form-control" id="numeroPaquete"
                                         placeholder="..." value="{{ old('numeroPaquete') }}">
@@ -1299,7 +1299,7 @@
                                     {!! $errors->first('correoElectronico', '<span class=error style=color:red>:message</span>') !!}
                                 </div>
 
-                                <div class="form-group" style='margin-bottom: 35px;'>
+                                <div class="form-group" style='margin-bottom: 7px;'>
                                     <label for="sexo">Sexo</label>
                                     <div class="custom-control custom-radio">
                                         <input class="custom-control-input" type="radio" id="sexo1" name="sexo"
@@ -1313,7 +1313,21 @@
                                     </div>
                                 </div>
 
+                                
                                 <div class="form-group">
+                                    <label>Fecha de Defuncion</label>
+                                    <div class="input-group date" id="reservationdate2" data-target-input="nearest">
+                                        <input name="fechaDef" type="text"
+                                            class="form-control datetimepicker-input" data-target="#reservationdate2"
+                                            value="{{ old('fechaDef') }}" />
+                                        <div class="input-group-append" data-target="#reservationdate2"
+                                            data-toggle="datetimepicker">
+                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group" style="display:none">
                                     <label for="estadoIngreso">Estado de Ingreso</label>
                                     <div class="custom-control custom-radio">
                                         <input class="custom-control-input" type="radio" id="estado0"
@@ -1337,17 +1351,10 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group {{ $errors->has('numeroPaquete') ? 'has-error' : '' }} ">
-                                    <label for="numeroPaquete">Nro. Paquete de Ingreso</label>
-                                    <input name="numeroPaquete" type="imput" class="form-control" id="numeroPaquete"
-                                        placeholder="..." value="{{ old('numeroPaquete') }}">
-                                    <!--- Muestro los errores de validacion.-->
-                                    {!! $errors->first('numeroPaquete', '<span class=error style=color:red>:message</span>') !!}
-                                </div>
                             </div>
 
                             <div class="col-md-6" style="display: inline-block; float: right;">
-                                <div class="form-group {{ $errors->has('clasificacion_id') ? 'has-error' : '' }} ">
+                                <div class="form-group {{ $errors->has('clasificacion_id') ? 'has-error' : '' }} "style="display:none">
                                     <label for="clasificacion_id">Clasificación</label>
                                     <select name="clasificacion_id" class="form-control select2" style="width: 100%;"
                                         id="clasificacion_id">
@@ -1423,21 +1430,6 @@
                                     <!--- Muestro los errores de validacion.-->
                                     {!! $errors->first('seccionalPolicial', '<span class=error style=color:red>:message</span>') !!}
                                 </div>
-
-                                <div class="form-group">
-                                    <label>Fecha de Defuncion</label>
-                                    <div class="input-group date" id="reservationdate2" data-target-input="nearest">
-                                        <input name="fechaDef" type="text"
-                                            class="form-control datetimepicker-input" data-target="#reservationdate2"
-                                            value="{{ old('fechaDef') }}" />
-                                        <div class="input-group-append" data-target="#reservationdate2"
-                                            data-toggle="datetimepicker">
-                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
 
                                 <div class="form-group">
                                     <label for="situacion_id">Situación</label>

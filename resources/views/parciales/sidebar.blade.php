@@ -55,13 +55,6 @@
                   <p>Ver Fichas Personales</p>
                 </a>
               </li>
-              <!--Se comenta porque no se va a utilzar por el momento-->
-              <!--li class="nav-item">
-                <a href="/*{route('fichasPersonales.crearFicha')}}" class="nav-link" {request()->is('crearFichasPersonales*') ? 'style=color:#3498db' : ''}}*/>
-                  <i class="fa fa-user-plus nav-icon"></i>
-                  <p>Crear Fichas Personales</p>
-                </a>
-              </li-->
             </ul>
           </li>
         </ul>
