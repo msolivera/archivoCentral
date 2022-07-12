@@ -31,6 +31,13 @@ class DatabaseSeeder extends Seeder
         $this->call(UbicacionTableSeeder::class);
         $this->call(TipoAnotacionTableSeeder::class);
         $this->call(TemaTableSeeder::class);
+        $this->call(AmbitoTableSeeder::class);
+        $this->call(FuenteDocumentalTableSeeder::class);
+        $this->call(IdeologiaTableSeeder::class);
+        $this->call(NecesidadConocerTableSeeder::class);
+        $this->call(ProfesionTableSeeder::class);
+        $this->call(ParentescoTableSeeder::class);
+        $this->call(OrganizacionTableSeeder::class);
 
     }
 }

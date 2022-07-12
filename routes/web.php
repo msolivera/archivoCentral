@@ -73,12 +73,12 @@ Route::group(
         Route::put('/ideologia/{ideologia}', [App\Http\Controllers\IdeologiaController::class, 'update'])->name('ideologia.update');
         Route::delete('/ideologia/{ideologia}', [App\Http\Controllers\IdeologiaController::class, 'destroy'])->name('ideologia.destroy');
         //departamentos
-        Route::get('/departamentos', [App\Http\Controllers\DepartamentosController::class, 'index'])->name('departamentos.index');
-        Route::get('/departamentos/edit/{departamento}', [App\Http\Controllers\DepartamentosController::class, 'edit'])->name('departamentos.editar');
-        Route::post('/departamentos', [App\Http\Controllers\DepartamentosController::class, 'store'])->name('departamentos.store');
-        Route::put('/departamentos/{departamento}', [App\Http\Controllers\DepartamentosController::class, 'update'])->name('departamentos.update');
-        Route::delete('/departamentos/{departamento}', [App\Http\Controllers\DepartamentosController::class, 'destroy'])->name('departamentos.destroy');
-        //parentesco
+        Route::get('/departamentos', [App\Http\Controllers\DepartamentoController::class, 'index'])->name('departamentos.index');
+        Route::get('/departamentos/edit/{departamento}', [App\Http\Controllers\DepartamentoController::class, 'edit'])->name('departamentos.editar');
+        Route::post('/departamentos', [App\Http\Controllers\DepartamentoController::class, 'store'])->name('departamentos.store');
+        Route::put('/departamentos/{departamento}', [App\Http\Controllers\DepartamentoController::class, 'update'])->name('departamentos.update');
+        Route::delete('/departamentos/{departamento}', [App\Http\Controllers\DepartamentoController::class, 'destroy'])->name('departamentos.destroy');
+        //parentescos
         Route::get('/parentesco', [App\Http\Controllers\ParentescoController::class, 'index'])->name('parentesco.index');
         Route::get('/parentesco/edit/{parentesco}', [App\Http\Controllers\ParentescoController::class, 'edit'])->name('parentesco.editar');
         Route::post('/parentesco', [App\Http\Controllers\ParentescoController::class, 'store'])->name('parentesco.store');

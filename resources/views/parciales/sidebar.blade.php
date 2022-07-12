@@ -177,129 +177,9 @@
             </a>
             <ul class="nav nav-treeview" style="display:none;">
               <li class="nav-item">
-                <a href="{{route('paises.index')}}" class="nav-link">
-                  <i class="fas fa-globe-americas"></i>
-                  <p>Paises</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{route('profesiones.index')}}" class="nav-link">
-                  <i class="fas fa-user-tie"></i>
-                  <p>Profesiones</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{route('estadoCivil.index')}}" class="nav-link">
-                  <i class="fas fa-user-tie"></i>
-                  <p>Estado Civil</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{route('fuerza.index')}}" class="nav-link">
-                  <i class="fas fa-user-tie"></i>
-                  <p>Fuerzas</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{route('organizacion.index')}}" class="nav-link">
-                  <i class="fas fa-user-tie"></i>
-                  <p>Organizaciones</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{route('ideologia.index')}}" class="nav-link">
-                  <i class="fas fa-user-tie"></i>
-                  <p>Ideologias</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{route('departamentos.index')}}" class="nav-link">
-                  <i class="fas fa-user-tie"></i>
-                  <p>Departamentos</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{route('parentesco.index')}}" class="nav-link">
-                  <i class="fas fa-user-tie"></i>
-                  <p>Parentescos</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{route('tema.index')}}" class="nav-link">
-                  <i class="fas fa-user-tie"></i>
-                  <p>Temas</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{route('clasificacion.index')}}" class="nav-link">
-                  <i class="fas fa-user-tie"></i>
-                  <p>Clasificaciones</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{route('unidad.index')}}" class="nav-link">
-                  <i class="fas fa-user-tie"></i>
-                  <p>Unidades</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{route('situacion.index')}}" class="nav-link">
-                  <i class="fas fa-user-tie"></i>
-                  <p>Situacion</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{route('necesidadConocer.index')}}" class="nav-link">
-                  <i class="fas fa-user-tie"></i>
-                  <p>Necesidad de Conocer</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{route('serieDocumental.index')}}" class="nav-link">
-                  <i class="fas fa-user-tie"></i>
-                  <p>Serie Documental</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{route('palabraClave.index')}}" class="nav-link">
-                  <i class="fas fa-user-tie"></i>
-                  <p>Palabras Clave</p>
-                </a>
-              </li>
-              <li class="nav-item">
                 <a href="{{route('ambito.index')}}" class="nav-link">
                   <i class="fas fa-user-tie"></i>
                   <p>Ambitos</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{route('tipoAnotacion.index')}}" class="nav-link">
-                  <i class="fas fa-user-tie"></i>
-                  <p>Tipos de Anotacion</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{route('ubicacion.index')}}" class="nav-link">
-                  <i class="fas fa-user-tie"></i>
-                  <p>Ubicaciones</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{route('tipoDocumento.index')}}" class="nav-link">
-                  <i class="fas fa-user-tie"></i>
-                  <p>Tipos de documentos</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{route('fuenteDocumento.index')}}" class="nav-link">
-                  <i class="fas fa-user-tie"></i>
-                  <p>Fuente de documentos</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{route('grado.index')}}" class="nav-link">
-                  <i class="fas fa-user-tie"></i>
-                  <p>Grados</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -315,12 +195,131 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="{{route('clasificacion.index')}}" class="nav-link">
+                  <i class="fas fa-user-tie"></i>
+                  <p>Clasificaciones</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('departamentos.index')}}" class="nav-link">
+                  <i class="fas fa-user-tie"></i>
+                  <p>Departamentos</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('estadoCivil.index')}}" class="nav-link">
+                  <i class="fas fa-user-tie"></i>
+                  <p>Estado Civil</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('fuenteDocumento.index')}}" class="nav-link">
+                  <i class="fas fa-user-tie"></i>
+                  <p>Fuente de documentos</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('fuerza.index')}}" class="nav-link">
+                  <i class="fas fa-user-tie"></i>
+                  <p>Fuerzas</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('grado.index')}}" class="nav-link">
+                  <i class="fas fa-user-tie"></i>
+                  <p>Grados</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('ideologia.index')}}" class="nav-link">
+                  <i class="fas fa-user-tie"></i>
+                  <p>Ideologias</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('necesidadConocer.index')}}" class="nav-link">
+                  <i class="fas fa-user-tie"></i>
+                  <p>Necesidad de Conocer</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('organizacion.index')}}" class="nav-link">
+                  <i class="fas fa-user-tie"></i>
+                  <p>Organizaciones</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('paises.index')}}" class="nav-link">
+                  <i class="fas fa-globe-americas"></i>
+                  <p>Paises</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('palabraClave.index')}}" class="nav-link">
+                  <i class="fas fa-user-tie"></i>
+                  <p>Palabras Clave</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('parentesco.index')}}" class="nav-link">
+                  <i class="fas fa-user-tie"></i>
+                  <p>Parentescos</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('profesiones.index')}}" class="nav-link">
+                  <i class="fas fa-user-tie"></i>
+                  <p>Profesiones</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('serieDocumental.index')}}" class="nav-link">
+                  <i class="fas fa-user-tie"></i>
+                  <p>Serie Documental</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('situacion.index')}}" class="nav-link">
+                  <i class="fas fa-user-tie"></i>
+                  <p>Situacion</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="{{route('subTema.index')}}" class="nav-link">
                   <i class="fas fa-user-tie"></i>
                   <p>Sub Temas</p>
                 </a>
               </li>
-              
+              <li class="nav-item">
+                <a href="{{route('tema.index')}}" class="nav-link">
+                  <i class="fas fa-user-tie"></i>
+                  <p>Temas</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('tipoAnotacion.index')}}" class="nav-link">
+                  <i class="fas fa-user-tie"></i>
+                  <p>Tipos de Anotacion</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('tipoDocumento.index')}}" class="nav-link">
+                  <i class="fas fa-user-tie"></i>
+                  <p>Tipos de documentos</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('ubicacion.index')}}" class="nav-link">
+                  <i class="fas fa-user-tie"></i>
+                  <p>Ubicaciones</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('unidad.index')}}" class="nav-link">
+                  <i class="fas fa-user-tie"></i>
+                  <p>Unidades</p>
+                </a>
+              </li>
             </ul>
           </li>
         </ul>
