@@ -116,9 +116,6 @@
             </div>
             <!-- /.col -->
         </div>
-        <!-- /.row -->
-        </div>
-        <!-- /.container-fluid -->
     </section>
 
 
@@ -236,11 +233,6 @@
             {{ csrf_field() }}
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Crear</h4>
-                    </div>
                     <div class="modal-body">
                         <div class="row">
 
@@ -362,13 +354,6 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group {{ $errors->has('numeroPaquete') ? 'has-error' : '' }} ">
-                                    <label for="numeroPaquete">Nro. Paquete de Ingreso</label>
-                                    <input name="numeroPaquete" type="imput" class="form-control" id="numeroPaquete"
-                                        placeholder="..." value="{{ old('numeroPaquete') }}">
-                                    <!--- Muestro los errores de validacion.-->
-                                    {!! $errors->first('numeroPaquete', '<span class=error style=color:red>:message</span>') !!}
-                                </div>
                             </div>
 
                             <div class="col-md-6" style="display: inline-block; float: right;">

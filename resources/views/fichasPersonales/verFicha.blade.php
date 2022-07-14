@@ -1,10 +1,5 @@
 @extends('layout')
-<!-- Google Font: Source Sans Pro -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-<!-- Font Awesome Icons -->
-<link rel="stylesheet" href="adminLTE/plugins/fontawesome-free/css/all.min.css">
-<!-- Theme style -->
-<link rel="stylesheet" href="adminLTE/css/adminlte.min.css">
+
 @section('header')
     <div class="card-header">
         <div class="row">
@@ -26,7 +21,6 @@
     <section class="content">
         <div class="row md-12">
             <div class="container-fluid">
-
                 <!-- INFORMACION BASICA -->
                 <div class="card card-primary">
 
@@ -35,17 +29,17 @@
                             <img class="img-fluid" src="dist/img/user4-128x128.jpg" alt="Foto del sujeto">
                         </div>
                         <div class="col-sm-4" style="display: inline-block; vertical-align: top;">
-                          <li class="list-group-item">
-                              <b>Clasificacion:</b> <a class="float-right">CLASIFICACION</a>
-                          </li>
+                            <li class="list-group-item">
+                                <b>Clasificacion:</b> <a class="float-right">CLASIFICACION</a>
+                            </li>
                         </div>
                         <div class="col-sm-7" style="display: inline-block; vertical-align: top;">
-                          <li class="list-group-item">
-                              <b>Temas:</b>@foreach ($fichaTemas as $tema)
-                              
-                              <a class="float-right">{{ $tema->nombre}}{{"/"}}</a>
-                              @endforeach
-                          </li>
+                            <li class="list-group-item">
+                                <b>Temas:</b>
+                                @foreach ($fichaTemas as $tema)
+                                    <a class="float-right">{{ $tema->nombre }}{{ '/' }}</a>
+                                @endforeach
+                            </li>
                         </div>
                         <h3 class="profile-username text-center">General</h3>
                         <div class="col-sm-4" style="display: inline-block; vertical-align: top;">
@@ -245,6 +239,7 @@
                             </tbody>
                         </table>
                     </div>
+
                     <div class="card-body" style="padding-top: 1px">
                         <h3 class="profile-username text-center">Organizaciones</h3>
                         <table class="table table-bordered table-striped">
@@ -266,27 +261,29 @@
                             </tbody>
                         </table>
                     </div>
+
                     <div class="card-body" style="padding-top: 1px">
                         <h3 class="profile-username text-center">Anotaciones</h3>
                         <table class="table table-bordered table-striped">
-                          <thead>
-                            <tr>
-                                <th>Anotacion</th>
-                                <th>Tipo</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($fichasAnotaciones as $fichaAnotacion)
+                            <thead>
                                 <tr>
-                                    <td>{{ $fichaAnotacion->nombre }}</td>
-                                    <td>{{ $fichaAnotacion->tipoAnotacion->nombre}}</td>
+                                    <th>Anotacion</th>
+                                    <th>Tipo</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
+                            </thead>
+                            <tbody>
+                                @foreach ($fichasAnotaciones as $fichaAnotacion)
+                                    <tr>
+                                        <td>{{ $fichaAnotacion->nombre }}</td>
+                                        <td>{{ $fichaAnotacion->tipoAnotacion->nombre }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
                         </table>
                     </div>
 
-                    <a href="#" class="btn btn-primary btn-block" onclick="window.print();"><b>Descargar Ficha PDF</b></a>
+                    <a href="#" class="btn btn-primary btn-block" onclick="window.print();"><b>Descargar Ficha
+                            PDF</b></a>
                     <!-- /.card-body -->
 
                 </div>
@@ -300,12 +297,24 @@
 
 @stop
 
-<!-- jQuery -->
-<script src="adminLTE/plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="adminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- bs-custom-file-input -->
-<script src="adminLTE/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
-<!-- AdminLTE App -->
-<script src="adminLTE/js/adminlte.min.js"></script>
-<script src="adminLTE/plugins/jquery/jquery.min.js"></script>
+@push('styles')
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="adminLTE/plugins/fontawesome-free/css/all.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="adminLTE/css/adminlte.min.css">
+@endpush
+
+@push('scripts')
+    <!-- jQuery -->
+    <script src="adminLTE/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="adminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- bs-custom-file-input -->
+    <script src="adminLTE/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="adminLTE/js/adminlte.min.js"></script>
+    <script src="adminLTE/plugins/jquery/jquery.min.js"></script>
+@endpush
