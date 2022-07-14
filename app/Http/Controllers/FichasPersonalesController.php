@@ -47,7 +47,7 @@ class FichasPersonalesController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
 
-     //funcion que se ejecuta cuando abro el meni de ver todas la fichas personales
+     //funcion que se ejecuta cuando abro el menu de ver todas la fichas personales
     public function index()
     {
         $paises = Pais::all();
@@ -281,9 +281,7 @@ class FichasPersonalesController extends Controller
         $fichaPer = FichaPersonal::find($fichaPersonalId);
 
 
-        $fichasPerParientes = FichaPersonal::select('*')
-        ->where('id','<>', $fichaPer->id)
-        ->get()->all();
+
         //consigo las unidades de la persona
         $fichaUnidades = Unidad::join('ficha_personal_unidad', 'unidad_Id', '=', 'unidads.id')
             ->select('*')
@@ -316,8 +314,9 @@ class FichasPersonalesController extends Controller
             ->where('fichaPersonal_Id', $fichaPer->id)
             ->get()->all();
 
-        $fichasParientes = Parientes::select('*')
-            ->where('ficha_personal_id', $fichaPer->id)
+        $fichasParientes = FichaPersonal::select('*')
+            ->join('parientes', 'ficha_personals.id', '=', 'parientes.ficha_pariente_id')
+            ->where('parientes.ficha_personal_id', $fichaPer->id)
             ->get()->all();
 
 
@@ -349,7 +348,6 @@ class FichasPersonalesController extends Controller
                 'tipoAnotaciones',
                 'fichasAnotaciones',
                 'fichasParientes',
-                'fichasPerParientes',
                 'parentescos'
 
             )
