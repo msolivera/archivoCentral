@@ -419,8 +419,6 @@
     <!--ESTILOS PARA CALENDARIO daterange picker -->
     <link rel="stylesheet" href="/adminLTE/plugins/daterangepicker/daterangepicker.css">
     <link rel="stylesheet" href="/adminLTE/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
-
-
     <!-- Bootstrap4 Duallistbox -->
     <link rel="stylesheet" href="/adminLTE/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
     <!-- Theme style -->

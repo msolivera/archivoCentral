@@ -47,7 +47,7 @@ class FichasPersonalesController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
 
-     //funcion que se ejecuta cuando abro el menu de ver todas la fichas personales
+    //funcion que se ejecuta cuando abro el menu de ver todas la fichas personales
     public function index()
     {
         $paises = Pais::all();
@@ -77,7 +77,7 @@ class FichasPersonalesController extends Controller
             'clasificaciones'
         ));
     }
-    
+
     //funcion que se ejecuta cuando quiero ver toda la informacion de una sola ficha
     public function show($fichaPersonalId)
     {
@@ -182,8 +182,8 @@ class FichasPersonalesController extends Controller
         $fichaPer->save();
 
         $fichasPerParientes = FichaPersonal::select('*')
-        ->where('id','<>', $fichaPer->id)
-        ->get()->all();
+            ->where('id', '<>', $fichaPer->id)
+            ->get()->all();
 
         //consigo las unidades de la persona
         $fichaUnidades = Unidad::join('ficha_personal_unidad', 'unidad_Id', '=', 'unidads.id')
@@ -479,7 +479,10 @@ class FichasPersonalesController extends Controller
         $fichaPer->credencial = $request->credencial;
         $fichaPer->fechaNac = $request->fechaNac;
         $fichaPer->ciudad_id = $request->ciudad_id;
-        $fichaPer->estadoCivil_id = $request->estadoCivil_id;
+        $fichaPer->estadoCivil_id = EstadoCivil::find($estado = $request->estadoCivil_id)
+            ? $estado
+            : EstadoCivil::create(['nombre' => $estado])->id;
+
         $fichaPer->seccionalPolicial = $request->seccionalPolicial;
         $fichaPer->fechaDef = $request->fechaDef;
         $fichaPer->situacion_id = $request->situacion_id;
@@ -488,9 +491,7 @@ class FichasPersonalesController extends Controller
         $fichaPer->cuerpo_id = $request->cuerpo_id;
         $fichaPer->clasificacion_id = $request->clasificacion_id;
 
-        //return $fichaPer; 
-        $fichaPer->save();
-        //return back()->with('flash', 'Persona creada con exito');
+        // $fichaPer->save();
         return back()->with('flash', 'Persona creada con exito');
     }
 

@@ -3,16 +3,17 @@
 @section('header')
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-        <div class="col-md-6">
-            <h4> Fichas Personales
-                <small>• Agregar Parientes a {{$fichaPerTitular->primerNombre}} {{$fichaPerTitular->primerApellido}}</small>
-            </h4>
-        </div>
+            <div class="col-md-6">
+                <h4> Fichas Personales
+                    <small>• Agregar Parientes a {{ $fichaPerTitular->primerNombre }}
+                        {{ $fichaPerTitular->primerApellido }}</small>
+                </h4>
+            </div>
             <div class="col-md-6" style="float: left;">
-                <a  style="float: right;"href="{{route('fichasPersonales.editarFicha', $fichaPerTitular->id )}}"
+                <a style="float: right;"href="{{ route('fichasPersonales.editarFicha', $fichaPerTitular->id) }}"
                     class="btn btn-block btn-outline-primary">Atrás</a>
             </div>
-      
+
         </ol>
 
     </nav>
@@ -21,7 +22,7 @@
 
 @section('content')
     <section class="content">
-        <div class="col-12" id="parientes" >
+        <div class="col-12" id="parientes">
             <div class="card" style="background-color: #E6EFF6;">
                 <div class="card-body">
                     <div class="row">
@@ -50,17 +51,16 @@
                                 @foreach ($fichasParientePer as $fichaPerPariente)
                                     <tr>
                                         <td>
-                                            <a href="#"
-                                                class="btn btn-md btn-success"><i class="fa fa-light fa-plus"></i></a>
+                                            <a href="#" class="btn btn-md btn-success"><i
+                                                    class="fa fa-light fa-plus"></i></a>
                                         </td>
-                                        <td><select name="parentesco_id" class="form-control select2"
-                                                style="width: 100%;" >
+                                        <td><select name="parentesco_id" class="form-control select2" style="width: 100%;">
                                                 <option value=""> Seleccione </option>
                                                 @foreach ($parentescos as $parentesco)
                                                     <option value="{{ $parentesco->id }}">
                                                         {{ $parentesco->nombre }}</option>
                                                 @endforeach
-                                                
+
                                             </select></td>
                                         <td>{{ $fichaPerPariente->cedula }}</td>
                                         <td>{{ $fichaPerPariente->id }}</td>
@@ -86,12 +86,12 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
 
-</section>
+    </section>
 
-<div class="modal fade" id="modalPersonaNueva" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="modalPersonaNueva" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <form method="POST" action="{{ route('fichasIngresos.storeIngreso') }}">
             {{ csrf_field() }}
@@ -101,7 +101,8 @@
                         <div class="row">
 
                             <div class="col-md-6" style="display: inline-block;">
-                                <div class="form-group {{ $errors->has('numeroPaquete') ? 'has-error' : '' }} " style="display:none">
+                                <div class="form-group {{ $errors->has('numeroPaquete') ? 'has-error' : '' }} "
+                                    style="display:none">
                                     <label for="numeroPaquete">Nro. Paquete de Ingreso</label>
                                     <input name="numeroPaquete" type="imput" class="form-control" id="numeroPaquete"
                                         placeholder="..." value="{{ old('numeroPaquete') }}">
@@ -134,8 +135,8 @@
                                     <label for="otroDocNombre">Otro Documento</label>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <select name="otroDocNombre" class="form-control select2"
-                                                style="width: 100%;" id="otroDocNombre">
+                                            <select name="otroDocNombre" class="form-control select2" style="width: 100%;"
+                                                id="otroDocNombre">
                                                 <option value=""> Seleccione un Documento</option>
                                                 <option value="dni">DNI</option>
                                                 <option value="libretaEmbarque">Libreta de Embarque</option>
@@ -194,13 +195,12 @@
                                     </div>
                                 </div>
 
-                                
+
                                 <div class="form-group">
                                     <label>Fecha de Defuncion</label>
                                     <div class="input-group date" id="reservationdate2" data-target-input="nearest">
-                                        <input name="fechaDef" type="text"
-                                            class="form-control datetimepicker-input" data-target="#reservationdate2"
-                                            value="{{ old('fechaDef') }}" />
+                                        <input name="fechaDef" type="text" class="form-control datetimepicker-input"
+                                            data-target="#reservationdate2" value="{{ old('fechaDef') }}" />
                                         <div class="input-group-append" data-target="#reservationdate2"
                                             data-toggle="datetimepicker">
                                             <div class="input-group-text"><i class="fa fa-calendar"></i></div>
@@ -235,7 +235,8 @@
                             </div>
 
                             <div class="col-md-6" style="display: inline-block; float: right;">
-                                <div class="form-group {{ $errors->has('clasificacion_id') ? 'has-error' : '' }} "style="display:none">
+                                <div
+                                    class="form-group {{ $errors->has('clasificacion_id') ? 'has-error' : '' }} "style="display:none">
                                     <label for="clasificacion_id">Clasificación</label>
                                     <select name="clasificacion_id" class="form-control select2" style="width: 100%;"
                                         id="clasificacion_id">
@@ -270,9 +271,8 @@
                                 <div class="form-group">
                                     <label>Fecha de Nacimiento</label>
                                     <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                                        <input name="fechaNac" type="text"
-                                            class="form-control datetimepicker-input" data-target="#reservationdate"
-                                            value="{{ old('fechaNac') }}" />
+                                        <input name="fechaNac" type="text" class="form-control datetimepicker-input"
+                                            data-target="#reservationdate" value="{{ old('fechaNac') }}" />
                                         <div class="input-group-append" data-target="#reservationdate"
                                             data-toggle="datetimepicker">
                                             <div class="input-group-text"><i class="fa fa-calendar"></i></div>
@@ -329,7 +329,7 @@
                                             <label for="fuerza_id">Fuerza</label>
                                             <select name="fuerza_id" class="form-control select2" style="width: 100%;"
                                                 id="fuerza_id">
-                                                <option value=""> </option>
+                                                <option value=""> Seleccione </option>
                                                 @foreach ($fuerzas as $fuerza)
                                                     <option value="{{ $fuerza->id }}">{{ $fuerza->nombre }}
                                                     </option>
@@ -340,7 +340,7 @@
                                             <label for="grado_id">Grado</label>
                                             <select name="grado_id" class="form-control select2" style="width: 100%;"
                                                 id="grado_id">
-                                                <option value=""> </option>
+                                                <option value=""> Seleccione </option>
                                                 @foreach ($grados as $grado)
                                                     <option value="{{ $grado->id }}">{{ $grado->nombre }}
                                                     </option>
@@ -376,7 +376,7 @@
 
 
 
-    @push('styles')
+@push('styles')
     <!-- Select2 -->
     <link rel="stylesheet" href="/adminLTE/plugins/select2/css/select2.min.css">
     <link rel="stylesheet" href="/adminLTE/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
@@ -396,13 +396,13 @@
     <link rel="stylesheet" href="/adminLTE/css/adminlte.min.css">
 @endpush
 @push('scripts')
-<!-- date-range-picker -->
-<script src="/adminLTE/plugins/daterangepicker/daterangepicker.js"></script>
-<!-- Select2 -->
-<script src="/adminLTE/plugins/select2/js/select2.full.min.js"></script>
-<!-- InputMask -->
-<script src="/adminLTE/plugins/moment/moment.min.js"></script>
-<script src="/adminLTE/plugins/inputmask/jquery.inputmask.min.js"></script>
+    <!-- date-range-picker -->
+    <script src="/adminLTE/plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- Select2 -->
+    <script src="/adminLTE/plugins/select2/js/select2.full.min.js"></script>
+    <!-- InputMask -->
+    <script src="/adminLTE/plugins/moment/moment.min.js"></script>
+    <script src="/adminLTE/plugins/inputmask/jquery.inputmask.min.js"></script>
 
 
     <!-- INICIO DataTables  & Plugins -->
@@ -419,12 +419,12 @@
     <script src="/adminLTE/plugins/datatables-buttons/js/buttons.print.min.js"></script>
     <script src="/adminLTE/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
     <!-- Tempusdominus Bootstrap 4 -->
-<script src="/adminLTE/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="/adminLTE/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
 
     <!-- FIN DataTables  & Plugins -->
     <!-- INICIO TODO ESTO PARA CALENDARIO -->
 
-    
+
 
     <script>
         $(function() {
@@ -480,6 +480,5 @@
 
             }).buttons().container().appendTo('#example1_wrapper .col-sm-6:eq(0)');
         });
-        
     </script>
 @endpush
