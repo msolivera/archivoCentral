@@ -27,7 +27,7 @@
                     @foreach ($fichasParientes as $fichaPariente)
                         <tr>
                             <td>
-                                {{ $fichaPariente->id }}
+                                {{ $fichaPariente->ficha_pariente_id }}
                             </td>
                             <td>
                                 {{ $fichaPariente->primerNombre }}
@@ -44,7 +44,7 @@
                        
                         
                         <td>
-                            <form method="POST" action="#" style="display: inline">
+                            <form method="POST" action="{{ route('parientes.destroy',  $fichaPariente->ficha_pariente_id ) }}" style="display: inline">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
                                 <button class="btn btn-xs btn-danger"

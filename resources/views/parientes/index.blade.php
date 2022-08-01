@@ -51,7 +51,7 @@
                                 @foreach ($fichasParientePer as $fichaPerPariente)
                                     <tr>
                                         <td>
-                                            <a href="#" class="btn btn-md btn-success"><i
+                                            <a href="{{route('parientes.store', $fichaPerTitular->id, request)}}" class="btn btn-md btn-success"><i
                                                     class="fa fa-light fa-plus"></i></a>
                                         </td>
                                         <td><select name="parentesco_id" class="form-control select2" style="width: 100%;">

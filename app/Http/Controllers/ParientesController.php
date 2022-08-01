@@ -65,12 +65,13 @@ class ParientesController extends Controller
     }
 
     public function destroy($parienteId){
-        $parente = Parientes::find($parienteId);
-
-        $parente->delete();
-        return redirect()
-            ->route('parientes.index')
-            ->with('flash', 'Pariente eliminado con exito');
+        $pariente = Parientes::select("*")
+        ->where("ficha_pariente_id","=",$parienteId)->get()->all();
+        $parienteFila = $pariente[0];
+        //return $parienteFila->id;
+        //$parienteId->$pariente-
+        $parienteFila->delete();
+        return back()->with('flash', 'Pariente eliminado con exito');
 
     }
 
