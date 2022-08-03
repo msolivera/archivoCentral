@@ -20,6 +20,7 @@
                     <th>Segundo Nombre</th>
                     <th>Primer Apellido</th>
                     <th>Segundo Apellido</th>
+                    <th>Relacion</th>
                     <th>Acciones</th>
                     </tr>
                 </thead>
@@ -40,6 +41,9 @@
                             </td>
                             <td>
                                 {{ $fichaPariente->segundoApellido }}
+                            </td>
+                            <td>
+                                Parentesco
                             </td>
                        
                         

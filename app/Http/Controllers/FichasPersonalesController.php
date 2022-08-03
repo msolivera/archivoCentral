@@ -314,6 +314,8 @@ class FichasPersonalesController extends Controller
             ->where('fichaPersonal_Id', $fichaPer->id)
             ->get()->all();
 
+
+            //modificar esta consulta para que traiga el nombre del parentesco tambien
         $fichasParientes = FichaPersonal::select('*')
             ->join('parientes', 'ficha_personals.id', '=', 'parientes.ficha_pariente_id')
             ->where('parientes.ficha_personal_id', $fichaPer->id)
