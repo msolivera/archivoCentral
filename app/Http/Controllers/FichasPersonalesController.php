@@ -493,7 +493,7 @@ class FichasPersonalesController extends Controller
         $fichaPer->cuerpo_id = $request->cuerpo_id;
         $fichaPer->clasificacion_id = $request->clasificacion_id;
 
-        // $fichaPer->save();
+        $fichaPer->save();
         return back()->with('flash', 'Persona creada con exito');
     }
 

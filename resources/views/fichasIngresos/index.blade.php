@@ -378,6 +378,7 @@
                                     <thead>
                                         <tr>
                                             <th>Acciones</th>
+                                            <th>Nro.Paq. Ingreso</th>
                                             <th>Cedula</th>
                                             <th>Primer Nombre</th>
                                             <th>Segundo Nombre</th>
@@ -394,7 +395,6 @@
                                             <th>Ciudad ID</th>
                                             <th>Estado Civil ID</th>
                                             <th>Estado Ingreso</th>
-                                            <th>Nro.Paq. Ingreso</th>
                                             <th>Situacion ID</th>
                                             <th>Fuerza</th>
                                             <th>Grado</th>
@@ -426,6 +426,7 @@
                                                                 class="fa fa-light fa-trash"></i></button>
                                                     </form>
                                                 </td>
+                                                <td>{{ $fichaPer->numeroPaquete }}</td>
                                                 <td>{{ $fichaPer->cedula }}</td>
                                                 <td>{{ $fichaPer->primerNombre }}</td>
                                                 <td>{{ $fichaPer->segundoNombre }}</td>
@@ -442,7 +443,6 @@
                                                 <td>{{ $fichaPer->ciudad }}</td>
                                                 <td>{{ $fichaPer->estadoCivil }}</td>
                                                 <td>{{ $fichaPer->estadoIngreso }}</td>
-                                                <td>{{ $fichaPer->numeroPaquete }}</td>
                                                 <td>{{ $fichaPer->situacion }}</td>
                                                 <td>{{ $fichaPer->fuerza }}</td>
                                                 <td>{{ $fichaPer->grado }}</td>
