@@ -27,17 +27,14 @@
                         <!-- form start -->
 
                         <div class="card-body">
-                            <div class="form-group">
-                                <div class="dropzone"></div>
-                            </div>
+
 
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group {{ $errors->has('numeroPaquete') ? 'has-error' : '' }} ">
                                         <label for="numeroPaquete">Nro. Paquete de Ingreso</label>
                                         <input name="numeroPaquete" type="imput" class="form-control" id="numeroPaquete"
-                                            placeholder="..."
-                                            value="{{ old('numeroPaquete', $fichaPer->numeroPaquete) }}">
+                                            placeholder="..." value="{{ old('numeroPaquete', $fichaPer->numeroPaquete) }}">
                                         <!--- Muestro los errores de validacion.-->
                                         {!! $errors->first('numeroPaquete', '<span class=error style=color:red>:message</span>') !!}
                                     </div>
@@ -384,8 +381,13 @@
 
             </div>
         </form>
+        <div class="row">
+
+            @include('fichasPersonales.parciales.galeria')
+        </div>
 
         <div class="row">
+
             @include('fichasPersonales.parciales.ideologias')
 
             @include('fichasPersonales.parciales.ocupaciones')
@@ -414,8 +416,7 @@
     <!-- Select2 -->
     <link rel="stylesheet" href="/adminLTE/plugins/select2/css/select2.min.css">
     <link rel="stylesheet" href="/adminLTE/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
-    <!-- Dropzone -->
-    <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+
     <!-- estilos para las tablas -->
     <link rel="stylesheet" href="/adminLTE/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="/adminLTE/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
@@ -437,8 +438,7 @@
     <!-- InputMask -->
     <script src="/adminLTE/plugins/moment/moment.min.js"></script>
     <script src="/adminLTE/plugins/inputmask/jquery.inputmask.min.js"></script>
-    <!-- Dropzone -->
-    <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+
 
 
     <!-- INICIO DataTables  & Plugins -->
@@ -476,21 +476,4 @@
             });
         });
     </script>
-
-    <script>
-        
-        new Dropzone ('.dropzone', {
-            url :'/photos',
-            dictDefaultMessage: 'Foto de Perfil aquí'
-        });
-
-        Dropzone.autoDiscover = false;
-
-    </script>
-
 @endpush
-
-
-
-
-
