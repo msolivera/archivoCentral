@@ -40,66 +40,63 @@ class ParientesController extends Controller
         $grados = Grado::all();
         $cuerpos = ArmaCuerpo::all();
         $fichasParientePer = FichaPersonal::select('*')
-        ->whereNotIn('id',function ($query) {
-            $query->select("ficha_pariente_id")
-            ->from('parientes');
-        })
-        ->where('id','<>', $fichaPer)
-        ->get()->all();
+            ->whereNotIn('id', function ($query) {
+                $query->select("ficha_pariente_id")
+                    ->from('parientes');
+            })
+            ->where('id', '<>', $fichaPer)
+            ->get()->all();
 
         $temas = Tema::all();
         $clasificaciones = Clasificacion::all();
         $parientes = Parientes::all();
-        
-        return view('parientes.index',compact('fichasParientePer', 'fichaPerTitular','parientes','paises',
-        'ciudades',
-        'departamentos',
-        'estadosCiviles',
-        'situaciones',
-        'fuerzas',
-        'grados',
-        'cuerpos',
-        'temas',
-        'parentescos',
-        'clasificaciones'));
+
+        return view('parientes.index', compact(
+            'fichasParientePer',
+            'fichaPerTitular',
+            'parientes',
+            'paises',
+            'ciudades',
+            'departamentos',
+            'estadosCiviles',
+            'situaciones',
+            'fuerzas',
+            'grados',
+            'cuerpos',
+            'temas',
+            'parentescos',
+            'clasificaciones'
+        ));
     }
 
-    public function destroy($parienteId){
+    public function destroy($parienteId)
+    {
         $pariente = Parientes::select("*")
-        ->where("ficha_pariente_id","=",$parienteId)->get()->all();
+            ->where("ficha_pariente_id", "=", $parienteId)->get()->all();
         $parienteFila = $pariente[0];
-        //return $parienteFila->id;
-        //$parienteId->$pariente-
         $parienteFila->delete();
         return back()->with('flash', 'Pariente eliminado con exito');
-
     }
 
-    public function store(Request $request, $fichaPerId, $fichaPariente)
+    public function store(Request $request,  $fichaTitular)
     {
-        
-             
-        //validacion falta
-        /*$pariente = new Parientes();
-        $pariente->ficha_personal_id = $fichaPerId;
-        $pariente->ficha_pariente_id = $request->ficha_pariente_id;
+
+
+        $pariente = new Parientes();
+        $pariente->ficha_personal_id = $fichaTitular;
+        $pariente->ficha_pariente_id = $request->pariente_Id;
         $pariente->parentesco_id = $request->parentesco_id;
-        $pariente->save();*/
+        $pariente->save();
 
-        //return $pariente;
-
-        return $request;
-
-        //return back()->with('flash', 'Pariente creado con exito');        
-        
+        return back()->with('flash', 'Pariente creado con exito');
     }
     public function edit($parienteId)
     {
         $pariente = Parientes::find($parienteId);
-        return view('parientes.editar', 
-        compact('pariente'));
-
-    
+        return view(
+            'parientes.editar',
+            compact('pariente')
+        );
     }
 
     public function update(Request $request, $parienteId)
@@ -115,7 +112,6 @@ class ParientesController extends Controller
         $pariente->parentesco_id = $request->parentesco_id;
         $pariente->save();
 
-        return back()->with('flash', 'Pariente actualizado con exito');        
-        
+        return back()->with('flash', 'Pariente actualizado con exito');
     }
 }

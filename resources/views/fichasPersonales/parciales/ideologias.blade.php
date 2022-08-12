@@ -6,9 +6,8 @@
                     <h3 class="card-title">Ideologias</h3>
                 </div>
                 <div class="col-4">
-                    <button style="float: right; padding: 15px;" class="btn btn-xs btn-warning"
-                        data-toggle="modal" data-target="#IdeologiaModal"><i
-                            class="fa fa-regular fa-plus"></i></button>
+                    <button style="float: right; padding: 15px;" class="btn btn-xs btn-warning" data-toggle="modal"
+                        data-target="#IdeologiaModal"><i class="fa fa-regular fa-plus"></i></button>
                 </div>
             </div>
             <table id="ideologiaTable" class="table table-bordered table-striped table-sm">
@@ -47,51 +46,51 @@
 </div>
 
 <div class="modal fade" id="IdeologiaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <form method="POST" action="{{ route('fichasPersonalesIdeologia.store', $fichaPer) }}">
-                {{ csrf_field() }}
-                <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                    aria-hidden="true">&times;</span></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row">
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form method="POST" action="{{ route('fichasPersonalesIdeologia.store', $fichaPer) }}">
+            {{ csrf_field() }}
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
 
-                                <div class="col-md-6" style="display: inline-block;">
+                            <div class="col-md-6" style="display: inline-block;">
 
-                                    <div class="form-group">
-                                        <label for="ideologia">Ideologia</label>
-                                        <select name="ideologia" class="form-control select2" style="width: 100%;"
-                                            id="ideologia">
-                                            <option value=""> Seleccione </option>
-                                            @foreach ($ideologias as $ideologia)
-                                                <option value="{{ $ideologia->id }}">
-                                                    {{ $ideologia->nombre }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="observacion">Observación</label>
-                                        <input name="observacion" type="imput" class="form-control" id="observacion"
-                                            placeholder="..." value="{{ old('observacion') }}">
-                                    </div>
+                                <div class="form-group">
+                                    <label for="ideologia">Ideologia</label>
+                                    <select name="ideologia" class="form-control select2" style="width: 100%;"
+                                        id="ideologia">
+                                        <option value=""> Seleccione </option>
+                                        @foreach ($ideologias as $ideologia)
+                                            <option value="{{ $ideologia->id }}">
+                                                {{ $ideologia->nombre }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="observacion">Observación</label>
+                                    <input name="observacion" type="imput" class="form-control" id="observacion"
+                                        placeholder="..." value="{{ old('observacion') }}">
                                 </div>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                                <button class="btn btn-primary">Guardar</button>
-                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                            <button class="btn btn-primary">Guardar</button>
                         </div>
                     </div>
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
+</div>
 
-    
+
 @push('scripts')
     <script>
         $(function() {
@@ -127,6 +126,5 @@
                 ]
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         });
-        
     </script>
 @endpush

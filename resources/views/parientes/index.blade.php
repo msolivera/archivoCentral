@@ -31,51 +31,67 @@
                         </div>
                     </div>
 
+                    <div class="row">
 
-                    <table id="parientesTable" class="table table-bordered table-striped ">
-                        <thead>
-                            <tr>
-                                <th>Acciones</th>
-                                <th>Parentesco</th>
-                                <th>Cedula</th>
-                                <th>ID</th>
-                                <th>Primer Nombre</th>
-                                <th>Segundo Nombre</th>
-                                <th>Primer Apellido</th>
-                                <th>Segundo Apellido</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <form method="POST">
-                                {{ csrf_field() }}
+                        <table id="parientesTable" class="table table-bordered table-striped ">
+                            <thead>
+                                <tr>
+                                    <th>Acciones</th>
+                                    <th>Parentesco</th>
+                                    <th>Cedula</th>
+                                    <th>ID</th>
+                                    <th>Primer Nombre</th>
+                                    <th>Segundo Nombre</th>
+                                    <th>Primer Apellido</th>
+                                    <th>Segundo Apellido</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
                                 @foreach ($fichasParientePer as $fichaPerPariente)
                                     <tr>
-                                        <td>
-                                            <a href="{{route('parientes.store', $fichaPerTitular->id, request)}}" class="btn btn-md btn-success"><i
-                                                    class="fa fa-light fa-plus"></i></a>
-                                        </td>
-                                        <td><select name="parentesco_id" class="form-control select2" style="width: 100%;">
-                                                <option value=""> Seleccione </option>
-                                                @foreach ($parentescos as $parentesco)
-                                                    <option value="{{ $parentesco->id }}">
-                                                        {{ $parentesco->nombre }}</option>
-                                                @endforeach
+                                        <form method="POST" action="{{ route('parientes.store', $fichaPerTitular->id) }}"
+                                            style="display: inline"> {{ csrf_field() }}
+                                            <td>
+                                                <button class="btn btn-md btn-success"><i
+                                                        class="fa fa-light fa-plus"></i></button>
+                                            </td>
 
-                                            </select></td>
-                                        <td>{{ $fichaPerPariente->cedula }}</td>
-                                        <td>{{ $fichaPerPariente->id }}</td>
-                                        <td>{{ $fichaPerPariente->primerNombre }}</td>
-                                        <td>{{ $fichaPerPariente->segundoNombre }}</td>
-                                        <td>{{ $fichaPerPariente->primerApellido }}</td>
-                                        <td>{{ $fichaPerPariente->segundoApellido }}</td>
+                                            <td>
+                                                <div class="form-group">
 
+                                                    <select name="parentesco_id" class="form-control select2"
+                                                        style="width: 100%;" id="parentesco_id">
+                                                        <option value=""> Seleccione</option>
+                                                        @foreach ($parentescos as $parentesco)
+                                                            <option value="{{ $parentesco->id }}">
+                                                                {{ $parentesco->nombre }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td>{{ $fichaPerPariente->cedula }}</td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <input name="pariente_Id" type="imput"  class="form-control"
+                                                        id="pariente_Id" value="{{ $fichaPerPariente->id }}"readonly>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td>{{ $fichaPerPariente->primerNombre }}</td>
+                                            <td>{{ $fichaPerPariente->segundoNombre }}</td>
+                                            <td>{{ $fichaPerPariente->primerApellido }}</td>
+                                            <td>{{ $fichaPerPariente->segundoApellido }}</td>
 
+                                        </form>
                                     </tr>
                                 @endforeach
-                            </form>
-                        </tbody>
 
-                    </table>
+                            </tbody>
+
+                        </table>
+                    </div>
 
                     <div class="row">
                         <div class="form-group">
@@ -144,8 +160,7 @@
                                         </div>
                                         <div class="col-md-6" style="display: inline-block; float: right;">
                                             <input name="otroDocNumero" type="imput" class="form-control"
-                                                id="otroDocNumero" placeholder="..."
-                                                value="{{ old('otroDocNumero') }}">
+                                                id="otroDocNumero" placeholder="..." value="{{ old('otroDocNumero') }}">
                                         </div>
                                     </div>
                                 </div>
@@ -175,8 +190,7 @@
                                 <div class="form-group {{ $errors->has('correoElectronico') ? 'has-error' : '' }} ">
                                     <label for="correoElectronico">Correo Electrónico</label>
                                     <input name="correoElectronico" type="imput" class="form-control"
-                                        id="correoElectronico" placeholder="..."
-                                        value="{{ old('correoElectronico') }}">
+                                        id="correoElectronico" placeholder="..." value="{{ old('correoElectronico') }}">
                                     <!--- Muestro los errores de validacion.-->
                                     {!! $errors->first('correoElectronico', '<span class=error style=color:red>:message</span>') !!}
                                 </div>
@@ -306,8 +320,7 @@
                                 <div class="form-group {{ $errors->has('seccional') ? 'has-error' : '' }} ">
                                     <label for="seccionalPolicial">Seccional Policial</label>
                                     <input name="seccionalPolicial" type="imput" class="form-control"
-                                        id="seccionalPolicial" placeholder="..."
-                                        value="{{ old('seccionalPolicial') }}">
+                                        id="seccionalPolicial" placeholder="..." value="{{ old('seccionalPolicial') }}">
                                     <!--- Muestro los errores de validacion.-->
                                     {!! $errors->first('seccionalPolicial', '<span class=error style=color:red>:message</span>') !!}
                                 </div>

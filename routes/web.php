@@ -203,9 +203,12 @@ Route::group(
         Route::post('/anotacion/{fichaPersona}', [App\Http\Controllers\AnotacionController::class, 'store'])->name('anotacion.store');
         Route::delete('/anotacion/{fichaPersona}', [App\Http\Controllers\AnotacionController::class, 'destroy'])->name('anotacion.destroy');
         //pariente
-        Route::post('/parientes/{fichaPersona}{fichaPariente}', [App\Http\Controllers\ParientesController::class, 'store'])->name('parientes.store');
+        Route::post('parientes/{fichaPariente}', [App\Http\Controllers\ParientesController::class, 'store'])->name('parientes.store');
         Route::delete('/parientes/{fichaPersona}', [App\Http\Controllers\ParientesController::class, 'destroy'])->name('parientes.destroy');
         Route::get('/parientes/{fichaPersona}', [App\Http\Controllers\ParientesController::class, 'index'])->name('parientes.index');
+        //fotos
+        Route::post('/photos/{fichaPersona}', [App\Http\Controllers\PhotoController::class, 'store'])->name('photo.store');
+
     }
 );
 

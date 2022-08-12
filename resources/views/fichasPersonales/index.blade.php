@@ -29,86 +29,88 @@
                             </div>
 
                         </div>
-                    </div>
-                    <!-- /.card-header -->
-                    <div class="card-body">
-                        <table id="example1" class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Acciones</th>
-                                    <th>Cedula</th>
-                                    <th>Primer Nombre</th>
-                                    <th>Segundo Nombre</th>
-                                    <th>Primer Apellido</th>
-                                    <th>Segundo Apellido</th>
-                                    <th>Fecha Nac.</th>
-                                    <th>Fecha Def.</th>
-                                    <th>Credencial</th>
-                                    <th>Sexo</th>
-                                    <th>Correo</th>
-                                    <th>Sec. Policial</th>
-                                    <th>País</th>
-                                    <th>Departamento ID</th>
-                                    <th>Ciudad ID</th>
-                                    <th>Estado Civil ID</th>
-                                    <th>Estado Ingreso</th>
-                                    <th>Nro.Paq. Ingreso</th>
-                                    <th>Situacion ID</th>
-                                    <th>Fuerza</th>
-                                    <th>Grado</th>
-                                    <th>Arma</th>
-                                    <th>clasificacion ID</th>
-                                    <th>Otro Doc.</th>
-                                    <th>Numero Doc.</th>
 
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($fichasPer as $fichaPer)
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
                                     <tr>
-                                        <td>
-                                            <a href="fichasPersonales/{{ $fichaPer->id }}"
-                                                class="btn btn-xs btn-success"><i class="fa fa-light fa-eye"></i></a>
-                                            <a href="fichasPersonales/edit/{{ $fichaPer->id }}"
-                                                class="btn btn-xs btn-info"><i class="fa fa-light fa-pen"></i></a>
-                                            <form method="POST"
-                                                action="{{ route('fichasPersonales.destroy', $fichaPer->id) }}"
-                                                style="display: inline"> {{ csrf_field() }} {{ method_field('DELETE') }}
-                                                <button class="btn btn-xs btn-danger"
-                                                    onclick="return confirm('¿Esta seguro que desea elminirar este registro?')"><i
-                                                        class="fa fa-light fa-trash"></i></button>
-                                            </form>
-                                        </td>
-                                        <td>{{ $fichaPer->cedula }}</td>
-                                        <td>{{ $fichaPer->primerNombre }}</td>
-                                        <td>{{ $fichaPer->segundoNombre }}</td>
-                                        <td>{{ $fichaPer->primerApellido }}</td>
-                                        <td>{{ $fichaPer->segundoApellido }}</td>
-                                        <td>{{ $fichaPer->fechaNac }}</td>
-                                        <td>{{ $fichaPer->fechaDef }}</td>
-                                        <td>{{ $fichaPer->credencial }}</td>
-                                        <td>{{ $fichaPer->sexo }}</td>
-                                        <td>{{ $fichaPer->correoElectronico }}</td>
-                                        <td>{{ $fichaPer->seccionalPolicial }}</td>
-                                        <td>{{ $fichaPer->pais }}</td>
-                                        <td>{{ $fichaPer->departamentos }}</td>
-                                        <td>{{ $fichaPer->ciudad }}</td>
-                                        <td>{{ $fichaPer->estadoCivil }}</td>
-                                        <td>{{ $fichaPer->estadoIngreso }}</td>
-                                        <td>{{ $fichaPer->numeroPaquete }}</td>
-                                        <td>{{ $fichaPer->situacion }}</td>
-                                        <td>{{ $fichaPer->fuerza }}</td>
-                                        <td>{{ $fichaPer->grado }}</td>
-                                        <td>{{ $fichaPer->armaCuerpo }}</td>
-                                        <td>{{ $fichaPer->clasificacion }}</td>
-                                        <td>{{ $fichaPer->otroDocNombre }}</td>
-                                        <td>{{ $fichaPer->otroDocNumero }}</td>
+                                        <th>Acciones</th>
+                                        <th>Cedula</th>
+                                        <th>Primer Nombre</th>
+                                        <th>Segundo Nombre</th>
+                                        <th>Primer Apellido</th>
+                                        <th>Segundo Apellido</th>
+                                        <th>Fecha Nac.</th>
+                                        <th>Fecha Def.</th>
+                                        <th>Credencial</th>
+                                        <th>Sexo</th>
+                                        <th>Correo</th>
+                                        <th>Sec. Policial</th>
+                                        <th>País</th>
+                                        <th>Departamento ID</th>
+                                        <th>Ciudad ID</th>
+                                        <th>Estado Civil ID</th>
+                                        <th>Estado Ingreso</th>
+                                        <th>Nro.Paq. Ingreso</th>
+                                        <th>Situacion ID</th>
+                                        <th>Fuerza</th>
+                                        <th>Grado</th>
+                                        <th>Arma</th>
+                                        <th>clasificacion ID</th>
+                                        <th>Otro Doc.</th>
+                                        <th>Numero Doc.</th>
 
                                     </tr>
-                                @endforeach
+                                </thead>
+                                <tbody>
+                                    @foreach ($fichasPer as $fichaPer)
+                                        <tr>
+                                            <td>
+                                                <a href="fichasPersonales/{{ $fichaPer->id }}"
+                                                    class="btn btn-xs btn-success"><i class="fa fa-light fa-eye"></i></a>
+                                                <a href="fichasPersonales/edit/{{ $fichaPer->id }}"
+                                                    class="btn btn-xs btn-info"><i class="fa fa-light fa-pen"></i></a>
+                                                <form method="POST"
+                                                    action="{{ route('fichasPersonales.destroy', $fichaPer->id) }}"
+                                                    style="display: inline"> {{ csrf_field() }}
+                                                    {{ method_field('DELETE') }}
+                                                    <button class="btn btn-xs btn-danger"
+                                                        onclick="return confirm('¿Esta seguro que desea elminirar este registro?')"><i
+                                                            class="fa fa-light fa-trash"></i></button>
+                                                </form>
+                                            </td>
+                                            <td>{{ $fichaPer->cedula }}</td>
+                                            <td>{{ $fichaPer->primerNombre }}</td>
+                                            <td>{{ $fichaPer->segundoNombre }}</td>
+                                            <td>{{ $fichaPer->primerApellido }}</td>
+                                            <td>{{ $fichaPer->segundoApellido }}</td>
+                                            <td>{{ $fichaPer->fechaNac }}</td>
+                                            <td>{{ $fichaPer->fechaDef }}</td>
+                                            <td>{{ $fichaPer->credencial }}</td>
+                                            <td>{{ $fichaPer->sexo }}</td>
+                                            <td>{{ $fichaPer->correoElectronico }}</td>
+                                            <td>{{ $fichaPer->seccionalPolicial }}</td>
+                                            <td>{{ $fichaPer->pais }}</td>
+                                            <td>{{ $fichaPer->departamentos }}</td>
+                                            <td>{{ $fichaPer->ciudad }}</td>
+                                            <td>{{ $fichaPer->estadoCivil }}</td>
+                                            <td>{{ $fichaPer->estadoIngreso }}</td>
+                                            <td>{{ $fichaPer->numeroPaquete }}</td>
+                                            <td>{{ $fichaPer->situacion }}</td>
+                                            <td>{{ $fichaPer->fuerza }}</td>
+                                            <td>{{ $fichaPer->grado }}</td>
+                                            <td>{{ $fichaPer->armaCuerpo }}</td>
+                                            <td>{{ $fichaPer->clasificacion }}</td>
+                                            <td>{{ $fichaPer->otroDocNombre }}</td>
+                                            <td>{{ $fichaPer->otroDocNumero }}</td>
 
-                            </tbody>
-                        </table>
+                                        </tr>
+                                    @endforeach
+
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     <!-- /.card-body -->
                 </div>
@@ -270,8 +272,8 @@
                                     <label for="otroDocNombre">Otro Documento</label>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <select name="otroDocNombre" class="form-control select2"
-                                                style="width: 100%;" id="otroDocNombre">
+                                            <select name="otroDocNombre" class="form-control select2" style="width: 100%;"
+                                                id="otroDocNombre">
                                                 <option value=""> Seleccione un Documento</option>
                                                 <option value="dni">DNI</option>
                                                 <option value="libretaEmbarque">Libreta de Embarque</option>
@@ -279,8 +281,7 @@
                                         </div>
                                         <div class="col-md-6" style="display: inline-block; float: right;">
                                             <input name="otroDocNumero" type="imput" class="form-control"
-                                                id="otroDocNumero" placeholder="..."
-                                                value="{{ old('otroDocNumero') }}">
+                                                id="otroDocNumero" placeholder="..." value="{{ old('otroDocNumero') }}">
                                         </div>
                                     </div>
                                 </div>
@@ -310,8 +311,7 @@
                                 <div class="form-group {{ $errors->has('correoElectronico') ? 'has-error' : '' }} ">
                                     <label for="correoElectronico">Correo Electrónico</label>
                                     <input name="correoElectronico" type="imput" class="form-control"
-                                        id="correoElectronico" placeholder="..."
-                                        value="{{ old('correoElectronico') }}">
+                                        id="correoElectronico" placeholder="..." value="{{ old('correoElectronico') }}">
                                     <!--- Muestro los errores de validacion.-->
                                     {!! $errors->first('correoElectronico', '<span class=error style=color:red>:message</span>') !!}
                                 </div>
@@ -427,8 +427,7 @@
                                 <div class="form-group {{ $errors->has('seccional') ? 'has-error' : '' }} ">
                                     <label for="seccionalPolicial">Seccional Policial</label>
                                     <input name="seccionalPolicial" type="imput" class="form-control"
-                                        id="seccionalPolicial" placeholder="..."
-                                        value="{{ old('seccionalPolicial') }}">
+                                        id="seccionalPolicial" placeholder="..." value="{{ old('seccionalPolicial') }}">
                                     <!--- Muestro los errores de validacion.-->
                                     {!! $errors->first('seccionalPolicial', '<span class=error style=color:red>:message</span>') !!}
                                 </div>
