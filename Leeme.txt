@@ -40,3 +40,5 @@ php artisan make:migration create_fichaPersonal_unidad_table --create=fichaPerso
 
 link sobre como hacer upload de imagenes.
 https://www.devopsschool.com/blog/how-to-upload-profile-image-of-users-in-laravel/
+
+APP_KEY=base64:9eAlB2g1+GtVgtq035agIBBxyL+mdgK7nEaYo0iRDOM=
