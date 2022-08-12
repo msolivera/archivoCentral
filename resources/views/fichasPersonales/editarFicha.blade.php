@@ -383,7 +383,7 @@
         </form>
         <div class="row">
 
-            @include('fichasPersonales.parciales.galeria')
+            @include('fichasPersonales.parciales.multimedia')
         </div>
 
         <div class="row">
