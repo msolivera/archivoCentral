@@ -1,7 +1,8 @@
 <div class="col-md-12">
-    <div class="card card-default">
+    <div class="card card-primary">
         <div class="card-header">
-            <h3 class="card-title">Dropzone.js <small><em>jQuery File Upload</em> like look</small></h3>
+
+            <h5 class="card-title">Agregar Contenido Multimedia</h5>
         </div>
         <div class="card-body">
             <div id="actions" class="row">
@@ -9,15 +10,15 @@
                     <div class="btn-group w-100">
                         <span class="btn btn-success col fileinput-button">
                             <i class="fas fa-plus"></i>
-                            <span>Add files</span>
+                            <span>Añadir archivos Multimedia</span>
                         </span>
                         <button type="submit" class="btn btn-primary col start">
                             <i class="fas fa-upload"></i>
-                            <span>Start upload</span>
+                            <span>Iniciar subida masiva de archivos</span>
                         </button>
                         <button type="reset" class="btn btn-warning col cancel">
                             <i class="fas fa-times-circle"></i>
-                            <span>Cancel upload</span>
+                            <span>Cancelar subida masiva de archivos</span>
                         </button>
                     </div>
                 </div>
@@ -54,26 +55,23 @@
                         <div class="btn-group">
                             <button class="btn btn-primary start">
                                 <i class="fas fa-upload"></i>
-                                <span>Start</span>
+                                <span>Iniciar</span>
                             </button>
                             <button data-dz-remove class="btn btn-warning cancel">
                                 <i class="fas fa-times-circle"></i>
-                                <span>Cancel</span>
+                                <span>Cancelar</span>
                             </button>
                             <button data-dz-remove class="btn btn-danger delete">
                                 <i class="fas fa-trash"></i>
-                                <span>Delete</span>
+                                <span>Eliminar</span>
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- /.card-body -->
-        <div class="card-footer">
-            Visit <a href="https://www.dropzonejs.com">dropzone.js documentation</a> for more examples and information
-            about the plugin.
-        </div>
+
+
     </div>
     <!-- /.card -->
 </div>
@@ -81,36 +79,93 @@
 
 
 <div class="col-md-12">
-    <article class="container">
-        <label for="numeroPaquete">Contenido Relacionado:</label>
-        @if ($fichaPer->photos->count() === 1)
-            <figure><object data="{{ $fichaPer->photos->first()->url }}" class="img-responsive" alt=""
-                    width="400" height="300"></object></figure>
-        @elseif ($fichaPer->photos->count() > 1)
-            <div class="gallery-photos" data-masonry='{"itemSelector: ".grid-item", "columnWidth": 464}'>
-                @foreach ($fichaPer->photos as $photo)
-                    <figure><object data="{{ url($photo->url) }}" class="img-responsive" alt="" width="400"
-                            height="300"></object>
-                    </figure>
-                @endforeach
-            </div>
-        @endif
+    <div class="card card-primary">
+        <div class="card-header">
+            <h4 class="card-title">Contenido Relacionado</h4>
+        </div>
+        <div class="gallery-photos" data-masonry='{"itemSelector: ".grid-item", "columnWidth": 200}'>
+            @foreach ($fichaPer->photos as $photo)
+                <div class="col-sm-6"><object data="{{ url($photo->url) }}" class="img-responsive" alt="" width="200"
+                        height="150"></object>
+                </div>
+            @endforeach
+        </div>
 
-    </article>
+    </div>
 </div>
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img class="d-block w-100" src="..." alt="First slide">
+      </div>
+      <div class="carousel-item">
+        <img class="d-block w-100" src="..." alt="Second slide">
+      </div>
+      <div class="carousel-item">
+        <img class="d-block w-100" src="..." alt="Third slide">
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+
+<!--<div class="col-md-12">
+    <div class="card card-primary">
+        <div class="card-header">
+            <h4 class="card-title">Contenido Relacionado</h4>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-2">
+                    @foreach ($fichaPer->photos as $photo)
+                        <figure data-toggle="lightbox" class="img-fluid mb-2" data-title="sample 1 - white"
+                            data-gallery="gallery">
+                            <object data="{{ url($photo->url) }}" class="img-fluid mb-2" alt="white sample"></object>
+                        </figure>
+                    @endforeach
+
+                </div>
+                <div class="col-sm-2">
+                    <a href="https://via.placeholder.com/1200/FFFFFF.png?text=1" data-toggle="lightbox"
+                        data-title="sample 1 - white" data-gallery="gallery">
+                        <img src="https://via.placeholder.com/300/FFFFFF?text=1" class="img-fluid mb-2"
+                            alt="white sample" />
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>-->
+
 
 
 @push('styles')
-    <link rel="stylesheet" href="../../plugins/dropzone/min/dropzone.min.css">
+    <link rel="stylesheet" href="/adminLTE/plugins/dropzone/min/dropzone.min.css">
+    <!-- Ekko Lightbox -->
+    <link rel="stylesheet" href="/adminLTE/plugins/ekko-lightbox/ekko-lightbox.css">
 @endpush
 
 @push('scripts')
-    <script src="../../plugins/dropzone/min/dropzone.min.js"></script>
+    <script src="/adminLTE/plugins/dropzone/min/dropzone.min.js"></script>
+    <!-- Ekko Lightbox -->
+    <script src="/adminLTE/plugins/ekko-lightbox/ekko-lightbox.min.js"></script>
     <script>
         $(function() {
 
 
-            // DropzoneJS Demo Code Start
+            // DropzoneJS Code Start
             Dropzone.autoDiscover = false
 
             // Get the template HTML and remove it from the doumenthe template HTML and remove it from the doument
@@ -125,7 +180,6 @@
                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
                 },
                 paramName: 'archivo',
-                dictDefaultMessage: 'Arrastre Archivos aquí'
 
                 thumbnailWidth: 80,
                 thumbnailHeight: 80,
@@ -170,12 +224,23 @@
                 myDropzone.removeAllFiles(true)
             }
             // DropzoneJS Demo Code End
-        });
-        myDropzone.on('error', function(file, res) {
-            var msg = res.archivo[0];
-            $('.dz-error-message > span').text(msg);
-        })
+            myDropzone.on('error', function(file, res) {
+                var msg = res.archivo[0];
+                $('.dz-error-message > span').text(msg);
 
-        Dropzone.autoDiscover = false;
+            })
+        });
+    </script>
+    <script>
+        $(function() {
+            $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+                event.preventDefault();
+                $(this).ekkoLightbox({
+                    alwaysShowClose: true
+                });
+            });
+
+
+        })
     </script>
 @endpush
