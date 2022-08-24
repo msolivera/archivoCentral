@@ -208,6 +208,12 @@ Route::group(
         Route::get('/parientes/{fichaPersona}', [App\Http\Controllers\ParientesController::class, 'index'])->name('parientes.index');
         //fotos
         Route::post('/photos/{fichaPersona}', [App\Http\Controllers\PhotoController::class, 'store'])->name('photo.store');
+        //fichas impersonales
+        Route::get('/fichaImpersonal', [App\Http\Controllers\FichaImpersonalController::class, 'index'])->name('fichaImpersonal.index');
+        Route::get('/fichaImpersonal/edit/{fichaImpersonal}', [App\Http\Controllers\FichaImpersonalController::class, 'edit'])->name('fichasImpersonales.editarFicha');
+        Route::post('/fichaImpersonal', [App\Http\Controllers\FichaImpersonalController::class, 'store'])->name('fichaImpersonal.store');
+        Route::put('/fichaImpersonal/{fichaImpersonal}', [App\Http\Controllers\FichaImpersonalController::class, 'update'])->name('fichaImpersonal.update');
+        Route::delete('/fichaImpersonal/{fichaImpersonal}', [App\Http\Controllers\FichaImpersonalController::class, 'destroy'])->name('fichaImpersonal.destroy');
 
     }
 );

@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('ficha_impersonals', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre');
+            $table->unsignedInteger('clasificacion_id')->default(0);
             $table->timestamps();
         });
     }

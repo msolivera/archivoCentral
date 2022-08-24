@@ -13,5 +13,9 @@ class Clasificacion extends Model
 {
    return $this->hasMany(FichaPersonal::class);
 }
+public function fichaImpersonal()
+{
+   return $this->hasMany(FichaImpersonal::class);
+}
 
 }

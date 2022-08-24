@@ -42,7 +42,7 @@
                     <i class="fas fa-angle-left right"></i>
                 </p>
             </a>
-            <ul class="nav nav-treeview"  style="display: {{ request()->is('fichasPersonales*') ? 'block' : 'none' }};">
+            <ul class="nav nav-treeview" style="display: {{ request()->is('fichasPersonales*') ? 'block' : 'none' }};">
                 <li class="nav-item">
                     <a href="{{ route('fichasPersonales.index') }}" class="nav-link"
                         {{ request()->is('fichasPersonales*') ? 'style=color:#3498db' : '' }}>
@@ -61,9 +61,9 @@
                     <i class="fas fa-angle-left right"></i>
                 </p>
             </a>
-            <ul class="nav nav-treeview"  style="display: {{ request()->is('fichasPersonales*') ? 'block' : 'none' }};">
+            <ul class="nav nav-treeview" style="display: {{ request()->is('fichaImpersonal*') ? 'block' : 'none' }};">
                 <li class="nav-item">
-                    <a href="{{ route('fichasPersonales.index') }}" class="nav-link">
+                    <a href="{{ route('fichaImpersonal.index') }}" class="nav-link">
                         <i class="fa fa-ship nav-icon"></i>
                         <p>Ver Fichas Impersonales</p>
                     </a>
@@ -115,6 +115,24 @@
                     <a href="#" class="nav-link">
                         <i class="fa fa-plus-square nav-icon"></i>
                         <p>Crear Documentos</p>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <!--Notificaciones -->
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-book"></i>
+                <p>
+                    Notificaciones
+                    <i class="fas fa-angle-left right"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview" style="display:none;">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fa fa-eye nav-icon"></i>
+                        <p>Bandeja de entrada</p>
                     </a>
                 </li>
             </ul>

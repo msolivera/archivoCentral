@@ -11,4 +11,13 @@ class FichaImpersonal extends Model
     public function fichasPersonales(){
         return $this->belongsToMany(FichaPersonal::class);
     }
+    public function clasificacion()
+    {
+       return $this->belongsTo(Clasificacion::class, 'clasificacion_id');
+    }
+
+    public function tema()
+    {
+        return $this->belongsToMany(Tema::class);
+    }
 }
