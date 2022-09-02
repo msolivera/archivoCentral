@@ -382,7 +382,6 @@
             </div>
         </form>
         <div class="row">
-
             @include('fichasPersonales.parciales.multimedia')
         </div>
 

@@ -84,7 +84,7 @@
             <h4 class="card-title">Contenido Relacionado</h4>
         </div>
         <div class="gallery-photos" data-masonry='{"itemSelector: ".grid-item", "columnWidth": 200}'>
-            @foreach ($fichaPer->photos as $photo)
+            @foreach ($fichaImpersonal->photos as $photo)
                 <div class="col-sm-6" style= "margin: 0px; img-fluid">
                     <object data="{{ url($photo->url) }}" class="img-responsive"  alt="" width="200"
                         height="150"></object>
@@ -99,6 +99,7 @@
     <link rel="stylesheet" href="/adminLTE/plugins/dropzone/min/dropzone.min.css">
     <!-- Ekko Lightbox -->
     <link rel="stylesheet" href="/adminLTE/plugins/ekko-lightbox/ekko-lightbox.css">
+
 @endpush
 
 @push('scripts')
@@ -119,7 +120,7 @@
             previewNode.parentNode.removeChild(previewNode)
 
             var myDropzone = new Dropzone(document.body, { // Make the whole body a dropzone
-                url: '/photos/' + {{ $fichaPer->id }},
+                url: '/photosImper/' + {{ $fichaImpersonal->id }},
                 headers: {
                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
                 },

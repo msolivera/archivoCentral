@@ -18,4 +18,14 @@ class PhotoController extends Controller
         'ficha_personal_Id' => $fichaperId
     ]);
    }
+   
+   public function StoreImpersonal ($fichaImperId){
+
+    $archivo = request()->file('archivo')->store('public');
+
+    Photo::create([
+        'url' => Storage::url($archivo),
+        'ficha_impersonal_Id' => $fichaImperId
+    ]);
+   }
 }

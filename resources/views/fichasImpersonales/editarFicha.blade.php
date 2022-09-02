@@ -84,19 +84,41 @@
                 </div>
             </div>
         </form>
-
+        <div class="row">
+            @include('fichasImpersonales.parciales.multimedia')
+        </div>
     </section>
 @stop
 
 
 @push('styles')
+    <!-- Select2 -->
+    <link rel="stylesheet" href="/adminLTE/plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="/adminLTE/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+
     <!-- Theme style -->
     <link rel="stylesheet" href="/adminLTE/css/adminlte.min.css">
 @endpush
 @push('scripts')
+    <!-- Select2 -->
+    <script src="/adminLTE/plugins/select2/js/select2.full.min.js"></script>
     <!-- InputMask -->
     <script src="/adminLTE/plugins/moment/moment.min.js"></script>
     <script src="/adminLTE/plugins/inputmask/jquery.inputmask.min.js"></script>
     <!-- Tempusdominus Bootstrap 4 -->
     <script src="/adminLTE/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <script>
+        $(function() {
+            //Initialize Select2 Elements
+            $('.select2').select2()
+
+            //Initialize Select2 Elements
+            $('.select2bs4').select2({
+                theme: 'bootstrap4'
+            });
+
+
+        });
+    </script>
 @endpush

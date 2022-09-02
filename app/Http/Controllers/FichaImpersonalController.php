@@ -22,16 +22,6 @@ class FichaImpersonalController extends Controller
         return view('fichasImpersonales.index', compact('fichasImper', 'clasificaciones'));
     }
 
-    public function destroy($fichaImpersonalId){
-        $fichaImpersonal = fichaImpersonal::find($fichaImpersonalId);
-
-        $fichaImpersonal->delete();
-        return redirect()
-            ->route('fichaImpersonal.index')
-            ->with('flash', 'Ficha Impersonal eliminada con exito');
-
-    }
-
     public function store(Request $request)
     {
         
@@ -46,9 +36,7 @@ class FichaImpersonalController extends Controller
         $fichaImpersonal->clasificacion_id = $request->clasificacion_id;
         $fichaImpersonal->save();
 
-        /*$fichaTemas = Tema::join('ficha_personal_tema', 'tema_Id', '=', 'temas.id')
-            ->select('*')
-            ->where('ficha_Personal_Id', $fichaPer->id)->get()->all();*/
+
 
         return back()->with('flash', 'Ficha Impersonal creada con exito');        
         
@@ -59,7 +47,16 @@ class FichaImpersonalController extends Controller
         $unidades = Unidad::all();
         $temas = Tema::all();
         $fichaImpersonal = fichaImpersonal::find($fichaImpersonalId);
-        return view('fichasImpersonales.editarFicha', compact('fichaImpersonal', 'temas', 'unidades', 'clasificaciones'));
+
+        $fichaTemas = Tema::join('ficha_impersonal_tema', 'tema_Id', '=', 'temas.id')
+        ->select('*')
+        ->where('ficha_impersonal_Id', $fichaImpersonal->id)->get()->all();
+
+        $fichaUnidades = Unidad::join('ficha_impersonal_unidad', 'unidad_Id', '=', 'unidads.id')
+            ->select('*')
+            ->where('ficha_Impersonal_Id', $fichaImpersonal->id)->get()->all();
+
+        return view('fichasImpersonales.editarFicha', compact('fichaImpersonal', 'temas', 'unidades', 'clasificaciones','fichaTemas','fichaUnidades'));
 
     
     }
@@ -72,14 +69,43 @@ class FichaImpersonalController extends Controller
             //'clasificacion_id' => 'required', 
         ]);
 
+        $fichasUniViejas = Unidad::join('ficha_impersonal_unidad', 'unidad_Id', '=', 'unidads.id')
+            ->select('*')
+            ->where('ficha_impersonal_Id', $fichaImpersonalId)->get()->all();
+        $fichasTemasViejos = Tema::join('ficha_impersonal_tema', 'tema_Id', '=', 'temas.id')
+            ->select('*')
+            ->where('ficha_impersonal_Id', $fichaImpersonalId)->get()->all();
+
         $fichaImpersonal = fichaImpersonal::find($fichaImpersonalId);
         $fichaImpersonal->nombre = $request->nombre;
         $fichaImpersonal->clasificacion_id = $request->clasificacion_id;
         $fichaImpersonal->save();
 
-        
+        $unidadesInsertar = collect($fichasUniViejas)->pluck('unidad_Id');
+        $temasInsertar = collect($fichasTemasViejos)->pluck('tema_Id');
+
+        //esto para actualizar la informacio de las unidades de la ficha
+        $fichaImpersonal->unidad()->detach($unidadesInsertar);
+        $fichaImpersonal->unidad()->attach($request->get('unidades'));
+        $fichaImpersonal->tema()->detach($temasInsertar);
+        $fichaImpersonal->tema()->attach($request->get('temas'));
+
 
         return back()->with('flash', 'Ficha Impersonal actualizada con exito');        
         
     }
+    public function destroy($fichaImpersonalId){
+        $fichaImpersonal = fichaImpersonal::find($fichaImpersonalId);
+
+        $fichaImpersonal->delete();
+
+        $fichaImpersonal->unidad()->detach();
+        $fichaImpersonal->tema()->detach();
+
+        return redirect()
+            ->route('fichaImpersonal.index')
+            ->with('flash', 'Ficha Impersonal eliminada con exito');
+
+    }
+
 }

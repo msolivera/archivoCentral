@@ -20,4 +20,11 @@ class FichaImpersonal extends Model
     {
         return $this->belongsToMany(Tema::class);
     }
+    public function unidad()
+    {
+        return $this->belongsToMany(Unidad::class);
+    }
+    public function photos(){
+        return $this->hasMany(Photo::class);
+    }
 }

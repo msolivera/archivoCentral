@@ -13,12 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('photos', function (Blueprint $table) {
+        Schema::create('ficha_impersonal_tema', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('ficha_personal_Id')->default(0);
-            $table->unsignedInteger('ficha_impersonal_Id')->default(0);
-            $table->unsignedInteger('documento_Id')->default(0);
-            $table->string('url');
+            $table->unsignedInteger('ficha_impersonal_Id');
+            $table->unsignedInteger('tema_Id');
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('photos');
+        Schema::dropIfExists('ficha_impersonal_tema');
     }
 };

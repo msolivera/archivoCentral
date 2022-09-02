@@ -13,4 +13,7 @@ class Unidad extends Model
     public function fichasPersonales(){
         return $this->belongsToMany(FichaPersonal::class);
     }
+    public function fichaImpersonal(){
+        return $this->belongsToMany(FichaImpersonal::class);
+    }
 }
