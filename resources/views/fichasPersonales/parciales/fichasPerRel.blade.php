@@ -1,4 +1,6 @@
+
 <div class="col-12">
+
     <div class="card" style="background-color: #E6EFF6;">
         <div class="card-body">
             <div class="row">
@@ -6,22 +8,24 @@
                     <h3 class="card-title">Fichas personales relacionadas</h3>
                 </div>
                 <div class="col-4">
-                    <a style="float: right; padding: 15px;" href="{{route('parientes.index',$fichaPer->id)}}"
-                        
-                    class="btn btn-xs btn-info"><i class="fa fa-regular fa-plus"></i></a>
-                    
+                    <!--<a style="float: right; padding: 15px;" href="{route('fichaPersonalRelacionada.index',$fichaPer->id, 'fichaPer')}}"
+                    class="btn btn-xs btn-info"><i class="fa fa-regular fa-plus"></i></a>-->
+                    <a style="float: right; padding: 15px;"
+                        href="fichaPersonalRelacionada/{{$fichaPer->id}}/{{"fichaPer"}}'"
+                        class="btn btn-xs btn-info"><i class="fa fa-regular fa-plus"></i></a>
+
                 </div>
             </div>
             <table id="parientesTable" class="table table-bordered table-striped table-sm">
                 <thead>
                     <tr>
-                    <th>ID</th>
-                    <th>Primer Nombre</th>
-                    <th>Segundo Nombre</th>
-                    <th>Primer Apellido</th>
-                    <th>Segundo Apellido</th>
-                    <th>Relacion</th>
-                    <th>Acciones</th>
+                        <th>ID</th>
+                        <th>Primer Nombre</th>
+                        <th>Segundo Nombre</th>
+                        <th>Primer Apellido</th>
+                        <th>Segundo Apellido</th>
+                        <th>Relacion</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -45,18 +49,20 @@
                             <td>
                                 Parentesco
                             </td>
-                       
-                        
-                        <td>
-                            <form method="POST" action="{{ route('parientes.destroy',  $fichaPariente->ficha_pariente_id ) }}" style="display: inline">
-                                {{ csrf_field() }}
-                                {{ method_field('DELETE') }}
-                                <button class="btn btn-xs btn-danger"
-                                    onclick="return confirm('¿Esta seguro que desea elminirar este registro?')"><i
-                                        class="fa fa-light fa-trash"></i></button>
-                            </form>
-                        </td>
-                    </tr>
+
+
+                            <td>
+                                <form method="POST"
+                                    action="{{ route('parientes.destroy', $fichaPariente->ficha_pariente_id) }}"
+                                    style="display: inline">
+                                    {{ csrf_field() }}
+                                    {{ method_field('DELETE') }}
+                                    <button class="btn btn-xs btn-danger"
+                                        onclick="return confirm('¿Esta seguro que desea elminirar este registro?')"><i
+                                            class="fa fa-light fa-trash"></i></button>
+                                </form>
+                            </td>
+                        </tr>
                     @endforeach
 
 
@@ -67,9 +73,9 @@
     </div>
 </div>
 
-@push ('scripts')
-<script>
-    $(function() {
+@push('scripts')
+    <script>
+        $(function() {
             $("#parientesTable").DataTable({
 
                 "responsive": true,
@@ -104,5 +110,5 @@
 
             }).buttons().container().appendTo('#example1_wrapper .col-sm-6:eq(0)');
         });
-</script>
+    </script>
 @endpush

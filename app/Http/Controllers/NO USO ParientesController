@@ -78,10 +78,12 @@ class ParientesController extends Controller
         return back()->with('flash', 'Pariente eliminado con exito');
     }
 
-    public function store(Request $request,  $fichaTitular)
+    public function store(Request $request,  $fichaTitular, $tipoInsert)
     {
 
-
+        switch($tipoInsert){
+            
+        }
         $pariente = new Parientes();
         $pariente->ficha_personal_id = $fichaTitular;
         $pariente->ficha_pariente_id = $request->pariente_Id;

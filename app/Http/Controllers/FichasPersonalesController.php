@@ -25,7 +25,7 @@ use App\Models\RolOrganizacion;
 use App\Models\Organizacion;
 use App\Models\TipoAnotacion;
 use App\Models\Anotacion;
-use App\Models\Parientes;
+use App\Models\FichaPersonalRelacionada;
 use App\Models\Parentesco;
 
 
@@ -218,7 +218,7 @@ class FichasPersonalesController extends Controller
         $fichasEstudios = Estudio::select('*')
             ->where('fichaPersonal_Id', $fichaPer->id)
             ->get()->all();
-        $fichasParientes = Parientes::select('*')
+        $fichasParientes = FichaPersonalRelacionada::select('*')
             ->where('ficha_personal_id', $fichaPer->id)
             ->get()->all();
 
@@ -317,8 +317,8 @@ class FichasPersonalesController extends Controller
 
             //modificar esta consulta para que traiga el nombre del parentesco tambien
         $fichasParientes = FichaPersonal::select('*')
-            ->join('parientes', 'ficha_personals.id', '=', 'parientes.ficha_pariente_id')
-            ->where('parientes.ficha_personal_id', $fichaPer->id)
+            ->join('ficha_personal_relacionadas', 'ficha_personals.id', '=', 'ficha_personal_relacionadas.ficha_per_relacionada_id')
+            ->where('ficha_personal_relacionadas.ficha_personal_id', $fichaPer->id)
             ->get()->all();
 
 
