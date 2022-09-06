@@ -24,11 +24,11 @@ class FichaPersonalRelacionadaController extends Controller
         $this->middleware('auth');
     }
 
-    public function index($fichaId, string $tipaso)
+    public function index($fichaId, $fichaTipo)
     {
-        return $tipaso;
-        /*switch ($tipo) {
-            case ('fichaPer'):
+
+        switch ($fichaTipo) {
+            case ('fichaPersonal'):
                 $fichaPerTitular = FichaPersonal::find($fichaId);
                 $paises = Pais::all();
                 $parentescos = Parentesco::all();
@@ -41,11 +41,11 @@ class FichaPersonalRelacionadaController extends Controller
                 $cuerpos = ArmaCuerpo::all();
                 $fichasPerRel = FichaPersonal::select('*')
                     ->whereNotIn('id', function ($query) {
-                        $query->select("ficha_per_relacionada_id")
-                            ->from('ficha_personal_relacionadas');
+                        $query->select("ficha_id")
+                            ->from('ficha_personal_relacionadas')
+                            ->where('tipoRelacion', '=', 'fichaPersonal');
                     })
-                    ->where('id', '<>', $fichaId)
-                    ->get()->all();
+                    ->where('id', '<>', $fichaId)->get()->all();
 
                 $temas = Tema::all();
                 $clasificaciones = Clasificacion::all();
@@ -65,29 +65,30 @@ class FichaPersonalRelacionadaController extends Controller
                     'cuerpos',
                     'temas',
                     'parentescos',
-                    'clasificaciones',
-                    'tipo'
+                    'clasificaciones'
                 ));
-        }*/
+                break;
+            default:
+                return $fichaTipo;
+        }
+        return $fichaTipo;
     }
 
     public function destroy($fichaRelId)
     {
-        $fichasRelacionadas = FichaPersonalRelacionada::select("*")
-            ->where("ficha_per_relacionada_id", "=", $fichaRelId)->get()->all();
-        $fichaFila = $fichasRelacionadas[0];
-        $fichaFila->delete();
-        return back()->with('flash', 'Pariente eliminado con exito');
+        $fichaRelacion = FichaPersonalRelacionada::find($fichaRelId);
+        $fichaRelacion->delete();
+
+        return back()->with('flash', 'Registro eliminado con exito');
     }
 
-    public function store(Request $request,  $fichaTitular, $tipoInsert)
+    public function store(Request $request,  $fichaTitular, $fichaTipo)
     {
 
-        switch ($tipoInsert) {
-        }
         $fichaRelacionada = new FichaPersonalRelacionada();
-        $fichaRelacionada->ficha_personal_id = $fichaTitular;
-        $fichaRelacionada->ficha_per_relacionada_id = $request->pariente_Id;
+        $fichaRelacionada->ficha_id = $fichaTitular;
+        $fichaRelacionada->ficha_personal_id = $request->ficha_Id;
+        $fichaRelacionada->tipoRelacion = $fichaTipo;
         $fichaRelacionada->parentesco_id = $request->parentesco_id;
         $fichaRelacionada->save();
 

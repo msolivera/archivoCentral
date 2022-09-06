@@ -116,9 +116,9 @@ class FichaPersonal extends Model
     {
        return $this->hasMany(Domicilio::class);
     }
-    public function pariente()
+    public function fichaPersonalRelacionada()
     {
-        return $this->hasMany(Parientes::class);
+        return $this->hasMany(FichaPersonalRelacionada::class);
     }
 
     public function photos(){

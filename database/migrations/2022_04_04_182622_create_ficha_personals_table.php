@@ -40,6 +40,7 @@ return new class extends Migration
             $table->integer('numeroPaquete')->nullable();
             $table->string('estadoIngreso')->nullable();
             $table->string('fotoTim')->default('user.png');
+            $table->string('tipo')->nullable();
 
 
             $table->timestamps();

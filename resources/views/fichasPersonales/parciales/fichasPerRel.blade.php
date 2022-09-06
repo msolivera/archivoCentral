@@ -1,4 +1,3 @@
-
 <div class="col-12">
 
     <div class="card" style="background-color: #E6EFF6;">
@@ -8,10 +7,8 @@
                     <h3 class="card-title">Fichas personales relacionadas</h3>
                 </div>
                 <div class="col-4">
-                    <!--<a style="float: right; padding: 15px;" href="{route('fichaPersonalRelacionada.index',$fichaPer->id, 'fichaPer')}}"
-                    class="btn btn-xs btn-info"><i class="fa fa-regular fa-plus"></i></a>-->
                     <a style="float: right; padding: 15px;"
-                        href="fichaPersonalRelacionada/{{$fichaPer->id}}/{{"fichaPer"}}'"
+                        href="/fichaPersonalRelacionada/{{ $fichaPer->id }}/{{ $fichaPer->tipo }}"
                         class="btn btn-xs btn-info"><i class="fa fa-regular fa-plus"></i></a>
 
                 </div>
@@ -19,7 +16,8 @@
             <table id="parientesTable" class="table table-bordered table-striped table-sm">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>ID Rel.</th>
+                        <th>ID Fich.</th>
                         <th>Primer Nombre</th>
                         <th>Segundo Nombre</th>
                         <th>Primer Apellido</th>
@@ -32,7 +30,10 @@
                     @foreach ($fichasParientes as $fichaPariente)
                         <tr>
                             <td>
-                                {{ $fichaPariente->ficha_pariente_id }}
+                                {{ $fichaPariente->id }}
+                            </td>
+                            <td>
+                                {{ $fichaPariente->ficha_personal_id }}
                             </td>
                             <td>
                                 {{ $fichaPariente->primerNombre }}
@@ -52,8 +53,7 @@
 
 
                             <td>
-                                <form method="POST"
-                                    action="{{ route('parientes.destroy', $fichaPariente->ficha_pariente_id) }}"
+                                <form method="POST" action="{{ route('fichaPersonalRelacionada.destroy', $fichaPariente->id)}}"
                                     style="display: inline">
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
@@ -61,6 +61,7 @@
                                         onclick="return confirm('¿Esta seguro que desea elminirar este registro?')"><i
                                             class="fa fa-light fa-trash"></i></button>
                                 </form>
+
                             </td>
                         </tr>
                     @endforeach

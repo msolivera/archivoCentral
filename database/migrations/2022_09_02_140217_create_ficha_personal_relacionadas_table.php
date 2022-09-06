@@ -15,11 +15,9 @@ return new class extends Migration
     {
         Schema::create('ficha_personal_relacionadas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('ficha_personal_id')->default(0);
-            $table->unsignedInteger('ficha_impersonal_id')->default(0);
-            $table->unsignedInteger('dossier_id')->default(0);
-            $table->unsignedInteger('documento_id')->default(0);
-            $table->unsignedInteger('ficha_per_relacionada_id');
+            $table->unsignedInteger('ficha_id');
+            $table->unsignedInteger('ficha_personal_id');
+            $table->string('tipoRelacion');
             $table->unsignedInteger('parentesco_id')->default(0);
             $table->timestamps();
         });

@@ -381,32 +381,153 @@
 
             </div>
         </form>
-        <div class="row">
-            @include('fichasPersonales.parciales.multimedia')
+
+        <div class="card card-primary">
+            <div class="card-header">
+                <h5 class="card-title">Galeria</h5>
+            </div>
+            <div class="card-body">
+                @include('fichasPersonales.parciales.multimedia')
+            </div>
+        </div>
+        <div class="card card-primary">
+            <div class="card-body">
+
+                <div class="row">
+                    <table class="table table-bordered table-striped ">
+                        <thead>
+                            <tr>
+                                <th>Relacion</th>
+                                <th>Agregar Nueva</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <label for="ideologias">Ideologias</label>
+                                </td>
+                                <td>
+                                    <button style="float: rigth; padding: 10px; margin-left:10px"
+                                        class="btn btn-xs btn-info" id="mostrarIdeologia">Monstrar Panel</i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="ocupaciones">Ocupaciones</label>
+                                </td>
+                                <td>
+                                    <button style="float: rigth; padding: 10px; margin-left:10px"
+                                        class="btn btn-xs btn-info" id="mostrarOcupaciones">Monstrar Panel</i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="domicilios">Domicilios</label>
+                                </td>
+                                <td>
+                                    <button style="float: rigth; padding: 10px; margin-left:10px"
+                                        class="btn btn-xs btn-info" id="mostrarDomicilios">Monstrar Panel</i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="estudios">Estudios</label>
+                                </td>
+                                <td>
+                                    <button style="float: rigth; padding: 10px; margin-left:10px"
+                                        class="btn btn-xs btn-info" id="mostrarEstudios">Monstrar Panel</i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="roles">Organizaciones y Roles</label>
+                                </td>
+                                <td>
+                                    <button style="float: rigth; padding: 10px; margin-left:10px"
+                                        class="btn btn-xs btn-info" id="mostrarRoles">Monstrar Panel</i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="anotaciones">Anotaciones</label>
+                                </td>
+                                <td>
+                                    <button style="float: rigth; padding: 10px; margin-left:10px"
+                                        class="btn btn-xs btn-info" id="mostrarAnotaciones">Monstrar Panel</i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="fichaPer">Fichas Personales</label>
+                                </td>
+                                <td>
+                                    <button style="float: rigth; padding: 10px; margin-left:10px"
+                                        class="btn btn-xs btn-info" id="mostrarFichaPer">Monstrar Panel</i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="fichaImper">Fichas Impersonales</label>
+                                </td>
+                                <td>
+                                    <button style="float: rigth; padding: 10px; margin-left:10px"
+                                        class="btn btn-xs btn-info" id="mostrarFichaImper">Monstrar Panel</i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="dossier">Dossier</label>
+                                </td>
+                                <td>
+                                    <button style="float: rigth; padding: 10px; margin-left:10px"
+                                        class="btn btn-xs btn-info" id="mostrarDossier">Monstrar Panel</i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="documentos">Documentos</label>
+                                </td>
+                                <td>
+                                    <button style="float: rigth; padding: 10px; margin-left:10px"
+                                        class="btn btn-xs btn-info" id="mostrarDocumentos">Monstrar Panel</i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row" id=ideologias style="display: none;">
+                    @include('fichasPersonales.parciales.ideologias')
+                </div>
+                <div class="row" id=ocupaciones style="display: none;">
+                    @include('fichasPersonales.parciales.ocupaciones')
+                </div>
+                <div class="row" id=domicilios style="display: none;">
+                    @include('fichasPersonales.parciales.domicilios')
+                </div>
+                <div class="row" id=estudios style="display: none;">
+                    @include('fichasPersonales.parciales.estudios')
+                </div>
+                <div class="row" id=roles style="display: none;">
+                    @include('fichasPersonales.parciales.rolesOrganizaciones')
+                </div>
+                <div class="row" id=anotaciones style="display: none;">
+                    @include('fichasPersonales.parciales.anotaciones')
+                </div>
+                <div class="row" id=fichaPer style="display: none;">
+                    @include('fichasPersonales.parciales.fichasPerRel')
+                </div>
+                <div class="row" id=fichaImper style="display: none;">
+                    @include('fichasPersonales.parciales.fichasImperRel')
+                </div>
+                <div class="row" id=dossier style="display: none;">
+                    @include('fichasPersonales.parciales.dossierRel')
+                </div>
+                <div class="row" id=documentos style="display: none;">
+                    @include('fichasPersonales.parciales.documentosRel')
+                </div>  
+            </div>
         </div>
 
-        <div class="row">
-
-            @include('fichasPersonales.parciales.ideologias')
-
-            @include('fichasPersonales.parciales.ocupaciones')
-
-            @include('fichasPersonales.parciales.domicilios')
-
-            @include('fichasPersonales.parciales.estudios')
-
-            @include('fichasPersonales.parciales.rolesOrganizaciones')
-
-            @include('fichasPersonales.parciales.anotaciones')
-
-            @include('fichasPersonales.parciales.fichasPerRel')
-
-            @include('fichasPersonales.parciales.fichasImperRel')
-
-            @include('fichasPersonales.parciales.dossierRel')
-
-            @include('fichasPersonales.parciales.documentosRel')
-        </div>
     </section>
 @stop
 
@@ -472,6 +593,107 @@
             });
             $("input[data-bootstrap-switch]").each(function() {
                 $(this).bootstrapSwitch('state', $(this).prop('checked'));
+            });
+        });
+
+        $(document).ready(function() {
+            $('#mostrarIdeologia').click(function() {
+                $('#ideologias').slideToggle("fast");
+            });
+        });
+        $(document).ready(function() {
+            $('#cerrarForm').click(function() {
+                $('#ideologias').hide();
+            });
+        });
+        $(document).ready(function() {
+            $('#mostrarOcupaciones').click(function() {
+                $('#ocupaciones').slideToggle("fast");
+            });
+        });
+        $(document).ready(function() {
+            $('#cerrarForm').click(function() {
+                $('#ocupaciones').hide();
+            });
+        });
+        $(document).ready(function() {
+            $('#mostrarDomicilios').click(function() {
+                $('#domicilios').slideToggle("fast");
+            });
+        });
+        $(document).ready(function() {
+            $('#cerrarForm').click(function() {
+                $('#domicilios').hide();
+            });
+        });
+        $(document).ready(function() {
+            $('#mostrarEstudios').click(function() {
+                $('#estudios').slideToggle("fast");
+            });
+        });
+        $(document).ready(function() {
+            $('#cerrarForm').click(function() {
+                $('#estudios').hide();
+            });
+        });
+        $(document).ready(function() {
+            $('#mostrarRoles').click(function() {
+                $('#roles').slideToggle("fast");
+            });
+        });
+        $(document).ready(function() {
+            $('#cerrarForm').click(function() {
+                $('#roles').hide();
+            });
+        });
+        $(document).ready(function() {
+            $('#mostrarAnotaciones').click(function() {
+                $('#anotaciones').slideToggle("fast");
+            });
+        });
+        $(document).ready(function() {
+            $('#cerrarForm').click(function() {
+                $('#anotaciones').hide();
+            });
+        });
+        $(document).ready(function() {
+            $('#mostrarFichaPer').click(function() {
+                $('#fichaPer').slideToggle("fast");
+            });
+        });
+        $(document).ready(function() {
+            $('#cerrarForm').click(function() {
+                $('#fichaPer').hide();
+            });
+        });
+        $(document).ready(function() {
+            $('#mostrarFichaImper').click(function() {
+                $('#fichaImper').slideToggle("fast");
+            });
+        });
+        $(document).ready(function() {
+            $('#cerrarForm').click(function() {
+                $('#fichaImper').hide();
+            });
+        });
+        $(document).ready(function() {
+            $('#mostrarDossier').click(function() {
+                $('#dossier').slideToggle("fast");
+            });
+        });
+        $(document).ready(function() {
+            $('#cerrarForm').click(function() {
+                $('#dossier').hide();
+            });
+        });
+        $(document).ready(function() {
+            $('#mostrarDocumentos').click(function() {
+                $('#documentos').slideToggle("fast");
+            });
+        });
+        $(document).ready(function() {
+            $('#cerrarForm').click(function() {
+                $('#documentos').hide();
             });
         });
     </script>

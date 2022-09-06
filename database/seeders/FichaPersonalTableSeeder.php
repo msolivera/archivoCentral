@@ -41,6 +41,7 @@ class FichaPersonalTableSeeder extends Seeder
         $persona->clasificacion_id = 1;
         $persona->numeroPaquete = 11;
         $persona->estadoIngreso = 'No Aplica';
+        $persona->tipo = 'fichaPersonal';
         $persona->save();
         
         $persona = new FichaPersonal();
@@ -48,6 +49,7 @@ class FichaPersonalTableSeeder extends Seeder
         $persona->primerNombre = 'federico';
         $persona->primerApellido = 'alonso';
         $persona->pais_id = 1;
+        $persona->tipo = 'fichaPersonal';
         $persona->save();
         
         $persona = new FichaPersonal();
@@ -55,6 +57,7 @@ class FichaPersonalTableSeeder extends Seeder
         $persona->primerNombre = 'cristian';
         $persona->primerApellido = 'palma';
         $persona->pais_id = 1;
+        $persona->tipo = 'fichaPersonal';
         $persona->save();
         
         $persona = new FichaPersonal();
@@ -62,6 +65,7 @@ class FichaPersonalTableSeeder extends Seeder
         $persona->primerNombre = 'marcelo';
         $persona->primerApellido = 'olivera';
         $persona->pais_id = 1;
+        $persona->tipo = 'fichaPersonal';
         $persona->save();
     }
 }

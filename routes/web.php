@@ -207,9 +207,9 @@ Route::group(
         //Route::delete('/parientes/{fichaPersona}', [App\Http\Controllers\ParientesController::class, 'destroy'])->name('parientes.destroy');
         //Route::get('/parientes/{fichaPersona}', [App\Http\Controllers\ParientesController::class, 'index'])->name('parientes.index');
         //FichaPersonalRelacionada
-        Route::post('fichaPersonalRelacionada/{fichaPariente}/{tipoInsert}', [App\Http\Controllers\FichaPersonalRelacionadaController::class, 'store'])->name('fichaPersonalRelacionada.store');
-        Route::delete('/fichaPersonalRelacionada/{fichaPersona}/{tipoDelete}', [App\Http\Controllers\FichaPersonalRelacionadaController::class, 'destroy'])->name('fichaPersonalRelacionada.destroy');
-        Route::get('/fichaPersonalRelacionada/{fichaPersona}/{tipo}', [App\Http\Controllers\FichaPersonalRelacionadaController::class, 'index'])->name('fichaPersonalRelacionada.index');
+        Route::post('/fichaPersonalRelacionada/{fichaPariente}/{fichaTipo}', [App\Http\Controllers\FichaPersonalRelacionadaController::class, 'store'])->name('fichaPersonalRelacionada.store');
+        Route::delete('/fichaPersonalRelacionada/{fichaPersona}', [App\Http\Controllers\FichaPersonalRelacionadaController::class, 'destroy'])->name('fichaPersonalRelacionada.destroy');
+        Route::get('/fichaPersonalRelacionada/{fichaPersona}/{fichaTipo}', [App\Http\Controllers\FichaPersonalRelacionadaController::class, 'index'])->name('fichaPersonalRelacionada.index');
         //fotos
         Route::post('/photos/{fichaPersona}', [App\Http\Controllers\PhotoController::class, 'store'])->name('photo.store');
         Route::post('/photosImper/{fichaImpersonal}', [App\Http\Controllers\PhotoController::class, 'storeImpersonal'])->name('photo.storeImpersonal');

@@ -10,11 +10,11 @@ class FichaPersonalRelacionada extends Model
     use HasFactory;
     public function fichaPersonal()
     {
-        return $this->belongsTo(FichaPersonal::class, 'ficha_personal_id');
+        return $this->belongsTo(FichaPersonal::class, 'ficha_id');
     }
     public function fichaImpersonal()
     {
-        return $this->belongsTo(FichaImpersonal::class, 'ficha_impersonal_id');
+        return $this->belongsTo(FichaImpersonal::class, 'ficha_id');
     }
     /*public function documento()
     {

@@ -177,6 +177,7 @@ class FichasPersonalesController extends Controller
         $fichaPer->grado_id = $request->grado_id;
         $fichaPer->cuerpo_id = $request->cuerpo_id;
         $fichaPer->clasificacion_id = $request->clasificacion_id;
+        $fichaPer->tipo = 'fichaPersonal';
 
         //return $fichaPer; 
         $fichaPer->save();
@@ -219,9 +220,10 @@ class FichasPersonalesController extends Controller
             ->where('fichaPersonal_Id', $fichaPer->id)
             ->get()->all();
         $fichasParientes = FichaPersonalRelacionada::select('*')
-            ->where('ficha_personal_id', $fichaPer->id)
+            ->where('ficha_id', $fichaPer->id)
             ->get()->all();
 
+            
         return view(
             'fichasPersonales.editarFicha',
             compact(
@@ -317,10 +319,10 @@ class FichasPersonalesController extends Controller
 
             //modificar esta consulta para que traiga el nombre del parentesco tambien
         $fichasParientes = FichaPersonal::select('*')
-            ->join('ficha_personal_relacionadas', 'ficha_personals.id', '=', 'ficha_personal_relacionadas.ficha_per_relacionada_id')
-            ->where('ficha_personal_relacionadas.ficha_personal_id', $fichaPer->id)
+            ->join('ficha_personal_relacionadas', 'ficha_personals.id', '=', 'ficha_personal_relacionadas.ficha_personal_id')
+            ->where('ficha_personal_relacionadas.ficha_id', $fichaPer->id)
+            ->where('ficha_personal_relacionadas.tipoRelacion','=','fichaPersonal')
             ->get()->all();
-
 
         return view(
             'fichasPersonales.editarFicha',
@@ -492,6 +494,7 @@ class FichasPersonalesController extends Controller
         $fichaPer->grado_id = $request->grado_id;
         $fichaPer->cuerpo_id = $request->cuerpo_id;
         $fichaPer->clasificacion_id = $request->clasificacion_id;
+        $fichaPer->tipo = 'fichaPersonal';
 
         $fichaPer->save();
         return back()->with('flash', 'Persona creada con exito');
