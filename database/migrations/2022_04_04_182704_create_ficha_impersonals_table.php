@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->unsignedInteger('clasificacion_id')->default(0);
+            $table->string('tipo')->nullable();
             $table->timestamps();
         });
     }

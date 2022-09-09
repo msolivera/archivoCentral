@@ -87,6 +87,49 @@
         <div class="row">
             @include('fichasImpersonales.parciales.multimedia')
         </div>
+
+        <div class="card card-primary">
+            <div class="card-body">
+
+                <div class="row">
+                    <table class="table table-bordered table-striped ">
+                        <thead>
+                            <tr>
+                                <th>Relacion</th>
+                                <th>Agregar Nueva</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <label for="fichaPer">Fichas Personales</label>
+                                </td>
+                                <td>
+                                    <button style="float: rigth; padding: 10px; margin-left:10px"
+                                        class="btn btn-xs btn-info" id="mostrarFichaPer">Monstrar Panel</i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td>
+                                </td>
+                                <td>
+                                <button style="float: rigth; padding: 15px 18px; margin-left:10px" class="btn btn-xs btn-warning"
+                                    id="cerrarTodos">Cerrar todos</i></button>
+                                </td>
+                            <tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <div class="row" id=fichaPer style="display: none;">
+                    @include('fichasImpersonales.parciales.fichasPerRel')
+                </div>
+
+            </div>
+        </div>
+
+
     </section>
 @stop
 
@@ -120,5 +163,25 @@
 
 
         });
+
+
+        $(document).ready(function() {
+            $('#mostrarFichaPer').click(function() {
+                $('#fichaPer').slideToggle("fast");
+            });
+        });
+        $(document).ready(function() {
+            $('#cerrarForm').click(function() {
+                $('#fichaPer').hide();
+            });
+        });
+
+        $(document).ready(function(){
+            $('#cerrarTodos').click(function(){
+                
+                $('#fichaPer').hide();
+
+            })
+        })
     </script>
 @endpush

@@ -13,6 +13,7 @@ use App\Models\Fuerza;
 use App\Models\Grado;
 use App\Models\ArmaCuerpo;
 use App\Models\FichaPersonal;
+use App\Models\FichaImpersonal;
 use App\Models\Tema;
 use App\Models\Clasificacion;
 use App\Models\Parentesco;
@@ -40,11 +41,43 @@ class FichaPersonalRelacionadaController extends Controller
                 $grados = Grado::all();
                 $cuerpos = ArmaCuerpo::all();
                 $fichasPerRel = FichaPersonal::select('*')
-                    ->whereNotIn('id', function ($query) {
-                        $query->select("ficha_id")
-                            ->from('ficha_personal_relacionadas')
-                            ->where('tipoRelacion', '=', 'fichaPersonal');
-                    })
+                    ->from('ficha_personals')
+                    ->where('id', '<>', $fichaId)->get()->all();
+
+                $temas = Tema::all();
+                $clasificaciones = Clasificacion::all();
+                $fichasRelacionadas = FichaPersonalRelacionada::all();
+
+                return view('fichaPersonalRelacionada.index', compact(
+                    'fichasPerRel',
+                    'fichaPerTitular',
+                    'fichasRelacionadas',
+                    'paises',
+                    'ciudades',
+                    'departamentos',
+                    'estadosCiviles',
+                    'situaciones',
+                    'fuerzas',
+                    'grados',
+                    'cuerpos',
+                    'temas',
+                    'parentescos',
+                    'clasificaciones'
+                ));
+                break;
+            case ('fichaImpersonal'):
+                $fichaPerTitular = FichaImpersonal::find($fichaId);
+                $paises = Pais::all();
+                $parentescos = Parentesco::all();
+                $ciudades = Ciudad::all();
+                $departamentos = Departamento::all();
+                $estadosCiviles = EstadoCivil::all();
+                $situaciones = Situacion::all();
+                $fuerzas = Fuerza::all();
+                $grados = Grado::all();
+                $cuerpos = ArmaCuerpo::all();
+                $fichasPerRel = FichaPersonal::select('*')
+                    ->from('ficha_personals')
                     ->where('id', '<>', $fichaId)->get()->all();
 
                 $temas = Tema::all();

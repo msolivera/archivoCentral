@@ -7,6 +7,8 @@ use App\Models\FichaImpersonal;
 use App\Models\Clasificacion; 
 use App\Models\Tema; 
 use App\Models\Unidad; 
+use App\Models\FichaPersonalRelacionada; 
+use App\Models\FichaPersonal; 
 
 class FichaImpersonalController extends Controller
 {
@@ -33,6 +35,7 @@ class FichaImpersonalController extends Controller
         //validacion falta
         $fichaImpersonal = new fichaImpersonal();
         $fichaImpersonal->nombre = $request->nombre;
+        $fichaImpersonal->tipo = 'fichaImpersonal';
         $fichaImpersonal->clasificacion_id = $request->clasificacion_id;
         $fichaImpersonal->save();
 
@@ -47,6 +50,11 @@ class FichaImpersonalController extends Controller
         $unidades = Unidad::all();
         $temas = Tema::all();
         $fichaImpersonal = fichaImpersonal::find($fichaImpersonalId);
+        $fichasParientes = FichaPersonal::select('*')
+            ->join('ficha_personal_relacionadas', 'ficha_personal_relacionadas.ficha_personal_id', '=', 'ficha_personals.id')
+            ->where('ficha_id', $fichaImpersonalId)
+            ->where('tipoRelacion', '=', 'fichaImpersonal')
+            ->get()->all();
 
         $fichaTemas = Tema::join('ficha_impersonal_tema', 'tema_Id', '=', 'temas.id')
         ->select('*')
@@ -56,7 +64,7 @@ class FichaImpersonalController extends Controller
             ->select('*')
             ->where('ficha_Impersonal_Id', $fichaImpersonal->id)->get()->all();
 
-        return view('fichasImpersonales.editarFicha', compact('fichaImpersonal', 'temas', 'unidades', 'clasificaciones','fichaTemas','fichaUnidades'));
+        return view('fichasImpersonales.editarFicha', compact('fichaImpersonal', 'temas', 'unidades', 'clasificaciones','fichaTemas','fichaUnidades','fichasParientes'));
 
     
     }

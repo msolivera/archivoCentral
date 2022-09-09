@@ -493,6 +493,16 @@
                                 </td>
                             </tr>
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <td>
+                                </td>
+                                <td>
+                                <button style="float: rigth; padding: 15px 18px; margin-left:10px" class="btn btn-xs btn-warning"
+                                    id="cerrarTodos">Cerrar todos</i></button>
+                                </td>
+                            <tr>
+                        </tfoot>
                     </table>
                 </div>
                 <div class="row" id=ideologias style="display: none;">
@@ -524,7 +534,9 @@
                 </div>
                 <div class="row" id=documentos style="display: none;">
                     @include('fichasPersonales.parciales.documentosRel')
-                </div>  
+                </div>
+
+
             </div>
         </div>
 
@@ -696,5 +708,20 @@
                 $('#documentos').hide();
             });
         });
+
+        $(document).ready(function(){
+            $('#cerrarTodos').click(function(){
+                $('#ideologias').hide();
+                $('#ocupaciones').hide();
+                $('#domicilios').hide();
+                $('#estudios').hide();
+                $('#roles').hide();
+                $('#anotaciones').hide();
+                $('#fichaPer').hide();
+                $('#fichaImper').hide();
+                $('#dossier').hide();
+                $('#documentos').hide();
+            })
+        })
     </script>
 @endpush

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedInteger('ficha_id');
             $table->unsignedInteger('ficha_personal_id');
             $table->string('tipoRelacion');
-            $table->unsignedInteger('parentesco_id')->default(0);
+            $table->unsignedInteger('parentesco_id')->nullable();
             $table->timestamps();
         });
     }
