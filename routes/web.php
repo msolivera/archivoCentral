@@ -219,6 +219,10 @@ Route::group(
         Route::post('/fichaImpersonal', [App\Http\Controllers\FichaImpersonalController::class, 'store'])->name('fichaImpersonal.store');
         Route::put('/fichaImpersonal/{fichaImpersonal}', [App\Http\Controllers\FichaImpersonalController::class, 'update'])->name('fichaImpersonal.update');
         Route::delete('/fichaImpersonal/{fichaImpersonal}', [App\Http\Controllers\FichaImpersonalController::class, 'destroy'])->name('fichaImpersonal.destroy');
+        //FichaImpersonalRelacionada
+        Route::post('/fichaImpersonalRelacionada/{fichaImpersonal}/{fichaTipo}', [App\Http\Controllers\FichaImpersonalRelacionadaController::class, 'store'])->name('fichaImpersonalRelacionada.store');
+        Route::delete('/fichaImpersonalRelacionada/{fichaImpersonal}', [App\Http\Controllers\FichaImpersonalRelacionadaController::class, 'destroy'])->name('fichaImpersonalRelacionada.destroy');
+        Route::get('/fichaImpersonalRelacionada/{fichaImpersonal}/{fichaTipo}', [App\Http\Controllers\FichaImpersonalRelacionadaController::class, 'index'])->name('fichaImpersonalRelacionada.index');
 
     }
 );

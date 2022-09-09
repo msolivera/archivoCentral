@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('parientes', function (Blueprint $table) {
+        Schema::create('ficha_impersonal_relacionadas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('ficha_personal_id');
-            $table->unsignedInteger('ficha_pariente_id');
-            $table->unsignedInteger('parentesco_id');
+            $table->unsignedInteger('ficha_id');
+            $table->unsignedInteger('ficha_impersonal_id');
+            $table->string('tipoRelacion');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('parientes');
+        Schema::dropIfExists('ficha_impersonal_relacionadas');
     }
 };
