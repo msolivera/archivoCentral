@@ -55,6 +55,12 @@ class FichaImpersonalController extends Controller
             ->where('ficha_id', $fichaImpersonalId)
             ->where('tipoRelacion', '=', 'fichaImpersonal')
             ->get()->all();
+        
+        $fichasImpersonalesAgregadas = FichaImpersonal::select('*')
+            ->join('ficha_impersonal_relacionadas', 'ficha_impersonal_relacionadas.ficha_impersonal_id', '=', 'ficha_impersonals.id')
+            ->where('ficha_impersonal_relacionadas.ficha_id', $fichaImpersonalId)
+            ->where('ficha_impersonal_relacionadas.tipoRelacion', '=', 'fichaImpersonal')
+            ->get()->all();
 
         $fichaTemas = Tema::join('ficha_impersonal_tema', 'tema_Id', '=', 'temas.id')
         ->select('*')
@@ -64,7 +70,7 @@ class FichaImpersonalController extends Controller
             ->select('*')
             ->where('ficha_Impersonal_Id', $fichaImpersonal->id)->get()->all();
 
-        return view('fichasImpersonales.editarFicha', compact('fichaImpersonal', 'temas', 'unidades', 'clasificaciones','fichaTemas','fichaUnidades','fichasParientes'));
+        return view('fichasImpersonales.editarFicha', compact('fichaImpersonal', 'temas', 'unidades', 'clasificaciones','fichaTemas','fichaUnidades','fichasParientes','fichasImpersonalesAgregadas'));
 
     
     }

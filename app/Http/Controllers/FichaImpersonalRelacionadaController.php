@@ -1,24 +1,16 @@
 <?php
-/*
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\FichaPersonalRelacionada;
-use App\Models\Pais;
-use App\Models\Ciudad;
-use App\Models\Departamento;
-use App\Models\EstadoCivil;
-use App\Models\Situacion;
-use App\Models\Fuerza;
-use App\Models\Grado;
-use App\Models\ArmaCuerpo;
+use App\Models\FichaImpersonalRelacionada;
 use App\Models\FichaPersonal;
 use App\Models\FichaImpersonal;
 use App\Models\Tema;
 use App\Models\Clasificacion;
-use App\Models\Parentesco;
 
-class FichaPersonalRelacionadaController extends Controller
+class FichaImpersonalRelacionadaController extends Controller
 {
     public function __construct()
     {
@@ -30,74 +22,38 @@ class FichaPersonalRelacionadaController extends Controller
 
         switch ($fichaTipo) {
             case ('fichaPersonal'):
-                $fichaPerTitular = FichaPersonal::find($fichaId);
-                $paises = Pais::all();
-                $parentescos = Parentesco::all();
-                $ciudades = Ciudad::all();
-                $departamentos = Departamento::all();
-                $estadosCiviles = EstadoCivil::all();
-                $situaciones = Situacion::all();
-                $fuerzas = Fuerza::all();
-                $grados = Grado::all();
-                $cuerpos = ArmaCuerpo::all();
-                $fichasPerRel = FichaPersonal::select('*')
-                    ->from('ficha_personals')
+                $fichaTitular = FichaImpersonal::find($fichaId);
+                $fichasImperRel = FichaImpersonal::select('*')
+                    ->from('ficha_impersonals')
                     ->where('id', '<>', $fichaId)->get()->all();
 
                 $temas = Tema::all();
                 $clasificaciones = Clasificacion::all();
                 $fichasRelacionadas = FichaPersonalRelacionada::all();
 
-                return view('fichaPersonalRelacionada.index', compact(
-                    'fichasPerRel',
-                    'fichaPerTitular',
+                return view('fichaImpersonalRelacionada.index', compact(
+                    'fichasImperRel',
+                    'fichaTitular',
                     'fichasRelacionadas',
-                    'paises',
-                    'ciudades',
-                    'departamentos',
-                    'estadosCiviles',
-                    'situaciones',
-                    'fuerzas',
-                    'grados',
-                    'cuerpos',
                     'temas',
-                    'parentescos',
                     'clasificaciones'
                 ));
                 break;
             case ('fichaImpersonal'):
-                $fichaPerTitular = FichaImpersonal::find($fichaId);
-                $paises = Pais::all();
-                $parentescos = Parentesco::all();
-                $ciudades = Ciudad::all();
-                $departamentos = Departamento::all();
-                $estadosCiviles = EstadoCivil::all();
-                $situaciones = Situacion::all();
-                $fuerzas = Fuerza::all();
-                $grados = Grado::all();
-                $cuerpos = ArmaCuerpo::all();
-                $fichasPerRel = FichaPersonal::select('*')
-                    ->from('ficha_personals')
+                $fichaTitular = FichaImpersonal::find($fichaId);
+                $fichasImperRel = FichaPersonal::select('*')
+                    ->from('ficha_impersonals')
                     ->where('id', '<>', $fichaId)->get()->all();
 
                 $temas = Tema::all();
                 $clasificaciones = Clasificacion::all();
                 $fichasRelacionadas = FichaPersonalRelacionada::all();
 
-                return view('fichaPersonalRelacionada.index', compact(
-                    'fichasPerRel',
-                    'fichaPerTitular',
+                return view('fichaImpersonalRelacionada.index', compact(
+                    'fichasImperRel',
+                    'fichaTitular',
                     'fichasRelacionadas',
-                    'paises',
-                    'ciudades',
-                    'departamentos',
-                    'estadosCiviles',
-                    'situaciones',
-                    'fuerzas',
-                    'grados',
-                    'cuerpos',
                     'temas',
-                    'parentescos',
                     'clasificaciones'
                 ));
                 break;
@@ -109,7 +65,7 @@ class FichaPersonalRelacionadaController extends Controller
 
     public function destroy($fichaRelId)
     {
-        $fichaRelacion = FichaPersonalRelacionada::find($fichaRelId);
+        $fichaRelacion = FichaImpersonalRelacionada::find($fichaRelId);
         $fichaRelacion->delete();
 
         return back()->with('flash', 'Registro eliminado con exito');
@@ -118,22 +74,21 @@ class FichaPersonalRelacionadaController extends Controller
     public function store(Request $request,  $fichaTitular, $fichaTipo)
     {
 
-        $fichaRelacionada = new FichaPersonalRelacionada();
+        $fichaRelacionada = new FichaImpersonalRelacionada();
         $fichaRelacionada->ficha_id = $fichaTitular;
-        $fichaRelacionada->ficha_personal_id = $request->ficha_Id;
+        $fichaRelacionada->ficha_impersonal_id = $request->ficha_Id;
         $fichaRelacionada->tipoRelacion = $fichaTipo;
-        $fichaRelacionada->parentesco_id = $request->parentesco_id;
         $fichaRelacionada->save();
 
-        return back()->with('flash', 'Pariente creado con exito');
+        return back()->with('flash', 'Relacion creada con exito');
     }
     public function edit($fichaId)
     {
-        $fichaRelacionada = FichaPersonalRelacionada::find($fichaId);
+        /*$fichaRelacionada = FichaImpersonalRelacionada::find($fichaId);
         return view(
             'parientes.editar',
             compact('pariente')
-        );
+        );*/
     }
 
     public function update(Request $request, $fichaId)
@@ -143,13 +98,11 @@ class FichaPersonalRelacionadaController extends Controller
             'nombre' => 'required',
         ]);
 
-        $fichaRelacionada = FichaPersonalRelacionada::find($fichaId);
-        $fichaRelacionada->ficha_personal_id = $request->ficha_personal_id;
-        $fichaRelacionada->ficha_per_relacionada_id = $request->ficha_per_relacionada_id;
-        $fichaRelacionada->parentesco_id = $request->parentesco_id;
+        $fichaRelacionada = FichaImpersonalRelacionada::find($fichaId);
+        $fichaRelacionada->ficha_impersonal_id = $request->ficha_impersonal_id;
+        $fichaRelacionada->ficha_per_relacionada_id = $request->ficha_imper_relacionada_id;
         $fichaRelacionada->save();
 
-        return back()->with('flash', 'Pariente actualizado con exito');
+        return back()->with('flash', 'Ficha actualizada con exito');
     }
 }
-*/

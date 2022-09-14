@@ -8,7 +8,7 @@
                 </div>
                 <div class="col-4">
                     <a style="float: right; padding: 15px;"
-                        href="/fichaImpersonalRelacionada/{{ $fichaPer->id }}/{{ $fichaPer->tipo }}"
+                        href="/fichaImpersonalRelacionada/{{ $fichaImpersonal->id }}/{{ $fichaImpersonal->tipo }}"
                         class="btn btn-xs btn-info"><i class="fa fa-regular fa-plus"></i></a>
 
                 </div>

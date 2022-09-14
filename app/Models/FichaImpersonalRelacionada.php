@@ -1,11 +1,11 @@
 <?php
-/*
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class FichaPersonalRelacionada extends Model
+class FichaImpersonalRelacionada extends Model
 {
     use HasFactory;
     public function fichaPersonal()
@@ -24,4 +24,4 @@ class FichaPersonalRelacionada extends Model
     {
         return $this->belongsTo(FichaPersonal::class, 'dossier_id');
     }*/
-//}
+}

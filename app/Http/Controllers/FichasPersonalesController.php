@@ -27,6 +27,7 @@ use App\Models\TipoAnotacion;
 use App\Models\Anotacion;
 use App\Models\FichaPersonalRelacionada;
 use App\Models\Parentesco;
+use App\Models\FichaImpersonal;
 
 
 class FichasPersonalesController extends Controller
@@ -224,6 +225,13 @@ class FichasPersonalesController extends Controller
             ->where('ficha_id', $fichaPer->id)
             ->where('tipoRelacion', '=', 'fichaPersonal')
             ->get()->all();
+        
+        $fichasImpersonalesAgregadas = FichaImpersonal::select('*')
+            ->join('ficha_impersonal_relacionadas', 'ficha_impersonal_relacionadas.ficha_impersonal_id', '=', 'ficha_impersonals.id')
+            ->where('ficha_impersonal_relacionadas.ficha_id', $$fichaPer->id)
+            ->where('ficha_impersonal_relacionadas.tipoRelacion', '=', 'fichaPersonal')
+            ->get()->all();
+
 
 
         return view(
@@ -323,13 +331,12 @@ class FichasPersonalesController extends Controller
             ->where('ficha_id', $fichaPer->id)
             ->where('tipoRelacion', '=', 'fichaPersonal')
             ->get()->all();
-
-        /*SELECT * FROM archivocentral.ficha_personals
-			INNER JOIN archivocentral.ficha_personal_relacionadas
-				ON ficha_personal_relacionadas.ficha_personal_id = ficha_personals.id
-                
-			WHERE ficha_personal_relacionadas.ficha_id = 1
-            and tipoRelacion = "fichaPersonal"*/
+        
+        $fichasImpersonalesAgregadas = FichaImpersonal::select('*')
+            ->join('ficha_impersonal_relacionadas', 'ficha_impersonal_relacionadas.ficha_impersonal_id', '=', 'ficha_impersonals.id')
+            ->where('ficha_impersonal_relacionadas.ficha_id', $fichaPer->id)
+            ->where('ficha_impersonal_relacionadas.tipoRelacion', '=', 'fichaPersonal')
+            ->get()->all();
 
 
         return view(
@@ -360,6 +367,7 @@ class FichasPersonalesController extends Controller
                 'tipoAnotaciones',
                 'fichasAnotaciones',
                 'fichasParientes',
+                'fichasImpersonalesAgregadas',
                 'parentescos'
 
             )

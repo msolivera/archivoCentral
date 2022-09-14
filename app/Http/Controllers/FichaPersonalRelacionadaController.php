@@ -78,7 +78,7 @@ class FichaPersonalRelacionadaController extends Controller
                 $cuerpos = ArmaCuerpo::all();
                 $fichasPerRel = FichaPersonal::select('*')
                     ->from('ficha_personals')
-                    ->where('id', '<>', $fichaId)->get()->all();
+                    ->get()->all();
 
                 $temas = Tema::all();
                 $clasificaciones = Clasificacion::all();

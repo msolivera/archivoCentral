@@ -109,6 +109,15 @@
                                         class="btn btn-xs btn-info" id="mostrarFichaPer">Monstrar Panel</i></button>
                                 </td>
                             </tr>
+                            <tr>
+                                <td>
+                                    <label for="fichaImper">Fichas Impersonales</label>
+                                </td>
+                                <td>
+                                    <button style="float: rigth; padding: 10px; margin-left:10px"
+                                        class="btn btn-xs btn-info" id="mostrarFichaImper">Monstrar Panel</i></button>
+                                </td>
+                            </tr>
                         </tbody>
                         <tfoot>
                             <tr>
@@ -124,6 +133,9 @@
                 </div>
                 <div class="row" id=fichaPer style="display: none;">
                     @include('fichasImpersonales.parciales.fichasPerRel')
+                </div>
+                <div class="row" id=fichaImper style="display: none;">
+                    @include('fichasImpersonales.parciales.fichasImperRel')
                 </div>
 
             </div>
@@ -180,6 +192,25 @@
             $('#cerrarTodos').click(function(){
                 
                 $('#fichaPer').hide();
+
+            })
+        })
+
+        $(document).ready(function() {
+            $('#mostrarFichaImper').click(function() {
+                $('#fichaImper').slideToggle("fast");
+            });
+        });
+        $(document).ready(function() {
+            $('#cerrarForm').click(function() {
+                $('#fichaImper').hide();
+            });
+        });
+
+        $(document).ready(function(){
+            $('#cerrarTodos').click(function(){
+                
+                $('#fichaImper').hide();
 
             })
         })
