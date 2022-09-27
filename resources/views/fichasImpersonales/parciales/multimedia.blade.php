@@ -139,6 +139,7 @@
                 // Hookup the start button
                 file.previewElement.querySelector(".start").onclick = function() {
                     myDropzone.enqueueFile(file)
+                    location.reload();
                 }
             })
 
@@ -164,6 +165,7 @@
             // `clickable` has already been specified.
             document.querySelector("#actions .start").onclick = function() {
                 myDropzone.enqueueFiles(myDropzone.getFilesWithStatus(Dropzone.ADDED))
+                location.reload();
             }
             document.querySelector("#actions .cancel").onclick = function() {
                 myDropzone.removeAllFiles(true)

@@ -9,6 +9,7 @@ use App\Models\FichaPersonal;
 use App\Models\FichaImpersonal;
 use App\Models\Tema;
 use App\Models\Clasificacion;
+use Illuminate\Support\Facades\DB;
 
 class FichaImpersonalRelacionadaController extends Controller
 {
@@ -21,30 +22,38 @@ class FichaImpersonalRelacionadaController extends Controller
     {
 
         switch ($fichaTipo) {
-            case ('fichaPersonal'):
-                $fichaTitular = FichaImpersonal::find($fichaId);
-                $fichasImperRel = FichaImpersonal::select('*')
-                    ->from('ficha_impersonals')
-                    ->where('id', '<>', $fichaId)->get()->all();
 
+            case ('fichaPersonal'):
+                $fichaTitular = FichaPersonal::find($fichaId);
+
+                $fichasImperRel = DB::table('ficha_impersonals')
+                    ->select('ficha_impersonals.id', 'ficha_impersonals.nombre', 'clasificacion_id', 'clasificacions.nombre AS clasificacionNombre')
+                    ->join('clasificacions', 'ficha_impersonals.id', '=', 'clasificacions.id')
+                    ->whereNotIn('ficha_impersonals.id', DB::table('ficha_impersonal_relacionadas')->select('ficha_impersonal_id')
+                        ->where('ficha_impersonal_relacionadas.ficha_id', '=', $fichaId)
+                        ->where('ficha_impersonal_relacionadas.tipoRelacion', '=', 'fichaPersonal'))
+                    ->get();
                 $temas = Tema::all();
                 $clasificaciones = Clasificacion::all();
-                $fichasRelacionadas = FichaPersonalRelacionada::all();
 
                 return view('fichaImpersonalRelacionada.index', compact(
                     'fichasImperRel',
                     'fichaTitular',
-                    'fichasRelacionadas',
+
                     'temas',
                     'clasificaciones'
                 ));
                 break;
             case ('fichaImpersonal'):
                 $fichaTitular = FichaImpersonal::find($fichaId);
-                $fichasImperRel = FichaPersonal::select('*')
-                    ->from('ficha_impersonals')
-                    ->where('id', '<>', $fichaId)->get()->all();
-
+                $fichasImperRel = DB::table('ficha_impersonals')
+                    ->select('ficha_impersonals.id', 'ficha_impersonals.nombre', 'clasificacion_id', 'clasificacions.nombre AS clasificacionNombre')
+                    ->join('clasificacions', 'ficha_impersonals.id', '=', 'clasificacions.id')
+                    ->where('ficha_impersonals.id', '<>', $fichaId)
+                    ->whereNotIn('ficha_impersonals.id', DB::table('ficha_impersonal_relacionadas')->select('ficha_impersonal_id')
+                        ->where('ficha_impersonal_relacionadas.ficha_id', '=', $fichaId)
+                        ->where('ficha_impersonal_relacionadas.tipoRelacion', '=', 'fichaImpersonal'))
+                    ->get();
                 $temas = Tema::all();
                 $clasificaciones = Clasificacion::all();
                 $fichasRelacionadas = FichaPersonalRelacionada::all();
@@ -84,11 +93,7 @@ class FichaImpersonalRelacionadaController extends Controller
     }
     public function edit($fichaId)
     {
-        /*$fichaRelacionada = FichaImpersonalRelacionada::find($fichaId);
-        return view(
-            'parientes.editar',
-            compact('pariente')
-        );*/
+
     }
 
     public function update(Request $request, $fichaId)

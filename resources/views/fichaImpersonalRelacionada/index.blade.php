@@ -103,7 +103,7 @@
 
                             <tbody>
 
-                                @foreach ($fichasImperRel as $fichaRelacionada)
+                                @foreach ($fichasImperRel as $fichasImper)
                                     <tr>
                                         <form method="POST"
                                             href="/fichaImpersonalRelacionada/{{ $fichaTitular->id }}/{{ $fichaTitular->tipo }}"
@@ -115,12 +115,12 @@
                                             <td>
                                                 <div class="form-group">
                                                     <input name="ficha_Id" type="imput" class="form-control"
-                                                        id="ficha_Id" value="{{ $fichaRelacionada->id }}"readonly>
+                                                        id="ficha_Id" value="{{ $fichasImper->id }}"readonly>
                                                     </label>
                                                 </div>
                                             </td>
-                                            <td>{{ $fichaRelacionada->nombre }}</td>
-                                            <td>{{ $fichaRelacionada->clasificacion->nombre }}</td>
+                                            <td>{{ $fichasImper->nombre }}</td>
+                                            <td>{{ $fichasImper->clasificacionNombre }}</td>
 
                                         </form>
                                     </tr>
@@ -221,7 +221,6 @@
 
         $(function() {
             $("#parientesTable").DataTable({
-
                 "responsive": true,
                 "lengthChange": true,
                 "autoWidth": true,

@@ -70,9 +70,6 @@ aria-hidden="true">
     $(function() {
             $("#documentosTable").DataTable({
 
-                "responsive": true,
-                "lengthChange": true,
-                "autoWidth": true,
                 buttons: [{
                         extend: 'copy',
                         exportOptions: {

@@ -95,9 +95,7 @@ aria-hidden="true">
 <script>
     $(function() {
             $("#organizacionTable").DataTable({
-                "responsive": true,
-                "lengthChange": true,
-                "autoWidth": true,
+
                 buttons: [{
                         extend: 'copy',
                         exportOptions: {

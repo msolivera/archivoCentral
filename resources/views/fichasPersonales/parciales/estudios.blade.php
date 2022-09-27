@@ -129,9 +129,7 @@ aria-hidden="true">
 <script>
     $(function() {
             $("#estudiosTable").DataTable({
-                "responsive": true,
-                "lengthChange": true,
-                "autoWidth": true,
+
                 buttons: [{
                         extend: 'copy',
                         exportOptions: {

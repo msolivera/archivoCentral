@@ -500,6 +500,8 @@
                                 <td>
                                 <button style="float: rigth; padding: 15px 18px; margin-left:10px" class="btn btn-xs btn-warning"
                                     id="cerrarTodos">Cerrar todos</i></button>
+                                <button style="float: rigth; padding: 15px 18px; margin-left:10px" class="btn btn-xs btn-warning"
+                                    id="mostrarTodos">Mostrar todos</i></button>
                                 </td>
                             <tr>
                         </tfoot>
@@ -721,6 +723,21 @@
                 $('#fichaImper').hide();
                 $('#dossier').hide();
                 $('#documentos').hide();
+            })
+        })
+
+        $(document).ready(function(){
+            $('#mostrarTodos').click(function(){
+                $('#ideologias').slideToggle("fast");
+                $('#ocupaciones').slideToggle("fast");
+                $('#domicilios').slideToggle("fast");
+                $('#estudios').slideToggle("fast");
+                $('#roles').slideToggle("fast");
+                $('#anotaciones').slideToggle("fast");
+                $('#fichaPer').slideToggle("fast");
+                $('#fichaImper').slideToggle("fast");
+                $('#dossier').slideToggle("fast");
+                $('#documentos').slideToggle("fast");
             })
         })
     </script>

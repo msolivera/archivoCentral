@@ -228,7 +228,7 @@ class FichasPersonalesController extends Controller
         
         $fichasImpersonalesAgregadas = FichaImpersonal::select('*')
             ->join('ficha_impersonal_relacionadas', 'ficha_impersonal_relacionadas.ficha_impersonal_id', '=', 'ficha_impersonals.id')
-            ->where('ficha_impersonal_relacionadas.ficha_id', $$fichaPer->id)
+            ->where('ficha_impersonal_relacionadas.ficha_id', $fichaPer->id)
             ->where('ficha_impersonal_relacionadas.tipoRelacion', '=', 'fichaPersonal')
             ->get()->all();
 

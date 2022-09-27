@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\FichaPersonalRelacionada;
 use App\Models\Pais;
 use App\Models\Ciudad;
@@ -40,9 +41,14 @@ class FichaPersonalRelacionadaController extends Controller
                 $fuerzas = Fuerza::all();
                 $grados = Grado::all();
                 $cuerpos = ArmaCuerpo::all();
-                $fichasPerRel = FichaPersonal::select('*')
-                    ->from('ficha_personals')
-                    ->where('id', '<>', $fichaId)->get()->all();
+
+                $fichasPerRel = DB::table('ficha_personals')
+            ->select('ficha_personals.id', 'ficha_personals.cedula', 'ficha_personals.primerNombre', 'ficha_personals.segundoNombre', 'ficha_personals.primerApellido', 'ficha_personals.segundoApellido')
+            ->where('ficha_personals.id', '<>', $fichaId)
+            ->whereNotIn('ficha_personals.id', DB::table('ficha_personal_relacionadas')->select('ficha_personal_id')
+                ->where('ficha_personal_relacionadas.ficha_id', '=', $fichaId)
+                ->where('ficha_personal_relacionadas.tipoRelacion', '=', 'fichaPersonal'))
+            ->get();
 
                 $temas = Tema::all();
                 $clasificaciones = Clasificacion::all();
@@ -76,9 +82,16 @@ class FichaPersonalRelacionadaController extends Controller
                 $fuerzas = Fuerza::all();
                 $grados = Grado::all();
                 $cuerpos = ArmaCuerpo::all();
-                $fichasPerRel = FichaPersonal::select('*')
-                    ->from('ficha_personals')
-                    ->get()->all();
+                
+
+            $fichasPerRel = DB::table('ficha_personals')
+            ->select('ficha_personals.id', 'ficha_personals.cedula', 'ficha_personals.primerNombre', 'ficha_personals.segundoNombre', 'ficha_personals.primerApellido', 'ficha_personals.segundoApellido')
+            ->whereNotIn('ficha_personals.id', DB::table('ficha_personal_relacionadas')->select('ficha_personal_id')
+                ->where('ficha_personal_relacionadas.ficha_id', '=', $fichaId)
+                ->where('ficha_personal_relacionadas.tipoRelacion', '=', 'fichaImpersonal'))
+            ->get();
+
+
 
                 $temas = Tema::all();
                 $clasificaciones = Clasificacion::all();
