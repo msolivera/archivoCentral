@@ -95,9 +95,7 @@
     <script>
         $(function() {
             $("#ideologiaTable").DataTable({
-                "responsive": true,
-                "lengthChange": true,
-                "autoWidth": true,
+                
                 buttons: [{
                         extend: 'copy',
                         exportOptions: {

@@ -76,9 +76,7 @@ aria-hidden="true">
 <script>
     $(function() {
             $("#domicilioTable").DataTable({
-                "responsive": true,
-                "lengthChange": true,
-                "autoWidth": true,
+
                 buttons: [{
                         extend: 'copy',
                         exportOptions: {

@@ -90,9 +90,7 @@ aria-hidden="true">
 <script>
     $(function() {
             $("#anotacionesTable").DataTable({
-                "responsive": true,
-                "lengthChange": true,
-                "autoWidth": true,
+
                 buttons: [{
                         extend: 'copy',
                         exportOptions: {

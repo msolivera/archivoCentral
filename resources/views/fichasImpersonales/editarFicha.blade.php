@@ -126,6 +126,8 @@
                                 <td>
                                 <button style="float: rigth; padding: 15px 18px; margin-left:10px" class="btn btn-xs btn-warning"
                                     id="cerrarTodos">Cerrar todos</i></button>
+                                    <button style="float: rigth; padding: 15px 18px; margin-left:10px" class="btn btn-xs btn-warning"
+                                    id="mostrarTodos">Mostrar todos</i></button>
                                 </td>
                             <tr>
                         </tfoot>
@@ -188,14 +190,6 @@
             });
         });
 
-        $(document).ready(function(){
-            $('#cerrarTodos').click(function(){
-                
-                $('#fichaPer').hide();
-
-            })
-        })
-
         $(document).ready(function() {
             $('#mostrarFichaImper').click(function() {
                 $('#fichaImper').slideToggle("fast");
@@ -209,10 +203,18 @@
 
         $(document).ready(function(){
             $('#cerrarTodos').click(function(){
-                
+                $('#fichaPer').hide();
                 $('#fichaImper').hide();
 
             })
-        })
+        });
+        $(document).ready(function(){
+            $('#mostrarTodos').click(function(){
+                $('#fichaPer').slideToggle("fast");
+                $('#fichaImper').slideToggle("fast");
+
+            })
+        });
+
     </script>
 @endpush

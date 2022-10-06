@@ -30,7 +30,7 @@
                         </div>
                         <div class="col-sm-4" style="display: inline-block; vertical-align: top;">
                             <li class="list-group-item">
-                                <b>Clasificacion:</b> <a class="float-right">CLASIFICACION</a>
+                                <b>Clasificacion:</b> <a class="float-right">{{ $fichasPerRep->clasificacionNombre }}</a>
                             </li>
                         </div>
                         <div class="col-sm-7" style="display: inline-block; vertical-align: top;">
@@ -44,57 +44,56 @@
                         <h3 class="profile-username text-center">General</h3>
                         <div class="col-sm-4" style="display: inline-block; vertical-align: top;">
                             <li class="list-group-item">
-                                <b>Nombres:</b> <a class="float-right">{{ $fichaPer->primerNombre }}
-                                    {{ $fichaPer->segundoNombre }}</a>
+                                <b>Nombres:</b> <a class="float-right">{{ $fichasPerRep->primerNombre }}
+                                    {{ $fichasPerRep->segundoNombre }}</a>
                             </li>
                             <li class="list-group-item">
-                                <b>Apellidos:</b> <a class="float-right">{{ $fichaPer->primerApellido }}
-                                    {{ $fichaPer->segundoApellido }}</a>
+                                <b>Apellidos:</b> <a class="float-right">{{ $fichasPerRep->primerApellido }}
+                                    {{ $fichasPerRep->segundoApellido }}</a>
                             </li>
                             <li class="list-group-item">
-                                <b>Fecha Nac</b> <a class="float-right">{{ $fichaPer->fechaNac }}</a>
+                                <b>Fecha Nac</b> <a class="float-right">{{ $fichasPerRep->fechaNac }}</a>
                             </li>
                             <li class="list-group-item">
-                                <b>Pais</b> <a class="float-right">{{ $fichaPer->pais->nombre }}</a>
+                                <b>Pais</b> <a class="float-right">{{ $fichasPerRep->paisNombre }}</a>
                             </li>
                             <li class="list-group-item">
-                                <b>Secc. Policial</b> <a class="float-right">{{ $fichaPer->seccionalPolicial }}</a>
+                                <b>Secc. Policial</b> <a class="float-right">{{ $fichasPerRep->seccionalPolicial }}</a>
                             </li>
                         </div>
                         <div class="col-sm-3" style="display: inline-block; vertical-align: top;">
                             <li class="list-group-item">
-                                <b>Cedula</b> <a class="float-right">{{ $fichaPer->cedula }}</a>
+                                <b>Cedula</b> <a class="float-right">{{ $fichasPerRep->cedula }}</a>
                             </li>
                             <li class="list-group-item">
-                                <b>Otro doc</b> <a class="float-right">{{ $fichaPer->otroDocNombre }}
-                                    {{ $fichaPer->otroDocNumero }}</a>
+                                <b>Otro doc</b> <a class="float-right">{{ $fichasPerRep->otroDocNombre }}
+                                    {{ $fichasPerRep->otroDocNumero }}</a>
                             </li>
                             <li class="list-group-item">
-                                <b>Sexo</b> <a class="float-right">{{ $fichaPer->sexo }}</a>
+                                <b>Sexo</b> <a class="float-right">{{ $fichasPerRep->sexo }}</a>
                             </li>
                             <li class="list-group-item">
-                                <b>Credencial</b> <a class="float-right">{{ $fichaPer->credencial }} </a>
+                                <b>Credencial</b> <a class="float-right">{{ $fichasPerRep->credencial }} </a>
                             </li>
                             <li class="list-group-item">
-                                <!--<b>Depto.</b> <a class="float-right">{ $fichaPer->departamentos}} </a>-->
-                                <b>Depto.</b> <a class="float-right">PRUEBA</a>
+                                <b>Depto.</b> <a class="float-right">{{ $fichasPerRep->departamentoNombre }}</a>
                             </li>
 
                         </div>
                         <div class="col-sm-4" style="display: inline-block; vertical-align: top;">
                             <li class="list-group-item">
-                                <!--<b>Estado Civil</b> <a class="float-right">{ $fichaPer->estadoCivil}} </a>-->
-                                <b>Estado Civil</b> <a class="float-right">PRUEBA </a>
+                                <!--<b>Estado Civil</b> <a class="float-right">{ $fichasPerRep->estadoCivil}} </a>-->
+                                <b>Estado Civil</b> <a class="float-right">{{ $fichasPerRep->estadoCivilNombre }} </a>
                             </li>
                             <li class="list-group-item">
-                                <b>Email</b> <a class="float-right">{{ $fichaPer->correoElectronico }} </a>
+                                <b>Email</b> <a class="float-right">{{ $fichasPerRep->correoElectronico }} </a>
                             </li>
                             <li class="list-group-item">
-                                <b>Fecha def</b> <a class="float-right">{{ $fichaPer->fechaDef }}</a>
+                                <b>Fecha def</b> <a class="float-right">{{ $fichasPerRep->fechaDef }}</a>
                             </li>
                             <li class="list-group-item">
-                                <!--<b>Barrio</b> <a class="float-right">{ $fichaPer->ciudad}}</a>-->
-                                <b>Barrio</b> <a class="float-right">PRUEBA</a>
+                                <!--<b>Barrio</b> <a class="float-right">{ $fichasPerRep->ciudad}}</a>-->
+                                <b>Ciudad</b> <a class="float-right">{{ $fichasPerRep->ciudadNombre }}</a>
                             </li>
 
                         </div>
@@ -107,30 +106,30 @@
 
                         <div class="col-sm-4" style="display: inline-block; vertical-align: top;">
                             <li class="list-group-item">
-                                <!--<b>Fuerza</b> <a class="float-right">{ $fichaPer->fuerza}}</a>-->
-                                <b>Fuerza</b> <a class="float-right">PRUEBA</a>
+                                <!--<b>Fuerza</b> <a class="float-right">{ $fichasPerRep->fuerza}}</a>-->
+                                <b>Fuerza</b> <a class="float-right">{{ $fichasPerRep->fuerzaNombre }}</a>
                             </li>
                             <li class="list-group-item">
-                                <!--<b>Situacion</b> <a class="float-right">{ $fichaPer->situacion}}</a>-->
-                                <b>Situacion</b> <a class="float-right">PRUEBA</a>
+                                <!--<b>Situacion</b> <a class="float-right">{ $fichasPerRep->situacion}}</a>-->
+                                <b>Situacion</b> <a class="float-right">{{ $fichasPerRep->situacionNombre }}</a>
                             </li>
                         </div>
                         <div class="col-sm-3" style="display: inline-block; vertical-align: top;">
                             <li class="list-group-item">
-                                <!--<b>Grado</b> <a class="float-right">{ $fichaPer->grado}}</a>-->
-                                <b>Grado</b> <a class="float-right">PRUEBA</a>
+                                <!--<b>Grado</b> <a class="float-right">{ $fichasPerRep->grado}}</a>-->
+                                <b>Grado</b> <a class="float-right">{{ $fichasPerRep->gradoNombre }}{{$fichasPerRep->gradoSigla}}</a>
                             </li>
                             <li class="list-group-item">
-                                <b>Paquete Ingreso</b> <a class="float-right">{{ $fichaPer->numeroPaquete }}</a>
+                                <b>Paquete Ingreso</b> <a class="float-right">{{ $fichasPerRep->numeroPaquete }}</a>
                             </li>
                         </div>
                         <div class="col-sm-4" style="display: inline-block; vertical-align: top;">
                             <li class="list-group-item">
-                                <!--<b>Especialidad</b> <a class="float-right">{ $fichaPer->armaCuerpo}} </a> -->
-                                <b>Especialidad</b> <a class="float-right"> PRUEBA</a>
+                                <!--<b>Especialidad</b> <a class="float-right">{ $fichasPerRep->armaCuerpo}} </a> -->
+                                <b> Cuerpo/Especialidad</b> <a class="float-right"> {{ $fichasPerRep->cuerpoNombre }}{{$fichasPerRep->cuerpoSigla}}</a>
                             </li>
                             <li class="list-group-item">
-                                <b>Estado Ingreso</b> <a class="float-right">{{ $fichaPer->estadoIngreso }} </a>
+                                <b>Estado Ingreso</b> <a class="float-right">{{ $fichasPerRep->estadoIngreso }} </a>
                             </li>
 
                         </div>

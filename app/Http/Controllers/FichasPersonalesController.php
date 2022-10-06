@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\FichaPersonal;
 use App\Models\Unidad;
 use App\Models\EstadoCivil;
@@ -59,7 +60,9 @@ class FichasPersonalesController extends Controller
         $fuerzas = Fuerza::all();
         $grados = Grado::all();
         $cuerpos = ArmaCuerpo::all();
-        $fichasPer = FichaPersonal::all();
+        $fichasPer = DB::table('fichas_personales_reporte')
+            ->select('*')
+            ->get();
         $temas = Tema::all();
         $clasificaciones = Clasificacion::all();
 
@@ -84,6 +87,11 @@ class FichasPersonalesController extends Controller
     {
         //consigo la info basica de la persona
         $fichaPer = FichaPersonal::find($fichaPersonalId);
+        //consifo reporte
+        $fichasPerReporte = DB::table('fichas_personales_reporte')
+            ->select('*')
+            ->where('fichaId','=',$fichaPersonalId)
+            ->get();
         //consigo las unidades de la persona
         $fichaUnidades = Unidad::join('ficha_personal_unidad', 'unidad_Id', '=', 'unidads.id')
             ->select('*')
@@ -117,6 +125,7 @@ class FichasPersonalesController extends Controller
             ->get()->all();
 
 
+       $fichasPerRep = $fichasPerReporte[0];
         return view('fichasPersonales.verFicha', compact(
             'fichaPer',
             'fichaUnidades',
@@ -126,7 +135,8 @@ class FichasPersonalesController extends Controller
             'fichasOrganizaciones',
             'fichasAnotaciones',
             'fichasDomicilios',
-            'fichasEstudios'
+            'fichasEstudios',
+            'fichasPerRep'
         ));
     }
 
@@ -228,7 +238,7 @@ class FichasPersonalesController extends Controller
         
         $fichasImpersonalesAgregadas = FichaImpersonal::select('*')
             ->join('ficha_impersonal_relacionadas', 'ficha_impersonal_relacionadas.ficha_impersonal_id', '=', 'ficha_impersonals.id')
-            ->where('ficha_impersonal_relacionadas.ficha_id', $$fichaPer->id)
+            ->where('ficha_impersonal_relacionadas.ficha_id', $fichaPer->id)
             ->where('ficha_impersonal_relacionadas.tipoRelacion', '=', 'fichaPersonal')
             ->get()->all();
 
@@ -458,10 +468,10 @@ class FichasPersonalesController extends Controller
         $temas = Tema::all();
         $clasificaciones = Clasificacion::all();
 
-        $fichasPer = FichaPersonal::select('*')
-            ->select('*')
-            ->where('situacion_id', 2)->get()->all();
-
+        $fichasPer = DB::table('fichas_personales_reporte')
+            ->select('ficha_personals.id', 'ficha_personals.cedula', 'ficha_personals.primerNombre', 'ficha_personals.segundoNombre', 'ficha_personals.primerApellido', 'ficha_personals.segundoApellido')
+            ->where('situacionNombre', '=','Postulante')
+            ->get();
 
         return view('fichasIngresos.index', compact(
             'fichasPer',

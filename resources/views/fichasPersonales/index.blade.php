@@ -412,13 +412,13 @@
                                         @foreach ($fichasPer as $fichaPer)
                                             <tr>
                                                 <td>
-                                                    <a href="fichasPersonales/{{ $fichaPer->id }}"
+                                                    <a href="fichasPersonales/{{ $fichaPer->fichaId }}"
                                                         class="btn btn-xs btn-success"><i
                                                             class="fa fa-light fa-eye"></i></a>
-                                                    <a href="fichasPersonales/edit/{{ $fichaPer->id }}"
+                                                    <a href="fichasPersonales/edit/{{ $fichaPer->fichaId }}"
                                                         class="btn btn-xs btn-info"><i class="fa fa-light fa-pen"></i></a>
                                                     <form method="POST"
-                                                        action="{{ route('fichasPersonales.destroy', $fichaPer->id) }}"
+                                                        action="{{ route('fichasPersonales.destroy', $fichaPer->fichaId) }}"
                                                         style="display: inline"> {{ csrf_field() }}
                                                         {{ method_field('DELETE') }}
                                                         <button class="btn btn-xs btn-danger"
@@ -437,17 +437,17 @@
                                                 <td>{{ $fichaPer->sexo }}</td>
                                                 <td>{{ $fichaPer->correoElectronico }}</td>
                                                 <td>{{ $fichaPer->seccionalPolicial }}</td>
-                                                <td>{{ $fichaPer->pais }}</td>
-                                                <td>{{ $fichaPer->departamentos }}</td>
-                                                <td>{{ $fichaPer->ciudad }}</td>
-                                                <td>{{ $fichaPer->estadoCivil }}</td>
+                                                <td>{{ $fichaPer->paisNombre }}</td>
+                                                <td>{{ $fichaPer->departamentoNombre }}</td>
+                                                <td>{{ $fichaPer->ciudadNombre }}</td>
+                                                <td>{{ $fichaPer->estadoCivilNombre }}</td>
                                                 <td>{{ $fichaPer->estadoIngreso }}</td>
                                                 <td>{{ $fichaPer->numeroPaquete }}</td>
-                                                <td>{{ $fichaPer->situacion }}</td>
-                                                <td>{{ $fichaPer->fuerza }}</td>
-                                                <td>{{ $fichaPer->grado }}</td>
-                                                <td>{{ $fichaPer->armaCuerpo }}</td>
-                                                <td>{{ $fichaPer->clasificacion }}</td>
+                                                <td>{{ $fichaPer->situacionNombre }}</td>
+                                                <td>{{ $fichaPer->fuerzaNombre }}</td>
+                                                <td>{{ $fichaPer->gradoNombre }}{{$fichaPer->gradoSigla}}</td>
+                                                <td>{{ $fichaPer->cuerpoNombre }}{{$fichaPer->cuerpoSigla}}</td>
+                                                <td>{{ $fichaPer->clasificacionNombre }}</td>
                                                 <td>{{ $fichaPer->otroDocNombre }}</td>
                                                 <td>{{ $fichaPer->otroDocNumero }}</td>
 
