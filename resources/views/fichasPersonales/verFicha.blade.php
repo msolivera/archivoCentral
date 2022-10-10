@@ -129,7 +129,7 @@
                                 <b> Cuerpo/Especialidad</b> <a class="float-right"> {{ $fichasPerRep->cuerpoNombre }}{{$fichasPerRep->cuerpoSigla}}</a>
                             </li>
                             <li class="list-group-item">
-                                <b>Estado Ingreso</b> <a class="float-right">{{ $fichasPerRep->estadoIngreso }} </a>
+                                <b>Estado de Ingreso</b> <a class="float-right">{{ $fichasPerRep->estadoIngreso }} </a>
                             </li>
 
                         </div>
