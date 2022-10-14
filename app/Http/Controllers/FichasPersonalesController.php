@@ -96,7 +96,7 @@ class FichasPersonalesController extends Controller
         $fichaUnidades = Unidad::join('ficha_personal_unidad', 'unidad_Id', '=', 'unidads.id')
             ->select('*')
             ->where('ficha_Personal_Id', $fichaPer->id)->get()->all();
-
+         
         //consigo LOS TEMAS de la persona
         $fichaTemas = Tema::join('ficha_personal_tema', 'tema_Id', '=', 'temas.id')
             ->select('*')
@@ -123,9 +123,17 @@ class FichasPersonalesController extends Controller
         $fichasEstudios = Estudio::select('*')
             ->where('fichaPersonal_Id', $fichaPer->id)
             ->get()->all();
-
-
+        $fichasPerRel = DB::table('fichas_personales_relacionadas_a_fichas')
+            ->select('*')
+            ->where('fichaId','=',$fichaPer->id)
+            ->get();
+         //obtengo las fichas impersonales relacionadas de la ficha
+        $fichasImperRel = DB::table('fichas_impersonales_y_relaciones')
+            ->select('*')
+            ->where('ficha_id','=',$fichaPer->id)
+            ->get();
        $fichasPerRep = $fichasPerReporte[0];
+
         return view('fichasPersonales.verFicha', compact(
             'fichaPer',
             'fichaUnidades',
@@ -136,7 +144,9 @@ class FichasPersonalesController extends Controller
             'fichasAnotaciones',
             'fichasDomicilios',
             'fichasEstudios',
-            'fichasPerRep'
+            'fichasPerRep',
+            'fichasPerRel',
+            'fichasImperRel'
         ));
     }
 
@@ -318,30 +328,33 @@ class FichasPersonalesController extends Controller
         $fichasIdeologias = FichaPersonalIdeologia::select('*')
             ->where('fichaPersonal_id', $fichaPer->id)
             ->get()->all();
+        //obtengo las profesiones de la ficha
         $fichasProfesiones = FichaPersonalProfesion::select('*')
             ->where('fichaPersonal_id', $fichaPer->id)
             ->get()->all();
+         //obtengo las organizaciones de la ficha
         $fichasOrganizaciones = RolOrganizacion::select('*')
             ->where('ficha_Personal_id', $fichaPer->id)
             ->get()->all();
+         //obtengo las anotaciones de la ficha
         $fichasAnotaciones = Anotacion::select('*')
             ->where('ficha_Personal_id', $fichaPer->id)
             ->get()->all();
-
+         //obtengo las domicilios de la ficha
         $fichasDomicilios = Domicilio::select('*')
             ->where('ficha_Personal_id', $fichaPer->id)
             ->get()->all();
-
+        //obtengo las estudios de la ficha
         $fichasEstudios = Estudio::select('*')
             ->where('fichaPersonal_Id', $fichaPer->id)
             ->get()->all();
-
+         //obtengo las fichas personales relacionadas de la ficha
         $fichasParientes = FichaPersonal::select('*')
             ->join('ficha_personal_relacionadas', 'ficha_personal_relacionadas.ficha_personal_id', '=', 'ficha_personals.id')
             ->where('ficha_id', $fichaPer->id)
             ->where('tipoRelacion', '=', 'fichaPersonal')
             ->get()->all();
-        
+         //obtengo las fichas impersonales relacionadas de la ficha
         $fichasImpersonalesAgregadas = FichaImpersonal::select('*')
             ->join('ficha_impersonal_relacionadas', 'ficha_impersonal_relacionadas.ficha_impersonal_id', '=', 'ficha_impersonals.id')
             ->where('ficha_impersonal_relacionadas.ficha_id', $fichaPer->id)

@@ -445,8 +445,8 @@
                                                 <td>{{ $fichaPer->numeroPaquete }}</td>
                                                 <td>{{ $fichaPer->situacionNombre }}</td>
                                                 <td>{{ $fichaPer->fuerzaNombre }}</td>
-                                                <td>{{ $fichaPer->gradoNombre }}{{$fichaPer->gradoSigla}}</td>
-                                                <td>{{ $fichaPer->cuerpoNombre }}{{$fichaPer->cuerpoSigla}}</td>
+                                                <td>{{ $fichaPer->gradoSigla }} - {{ $fichaPer->gradoNombre }}</td>
+                                                <td>{{ $fichaPer->cuerpoSigla}} - {{ $fichaPer->cuerpoNombre }} </td>
                                                 <td>{{ $fichaPer->clasificacionNombre }}</td>
                                                 <td>{{ $fichaPer->otroDocNombre }}</td>
                                                 <td>{{ $fichaPer->otroDocNumero }}</td>
