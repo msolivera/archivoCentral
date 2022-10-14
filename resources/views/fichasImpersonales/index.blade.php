@@ -99,6 +99,9 @@
                                         @foreach ($fichasImper as $fichaImper)
                                             <tr>
                                                 <td>
+                                                    <a href="fichaImpersonal/{{$fichaImper->id}}"
+                                                        class="btn btn-xs btn-success"><i
+                                                            class="fa fa-light fa-eye"></i></a>
                                                     <a href="fichaImpersonal/edit/{{ $fichaImper->id }}"
                                                         class="btn btn-xs btn-info"><i class="fa fa-light fa-pen"></i></a>
                                                     <form method="POST"

@@ -211,6 +211,7 @@ Route::group(
         Route::post('/photosImper/{fichaImpersonal}', [App\Http\Controllers\PhotoController::class, 'storeImpersonal'])->name('photo.storeImpersonal');
         //fichas impersonales
         Route::get('/fichaImpersonal', [App\Http\Controllers\FichaImpersonalController::class, 'index'])->name('fichaImpersonal.index');
+        Route::get('/fichaImpersonal/{fichaImpersonal}', [App\Http\Controllers\FichaImpersonalController::class, 'show'])->name('fichasImpersonales.verFicha');
         Route::get('/fichaImpersonal/edit/{fichaImpersonal}', [App\Http\Controllers\FichaImpersonalController::class, 'edit'])->name('fichasImpersonales.editarFicha');
         Route::post('/fichaImpersonal', [App\Http\Controllers\FichaImpersonalController::class, 'store'])->name('fichaImpersonal.store');
         Route::put('/fichaImpersonal/{fichaImpersonal}', [App\Http\Controllers\FichaImpersonalController::class, 'update'])->name('fichaImpersonal.update');

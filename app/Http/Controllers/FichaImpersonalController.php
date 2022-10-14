@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\FichaImpersonal; 
 use App\Models\Clasificacion; 
 use App\Models\Tema; 
@@ -22,6 +23,39 @@ class FichaImpersonalController extends Controller
         $clasificaciones = Clasificacion::all();
         $fichasImper = FichaImpersonal::all();
         return view('fichasImpersonales.index', compact('fichasImper', 'clasificaciones'));
+    }
+
+    public function show($fichaImpersonalId)
+    {
+        $fichaImpersonal = fichaImpersonal::find($fichaImpersonalId);
+        
+        $fichasPerRel = DB::table('fichas_personales_relacionadas_a_fichas')
+            ->select('*')
+            ->where('fichaId','=',$fichaImpersonalId)
+            ->where('tipoRelacion', '=', 'fichaImpersonal')
+            ->get();
+
+        $fichasImperRel = DB::table('fichas_impersonales_y_relaciones')
+            ->select('*')
+            ->where('ficha_id','=',$fichaImpersonalId)
+            ->where('tipoRelacion', '=', 'fichaImpersonal')
+            ->get();
+        
+        $fichaTemas = Tema::join('ficha_impersonal_tema', 'tema_Id', '=', 'temas.id')
+            ->select('*')
+            ->where('ficha_impersonal_Id', $fichaImpersonal->id)->get()->all();
+
+        $fichaUnidades = Unidad::join('ficha_impersonal_unidad', 'unidad_Id', '=', 'unidads.id')
+            ->select('*')
+            ->where('ficha_Impersonal_Id', $fichaImpersonal->id)->get()->all();
+        
+
+            return view('fichasImpersonales.verFicha', 
+            compact('fichaImpersonal',
+                     'fichasPerRel', 
+                     'fichasImperRel',
+                     'fichaTemas',
+                     'fichaUnidades'));
     }
 
     public function store(Request $request)

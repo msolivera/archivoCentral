@@ -126,11 +126,13 @@ class FichasPersonalesController extends Controller
         $fichasPerRel = DB::table('fichas_personales_relacionadas_a_fichas')
             ->select('*')
             ->where('fichaId','=',$fichaPer->id)
+            ->where('tipoRelacion', '=', 'fichaPersonal')
             ->get();
          //obtengo las fichas impersonales relacionadas de la ficha
         $fichasImperRel = DB::table('fichas_impersonales_y_relaciones')
             ->select('*')
             ->where('ficha_id','=',$fichaPer->id)
+            ->where('tipoRelacion', '=', 'fichaPersonal')
             ->get();
        $fichasPerRep = $fichasPerReporte[0];
 
