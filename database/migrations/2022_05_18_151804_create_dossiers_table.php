@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('dossiers', function (Blueprint $table) {
             $table->id();
+            //$table->longText('description');
             $table->timestamps();
         });
     }
