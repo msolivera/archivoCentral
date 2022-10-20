@@ -95,13 +95,11 @@ class FichasPersonalesController extends Controller
         //consigo las unidades de la persona
         $fichaUnidades = Unidad::join('ficha_personal_unidad', 'unidad_Id', '=', 'unidads.id')
             ->select('*')
-            ->where('ficha_Personal_Id', $fichaPer->id)->get()->all();
-         
+            ->where('ficha_Personal_Id', $fichaPer->id)->get()->all();       
         //consigo LOS TEMAS de la persona
         $fichaTemas = Tema::join('ficha_personal_tema', 'tema_Id', '=', 'temas.id')
             ->select('*')
             ->where('ficha_Personal_Id', $fichaPer->id)->get()->all();
-
         //obtengo las ideologias de la ficha
         $fichasIdeologias = FichaPersonalIdeologia::select('*')
             ->where('fichaPersonal_id', $fichaPer->id)
@@ -115,11 +113,9 @@ class FichasPersonalesController extends Controller
         $fichasAnotaciones = Anotacion::select('*')
             ->where('ficha_Personal_id', $fichaPer->id)
             ->get()->all();
-
         $fichasDomicilios = Domicilio::select('*')
             ->where('ficha_Personal_id', $fichaPer->id)
             ->get()->all();
-
         $fichasEstudios = Estudio::select('*')
             ->where('fichaPersonal_Id', $fichaPer->id)
             ->get()->all();
@@ -172,7 +168,6 @@ class FichasPersonalesController extends Controller
         $clasificaciones = Clasificacion::all();
         $tipoAnotaciones = TipoAnotacion::all();
         $parentescos = Parentesco::all();
-
 
         //validacion falta
         $fichaPer = new FichaPersonal();
@@ -255,7 +250,6 @@ class FichasPersonalesController extends Controller
             ->get()->all();
 
 
-
         return view(
             'fichasPersonales.editarFicha',
             compact(
@@ -289,8 +283,6 @@ class FichasPersonalesController extends Controller
             )
         );
     }
-
-
     //funcion que se ejecuta cuando quiero editar una ficha personal ya existente
     public function edit($fichaPersonalId)
     {
@@ -313,8 +305,6 @@ class FichasPersonalesController extends Controller
         $parentescos = Parentesco::all();
         //busco la info de la ficha a editar
         $fichaPer = FichaPersonal::find($fichaPersonalId);
-
-
 
         //consigo las unidades de la persona
         $fichaUnidades = Unidad::join('ficha_personal_unidad', 'unidad_Id', '=', 'unidads.id')

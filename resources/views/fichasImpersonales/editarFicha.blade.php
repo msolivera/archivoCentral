@@ -118,6 +118,15 @@
                                         class="btn btn-xs btn-info" id="mostrarFichaImper">Monstrar Panel</i></button>
                                 </td>
                             </tr>
+                            <tr>
+                                <td>
+                                    <label for="Observaciones">Observaciones</label>
+                                </td>
+                                <td>
+                                    <button style="float: rigth; padding: 10px; margin-left:10px"
+                                        class="btn btn-xs btn-info" id="mostrarObservaciones">Monstrar Panel</i></button>
+                                </td>
+                            </tr>
                         </tbody>
                         <tfoot>
                             <tr>
@@ -138,6 +147,9 @@
                 </div>
                 <div class="row" id=fichaImper style="display: none;">
                     @include('fichasImpersonales.parciales.fichasImperRel')
+                </div>
+                <div class="row" id=Observaciones style="display: none;">
+                    @include('fichasImpersonales.parciales.observaciones')
                 </div>
 
             </div>
@@ -201,10 +213,22 @@
             });
         });
 
+        $(document).ready(function() {
+            $('#mostrarObservaciones').click(function() {
+                $('#Observaciones').slideToggle("fast");
+            });
+        });
+        $(document).ready(function() {
+            $('#cerrarForm').click(function() {
+                $('#Observaciones').hide();
+            });
+        });
+
         $(document).ready(function(){
             $('#cerrarTodos').click(function(){
                 $('#fichaPer').hide();
                 $('#fichaImper').hide();
+                $('#Observaciones').hide();
 
             })
         });
@@ -212,7 +236,7 @@
             $('#mostrarTodos').click(function(){
                 $('#fichaPer').slideToggle("fast");
                 $('#fichaImper').slideToggle("fast");
-
+                $('#Observaciones').slideToggle("fast");
             })
         });
 

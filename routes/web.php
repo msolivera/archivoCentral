@@ -220,7 +220,9 @@ Route::group(
         Route::post('/fichaImpersonalRelacionada/{fichaImpersonal}/{fichaTipo}', [App\Http\Controllers\FichaImpersonalRelacionadaController::class, 'store'])->name('fichaImpersonalRelacionada.store');
         Route::delete('/fichaImpersonalRelacionada/{fichaImpersonal}', [App\Http\Controllers\FichaImpersonalRelacionadaController::class, 'destroy'])->name('fichaImpersonalRelacionada.destroy');
         Route::get('/fichaImpersonalRelacionada/{fichaImpersonal}/{fichaTipo}', [App\Http\Controllers\FichaImpersonalRelacionadaController::class, 'index'])->name('fichaImpersonalRelacionada.index');
-
+        //FichaImpersonalObservaciones
+        Route::post('/fichaImpersonalObservaciones/{fichaImpersonal}', [App\Http\Controllers\FichaImpersonalObservacionesController::class, 'store'])->name('fichaImpersonalObservaciones.store');
+        Route::delete('/fichaImpersonalObservaciones/{fichaImpersonal}', [App\Http\Controllers\FichaImpersonalObservacionesController::class, 'destroy'])->name('fichaImpersonalObservaciones.destroy');
     }
 );
 
