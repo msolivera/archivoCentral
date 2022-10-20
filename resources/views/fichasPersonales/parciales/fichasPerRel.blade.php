@@ -76,7 +76,7 @@
 
 @push('scripts')
     <script>
-        $(function() {
+       $(function() {
             $("#parientesTable").DataTable({
 
                 buttons: [{

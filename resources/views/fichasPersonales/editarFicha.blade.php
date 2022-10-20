@@ -27,8 +27,6 @@
                         <!-- form start -->
 
                         <div class="card-body">
-
-
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group {{ $errors->has('numeroPaquete') ? 'has-error' : '' }} ">
@@ -68,11 +66,8 @@
                                         </select>
                                     </div>
                                 </div>
-
                             </div>
                             <div class="row">
-
-
                                 <div class="col-md-6" style="display: inline-block;">
                                     <div class="form-group {{ $errors->has('primerNombre') ? 'has-error' : '' }} ">
                                         <label for="nombre">Primer Nombre</label>
@@ -95,7 +90,6 @@
                                         <input name="cedula" type="imput" class="form-control" id="cedula"
                                             placeholder="..." value="{{ old('cedula', $fichaPer->cedula) }}">
                                     </div>
-
                                     <div class="form-group">
                                         <label for="otroDocNombre">Otro Documento</label>
                                         <div class="row">
@@ -111,16 +105,13 @@
                                                         Libreta de Embarque</option>
                                                 </select>
                                             </div>
-
                                             <div class="col-md-6" style="display: inline-block; float: right;">
                                                 <input name="otroDocNumero" type="imput" class="form-control"
                                                     id="otroDocNumero" placeholder="..."
                                                     value="{{ old('otroDocNumero', $fichaPer->otroDocNumero) }}">
                                             </div>
                                         </div>
-
                                     </div>
-
                                     <div class="form-group">
                                         <label for="pais">Pais</label>
                                         <select name="pais_id" class="form-control select2" style="width: 100%;"
@@ -133,7 +124,6 @@
                                             @endforeach
                                         </select>
                                     </div>
-
                                     <div class="form-group">
                                         <label for="departamento">Departamento</label>
                                         <select name="departamento_id" class="form-control select2" id="departamento">
@@ -145,7 +135,6 @@
                                             @endforeach
                                         </select>
                                     </div>
-
                                     <div class="form-group {{ $errors->has('correoElectronico') ? 'has-error' : '' }} ">
                                         <label for="correoElectronico">Correo Electrónico</label>
                                         <input name="correoElectronico" type="imput" class="form-control"
@@ -154,7 +143,6 @@
                                         <!--- Muestro los errores de validacion.-->
                                         {!! $errors->first('correoElectronico', '<span class=error style=color:red>:message</span>') !!}
                                     </div>
-
                                     <div class="form-group" style='margin-bottom: 35px;'>
                                         <label for="sexo">Sexo</label>
                                         <div class="custom-control custom-radio">
@@ -170,7 +158,6 @@
                                             <label for="sexo2" class="custom-control-label">Mujer</label>
                                         </div>
                                     </div>
-
                                     <div class="form-group">
                                         <label for="estadoIngreso">Estado de Ingreso</label>
                                         <div class="custom-control custom-radio">
@@ -198,9 +185,7 @@
                                             <label for="estado3" class="custom-control-label">Sol. Anteriores</label>
                                         </div>
                                     </div>
-
                                     <div class="form-group">
-
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label for="fuerza_id">Fuerza</label>
@@ -228,9 +213,7 @@
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
-
                                 <div class="col-md-6" style="display: inline-block; float: right;">
                                     <div class="form-group {{ $errors->has('segundoNombre') ? 'has-error' : '' }} ">
                                         <label for="nombre">Segundo Nombre</label>
@@ -240,7 +223,6 @@
                                         <!--- Muestro los errores de validacion.-->
                                         {!! $errors->first('segundoNombre', '<span class=error style=color:red>:message</span>') !!}
                                     </div>
-
                                     <div class="form-group {{ $errors->has('segundoApellido') ? 'has-error' : '' }}">
                                         <label for="apellido">Segundo apellido</label>
                                         <input name="segundoApellido" type="imput" class="form-control" id="apellido"
@@ -248,13 +230,11 @@
                                             value="{{ old('segundoApellido', $fichaPer->segundoApellido) }}">
                                         {!! $errors->first('segundoApellido', '<span class=error style=color:red>:message</span>') !!}
                                     </div>
-
                                     <div class="form-group">
                                         <label for="credencial">Credencial Cívica</label>
                                         <input name="credencial" type="imput" class="form-control" id="credencial"
                                             placeholder="..." value="{{ old('credencial', $fichaPer->credencial) }}">
                                     </div>
-
                                     <div class="form-group">
                                         <label>Fecha de Nacimiento</label>
                                         <div class="input-group date" id="reservationdate" data-target-input="nearest">
@@ -267,7 +247,6 @@
                                             </div>
                                         </div>
                                     </div>
-
                                     <div class="form-group">
                                         <label for="ciudad">Ciudad - Barrio</label>
                                         <select name="ciudad_id" class="form-control select2" style="width: 100%;"
@@ -280,7 +259,6 @@
                                             @endforeach
                                         </select>
                                     </div>
-
                                     <div class="form-group">
                                         <label for="estadoCivil">Estado Civil</label>
                                         <select name="estadoCivil_id" class="form-control select2" style="width: 100%;"
@@ -293,7 +271,6 @@
                                             @endforeach
                                         </select>
                                     </div>
-
                                     <div class="form-group {{ $errors->has('seccional') ? 'has-error' : '' }} ">
                                         <label for="seccionalPolicial">Seccional Policial</label>
                                         <input name="seccionalPolicial" type="imput" class="form-control"
@@ -302,7 +279,6 @@
                                         <!--- Muestro los errores de validacion.-->
                                         {!! $errors->first('seccionalPolicial', '<span class=error style=color:red>:message</span>') !!}
                                     </div>
-
                                     <div class="form-group">
                                         <label>Fecha de Defuncion</label>
                                         <div class="input-group date" id="reservationdate" data-target-input="nearest">
@@ -315,7 +291,6 @@
                                             </div>
                                         </div>
                                     </div>
-
                                     <div class="form-group">
                                         <label for="unidad">Unidades</label>
                                         <select name="unidades[]" class="select2" multiple="multiple"
@@ -328,7 +303,6 @@
                                             @endforeach
                                         </select>
                                     </div>
-
                                     <div class="form-group">
                                         <label for="situacion">Situación</label>
                                         <select name="situacion_id" class="form-control select2" style="width: 100%;"
@@ -341,7 +315,6 @@
                                             @endforeach
                                         </select>
                                     </div>
-
                                     <div class="form-group">
                                         <label for="cuerpo_id">Cuerpo/Arma</label>
                                         <select name="cuerpo_id" class="form-control select2" style="width: 100%;"
@@ -354,14 +327,8 @@
                                             @endforeach
                                         </select>
                                     </div>
-
                                 </div>
-
                             </div>
-                            <!-- row de tablas inicio -->
-
-                            <!-- /.card-body -->
-
                             <div class="card-footer">
                                 <div class="col-md-6" style="float: left;">
                                     <button type="submit" class="btn btn-success btn-block">Guardar esta
@@ -372,16 +339,11 @@
                                         class="btn btn-block btn-outline-primary">Atrás</a>
                                 </div>
                             </div>
-
                         </div>
-                        <!-- /.card -->
-
                     </div>
                 </div>
-
             </div>
         </form>
-
         <div class="card card-primary">
             <div class="card-header">
                 <h5 class="card-title">Galeria</h5>
@@ -392,7 +354,6 @@
         </div>
         <div class="card card-primary">
             <div class="card-body">
-
                 <div class="row">
                     <table class="table table-bordered table-striped ">
                         <thead>
@@ -537,11 +498,8 @@
                 <div class="row" id=documentos style="display: none;">
                     @include('fichasPersonales.parciales.documentosRel')
                 </div>
-
-
             </div>
         </div>
-
     </section>
 @stop
 
@@ -550,7 +508,6 @@
     <!-- Select2 -->
     <link rel="stylesheet" href="/adminLTE/plugins/select2/css/select2.min.css">
     <link rel="stylesheet" href="/adminLTE/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
-
     <!-- estilos para las tablas -->
     <link rel="stylesheet" href="/adminLTE/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="/adminLTE/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
@@ -572,9 +529,6 @@
     <!-- InputMask -->
     <script src="/adminLTE/plugins/moment/moment.min.js"></script>
     <script src="/adminLTE/plugins/inputmask/jquery.inputmask.min.js"></script>
-
-
-
     <!-- INICIO DataTables  & Plugins -->
     <script src="/adminLTE/plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="/adminLTE/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
@@ -590,7 +544,6 @@
     <script src="/adminLTE/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
     <!-- Tempusdominus Bootstrap 4 -->
     <script src="/adminLTE/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-
     <script>
         $(function() {
             //Initialize Select2 Elements
@@ -724,8 +677,7 @@
                 $('#dossier').hide();
                 $('#documentos').hide();
             })
-        })
-
+        });
         $(document).ready(function(){
             $('#mostrarTodos').click(function(){
                 $('#ideologias').slideToggle("fast");
@@ -739,6 +691,6 @@
                 $('#dossier').slideToggle("fast");
                 $('#documentos').slideToggle("fast");
             })
-        })
+        });
     </script>
 @endpush

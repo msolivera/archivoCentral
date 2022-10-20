@@ -10,10 +10,9 @@
                     <a style="float: right; padding: 15px;"
                         href="/fichaImpersonalRelacionada/{{ $fichaPer->id }}/{{ $fichaPer->tipo }}"
                         class="btn btn-xs btn-info"><i class="fa fa-regular fa-plus"></i></a>
-
                 </div>
             </div>
-            <table id="parientesTable" class="table table-bordered table-striped table-sm">
+            <table id="imperTable" class="table table-bordered table-striped table-sm">
                 <thead>
                     <tr>
                         <th>ID Rel.</th>
@@ -63,7 +62,7 @@
 @push('scripts')
     <script>
         $(function() {
-            $("#parientesTable").DataTable({
+            $("#imperTable").DataTable({
 
                 buttons: [{
                         extend: 'copy',

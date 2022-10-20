@@ -16,24 +16,20 @@
             <table id="parientesTable" class="table table-bordered table-striped table-sm">
                 <thead>
                     <tr>
-                        <th>ID Rel.</th>
-                        <th>ID Fich.</th>
+                        <th>Cédula</th>
                         <th>Primer Nombre</th>
                         <th>Segundo Nombre</th>
                         <th>Primer Apellido</th>
                         <th>Segundo Apellido</th>
-                        <th>Relacion</th>
+                        <th>Clasificación</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($fichasParientes as $fichaPariente)
+                    @foreach ($fichasPerRel as $fichaPariente)
                         <tr>
                             <td>
-                                {{ $fichaPariente->id }}
-                            </td>
-                            <td>
-                                {{ $fichaPariente->ficha_personal_id }}
+                                {{ $fichaPariente->cedula }}
                             </td>
                             <td>
                                 {{ $fichaPariente->primerNombre }}
@@ -48,7 +44,7 @@
                                 {{ $fichaPariente->segundoApellido }}
                             </td>
                             <td>
-                                Parentesco
+                                {{ $fichaPariente->nombreClasificacion }}
                             </td>
 
 

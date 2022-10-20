@@ -16,8 +16,6 @@
             <table id="parientesTable" class="table table-bordered table-striped table-sm">
                 <thead>
                     <tr>
-                        <th>ID Rel.</th>
-                        <th>ID Fich.</th>
                         <th>Titulo</th>
                         <th>Clasificacion</th>
                         <th>Acciones</th>
@@ -26,12 +24,6 @@
                 <tbody>
                     @foreach ($fichasImpersonalesAgregadas as $fichaImper)
                         <tr>
-                            <td>
-                                {{ $fichaImper->id }}
-                            </td>
-                            <td>
-                                {{ $fichaImper->ficha_impersonal_id }}
-                            </td>
                             <td>
                                 {{ $fichaImper->nombre }}
                             </td>

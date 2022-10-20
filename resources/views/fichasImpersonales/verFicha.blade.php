@@ -33,13 +33,14 @@
                                 <ul class="nav flex-column">
                                     <li class="nav-item">
                                         <b>Clasificacion:</b> <a
-                                            class="float-right">{{ $fichasPerRep->clasificacionNombre }}</a>
+                                            class="float-right">{{ $fichaImpersonal->clasificacion->nombre }}</a>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-8"style="display: inline-block; vertical-align: top; padding:5px;">
+                        
                         <div class="card card-widget widget-user-2">
                             <div class="card-footer p-0">
                                 <ul class="nav flex-column">
@@ -53,36 +54,23 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row md-12">
-                    <div class="col-sm-4"style="display: inline-block; vertical-align: top; padding:5px;">
+                    <div class="col-sm-12"style="display: inline-block; vertical-align: top; padding:5px;">
                         <div class="card card-widget widget-user-2">
                             <div class="card-footer p-0">
                                 <ul class="nav flex-column">
                                     <li class="nav-item">
-
-                                        <b>Nombres:</b> <a class="float-right">{{ $fichasPerRep->primerNombre }}
-                                            {{ $fichasPerRep->segundoNombre }}</a>
-
+                                        <b>Título:</b> <a
+                                            class="float-right">{{ $fichaImpersonal->nombre }}</a>
                                     </li>
-                                    <li class="nav-item">
-
-                                        <b>Apellidos:</b> <a class="float-right">{{ $fichasPerRep->primerApellido }}
-                                            {{ $fichasPerRep->segundoApellido }}
-                                        </a>
-                                    </li>
-
                                 </ul>
                             </div>
                         </div>
                     </div>
-
                 </div>
-
-
+                
 
             </div>
-        </div>
+        
         <div class="col-sm-6">
 
             <div class="widget-user-header bg-primary">
@@ -120,12 +108,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($fichasAnotaciones as $fichaAnotacion)
-                        <tr>
 
-                            <td>{{ $fichaAnotacion->tipoAnotacion->nombre }}</td>
-                        </tr>
-                    @endforeach
                 </tbody>
             </table>
         </div>
@@ -144,12 +127,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($fichasAnotaciones as $fichaAnotacion)
-                        <tr>
 
-                            <td>{{ $fichaAnotacion->tipoAnotacion->nombre }}</td>
-                        </tr>
-                    @endforeach
                 </tbody>
             </table>
         </div>
@@ -170,7 +148,7 @@
                 <tbody>
                     @foreach ($fichasImperRel as $fichasImper)
                         <tr>
-                            <td>{{ $fichasImper->nombreFicha }}</td>
+                            <td>{{ $fichasImper->nombre }}</td>
                             <td>{{ $fichasImper->nombreClasificacion }}</td>
                         </tr>
                     @endforeach
@@ -192,16 +170,18 @@
                     </tr>
                 </thead>
                 <tbody>
+
                     @foreach ($fichasPerRel as $fichasPer)
                         <tr>
                             <td>{{ $fichasPer->primerNombre }} {{ $fichasPer->segundoNombre }}</td>
                             <td>{{ $fichasPer->primerApellido }} {{ $fichasPer->segundoApellido }}</td>
-                            <td>{{ $fichasPer->parentesco }} </td>
+                            <td>{{ $fichasPer->nombreClasificacion }} </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
+    </div>
 
         <a href="#" class="btn btn-success btn-block" onclick="window.print();"><b>Descargar Ficha
                 PDF</b></a>

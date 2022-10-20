@@ -29,13 +29,13 @@ class FichaImpersonalController extends Controller
     {
         $fichaImpersonal = fichaImpersonal::find($fichaImpersonalId);
         
-        $fichasPerRel = DB::table('fichas_personales_relacionadas_a_fichas')
+        $fichasPerRel = DB::table('fichas_impersonales_y_relaciones')
             ->select('*')
-            ->where('fichaId','=',$fichaImpersonalId)
-            ->where('tipoRelacion', '=', 'fichaImpersonal')
+            ->where('ficha_impersonal_id','=',$fichaImpersonalId)
+            ->where('tipoRelacion', '=', 'fichaPersonal')
             ->get();
 
-        $fichasImperRel = DB::table('fichas_impersonales_y_relaciones')
+        $fichasImperRel = DB::table('fichas_impersonales_relacionada_a_impersonales')
             ->select('*')
             ->where('ficha_id','=',$fichaImpersonalId)
             ->where('tipoRelacion', '=', 'fichaImpersonal')
@@ -56,6 +56,7 @@ class FichaImpersonalController extends Controller
                      'fichasImperRel',
                      'fichaTemas',
                      'fichaUnidades'));
+                    
     }
 
     public function store(Request $request)
@@ -84,12 +85,14 @@ class FichaImpersonalController extends Controller
         $unidades = Unidad::all();
         $temas = Tema::all();
         $fichaImpersonal = fichaImpersonal::find($fichaImpersonalId);
-        $fichasParientes = FichaPersonal::select('*')
-            ->join('ficha_personal_relacionadas', 'ficha_personal_relacionadas.ficha_personal_id', '=', 'ficha_personals.id')
-            ->where('ficha_id', $fichaImpersonalId)
-            ->where('tipoRelacion', '=', 'fichaImpersonal')
-            ->get()->all();
-        
+
+        $fichasPerRel = DB::table('fichas_impersonales_y_relaciones')
+            ->select('*')
+            ->where('ficha_impersonal_id','=',$fichaImpersonalId)
+            ->where('tipoRelacion', '=', 'fichaPersonal')
+            ->get();
+
+        //arreglar esto usar vistas
         $fichasImpersonalesAgregadas = FichaImpersonal::select('*')
             ->join('ficha_impersonal_relacionadas', 'ficha_impersonal_relacionadas.ficha_impersonal_id', '=', 'ficha_impersonals.id')
             ->where('ficha_impersonal_relacionadas.ficha_id', $fichaImpersonalId)
@@ -104,7 +107,7 @@ class FichaImpersonalController extends Controller
             ->select('*')
             ->where('ficha_Impersonal_Id', $fichaImpersonal->id)->get()->all();
 
-        return view('fichasImpersonales.editarFicha', compact('fichaImpersonal', 'temas', 'unidades', 'clasificaciones','fichaTemas','fichaUnidades','fichasParientes','fichasImpersonalesAgregadas'));
+        return view('fichasImpersonales.editarFicha', compact('fichaImpersonal', 'temas', 'unidades', 'clasificaciones','fichaTemas','fichaUnidades','fichasPerRel','fichasImpersonalesAgregadas'));
 
     
     }
