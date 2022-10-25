@@ -9,6 +9,7 @@ use App\Models\Clasificacion;
 use App\Models\Tema;
 use App\Models\Unidad;
 use App\Models\FichaImpersonalObservaciones;
+//use App\Models\Observaciones;
 
 class FichaImpersonalController extends Controller
 {
@@ -49,7 +50,7 @@ class FichaImpersonalController extends Controller
         $fichasObservaciones = FichaImpersonalObservaciones::select('*')
             ->where('ficha_Impersonal_Id', $fichaImpersonal->id)
             ->get()->all();
-
+            
         return view(
             'fichasImpersonales.verFicha',
             compact(

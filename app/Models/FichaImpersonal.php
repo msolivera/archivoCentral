@@ -28,6 +28,11 @@ class FichaImpersonal extends Model
     {
         return $this->hasMany(Photo::class);
     }
+    /*public function observaciones()
+    {
+       return $this->hasMany(Observaciones::class);
+    }*/
+    
     public function fichaImpersonalObservaciones()
     {
        return $this->hasMany(FichaImpersonalObservaciones::class);

@@ -26,7 +26,7 @@
                             <td>{{ $fichaObservacion->observacion }}</td>
                             <td>
                                 <form method="POST"
-                                    action="{{ route('fichaImpersonalObservaciones.destroy', $fichaObservacion->id) }}"
+                                    action="{{ route('fichaImpersonalObservaciones.destroy', $fichaImpersonal->id) }}"
                                     style="display: inline"> {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
                                     <button class="btn btn-xs btn-danger"

@@ -223,6 +223,9 @@ Route::group(
         //FichaImpersonalObservaciones
         Route::post('/fichaImpersonalObservaciones/{fichaImpersonal}', [App\Http\Controllers\FichaImpersonalObservacionesController::class, 'store'])->name('fichaImpersonalObservaciones.store');
         Route::delete('/fichaImpersonalObservaciones/{fichaImpersonal}', [App\Http\Controllers\FichaImpersonalObservacionesController::class, 'destroy'])->name('fichaImpersonalObservaciones.destroy');
+        //DossierObservaciones
+        Route::post('/dossierObservaciones/{dossier}', [App\Http\Controllers\DossierObservacionesController::class, 'store'])->name('dossierObservaciones.store');
+        Route::delete('/dossierObservaciones/{dossier}', [App\Http\Controllers\DossierObservacionesController::class, 'destroy'])->name('dossierObservaciones.destroy');
     }
 );
 

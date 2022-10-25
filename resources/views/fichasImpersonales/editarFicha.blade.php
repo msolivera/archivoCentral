@@ -149,7 +149,7 @@
                     @include('fichasImpersonales.parciales.fichasImperRel')
                 </div>
                 <div class="row" id=Observaciones style="display: none;">
-                    @include('fichasImpersonales.parciales.observaciones')
+                    @include('fichasImpersonales.parciales.fichaImpersonalObservaciones')
                 </div>
 
             </div>

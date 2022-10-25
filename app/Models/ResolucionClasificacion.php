@@ -5,12 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Dossier extends Model
+class ResolucionClasificacion extends Model
 {
     use HasFactory;
-    
-    public function dossierObservaciones()
-    {
-       return $this->hasMany(DossierObservaciones::class);
-    }
 }

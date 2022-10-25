@@ -5,12 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Dossier extends Model
+class DossierObservaciones extends Model
 {
     use HasFactory;
-    
-    public function dossierObservaciones()
+    public function dossier()
     {
-       return $this->hasMany(DossierObservaciones::class);
+        return $this->belongsTo(Dossier::class);
     }
 }
