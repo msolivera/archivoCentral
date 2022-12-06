@@ -473,8 +473,12 @@ class FichasPersonalesController extends Controller
         $temas = Tema::all();
         $clasificaciones = Clasificacion::all();
 
-        $fichasPer = DB::table('fichas_personales_reporte')
+        /*$fichasPer = DB::table('fichas_personales_reporte')
             ->select('ficha_personals.id', 'ficha_personals.cedula', 'ficha_personals.primerNombre', 'ficha_personals.segundoNombre', 'ficha_personals.primerApellido', 'ficha_personals.segundoApellido')
+            ->where('situacionNombre', '=','Postulante')
+            ->get();*/
+        $fichasPer = DB::table('fichas_personales_reporte')
+            ->select('fichaId', 'cedula', 'primerNombre', 'segundoNombre', 'primerApellido', 'segundoApellido')
             ->where('situacionNombre', '=','Postulante')
             ->get();
 

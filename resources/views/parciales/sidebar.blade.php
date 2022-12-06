@@ -79,17 +79,11 @@
                     <i class="fas fa-angle-left right"></i>
                 </p>
             </a>
-            <ul class="nav nav-treeview" style="display:none;">
+            <ul class="nav nav-treeview" style="display: {{ request()->is('dossier*') ? 'block' : 'none' }};">
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('dossier.index') }}" class="nav-link">
                         <i class="fa fa-eye nav-icon"></i>
                         <p>Ver Dossier</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fa fa-plus-square nav-icon"></i>
-                        <p>Crear Dossier</p>
                     </a>
                 </li>
             </ul>
@@ -109,12 +103,6 @@
                     <a href="#" class="nav-link">
                         <i class="fa fa-eye nav-icon"></i>
                         <p>Ver Documentos</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fa fa-plus-square nav-icon"></i>
-                        <p>Crear Documentos</p>
                     </a>
                 </li>
             </ul>
