@@ -125,12 +125,12 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="departamento">Departamento</label>
-                                        <select name="departamento_id" class="form-control select2" id="departamento">
+                                        <label for="departamentos_id">Departamento</label>
+                                        <select name="departamentos_id" class="form-control select2" id="departamentos_id">
                                             <option value=""> Seleccione un Departamento</option>
                                             @foreach ($departamentos as $departamento)
                                                 <option value="{{ $departamento->id }}"
-                                                    {{ old('departamento_id', $fichaPer->departamento_id) == $departamento->id ? 'selected' : '' }}>
+                                                    {{ old('departamentos_id', $fichaPer->departamentos_id) == $departamento->id ? 'selected' : '' }}>
                                                     {{ $departamento->nombre }}</option>
                                             @endforeach
                                         </select>

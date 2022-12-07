@@ -117,9 +117,9 @@
                                                             </div>
 
                                                             <div class="form-group">
-                                                                <label for="departamento_id">Departamento</label>
-                                                                <select name="departamento_id" class="form-control select2"
-                                                                    id="departamento_id">
+                                                                <label for="departamentos_id">Departamento</label>
+                                                                <select name="departamentos_id" class="form-control select2"
+                                                                    id="departamentos_id">
                                                                     <option value=""> Seleccione un Departamento
                                                                     </option>
                                                                     @foreach ($departamentos as $departamento)
@@ -393,16 +393,16 @@
                                             <th>Correo</th>
                                             <th>Sec. Policial</th>
                                             <th>País</th>
-                                            <th>Departamento ID</th>
-                                            <th>Ciudad ID</th>
-                                            <th>Estado Civil ID</th>
+                                            <th>Departamento</th>
+                                            <th>Ciudad</th>
+                                            <th>Estado Civil</th>
                                             <th>Estado Ingreso</th>
                                             <th>Nro.Paq. Ingreso</th>
-                                            <th>Situacion ID</th>
+                                            <th>Situacion</th>
                                             <th>Fuerza</th>
                                             <th>Grado</th>
                                             <th>Arma</th>
-                                            <th>clasificacion ID</th>
+                                            <th>Clasificacion</th>
                                             <th>Otro Doc.</th>
                                             <th>Numero Doc.</th>
 
