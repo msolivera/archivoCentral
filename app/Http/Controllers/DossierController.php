@@ -6,6 +6,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Dossier;
+use App\Models\Clasificacion;
+use App\Models\SerieDocumental;
+use App\Models\Ubicacion;
 
 class DossierController extends Controller
 {
@@ -16,8 +19,11 @@ class DossierController extends Controller
 
     public function index()
     {
-        $dossier = Dossier::all();
-        return view('dossier.index', compact('dossier'));
+        $dossiers = Dossier::all();
+        $ubicaciones = Ubicacion::all();
+        $serieDocumental = SerieDocumental ::all();
+        $clasificaciones = Clasificacion::all();
+        return view('dossier.index', compact('dossiers', 'clasificaciones','ubicaciones', 'serieDocumental'));
     }
     public function show($dossierId)
     {
@@ -54,23 +60,22 @@ class DossierController extends Controller
             )
         );
     }
-   /* public function store(Request $request)
+    public function store(Request $request)
     {
 
-        $this->validate($request, [
-            'nombre' => 'required',
-            'clasificacion_id' => 'required',
-        ]);
-
-        //validacion falta
-        $fichaImpersonal = new fichaImpersonal();
-        $fichaImpersonal->nombre = $request->nombre;
-        $fichaImpersonal->tipo = 'fichaImpersonal';
-        $fichaImpersonal->clasificacion_id = $request->clasificacion_id;
-        $fichaImpersonal->save();
-
-        return back()->with('flash', 'Ficha Impersonal creada con exito');
-    }*/
+        $dossier = new Dossier();
+        $dossier->titulo = $request->titulo;
+        $dossier->letra = $request->titulo;
+        $dossier->resumen = $request->resumen;
+        $dossier->fechaInicio = $request->fechaInicio;
+        $dossier->fechaFin = $request->fechaFin;
+        $dossier->clasificacions_id = $request->clasificacion_id;
+        $dossier->ubicacion_id = $request->ubicacion_id;
+        $dossier->serie_documental_id = $request->serie_documental_id;
+        $dossier->save();
+//return $dossier;
+        return back()->with('flash', 'Dossier creado con exito');
+    }
     /*public function edit($fichaImpersonalId)
     {
         $clasificaciones = Clasificacion::all();

@@ -13,4 +13,17 @@ class Dossier extends Model
     {
        return $this->hasMany(DossierObservaciones::class);
     }
+    public function clasificacion()
+    {
+        return $this->belongsTo(Clasificacion::class, 'clasificacions_id');
+    }
+    public function ubicacion()
+    {
+        return $this->belongsTo(Ubicacion::class, 'ubicacion_id');
+
+    }
+    public function serieDocumental()
+    {
+        return $this->belongsTo(SerieDocumental::class, 'serie_documental_id');
+    }
 }
