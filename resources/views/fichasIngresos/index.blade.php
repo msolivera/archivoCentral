@@ -116,9 +116,9 @@
                                                             </div>
 
                                                             <div class="form-group">
-                                                                <label for="departamento_id">Departamento</label>
-                                                                <select name="departamento_id" class="form-control select2"
-                                                                    id="departamento_id">
+                                                                <label for="departamentos_id">Departamento</label>
+                                                                <select name="departamentos_id" class="form-control select2"
+                                                                    id="departamentos_id">
                                                                     <option value=""> Seleccione un Departamento</option>
                                                                     @foreach ($departamentos as $departamento)
                                                                         <option value="{{ $departamento->id }}">
@@ -385,23 +385,11 @@
                                             <th>Primer Apellido</th>
                                             <th>Segundo Apellido</th>
                                             <th>Fecha Nac.</th>
-                                            <th>Fecha Def.</th>
-                                            <th>Credencial</th>
-                                            <th>Sexo</th>
-                                            <th>Correo</th>
-                                            <th>Sec. Policial</th>
-                                            <th>País</th>
-                                            <th>Departamento ID</th>
-                                            <th>Ciudad ID</th>
-                                            <th>Estado Civil ID</th>
+                                            <th>Departamento</th>
+                                            <th>Ciudad</th>
                                             <th>Estado Ingreso</th>
-                                            <th>Situacion ID</th>
-                                            <th>Fuerza</th>
-                                            <th>Grado</th>
-                                            <th>Arma</th>
-                                            <th>clasificacion ID</th>
-                                            <th>Otro Doc.</th>
-                                            <th>Numero Doc.</th>
+                                            <th>Situacion</th>
+                                            <th>clasificacion</th>
 
                                         </tr>
                                     </thead>
@@ -410,7 +398,7 @@
                                             <tr>
                                                 <td>
                                                     <form method="GET"
-                                                        action="{{ route('fichasIngresos.updateIngreso', $fichaPer->id) }}"
+                                                        action="{{ route('fichasIngresos.updateIngreso', $fichaPer->fichaId) }}"
                                                         style="display: inline"> {{ csrf_field() }}
                                                         {{ method_field('UPDATE') }}
                                                         <button class="btn btn-xs btn-success"
@@ -418,7 +406,7 @@
                                                                 class="fa fa-light fa-check"></i></button>
                                                     </form>
                                                     <form method="POST"
-                                                        action="{{ route('fichasPersonales.destroy', $fichaPer->id) }}"
+                                                        action="{{ route('fichasIngresos.destroyIngreso', $fichaPer->fichaId) }}"
                                                         style="display: inline"> {{ csrf_field() }}
                                                         {{ method_field('DELETE') }}
                                                         <button class="btn btn-xs btn-danger"
@@ -433,23 +421,11 @@
                                                 <td>{{ $fichaPer->primerApellido }}</td>
                                                 <td>{{ $fichaPer->segundoApellido }}</td>
                                                 <td>{{ $fichaPer->fechaNac }}</td>
-                                                <td>{{ $fichaPer->fechaDef }}</td>
-                                                <td>{{ $fichaPer->credencial }}</td>
-                                                <td>{{ $fichaPer->sexo }}</td>
-                                                <td>{{ $fichaPer->correoElectronico }}</td>
-                                                <td>{{ $fichaPer->seccionalPolicial }}</td>
-                                                <td>{{ $fichaPer->pais }}</td>
-                                                <td>{{ $fichaPer->departamentos }}</td>
-                                                <td>{{ $fichaPer->ciudad }}</td>
-                                                <td>{{ $fichaPer->estadoCivil }}</td>
+                                                <td>{{ $fichaPer->departamentoNombre }}</td>
+                                                <td>{{ $fichaPer->ciudadNombre }}</td>
                                                 <td>{{ $fichaPer->estadoIngreso }}</td>
-                                                <td>{{ $fichaPer->situacion }}</td>
-                                                <td>{{ $fichaPer->fuerza }}</td>
-                                                <td>{{ $fichaPer->grado }}</td>
-                                                <td>{{ $fichaPer->armaCuerpo }}</td>
-                                                <td>{{ $fichaPer->clasificacion }}</td>
-                                                <td>{{ $fichaPer->otroDocNombre }}</td>
-                                                <td>{{ $fichaPer->otroDocNumero }}</td>
+                                                <td>{{ $fichaPer->situacionNombre }}</td>
+                                                <td>{{ $fichaPer->clasificacionNombre }}</td>
 
                                             </tr>
                                         @endforeach

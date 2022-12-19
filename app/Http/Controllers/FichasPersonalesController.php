@@ -473,12 +473,8 @@ class FichasPersonalesController extends Controller
         $temas = Tema::all();
         $clasificaciones = Clasificacion::all();
 
-        /*$fichasPer = DB::table('fichas_personales_reporte')
-            ->select('ficha_personals.id', 'ficha_personals.cedula', 'ficha_personals.primerNombre', 'ficha_personals.segundoNombre', 'ficha_personals.primerApellido', 'ficha_personals.segundoApellido')
-            ->where('situacionNombre', '=','Postulante')
-            ->get();*/
         $fichasPer = DB::table('fichas_personales_reporte')
-            ->select('fichaId', 'cedula', 'primerNombre', 'segundoNombre', 'primerApellido', 'segundoApellido')
+            ->select('fichaId', 'numeroPaquete','fechaNac','departamentoNombre','ciudadNombre','estadoIngreso','situacionNombre','clasificacionNombre', 'cedula', 'primerNombre', 'segundoNombre', 'primerApellido', 'segundoApellido')
             ->where('situacionNombre', '=','Postulante')
             ->get();
 
@@ -544,5 +540,19 @@ class FichasPersonalesController extends Controller
         $fichaPer->situacion_id = 1;
         $fichaPer->save();
         return back()->with('flash', 'Postulante pasado a ACTIVO');
+    }
+    public function destroyIngreso($fichaPersonalId)
+    {
+
+        $fichaPer = FichaPersonal::find($fichaPersonalId);
+
+        $fichaPer->delete();
+        //esto para sacar la relacion de las unidades con la ficha
+        $fichaPer->unidad()->detach();
+        $fichaPer->tema()->detach();
+
+        return redirect()
+            ->route('fichasIngresos.index')
+            ->with('flash', 'Ficha eliminada con exito');
     }
 }

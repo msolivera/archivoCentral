@@ -165,17 +165,14 @@
                     <tr>
                         <th>Nombre/s</th>
                         <th>Apellido/s</th>
-                        <th>Relacion</th>
-
                     </tr>
                 </thead>
                 <tbody>
 
                     @foreach ($fichasPerRel as $fichasPer)
                         <tr>
-                            <td>{{ $fichasPer->primerNombre }} {{ $fichasPer->segundoNombre }}</td>
-                            <td>{{ $fichasPer->primerApellido }} {{ $fichasPer->segundoApellido }}</td>
-                            <td>{{ $fichasPer->nombreClasificacion }} </td>
+                            <td>{{ $fichasPer->primerNombre }} </td>
+                            <td>{{ $fichasPer->primerApellido }} </td>
                         </tr>
                     @endforeach
                 </tbody>
