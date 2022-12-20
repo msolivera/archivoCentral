@@ -43,12 +43,12 @@ class FichaPersonalRelacionadaController extends Controller
                 $cuerpos = ArmaCuerpo::all();
 
                 $fichasPerRel = DB::table('ficha_personals')
-            ->select('ficha_personals.id', 'ficha_personals.cedula', 'ficha_personals.primerNombre', 'ficha_personals.segundoNombre', 'ficha_personals.primerApellido', 'ficha_personals.segundoApellido')
-            ->where('ficha_personals.id', '<>', $fichaId)
-            ->whereNotIn('ficha_personals.id', DB::table('ficha_personal_relacionadas')->select('ficha_personal_id')
-                ->where('ficha_personal_relacionadas.ficha_id', '=', $fichaId)
-                ->where('ficha_personal_relacionadas.tipoRelacion', '=', 'fichaPersonal'))
-            ->get();
+                    ->select('ficha_personals.id', 'ficha_personals.cedula', 'ficha_personals.primerNombre', 'ficha_personals.segundoNombre', 'ficha_personals.primerApellido', 'ficha_personals.segundoApellido')
+                    ->where('ficha_personals.id', '<>', $fichaId)
+                    ->whereNotIn('ficha_personals.id', DB::table('ficha_personal_relacionadas')->select('ficha_personal_id')
+                        ->where('ficha_personal_relacionadas.ficha_id', '=', $fichaId)
+                        ->where('ficha_personal_relacionadas.tipoRelacion', '=', 'fichaPersonal'))
+                    ->get();
 
                 $temas = Tema::all();
                 $clasificaciones = Clasificacion::all();
@@ -82,15 +82,14 @@ class FichaPersonalRelacionadaController extends Controller
                 $fuerzas = Fuerza::all();
                 $grados = Grado::all();
                 $cuerpos = ArmaCuerpo::all();
-                
 
-            $fichasPerRel = DB::table('ficha_personals')
-            ->select('ficha_personals.id', 'ficha_personals.cedula', 'ficha_personals.primerNombre', 'ficha_personals.segundoNombre', 'ficha_personals.primerApellido', 'ficha_personals.segundoApellido')
-            ->whereNotIn('ficha_personals.id', DB::table('ficha_personal_relacionadas')->select('ficha_personal_id')
-                ->where('ficha_personal_relacionadas.ficha_id', '=', $fichaId)
-                ->where('ficha_personal_relacionadas.tipoRelacion', '=', 'fichaImpersonal'))
-            ->get();
 
+                $fichasPerRel = DB::table('ficha_personals')
+                    ->select('ficha_personals.id', 'ficha_personals.cedula', 'ficha_personals.primerNombre', 'ficha_personals.segundoNombre', 'ficha_personals.primerApellido', 'ficha_personals.segundoApellido')
+                    ->whereNotIn('ficha_personals.id', DB::table('ficha_personal_relacionadas')->select('ficha_personal_id')
+                        ->where('ficha_personal_relacionadas.ficha_id', '=', $fichaId)
+                        ->where('ficha_personal_relacionadas.tipoRelacion', '=', 'fichaImpersonal'))
+                    ->get();
 
 
                 $temas = Tema::all();

@@ -21,7 +21,7 @@
                         <th>Segundo Nombre</th>
                         <th>Primer Apellido</th>
                         <th>Segundo Apellido</th>
-                        <th>Clasificación</th>
+                        
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -43,9 +43,7 @@
                             <td>
                                 {{ $fichaPariente->segundoApellido }}
                             </td>
-                            <td>
-                                {{ $fichaPariente->nombreClasificacion }}
-                            </td>
+                            
 
 
                             <td>

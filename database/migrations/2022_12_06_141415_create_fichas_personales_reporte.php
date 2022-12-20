@@ -75,6 +75,6 @@ SELECT FPER.id as fichaId,
      */
     public function down()
     {
-        DB::statement('DROP VIEW IF EXISTS fichas_impersonales_relacionada_a_impersonales');
+        DB::statement('DROP VIEW IF EXISTS fichas_personales_reporte');
     }
 };

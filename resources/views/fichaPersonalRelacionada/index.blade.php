@@ -320,7 +320,6 @@
                     </div>
                 </div>
             </form>
-
         </div>
         <div class="col-12" id="parientes">
             <div class="card" style="background-color: #E6EFF6;">
