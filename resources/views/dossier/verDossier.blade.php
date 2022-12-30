@@ -65,8 +65,61 @@
                                 </ul>
                             </div>
                         </div>
+
+                        <div class="card card-widget widget-user-2">
+                            <div class="card-footer p-0">
+                                <ul class="nav flex-column">
+                                    <li class="nav-item">
+                                        <b>Letra:</b> <a
+                                            class="float-right">{{ $dossier->letra }}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card card-widget widget-user-2">
+                            <div class="card-footer p-0">
+                                <ul class="nav flex-column">
+                                    <li class="nav-item">
+                                        <b>Resumen:</b> <a
+                                            class="float-right">{{ $dossier->resumen }}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card card-widget widget-user-2">
+                            <div class="card-footer p-0">
+                                <ul class="nav flex-column">
+                                    <li class="nav-item">
+                                        <b>Ubicacion:</b> <a
+                                            class="float-right">{{ $dossier->ubicacion->nombre }}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card card-widget widget-user-2">
+                            <div class="card-footer p-0">
+                                <ul class="nav flex-column">
+                                    <li class="nav-item">
+                                        <b>Serie Documental:</b> <a
+                                            class="float-right">{{ $dossier->serieDocumental->nombre }}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card card-widget widget-user-2">
+                            <div class="card-footer p-0">
+                                <ul class="nav flex-column">
+                                    <li class="nav-item">
+                                        <b>Fechas:</b> <a
+                                            class="float-right">{{ $dossier->fechaInicio }}{{ "-" }} {{ $dossier->fechaFin }}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
                     </div>
                 </div>
+                
                 
 
             </div>
