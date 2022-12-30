@@ -229,8 +229,8 @@ Route::group(
         Route::delete('/dossierObservaciones/{dossier}', [App\Http\Controllers\DossierObservacionesController::class, 'destroy'])->name('dossierObservaciones.destroy');
         //dossier
         Route::get('/dossier', [App\Http\Controllers\DossierController::class, 'index'])->name('dossier.index');
-        Route::get('/dossier/{dossier}', [App\Http\Controllers\FichaImpersDossierControlleronalController::class, 'show'])->name('dossier.verFicha');
-        Route::get('/dossier/edit/{dossier}', [App\Http\Controllers\DossierController::class, 'edit'])->name('dossier.editarFicha');
+        Route::get('/dossier/{dossier}', [App\Http\Controllers\DossierController::class, 'show'])->name('dossier.verDossier');
+        Route::get('/dossier/edit/{dossier}', [App\Http\Controllers\DossierController::class, 'edit'])->name('dossier.editarDossier');
         Route::post('/dossier', [App\Http\Controllers\DossierController::class, 'store'])->name('dossier.store');
         Route::put('/dossier/{dossier}', [App\Http\Controllers\DossierController::class, 'update'])->name('dossier.update');
         Route::delete('/dossier/{dossier}', [App\Http\Controllers\DossierController::class, 'destroy'])->name('dossier.destroy');

@@ -108,7 +108,7 @@
             </ul>
         </li>
         <!--Notificaciones -->
-        <li class="nav-item">
+        <!--<li class="nav-item">
             <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-book"></i>
                 <p>
@@ -124,7 +124,7 @@
                     </a>
                 </li>
             </ul>
-        </li>
+        </li>-->
         <!--ADMINISTRACION -->
         <li class="nav-item">
             <a href="#" class="nav-link">
