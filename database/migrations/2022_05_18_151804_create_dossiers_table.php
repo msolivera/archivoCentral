@@ -23,6 +23,7 @@ return new class extends Migration
             $table->unsignedInteger('clasificacions_id')->default(0);
             $table->string('fechaInicio')->nullable();
             $table->string('fechaFin')->nullable();
+            $table->string('tipo')->nullable();
             $table->timestamps();
         });
     }

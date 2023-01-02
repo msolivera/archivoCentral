@@ -101,53 +101,37 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-12"style="display: inline-block; vertical-align: top; padding:5px;">
-
-
-
-                        <div class="card card-widget widget-user-2">
-                            <div class="card-footer p-0">
-                                <ul class="nav flex-column">
-                                    <li class="nav-item">
-                                        <b>Resumen:</b> <a class="float-right">{{ $dossier->resumen }}</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
-
-
-
-                    </div>
                 </div>
-
-
-
             </div>
-
-            <!--<div class="col-sm-6">
+            <div class="col-sm-6">
 
                 <div class="widget-user-header bg-primary">
-                    <h3 class="profile-username text-center">Unidades</h3>
+                    <h3 class="profile-username text-center">Observaciones</h3>
 
                 </div>
                 <table class="table table-sm">
-                    <thead>
-                        <tr>
-                            <th>Sigla</th>
-                            <th>Nombre</th>
-                        </tr>
-                    </thead>
                     <tbody>
-                        foreach ($fichaUnidades as $unidad)
+                        @foreach ($dossierObservaciones as $observacion)
                             <tr>
-                                <td>{ $unidad->sigla }}</td>
-                                <td>{ $unidad->nombre }}</td>
+                                <td>{{ $observacion->observacion }}</td>
                             </tr>
-                        endforeach
+                        @endforeach
                     </tbody>
                 </table>
-            </div> -->
+            </div>
+            <div class="col-sm-6">
+
+                <div class="widget-user-header bg-primary">
+                    <h3 class="profile-username text-center">Resumen</h3>
+                </div>
+                <table class="table table-sm">
+                    <tbody>
+                        <tr>
+                            <td>{{ $dossier->resumen }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
             <div class="col-sm-6">
 
                 <div class="widget-user-header bg-primary">
@@ -200,13 +184,13 @@
                         </tr>
                     </thead>
                     <!--<tbody>
-                        foreach ($fichasImperRel as $fichasImper)
-                            <tr>
-                                <td>{ $fichasImper->nombre }}</td>
-                                <td>{ $fichasImper->nombreClasificacion }}</td>
-                            </tr>
-                        endforeach
-                    </tbody>-->
+                                foreach ($fichasImperRel as $fichasImper)
+                                    <tr>
+                                        <td>{ $fichasImper->nombre }}</td>
+                                        <td>{ $fichasImper->nombreClasificacion }}</td>
+                                    </tr>
+                                endforeach
+                            </tbody>-->
                 </table>
             </div>
             <div class="col-sm-6">
@@ -223,13 +207,13 @@
                     </thead>
                     <!--<tbody>
 
-                        foreach ($fichasPerRel as $fichasPer)
-                            <tr>
-                                <td>{ $fichasPer->primerNombre }} </td>
-                                <td>{ $fichasPer->primerApellido }} </td>
-                            </tr>
-                        endforeach
-                    </tbody>-->
+                                foreach ($fichasPerRel as $fichasPer)
+                                    <tr>
+                                        <td>{ $fichasPer->primerNombre }} </td>
+                                        <td>{ $fichasPer->primerApellido }} </td>
+                                    </tr>
+                                endforeach
+                            </tbody>-->
                 </table>
             </div>
         </div>

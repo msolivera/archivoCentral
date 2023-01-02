@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('dossier_observacion', function (Blueprint $table) {
+        Schema::create('dossier_relacionadas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('dossier_Id');
-            $table->string('observacion');
+            $table->unsignedInteger('ficha_id');
+            $table->unsignedInteger('dossier_id');
+            $table->string('tipoRelacion');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dossier_observacion');
+        Schema::dropIfExists('dossier_relacionadas');
     }
 };

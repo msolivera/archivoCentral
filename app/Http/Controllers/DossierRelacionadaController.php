@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\FichaPersonalRelacionada;
-use App\Models\FichaImpersonalRelacionada;
-use App\Models\FichaPersonal;
-use App\Models\FichaImpersonal;
-use App\Models\Dossier;
-use App\Models\Tema;
 use App\Models\Clasificacion;
+use App\Models\Dossier;
+use App\Models\DossierRelacionada;
+use App\Models\FichaImpersonal;
+use App\Models\FichaPersonal;
+use App\Models\FichaPersonalRelacionada;
+use App\Models\Tema;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class FichaImpersonalRelacionadaController extends Controller
+class DossierRelacionadaController extends Controller
 {
     public function __construct()
     {
@@ -45,7 +45,7 @@ class FichaImpersonalRelacionadaController extends Controller
                     'clasificaciones'
                 ));
                 break;
-            /*case ('dossier'):
+            case ('dossier'):
                 $fichaTitular = Dossier::find($fichaId);
 
                 $fichasImperRel = DB::table('ficha_impersonals')
@@ -65,9 +65,10 @@ class FichaImpersonalRelacionadaController extends Controller
                     'temas',
                     'clasificaciones'
                 ));
-                break;*/
+                break;
             case ('fichaImpersonal'):
                 $fichaTitular = FichaImpersonal::find($fichaId);
+
                 $fichasImperRel = DB::table('ficha_impersonals')
                     ->select('ficha_impersonals.id', 'ficha_impersonals.nombre', 'clasificacion_id', 'clasificacions.nombre AS clasificacionNombre')
                     ->join('clasificacions', 'ficha_impersonals.id', '=', 'clasificacions.id')
@@ -80,7 +81,7 @@ class FichaImpersonalRelacionadaController extends Controller
                 $clasificaciones = Clasificacion::all();
                 $fichasRelacionadas = FichaPersonalRelacionada::all();
 
-                return view('fichaImpersonalRelacionada.index', compact(
+                return view('dossierRelacionada.index', compact(
                     'fichasImperRel',
                     'fichaTitular',
                     'fichasRelacionadas',
@@ -96,7 +97,7 @@ class FichaImpersonalRelacionadaController extends Controller
 
     public function destroy($fichaRelId)
     {
-        $fichaRelacion = FichaImpersonalRelacionada::find($fichaRelId);
+        $fichaRelacion = DossierRelacionada::find($fichaRelId);
         $fichaRelacion->delete();
 
         return back()->with('flash', 'Registro eliminado con exito');
@@ -105,9 +106,9 @@ class FichaImpersonalRelacionadaController extends Controller
     public function store(Request $request,  $fichaTitular, $fichaTipo)
     {
 
-        $fichaRelacionada = new FichaImpersonalRelacionada();
+        $fichaRelacionada = new DossierRelacionada();
         $fichaRelacionada->ficha_id = $fichaTitular;
-        $fichaRelacionada->ficha_impersonal_id = $request->ficha_Id;
+        $fichaRelacionada->dossier_id = $request->dossier_Id;
         $fichaRelacionada->tipoRelacion = $fichaTipo;
         $fichaRelacionada->save();
 
@@ -125,7 +126,7 @@ class FichaImpersonalRelacionadaController extends Controller
             'nombre' => 'required',
         ]);
 
-        $fichaRelacionada = FichaImpersonalRelacionada::find($fichaId);
+        $fichaRelacionada = DossierRelacionada::find($fichaId);
         $fichaRelacionada->ficha_impersonal_id = $request->ficha_impersonal_id;
         $fichaRelacionada->ficha_per_relacionada_id = $request->ficha_imper_relacionada_id;
         $fichaRelacionada->save();

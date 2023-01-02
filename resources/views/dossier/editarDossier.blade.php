@@ -186,6 +186,15 @@
                                         class="btn btn-xs btn-info" id="mostrarObservaciones">Monstrar Panel</i></button>
                                 </td>
                             </tr>
+                            <tr>
+                                <td>
+                                    <label for="dossierRel">Dossier Relacionado</label>
+                                </td>
+                                <td>
+                                    <button style="float: rigth; padding: 10px; margin-left:10px"
+                                        class="btn btn-xs btn-info" id="mostrarDossierRel">Monstrar Panel</i></button>
+                                </td>
+                            </tr>
                         </tbody>
                         <tfoot>
                             <tr>
@@ -209,6 +218,9 @@
                 </div>
                 <div class="row" id=Observaciones style="display: none;">
                     @include('dossier.parciales.dossierObservaciones')
+                </div>
+                <div class="row" id=dossierRel style="display: none;">
+                    @include('dossier.parciales.dossierRel')
                 </div>
 
             </div>
@@ -306,12 +318,23 @@
                 $('#Observaciones').hide();
             });
         });
+        $(document).ready(function() {
+            $('#mostrarDossierRel').click(function() {
+                $('#dossierRel').slideToggle("fast");
+            });
+        });
+        $(document).ready(function() {
+            $('#cerrarForm').click(function() {
+                $('#dossierRel').hide();
+            });
+        });
 
         $(document).ready(function() {
             $('#cerrarTodos').click(function() {
                 $('#fichaPer').hide();
                 $('#fichaImper').hide();
                 $('#Observaciones').hide();
+                $('#dossierRel').hide();
 
             })
         });
@@ -320,6 +343,7 @@
                 $('#fichaPer').slideToggle("fast");
                 $('#fichaImper').slideToggle("fast");
                 $('#Observaciones').slideToggle("fast");
+                $('#dossierRel').slideToggle("fast");
             })
         });
     </script>

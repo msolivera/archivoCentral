@@ -10,6 +10,7 @@ use App\Models\Clasificacion;
 use App\Models\SerieDocumental;
 use App\Models\Ubicacion;
 use App\Models\Tema;
+use App\Models\DossierObservaciones;
 
 class DossierController extends Controller
 {
@@ -34,12 +35,17 @@ class DossierController extends Controller
             ->select('*')
             ->where('dossier_Id', $dossierId)->get()->all();
 
+        $dossierObservaciones = DossierObservaciones::select('*')
+            ->where('dossier_Id', $dossier->id)
+            ->get()->all();
+
 
         return view(
             'dossier.verDossier',
             compact(
                 'dossier',
-                'dossierTemas'
+                'dossierTemas',
+                'dossierObservaciones'
             )
         );
     }
@@ -55,6 +61,7 @@ class DossierController extends Controller
         $dossier->clasificacions_id = $request->clasificacion_id;
         $dossier->ubicacion_id = $request->ubicacion_id;
         $dossier->serie_documental_id = $request->serie_documental_id;
+        $dossier->tipo = 'dossier';
         $dossier->save();
         return back()->with('flash', 'Dossier creado con exito');
     }
@@ -82,9 +89,9 @@ class DossierController extends Controller
             ->select('*')
             ->where('dossier_Id', $dossier->id)->get()->all();
 
-        /*$fichasObservaciones = FichaImpersonalObservaciones::select('*')
-            ->where('ficha_Impersonal_Id', $fichaImpersonal->id)
-            ->get()->all();*/
+        $dossierObservaciones = DossierObservaciones::select('*')
+            ->where('dossier_Id', $dossier->id)
+            ->get()->all();
 
         return view('dossier.editarDossier', compact(
             'dossier',
@@ -92,10 +99,11 @@ class DossierController extends Controller
             'clasificaciones',
             'dossierTemas',
             'ubicaciones',
-            'serieDocumental'
+            'serieDocumental',
+            'dossierObservaciones'
         ));
     }
-   
+
     public function update(Request $request, $dossierId)
     {
         $dossierTemasViejos = Tema::join('dossier_tema', 'tema_Id', '=', 'temas.id')
