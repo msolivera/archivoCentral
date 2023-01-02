@@ -9,6 +9,7 @@ use App\Models\Dossier;
 use App\Models\Clasificacion;
 use App\Models\SerieDocumental;
 use App\Models\Ubicacion;
+use App\Models\Tema;
 
 class DossierController extends Controller
 {
@@ -21,19 +22,24 @@ class DossierController extends Controller
     {
         $dossiers = Dossier::all();
         $ubicaciones = Ubicacion::all();
-        $serieDocumental = SerieDocumental ::all();
+        $serieDocumental = SerieDocumental::all();
         $clasificaciones = Clasificacion::all();
-        return view('dossier.index', compact('dossiers', 'clasificaciones','ubicaciones', 'serieDocumental'));
+        return view('dossier.index', compact('dossiers', 'clasificaciones', 'ubicaciones', 'serieDocumental'));
     }
     public function show($dossierId)
     {
         $dossier = Dossier::find($dossierId);
 
-            
+        $dossierTemas = Tema::join('dossier_tema', 'tema_Id', '=', 'temas.id')
+            ->select('*')
+            ->where('dossier_Id', $dossierId)->get()->all();
+
+
         return view(
             'dossier.verDossier',
             compact(
-                'dossier'
+                'dossier',
+                'dossierTemas'
             )
         );
     }
@@ -54,10 +60,11 @@ class DossierController extends Controller
     }
     public function edit($dossierId)
     {
-        //$clasificaciones = Clasificacion::all();
-        //$unidades = Unidad::all();
-        //$temas = Tema::all();
+        $clasificaciones = Clasificacion::all();
+        $temas = Tema::all();
         $dossier = Dossier::find($dossierId);
+        $ubicaciones = Ubicacion::all();
+        $serieDocumental = SerieDocumental::all();
         /*$fichasPerRel = DB::table('fichas_impersonales_y_relaciones')
             ->select('*')
             ->where('ficha_impersonal_id', '=', $fichaImpersonalId)
@@ -71,53 +78,47 @@ class DossierController extends Controller
             ->where('ficha_impersonal_relacionadas.tipoRelacion', '=', 'fichaImpersonal')
             ->get()->all();*/
 
-        /*$fichaTemas = Tema::join('ficha_impersonal_tema', 'tema_Id', '=', 'temas.id')
+        $dossierTemas = Tema::join('dossier_tema', 'tema_Id', '=', 'temas.id')
             ->select('*')
-            ->where('ficha_impersonal_Id', $fichaImpersonal->id)->get()->all();*/
-
-       /*$fichaUnidades = Unidad::join('ficha_impersonal_unidad', 'unidad_Id', '=', 'unidads.id')
-            ->select('*')
-            ->where('ficha_Impersonal_Id', $fichaImpersonal->id)->get()->all();*/
+            ->where('dossier_Id', $dossier->id)->get()->all();
 
         /*$fichasObservaciones = FichaImpersonalObservaciones::select('*')
             ->where('ficha_Impersonal_Id', $fichaImpersonal->id)
             ->get()->all();*/
 
-        return view('dossier.editarDossier', compact('dossier'));
-        
-        /*compact('fichaImpersonal', 'temas', 'unidades', 'clasificaciones', 'fichaTemas', 'fichaUnidades', 'fichasPerRel', 'fichasImpersonalesAgregadas', 'fichasObservaciones'));*/
+        return view('dossier.editarDossier', compact(
+            'dossier',
+            'temas',
+            'clasificaciones',
+            'dossierTemas',
+            'ubicaciones',
+            'serieDocumental'
+        ));
     }
-    /*
-    public function update(Request $request, $fichaImpersonalId)
+   
+    public function update(Request $request, $dossierId)
     {
-        $this->validate($request, [
-            'nombre' => 'required',
-            //'clasificacion_id' => 'required', 
-        ]);
-
-        $fichasUniViejas = Unidad::join('ficha_impersonal_unidad', 'unidad_Id', '=', 'unidads.id')
+        $dossierTemasViejos = Tema::join('dossier_tema', 'tema_Id', '=', 'temas.id')
             ->select('*')
-            ->where('ficha_impersonal_Id', $fichaImpersonalId)->get()->all();
-        $fichasTemasViejos = Tema::join('ficha_impersonal_tema', 'tema_Id', '=', 'temas.id')
-            ->select('*')
-            ->where('ficha_impersonal_Id', $fichaImpersonalId)->get()->all();
+            ->where('dossier_Id', $dossierId)->get()->all();
 
-        $fichaImpersonal = fichaImpersonal::find($fichaImpersonalId);
-        $fichaImpersonal->nombre = $request->nombre;
-        $fichaImpersonal->clasificacion_id = $request->clasificacion_id;
-        $fichaImpersonal->save();
-        $unidadesInsertar = collect($fichasUniViejas)->pluck('unidad_Id');
-        $temasInsertar = collect($fichasTemasViejos)->pluck('tema_Id');
+        $dossier = Dossier::find($dossierId);
+        $dossier->titulo = $request->titulo;
+        $dossier->letra = $request->letra;
+        $dossier->resumen = $request->resumen;
+        $dossier->fechaInicio = $request->fechaInicio;
+        $dossier->fechaFin = $request->fechaFin;
+        $dossier->clasificacions_id = $request->clasificacion_id;
+        $dossier->ubicacion_id = $request->ubicacion_id;
+        $dossier->serie_documental_id = $request->serie_documental_id;
+        $dossier->save();
 
-        //esto para actualizar la informacio de las unidades de la ficha
-        $fichaImpersonal->unidad()->detach($unidadesInsertar);
-        $fichaImpersonal->unidad()->attach($request->get('unidades'));
-        $fichaImpersonal->tema()->detach($temasInsertar);
-        $fichaImpersonal->tema()->attach($request->get('temas'));
+        $temasInsertar = collect($dossierTemasViejos)->pluck('tema_Id');
+        $dossier->tema()->detach($temasInsertar);
+        $dossier->tema()->attach($request->get('temas'));
 
-
-        return back()->with('flash', 'Ficha Impersonal actualizada con exito');
-    }*/
+        return back()->with('flash', 'Dossier actualizado con exito');
+    }
     public function destroy($dossierId)
     {
         $dossier = Dossier::find($dossierId);

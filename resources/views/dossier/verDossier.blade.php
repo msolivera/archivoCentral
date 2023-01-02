@@ -27,7 +27,7 @@
                 </div>
 
                 <div class="row md-12">
-                    <div class="col-sm-4"style="display: inline-block; vertical-align: top; padding:5px;">
+                    <div class="col-sm-6"style="display: inline-block; vertical-align: top; padding:5px;">
                         <div class="card card-widget widget-user-2">
                             <div class="card-footer p-0">
                                 <ul class="nav flex-column">
@@ -38,60 +38,44 @@
                                 </ul>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-sm-8"style="display: inline-block; vertical-align: top; padding:5px;">
-                        
-                        <!--<div class="card card-widget widget-user-2">
-                            <div class="card-footer p-0">
-                                <ul class="nav flex-column">
-                                    <li class="nav-item">
-                                        <b>Temas:</b>
-                                        foreach ($fichaTemas as $tema)
-                                            <a class="float-right">{ $tema->nombre }}{ '/' }}</a>
-                                        endforeach
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>-->
-                    </div>
-                    <div class="col-sm-12"style="display: inline-block; vertical-align: top; padding:5px;">
                         <div class="card card-widget widget-user-2">
                             <div class="card-footer p-0">
                                 <ul class="nav flex-column">
                                     <li class="nav-item">
-                                        <b>Título:</b> <a
-                                            class="float-right">{{ $dossier->titulo }}</a>
+                                        <b>Título:</b> <a class="float-right">{{ $dossier->titulo }}</a>
                                     </li>
                                 </ul>
                             </div>
                         </div>
+                        <div class="card card-widget widget-user-2">
+                            <div class="card-footer p-0">
+                                <ul class="nav flex-column">
+                                    <li class="nav-item">
+                                        <b>Letra:</b> <a class="float-right">{{ $dossier->letra }}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card card-widget widget-user-2">
+                            <div class="card-footer p-0">
+                                <ul class="nav flex-column">
+                                    <li class="nav-item">
+                                        <b>Ubicacion:</b> <a class="float-right">{{ $dossier->ubicacion->nombre }}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6"style="display: inline-block; vertical-align: top; padding:5px;">
 
                         <div class="card card-widget widget-user-2">
                             <div class="card-footer p-0">
                                 <ul class="nav flex-column">
                                     <li class="nav-item">
-                                        <b>Letra:</b> <a
-                                            class="float-right">{{ $dossier->letra }}</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="card card-widget widget-user-2">
-                            <div class="card-footer p-0">
-                                <ul class="nav flex-column">
-                                    <li class="nav-item">
-                                        <b>Resumen:</b> <a
-                                            class="float-right">{{ $dossier->resumen }}</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="card card-widget widget-user-2">
-                            <div class="card-footer p-0">
-                                <ul class="nav flex-column">
-                                    <li class="nav-item">
-                                        <b>Ubicacion:</b> <a
-                                            class="float-right">{{ $dossier->ubicacion->nombre }}</a>
+                                        <b>Temas:</b>
+                                        @foreach ($dossierTemas as $tema)
+                                            <a class="float-right">{{ $tema->nombre }}{{ '/' }}</a>
+                                        @endforeach
                                     </li>
                                 </ul>
                             </div>
@@ -110,128 +94,145 @@
                             <div class="card-footer p-0">
                                 <ul class="nav flex-column">
                                     <li class="nav-item">
-                                        <b>Fechas:</b> <a
-                                            class="float-right">{{ $dossier->fechaInicio }}{{ "-" }} {{ $dossier->fechaFin }}</a>
+                                        <b>Fechas:</b> <a class="float-right">{{ $dossier->fechaInicio }}{{ '-' }}
+                                            {{ $dossier->fechaFin }}</a>
                                     </li>
                                 </ul>
                             </div>
                         </div>
-                        
+                    </div>
+                    <div class="col-sm-12"style="display: inline-block; vertical-align: top; padding:5px;">
+
+
+
+                        <div class="card card-widget widget-user-2">
+                            <div class="card-footer p-0">
+                                <ul class="nav flex-column">
+                                    <li class="nav-item">
+                                        <b>Resumen:</b> <a class="float-right">{{ $dossier->resumen }}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+
+
                     </div>
                 </div>
-                
-                
+
+
 
             </div>
-        
-        <!--<div class="col-sm-6">
 
-            <div class="widget-user-header bg-primary">
-                <h3 class="profile-username text-center">Unidades</h3>
+            <!--<div class="col-sm-6">
 
-            </div>
-            <table class="table table-sm">
-                <thead>
-                    <tr>
-                        <th>Sigla</th>
-                        <th>Nombre</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    foreach ($fichaUnidades as $unidad)
+                <div class="widget-user-header bg-primary">
+                    <h3 class="profile-username text-center">Unidades</h3>
+
+                </div>
+                <table class="table table-sm">
+                    <thead>
                         <tr>
-                            <td>{ $unidad->sigla }}</td>
-                            <td>{ $unidad->nombre }}</td>
+                            <th>Sigla</th>
+                            <th>Nombre</th>
                         </tr>
-                    endforeach
-                </tbody>
-            </table>
-        </div> -->
-        <div class="col-sm-6">
+                    </thead>
+                    <tbody>
+                        foreach ($fichaUnidades as $unidad)
+                            <tr>
+                                <td>{ $unidad->sigla }}</td>
+                                <td>{ $unidad->nombre }}</td>
+                            </tr>
+                        endforeach
+                    </tbody>
+                </table>
+            </div> -->
+            <div class="col-sm-6">
 
-            <div class="widget-user-header bg-primary">
-                <h3 class="profile-username text-center">Doss. Relacionados</h3>
-            </div>
-            <table class="table table-sm">
-                <thead>
-                    <tr>
-                        <th>Título</th>
-                        <th>Clasificación</th>
-
-                    </tr>
-                </thead>
-                <tbody>
-
-                </tbody>
-            </table>
-        </div>
-
-        <div class="col-sm-6">
-
-            <div class="widget-user-header bg-primary">
-                <h3 class="profile-username text-center">Docs. Relacionados</h3>
-            </div>
-            <table class="table table-sm">
-                <thead>
-                    <tr>
-                        <th>Título</th>
-                        <th>Clasificación</th>
-
-                    </tr>
-                </thead>
-                <tbody>
-
-                </tbody>
-            </table>
-        </div>
-
-        <div class="col-sm-6">
-
-            <div class="widget-user-header bg-primary">
-                <h3 class="profile-username text-center">Ficha Imper. Relacionados</h3>
-            </div>
-            <table class="table table-sm">
-                <thead>
-                    <tr>
-                        <th>Título</th>
-                        <th>Clasificación</th>
-
-                    </tr>
-                </thead>
-                <!--<tbody>
-                    foreach ($fichasImperRel as $fichasImper)
+                <div class="widget-user-header bg-primary">
+                    <h3 class="profile-username text-center">Doss. Relacionados</h3>
+                </div>
+                <table class="table table-sm">
+                    <thead>
                         <tr>
-                            <td>{ $fichasImper->nombre }}</td>
-                            <td>{ $fichasImper->nombreClasificacion }}</td>
-                        </tr>
-                    endforeach
-                </tbody>-->
-            </table>
-        </div>
-        <div class="col-sm-12">
+                            <th>Título</th>
+                            <th>Clasificación</th>
 
-            <div class="widget-user-header bg-primary">
-                <h3 class="profile-username text-center">Fichas Personales. Relacionados</h3>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
             </div>
-            <table class="table table-sm">
-                <thead>
-                    <tr>
-                        <th>Nombre/s</th>
-                        <th>Apellido/s</th>
-                    </tr>
-                </thead>
-                <!--<tbody>
 
-                    foreach ($fichasPerRel as $fichasPer)
+            <div class="col-sm-6">
+
+                <div class="widget-user-header bg-primary">
+                    <h3 class="profile-username text-center">Docs. Relacionados</h3>
+                </div>
+                <table class="table table-sm">
+                    <thead>
                         <tr>
-                            <td>{ $fichasPer->primerNombre }} </td>
-                            <td>{ $fichasPer->primerApellido }} </td>
+                            <th>Título</th>
+                            <th>Clasificación</th>
+
                         </tr>
-                    endforeach
-                </tbody>-->
-            </table>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-sm-6">
+
+                <div class="widget-user-header bg-primary">
+                    <h3 class="profile-username text-center">Ficha Imper. Relacionados</h3>
+                </div>
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th>Título</th>
+                            <th>Clasificación</th>
+
+                        </tr>
+                    </thead>
+                    <!--<tbody>
+                        foreach ($fichasImperRel as $fichasImper)
+                            <tr>
+                                <td>{ $fichasImper->nombre }}</td>
+                                <td>{ $fichasImper->nombreClasificacion }}</td>
+                            </tr>
+                        endforeach
+                    </tbody>-->
+                </table>
+            </div>
+            <div class="col-sm-6">
+
+                <div class="widget-user-header bg-primary">
+                    <h3 class="profile-username text-center">Fichas Personales. Relacionados</h3>
+                </div>
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th>Nombre/s</th>
+                            <th>Apellido/s</th>
+                        </tr>
+                    </thead>
+                    <!--<tbody>
+
+                        foreach ($fichasPerRel as $fichasPer)
+                            <tr>
+                                <td>{ $fichasPer->primerNombre }} </td>
+                                <td>{ $fichasPer->primerApellido }} </td>
+                            </tr>
+                        endforeach
+                    </tbody>-->
+                </table>
+            </div>
         </div>
-    </div>
 
         <a href="#" class="btn btn-success btn-block" onclick="window.print();"><b>Descargar Ficha
                 PDF</b></a>

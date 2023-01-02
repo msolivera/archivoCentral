@@ -49,11 +49,6 @@
                                                                 <!--- Muestro los errores de validacion.-->
                                                                 {!! $errors->first('titulo', '<span class=error style=color:red>:message</span>') !!}
                                                             </div>
-
-
-
-
-
                                                             <div
                                                                 class="form-group {{ $errors->has('letra') ? 'has-error' : '' }} ">
                                                                 <label for="letra">Letra</label>
@@ -181,7 +176,7 @@
                                         @foreach ($dossiers as $dossier)
                                             <tr>
                                                 <td>
-                                                    <a href="dossier/{{$dossier->id}}"
+                                                    <a href="dossier/{{ $dossier->id }}"
                                                         class="btn btn-xs btn-success"><i
                                                             class="fa fa-light fa-eye"></i></a>
                                                     <a href="/dossier/edit/{{ $dossier->id }}"
@@ -201,8 +196,8 @@
                                                 <td>{{ $dossier->serieDocumental->nombre }}</td>
                                                 <td>{{ $dossier->fechaInicio }}</td>
                                                 <td>{{ $dossier->fechaFin }}</td>
-                                                <td>{{ $dossier->clasificacion->nombre}}</td>
-                                                
+                                                <td>{{ $dossier->clasificacion->nombre }}</td>
+
                                             </tr>
                                         @endforeach
 

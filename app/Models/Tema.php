@@ -19,4 +19,7 @@ class Tema extends Model
     public function fichaImpersonal(){
         return $this->belongsToMany(FichaImpersonal::class);
     }
+    public function dosser(){
+        return $this->belongsToMany(Dossier::class);
+    }
 }
