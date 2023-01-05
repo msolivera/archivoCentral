@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\FichaPersonalRelacionada;
-use App\Models\FichaImpersonalRelacionada;
-use App\Models\FichaPersonal;
-use App\Models\FichaImpersonal;
-use App\Models\Dossier;
-use App\Models\Tema;
 use App\Models\Clasificacion;
+use App\Models\Dossier;
+use App\Models\DossierRelacionada;
+use App\Models\FichaImpersonal;
+use App\Models\FichaPersonal;
+use App\Models\FichaPersonalRelacionada;
+use App\Models\Tema;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class FichaImpersonalRelacionadaController extends Controller
+class DossierRelacionadaController extends Controller
 {
     public function __construct()
     {
@@ -27,20 +27,19 @@ class FichaImpersonalRelacionadaController extends Controller
             case ('fichaPersonal'):
                 $fichaTitular = FichaPersonal::find($fichaId);
 
-                $fichasImperRel = DB::table('ficha_impersonals')
-                    ->select('ficha_impersonals.id', 'ficha_impersonals.nombre', 'clasificacion_id', 'clasificacions.nombre AS clasificacionNombre')
-                    ->join('clasificacions', 'ficha_impersonals.id', '=', 'clasificacions.id')
-                    ->whereNotIn('ficha_impersonals.id', DB::table('ficha_impersonal_relacionadas')->select('ficha_impersonal_id')
-                        ->where('ficha_impersonal_relacionadas.ficha_id', '=', $fichaId)
-                        ->where('ficha_impersonal_relacionadas.tipoRelacion', '=', 'fichaPersonal'))
+                $dossierRel = DB::table('dossiers')
+                    ->select('dossiers.id', 'dossiers.titulo','ubicacion_id', 'clasificacions_id', 'clasificacions.nombre AS clasificacionNombre')
+                    ->join('clasificacions', 'dossiers.id', '=', 'clasificacions.id')
+                    ->whereNotIn('dossiers.id', DB::table('dossier_relacionadas')->select('dossier_id')
+                        ->where('dossier_relacionadas.ficha_id', '=', $fichaId)
+                        ->where('dossier_relacionadas.tipoRelacion', '=', 'fichaPersonal'))
                     ->get();
                 $temas = Tema::all();
                 $clasificaciones = Clasificacion::all();
 
                 return view('fichaImpersonalRelacionada.index', compact(
-                    'fichasImperRel',
+                    'dossierRel',
                     'fichaTitular',
-
                     'temas',
                     'clasificaciones'
                 ));
@@ -48,18 +47,18 @@ class FichaImpersonalRelacionadaController extends Controller
             case ('dossier'):
                 $fichaTitular = Dossier::find($fichaId);
 
-                $fichasImperRel = DB::table('ficha_impersonals')
-                    ->select('ficha_impersonals.id', 'ficha_impersonals.nombre', 'clasificacion_id', 'clasificacions.nombre AS clasificacionNombre')
-                    ->join('clasificacions', 'ficha_impersonals.id', '=', 'clasificacions.id')
-                    ->whereNotIn('ficha_impersonals.id', DB::table('ficha_impersonal_relacionadas')->select('ficha_impersonal_id')
-                        ->where('ficha_impersonal_relacionadas.ficha_id', '=', $fichaId)
-                        ->where('ficha_impersonal_relacionadas.tipoRelacion', '=', 'dossier'))
+                $dossierRel = DB::table('dossiers')
+                    ->select('dossiers.id', 'dossiers.titulo', 'clasificacions_id', 'clasificacions.nombre AS clasificacionNombre')
+                    ->join('clasificacions', 'dossiers.id', '=', 'clasificacions.id')
+                    ->whereNotIn('dossiers.id', DB::table('dossier_relacionadas')->select('dossier_id')
+                        ->where('dossier_relacionadas.ficha_id', '=', $fichaId)
+                        ->where('dossier_relacionadas.tipoRelacion', '=', 'dossier'))
                     ->get();
                 $temas = Tema::all();
                 $clasificaciones = Clasificacion::all();
 
                 return view('fichaImpersonalRelacionada.index', compact(
-                    'fichasImperRel',
+                    'dossierRel',
                     'fichaTitular',
 
                     'temas',
@@ -68,20 +67,20 @@ class FichaImpersonalRelacionadaController extends Controller
                 break;
             case ('fichaImpersonal'):
                 $fichaTitular = FichaImpersonal::find($fichaId);
-                $fichasImperRel = DB::table('ficha_impersonals')
-                    ->select('ficha_impersonals.id', 'ficha_impersonals.nombre', 'clasificacion_id', 'clasificacions.nombre AS clasificacionNombre')
-                    ->join('clasificacions', 'ficha_impersonals.id', '=', 'clasificacions.id')
-                    ->where('ficha_impersonals.id', '<>', $fichaId)
-                    ->whereNotIn('ficha_impersonals.id', DB::table('ficha_impersonal_relacionadas')->select('ficha_impersonal_id')
-                        ->where('ficha_impersonal_relacionadas.ficha_id', '=', $fichaId)
-                        ->where('ficha_impersonal_relacionadas.tipoRelacion', '=', 'fichaImpersonal'))
+
+                $dossierRel = DB::table('dossiers')
+                    ->select('dossiers.id', 'dossiers.titulo','ubicacion_id', 'clasificacions_id', 'clasificacions.nombre AS clasificacionNombre')
+                    ->join('clasificacions', 'dossiers.id', '=', 'clasificacions.id')
+                    ->whereNotIn('dossiers.id', DB::table('dossier_relacionadas')->select('dossier_id')
+                        ->where('dossier_relacionadas.ficha_id', '=', $fichaId)
+                        ->where('dossier_relacionadas.tipoRelacion', '=', 'fichaImpersonal'))
                     ->get();
                 $temas = Tema::all();
                 $clasificaciones = Clasificacion::all();
                 $fichasRelacionadas = FichaPersonalRelacionada::all();
 
-                return view('fichaImpersonalRelacionada.index', compact(
-                    'fichasImperRel',
+                return view('dossierRelacionada.index', compact(
+                    'dossierRel',
                     'fichaTitular',
                     'fichasRelacionadas',
                     'temas',
@@ -96,7 +95,7 @@ class FichaImpersonalRelacionadaController extends Controller
 
     public function destroy($fichaRelId)
     {
-        $fichaRelacion = FichaImpersonalRelacionada::find($fichaRelId);
+        $fichaRelacion = DossierRelacionada::find($fichaRelId);
         $fichaRelacion->delete();
 
         return back()->with('flash', 'Registro eliminado con exito');
@@ -105,9 +104,9 @@ class FichaImpersonalRelacionadaController extends Controller
     public function store(Request $request,  $fichaTitular, $fichaTipo)
     {
 
-        $fichaRelacionada = new FichaImpersonalRelacionada();
+        $fichaRelacionada = new DossierRelacionada();
         $fichaRelacionada->ficha_id = $fichaTitular;
-        $fichaRelacionada->ficha_impersonal_id = $request->ficha_Id;
+        $fichaRelacionada->dossier_id = $request->dossier_Id;
         $fichaRelacionada->tipoRelacion = $fichaTipo;
         $fichaRelacionada->save();
 
@@ -125,7 +124,7 @@ class FichaImpersonalRelacionadaController extends Controller
             'nombre' => 'required',
         ]);
 
-        $fichaRelacionada = FichaImpersonalRelacionada::find($fichaId);
+        $fichaRelacionada = DossierRelacionada::find($fichaId);
         $fichaRelacionada->ficha_impersonal_id = $request->ficha_impersonal_id;
         $fichaRelacionada->ficha_per_relacionada_id = $request->ficha_imper_relacionada_id;
         $fichaRelacionada->save();

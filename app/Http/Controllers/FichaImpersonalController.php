@@ -50,7 +50,7 @@ class FichaImpersonalController extends Controller
         $fichasObservaciones = FichaImpersonalObservaciones::select('*')
             ->where('ficha_Impersonal_Id', $fichaImpersonal->id)
             ->get()->all();
-            
+
         return view(
             'fichasImpersonales.verFicha',
             compact(
@@ -86,10 +86,11 @@ class FichaImpersonalController extends Controller
         $unidades = Unidad::all();
         $temas = Tema::all();
         $fichaImpersonal = fichaImpersonal::find($fichaImpersonalId);
-        $fichasPerRel = DB::table('fichas_impersonales_y_relaciones')
-            ->select('*')
-            ->where('ficha_impersonal_id', '=', $fichaImpersonalId)
-            ->where('tipoRelacion', '=', 'fichaPersonal')
+        $fichasPerRel = DB::table('ficha_personals')
+            ->select('ficha_personals.id', 'ficha_personals.cedula', 'ficha_personals.primerNombre', 'ficha_personals.segundoNombre', 'ficha_personals.primerApellido', 'ficha_personals.segundoApellido')
+            ->whereIn('ficha_personals.id', DB::table('ficha_personal_relacionadas')->select('ficha_personal_id')
+                ->where('ficha_personal_relacionadas.ficha_id', '=', $fichaImpersonalId)
+                ->where('ficha_personal_relacionadas.tipoRelacion', '=', 'fichaImpersonal'))
             ->get();
 
         //arreglar esto usar vistas
