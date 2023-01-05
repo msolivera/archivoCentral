@@ -40,11 +40,8 @@
                     @break
                 @endswitch
             </div>
-
         </ol>
-
     </nav>
-
 @stop
 
 @section('content')

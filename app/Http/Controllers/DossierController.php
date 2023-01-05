@@ -1,8 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Dossier;
@@ -11,6 +9,7 @@ use App\Models\SerieDocumental;
 use App\Models\Ubicacion;
 use App\Models\Tema;
 use App\Models\DossierObservaciones;
+use App\Models\FichaImpersonal;
 
 class DossierController extends Controller
 {
@@ -51,7 +50,6 @@ class DossierController extends Controller
     }
     public function store(Request $request)
     {
-
         $dossier = new Dossier();
         $dossier->titulo = $request->titulo;
         $dossier->letra = $request->letra;
@@ -72,18 +70,25 @@ class DossierController extends Controller
         $dossier = Dossier::find($dossierId);
         $ubicaciones = Ubicacion::all();
         $serieDocumental = SerieDocumental::all();
-        /*$fichasPerRel = DB::table('fichas_impersonales_y_relaciones')
-            ->select('*')
-            ->where('ficha_impersonal_id', '=', $fichaImpersonalId)
-            ->where('tipoRelacion', '=', 'fichaPersonal')
-            ->get();*/
 
-        //arreglar esto usar vistas
-        /*$fichasImpersonalesAgregadas = FichaImpersonal::select('*')
+        $fichasPerRel = DB::table('ficha_personals')
+            ->select('ficha_personals.id', 'ficha_personals.cedula', 'ficha_personals.primerNombre', 'ficha_personals.segundoNombre', 'ficha_personals.primerApellido', 'ficha_personals.segundoApellido')
+            ->whereIn('ficha_personals.id', DB::table('ficha_personal_relacionadas')->select('ficha_personal_id')
+                ->where('ficha_personal_relacionadas.ficha_id', '=', $dossierId)
+                ->where('ficha_personal_relacionadas.tipoRelacion', '=', 'dossier'))
+            ->get();
+
+        $dossierRel = Dossier::select('*')
+            ->join('dossier_relacionadas', 'dossier_relacionadas.dossier_id', '=', 'dossiers.id')
+            ->where('dossier_relacionadas.ficha_id', $dossierId)
+            ->where('dossier_relacionadas.tipoRelacion', '=', 'dossier')
+            ->get()->all();
+
+        $fichasImpersonalesAgregadas = FichaImpersonal::select('*')
             ->join('ficha_impersonal_relacionadas', 'ficha_impersonal_relacionadas.ficha_impersonal_id', '=', 'ficha_impersonals.id')
-            ->where('ficha_impersonal_relacionadas.ficha_id', $fichaImpersonalId)
-            ->where('ficha_impersonal_relacionadas.tipoRelacion', '=', 'fichaImpersonal')
-            ->get()->all();*/
+            ->where('ficha_impersonal_relacionadas.ficha_id', $dossierId)
+            ->where('ficha_impersonal_relacionadas.tipoRelacion', '=', 'dossier')
+            ->get()->all();
 
         $dossierTemas = Tema::join('dossier_tema', 'tema_Id', '=', 'temas.id')
             ->select('*')
@@ -100,8 +105,12 @@ class DossierController extends Controller
             'dossierTemas',
             'ubicaciones',
             'serieDocumental',
-            'dossierObservaciones'
+            'dossierObservaciones',
+            'fichasImpersonalesAgregadas',
+            'fichasPerRel',
+            'dossierRel'
         ));
+
     }
 
     public function update(Request $request, $dossierId)
@@ -131,8 +140,6 @@ class DossierController extends Controller
     {
         $dossier = Dossier::find($dossierId);
         $dossier->delete();
-        /*$fichaImpersonal->unidad()->detach();
-        $fichaImpersonal->tema()->detach();*/
 
         return redirect()
             ->route('dossier.index')

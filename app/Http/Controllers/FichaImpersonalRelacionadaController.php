@@ -45,7 +45,7 @@ class FichaImpersonalRelacionadaController extends Controller
                     'clasificaciones'
                 ));
                 break;
-            /*case ('dossier'):
+            case ('dossier'):
                 $fichaTitular = Dossier::find($fichaId);
 
                 $fichasImperRel = DB::table('ficha_impersonals')
@@ -53,7 +53,7 @@ class FichaImpersonalRelacionadaController extends Controller
                     ->join('clasificacions', 'ficha_impersonals.id', '=', 'clasificacions.id')
                     ->whereNotIn('ficha_impersonals.id', DB::table('ficha_impersonal_relacionadas')->select('ficha_impersonal_id')
                         ->where('ficha_impersonal_relacionadas.ficha_id', '=', $fichaId)
-                        ->where('ficha_impersonal_relacionadas.tipoRelacion', '=', 'fichaPersonal'))
+                        ->where('ficha_impersonal_relacionadas.tipoRelacion', '=', 'dossier'))
                     ->get();
                 $temas = Tema::all();
                 $clasificaciones = Clasificacion::all();
@@ -65,7 +65,7 @@ class FichaImpersonalRelacionadaController extends Controller
                     'temas',
                     'clasificaciones'
                 ));
-                break;*/
+                break;
             case ('fichaImpersonal'):
                 $fichaTitular = FichaImpersonal::find($fichaId);
                 $fichasImperRel = DB::table('ficha_impersonals')

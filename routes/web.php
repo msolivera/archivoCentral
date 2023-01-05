@@ -234,6 +234,10 @@ Route::group(
         Route::post('/dossier', [App\Http\Controllers\DossierController::class, 'store'])->name('dossier.store');
         Route::put('/dossier/{dossier}', [App\Http\Controllers\DossierController::class, 'update'])->name('dossier.update');
         Route::delete('/dossier/{dossier}', [App\Http\Controllers\DossierController::class, 'destroy'])->name('dossier.destroy');
+        //DossierRelacionada
+        Route::post('/dossierRelacionada/{dossier}/{fichaTipo}', [App\Http\Controllers\DossierRelacionadaController::class, 'store'])->name('dossierRelacionada.store');
+        Route::delete('/dossierRelacionada/{dossier}', [App\Http\Controllers\DossierRelacionadaController::class, 'destroy'])->name('dossierRelacionada.destroy');
+        Route::get('/dossierRelacionada/{dossier}/{fichaTipo}', [App\Http\Controllers\DossierRelacionadaController::class, 'index'])->name('dossierRelacionada.index');
     }
 );
 

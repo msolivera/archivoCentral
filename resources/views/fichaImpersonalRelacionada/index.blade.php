@@ -14,6 +14,9 @@
                         @case('fichaImpersonal')
                             <small>• Relacionar Con: {{ $fichaTitular->nombre }}</small>
                         @break
+                        @case('dossier')
+                        <small>• Relacionar Con: {{ $fichaTitular->titulo }}</small>
+                    @break
 
                     </h4>
                 @endswitch

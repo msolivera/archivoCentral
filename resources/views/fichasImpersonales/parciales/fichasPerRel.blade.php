@@ -21,7 +21,6 @@
                         <th>Segundo Nombre</th>
                         <th>Primer Apellido</th>
                         <th>Segundo Apellido</th>
-                        
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -43,9 +42,6 @@
                             <td>
                                 {{ $fichaPariente->segundoApellido }}
                             </td>
-                            
-
-
                             <td>
                                 <form method="POST" action="{{ route('fichaPersonalRelacionada.destroy', $fichaPariente->id)}}"
                                     style="display: inline">
@@ -55,7 +51,6 @@
                                         onclick="return confirm('¿Esta seguro que desea elminirar este registro?')"><i
                                             class="fa fa-light fa-trash"></i></button>
                                 </form>
-
                             </td>
                         </tr>
                     @endforeach
