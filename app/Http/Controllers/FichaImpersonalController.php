@@ -50,7 +50,7 @@ class FichaImpersonalController extends Controller
         $fichasObservaciones = FichaImpersonalObservaciones::select('*')
             ->where('ficha_Impersonal_Id', $fichaImpersonal->id)
             ->get()->all();
-            
+
         return view(
             'fichasImpersonales.verFicha',
             compact(
@@ -86,18 +86,49 @@ class FichaImpersonalController extends Controller
         $unidades = Unidad::all();
         $temas = Tema::all();
         $fichaImpersonal = fichaImpersonal::find($fichaImpersonalId);
-        $fichasPerRel = DB::table('fichas_impersonales_y_relaciones')
+        /* $fichasPerRel = DB::table('fichas_impersonales_y_relaciones')
             ->select('*')
             ->where('ficha_impersonal_id', '=', $fichaImpersonalId)
             ->where('tipoRelacion', '=', 'fichaPersonal')
-            ->get();
+            ->get(); */
 
-        //arreglar esto usar vistas
+
         $fichasImpersonalesAgregadas = FichaImpersonal::select('*')
             ->join('ficha_impersonal_relacionadas', 'ficha_impersonal_relacionadas.ficha_impersonal_id', '=', 'ficha_impersonals.id')
             ->where('ficha_impersonal_relacionadas.ficha_id', $fichaImpersonalId)
             ->where('ficha_impersonal_relacionadas.tipoRelacion', '=', 'fichaImpersonal')
             ->get()->all();
+
+        /*
+            SELECT ficha_personal_relacionadas.ficha_id, 
+ficha_personal_relacionadas.ficha_personal_id,
+ficha_personal_relacionadas.tipoRelacion,
+ficha_personals.cedula,
+ficha_personals.primerNombre,
+ficha_personals.segundoNombre,
+ficha_personals.primerApellido,
+ficha_personals.segundoApellido,
+ficha_personals.clasificacion_id
+from archivocentral.ficha_personal_relacionadas
+inner join ficha_personals on ficha_personal_id = ficha_personals.id
+where ficha_personal_relacionadas.ficha_id = 1 and ficha_personal_relacionadas.tipoRelacion = 'fichaImpersonal'
+*/
+        $fichasPersonalesAgregadas = DB::table('ficha_personal_relacionadas')
+            ->select(
+                'ficha_personals.id',
+                'ficha_personal_relacionadas.ficha_personal_id',
+                'ficha_personal_relacionadas.tipoRelacion',
+                'ficha_personals.cedula',
+                'ficha_personals.primerNombre',
+                'ficha_personals.segundoNombre',
+                'ficha_personals.primerApellido',
+                'ficha_personals.segundoApellido'
+            )
+            ->join('ficha_personals', 'ficha_personal_id', 'ficha_personals.id')
+            ->where('ficha_personal_relacionadas.ficha_id', '=', $fichaImpersonalId)
+            ->where('ficha_personal_relacionadas.tipoRelacion', '=', 'fichaImpersonal')
+            ->get();
+
 
         $fichaTemas = Tema::join('ficha_impersonal_tema', 'tema_Id', '=', 'temas.id')
             ->select('*')
@@ -111,7 +142,7 @@ class FichaImpersonalController extends Controller
             ->where('ficha_Impersonal_Id', $fichaImpersonal->id)
             ->get()->all();
 
-        return view('fichasImpersonales.editarFicha', compact('fichaImpersonal', 'temas', 'unidades', 'clasificaciones', 'fichaTemas', 'fichaUnidades', 'fichasPerRel', 'fichasImpersonalesAgregadas', 'fichasObservaciones'));
+        return view('fichasImpersonales.editarFicha', compact('fichaImpersonal', 'temas', 'unidades', 'clasificaciones', 'fichaTemas', 'fichaUnidades', 'fichasImpersonalesAgregadas', 'fichasObservaciones', 'fichasPersonalesAgregadas'));
     }
     public function update(Request $request, $fichaImpersonalId)
     {

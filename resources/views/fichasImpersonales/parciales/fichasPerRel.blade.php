@@ -16,18 +16,21 @@
             <table id="parientesTable" class="table table-bordered table-striped table-sm">
                 <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Cédula</th>
                         <th>Primer Nombre</th>
                         <th>Segundo Nombre</th>
                         <th>Primer Apellido</th>
                         <th>Segundo Apellido</th>
-                        <th>Clasificación</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($fichasPerRel as $fichaPariente)
+                    @foreach ($fichasPersonalesAgregadas as $fichaPariente)
                         <tr>
+                            <td>
+                                {{ $fichaPariente->id }}
+                            </td>
                             <td>
                                 {{ $fichaPariente->cedula }}
                             </td>
@@ -43,10 +46,6 @@
                             <td>
                                 {{ $fichaPariente->segundoApellido }}
                             </td>
-                            <td>
-                                {{ $fichaPariente->nombreClasificacion }}
-                            </td>
-
 
                             <td>
                                 <form method="POST" action="{{ route('fichaPersonalRelacionada.destroy', $fichaPariente->id)}}"

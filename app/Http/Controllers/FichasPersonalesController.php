@@ -514,10 +514,10 @@ class FichasPersonalesController extends Controller
         $fichaPer->credencial = $request->credencial;
         $fichaPer->fechaNac = $request->fechaNac;
         $fichaPer->ciudad_id = $request->ciudad_id;
-        $fichaPer->estadoCivil_id = EstadoCivil::find($estado = $request->estadoCivil_id)
+        $fichaPer->estadoCivil_id = $request->estadoCivil_id;
+        /* EstadoCivil::find($estado = $request->estadoCivil_id)
             ? $estado
-            : EstadoCivil::create(['nombre' => $estado])->id;
-
+            : EstadoCivil::create(['nombre' => $estado])->id; */
         $fichaPer->seccionalPolicial = $request->seccionalPolicial;
         $fichaPer->fechaDef = $request->fechaDef;
         $fichaPer->situacion_id = $request->situacion_id;
