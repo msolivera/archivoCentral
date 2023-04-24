@@ -26,4 +26,8 @@ class Dossier extends Model
     {
         return $this->belongsTo(SerieDocumental::class, 'serie_documental_id');
     }
+    public function tema()
+    {
+        return $this->belongsToMany(Tema::class);
+    }
 }

@@ -7,6 +7,7 @@ use App\Models\FichaPersonalRelacionada;
 use App\Models\FichaImpersonalRelacionada;
 use App\Models\FichaPersonal;
 use App\Models\FichaImpersonal;
+use App\Models\Dossier;
 use App\Models\Tema;
 use App\Models\Clasificacion;
 use Illuminate\Support\Facades\DB;
@@ -31,6 +32,27 @@ class FichaImpersonalRelacionadaController extends Controller
                     ->whereNotIn('ficha_impersonals.id', DB::table('ficha_impersonal_relacionadas')->select('ficha_impersonal_id')
                         ->where('ficha_impersonal_relacionadas.ficha_id', '=', $fichaId)
                         ->where('ficha_impersonal_relacionadas.tipoRelacion', '=', 'fichaPersonal'))
+                    ->get();
+                $temas = Tema::all();
+                $clasificaciones = Clasificacion::all();
+
+                return view('fichaImpersonalRelacionada.index', compact(
+                    'fichasImperRel',
+                    'fichaTitular',
+
+                    'temas',
+                    'clasificaciones'
+                ));
+                break;
+            case ('dossier'):
+                $fichaTitular = Dossier::find($fichaId);
+
+                $fichasImperRel = DB::table('ficha_impersonals')
+                    ->select('ficha_impersonals.id', 'ficha_impersonals.nombre', 'clasificacion_id', 'clasificacions.nombre AS clasificacionNombre')
+                    ->join('clasificacions', 'ficha_impersonals.id', '=', 'clasificacions.id')
+                    ->whereNotIn('ficha_impersonals.id', DB::table('ficha_impersonal_relacionadas')->select('ficha_impersonal_id')
+                        ->where('ficha_impersonal_relacionadas.ficha_id', '=', $fichaId)
+                        ->where('ficha_impersonal_relacionadas.tipoRelacion', '=', 'dossier'))
                     ->get();
                 $temas = Tema::all();
                 $clasificaciones = Clasificacion::all();

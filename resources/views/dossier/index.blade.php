@@ -49,19 +49,14 @@
                                                                 <!--- Muestro los errores de validacion.-->
                                                                 {!! $errors->first('titulo', '<span class=error style=color:red>:message</span>') !!}
                                                             </div>
-
-
-
-
-
                                                             <div
-                                                                class="form-group {{ $errors->has('titulo') ? 'has-error' : '' }} ">
-                                                                <label for="titulo">Letra</label>
-                                                                <input name="titulo" type="imput" class="form-control"
-                                                                    id="titulo" placeholder="..."
-                                                                    value="{{ old('titulo') }}">
+                                                                class="form-group {{ $errors->has('letra') ? 'has-error' : '' }} ">
+                                                                <label for="letra">Letra</label>
+                                                                <input name="letra" type="imput" class="form-control"
+                                                                    id="letra" placeholder="..."
+                                                                    value="{{ old('letra') }}">
                                                                 <!--- Muestro los errores de validacion.-->
-                                                                {!! $errors->first('titulo', '<span class=error style=color:red>:message</span>') !!}
+                                                                {!! $errors->first('letra', '<span class=error style=color:red>:message</span>') !!}
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>Fecha de Inicio</label>
@@ -181,20 +176,19 @@
                                         @foreach ($dossiers as $dossier)
                                             <tr>
                                                 <td>
-                                                    {{-- <a href="fichaImpersonal/{{$fichaImper->id}}"
+                                                    <a href="dossier/{{ $dossier->id }}"
                                                         class="btn btn-xs btn-success"><i
                                                             class="fa fa-light fa-eye"></i></a>
-                                                    <a href="fichaImpersonal/edit/{{ $fichaImper->id }}"
+                                                    <a href="/dossier/edit/{{ $dossier->id }}"
                                                         class="btn btn-xs btn-info"><i class="fa fa-light fa-pen"></i></a>
                                                     <form method="POST"
-                                                        action="{{ route('fichaImpersonal.destroy', $fichaImper->id) }}"
+                                                        action="{{ route('dossier.destroy', $dossier->id) }}"
                                                         style="display: inline"> {{ csrf_field() }}
                                                         {{ method_field('DELETE') }}
                                                         <button class="btn btn-xs btn-danger"
                                                             onclick="return confirm('¿Esta seguro que desea elminirar este registro?')"><i
                                                                 class="fa fa-light fa-trash"></i></button>
-                                                    </form> --}}
-                                                    <h2>botones</h2>
+                                                    </form>
                                                 </td>
                                                 <td>{{ $dossier->titulo }}</td>
                                                 <td>{{ $dossier->letra }}</td>
@@ -202,8 +196,8 @@
                                                 <td>{{ $dossier->serieDocumental->nombre }}</td>
                                                 <td>{{ $dossier->fechaInicio }}</td>
                                                 <td>{{ $dossier->fechaFin }}</td>
-                                                <td>{{ $dossier->clasificacion->nombre}}</td>
-                                                
+                                                <td>{{ $dossier->clasificacion->nombre }}</td>
+
                                             </tr>
                                         @endforeach
 

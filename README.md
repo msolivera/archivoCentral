@@ -62,3 +62,26 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+## Correrlo en docker
+
+En el archivo .env se ponen las variables de la base de datos:
+
+DB_CONNECTION=mysql
+DB_HOST=mysql
+DB_PORT=3306
+DB_DATABASE=sistemaarmada
+DB_USERNAME=sistemaarmada
+DB_PASSWORD=secret
+
+Lo importante es que DB_CONNECTION tenga el nombre del otro contenedor y que el username, password y database coincidan con el del archivo docker-compose.yaml.
+
+La base de datos tambien es un contenedor, pero no preocuparse, la info no se pierde porque esta en una carpeta que se crea en la raiz del proyecto que se llama data.
+
+Si queres correr otro contenedor arriba usando la misma carpeta data, va a dar problema, hay que borrarla primero.
+
+La forma de correrlo es `docker-compose up -d` 
+No lo armamos interactivo, si cambias el codigo no cambia nada, si queres que funcione interactivo hay q darle pemisos a los archivos del proyecto.
+
+Besos

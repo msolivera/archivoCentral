@@ -4,11 +4,11 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-8">
-                    <h3 class="card-title">Fichas personales relacionadas</h3>
+                    <h3 class="card-title">Fichas Personales relacionadas</h3>
                 </div>
                 <div class="col-4">
                     <a style="float: right; padding: 15px;"
-                        href="/fichaPersonalRelacionada/{{ $fichaImpersonal->id }}/{{ $fichaImpersonal->tipo }}"
+                        href="/fichaPersonalRelacionada/{{ $dossier->id }}/{{ $dossier->tipo }}"
                         class="btn btn-xs btn-info"><i class="fa fa-regular fa-plus"></i></a>
 
                 </div>
@@ -16,8 +16,6 @@
             <table id="parientesTable" class="table table-bordered table-striped table-sm">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Cédula</th>
                         <th>Primer Nombre</th>
                         <th>Segundo Nombre</th>
                         <th>Primer Apellido</th>
@@ -26,33 +24,23 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($fichasPersonalesAgregadas as $fichaPariente)
+                    @foreach ($fichasPerRel as $fichaPer)
                         <tr>
                             <td>
-                                {{ $fichaPariente->id }}
+                                {{ $fichaPer->primerNombre }}
                             </td>
                             <td>
-                                {{ $fichaPariente->cedula }}
+                                {{ $fichaPer->segundoNombre }}
                             </td>
                             <td>
-                                {{ $fichaPariente->primerNombre }}
+                                {{ $fichaPer->primerApellido }}
                             </td>
                             <td>
-                                {{ $fichaPariente->segundoNombre }}
+                                {{ $fichaPer->segundoApellido }}
                             </td>
                             <td>
-                                {{ $fichaPariente->primerApellido }}
-                            </td>
-                            <td>
-                                {{ $fichaPariente->segundoApellido }}
-                            </td>
-                            <td>
-                                {{ $fichaPariente->nombreClasificacion }}
-                            </td>
-
-
-                            <td>
-                                <form method="POST" action="{{ route('fichaPersonalRelacionada.destroy', $fichaPariente->id)}}"
+                                <form method="POST"
+                                    action="{{ route('fichaPersonalRelacionada.destroy', $fichaPer->id) }}"
                                     style="display: inline">
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
@@ -63,8 +51,6 @@
                             </td>
                         </tr>
                     @endforeach
-
-
                 </tbody>
             </table>
         </div>

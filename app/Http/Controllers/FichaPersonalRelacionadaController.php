@@ -17,6 +17,7 @@ use App\Models\FichaPersonal;
 use App\Models\FichaImpersonal;
 use App\Models\Tema;
 use App\Models\Clasificacion;
+use App\Models\Dossier;
 use App\Models\Parentesco;
 
 class FichaPersonalRelacionadaController extends Controller
@@ -91,6 +92,47 @@ class FichaPersonalRelacionadaController extends Controller
                         ->where('ficha_personal_relacionadas.tipoRelacion', '=', 'fichaImpersonal'))
                     ->get();
 
+
+                $temas = Tema::all();
+                $clasificaciones = Clasificacion::all();
+                $fichasRelacionadas = FichaPersonalRelacionada::all();
+
+                return view('fichaPersonalRelacionada.index', compact(
+                    'fichasPerRel',
+                    'fichaPerTitular',
+                    'fichasRelacionadas',
+                    'paises',
+                    'ciudades',
+                    'departamentos',
+                    'estadosCiviles',
+                    'situaciones',
+                    'fuerzas',
+                    'grados',
+                    'cuerpos',
+                    'temas',
+                    'parentescos',
+                    'clasificaciones'
+                ));
+                break;
+            case ('dossier'):
+                $fichaPerTitular = Dossier::find($fichaId);
+                $paises = Pais::all();
+                $parentescos = Parentesco::all();
+                $ciudades = Ciudad::all();
+                $departamentos = Departamento::all();
+                $estadosCiviles = EstadoCivil::all();
+                $situaciones = Situacion::all();
+                $fuerzas = Fuerza::all();
+                $grados = Grado::all();
+                $cuerpos = ArmaCuerpo::all();
+
+
+                $fichasPerRel = DB::table('ficha_personals')
+                    ->select('ficha_personals.id', 'ficha_personals.cedula', 'ficha_personals.primerNombre', 'ficha_personals.segundoNombre', 'ficha_personals.primerApellido', 'ficha_personals.segundoApellido')
+                    ->whereNotIn('ficha_personals.id', DB::table('ficha_personal_relacionadas')->select('ficha_personal_id')
+                        ->where('ficha_personal_relacionadas.ficha_id', '=', $fichaId)
+                        ->where('ficha_personal_relacionadas.tipoRelacion', '=', 'dossier'))
+                    ->get();
 
 
                 $temas = Tema::all();

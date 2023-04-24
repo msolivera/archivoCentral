@@ -4,7 +4,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <div class="col-md-6">
-                <h4> Fichas Impersonales
+                <h4> Dossier
                     @switch($fichaTitular->tipo)
                         @case('fichaPersonal')
                             <small>• Relacionar Con: {{ $fichaTitular->primerNombre }}
@@ -14,9 +14,10 @@
                         @case('fichaImpersonal')
                             <small>• Relacionar Con: {{ $fichaTitular->nombre }}</small>
                         @break
+
                         @case('dossier')
-                        <small>• Relacionar Con: {{ $fichaTitular->titulo }}</small>
-                    @break
+                            <small>• Relacionar Con: {{ $fichaTitular->titulo }}</small>
+                        @break
 
                     </h4>
                 @endswitch
@@ -32,54 +33,125 @@
                         <a style="float: right;"href="{{ route('fichasImpersonales.editarFicha', $fichaTitular->id) }}"
                             class="btn btn-block btn-outline-primary">Atrás</a>
                     @break
+
+                    @case('dossier')
+                        <a style="float: right;"href="{{ route('dossier.editarDossier', $fichaTitular->id) }}"
+                            class="btn btn-block btn-outline-primary">Atrás</a>
+                    @break
                 @endswitch
             </div>
-
         </ol>
-
     </nav>
-
 @stop
 
 @section('content')
     <section class="content">
         <div class="card" id="parientes" style="display: none;">
-            <form method="POST" action="{{ route('fichaImpersonal.store') }}">
+            <form method="POST" action="{{ route('dossier.store') }}">
                 {{ csrf_field() }}
                 <div class="card-dialog card-lg" role="document">
                     <div class="card-content">
                         <div class="card-body">
                             <div class="row">
 
-                                <div class="form-group {{ $errors->has('nombre') ? 'has-error' : '' }} ">
-                                    <label for="nombre">Título</label>
-                                    <input name="nombre" type="imput" class="form-control" id="nombre"
-                                        placeholder="..." value="{{ old('nombre') }}">
-                                    <!--- Muestro los errores de validacion.-->
-                                    {!! $errors->first('nombre', '<span class=error style=color:red>:message</span>') !!}
-                                </div>
+                                <div class="row">
 
-                                <div class="form-group {{ $errors->has('clasificacion_id') ? 'has-error' : '' }} ">
-                                    <label for="clasificacion_id">Clasificación</label>
-                                    <select name="clasificacion_id" class="form-control select2" style="width: 100%;"
-                                        id="clasificacion_id">
-                                        <option value=""> Seleccione una Clasificación
-                                        </option>
-                                        @foreach ($clasificaciones as $clasificacion)
-                                            <option value="{{ $clasificacion->id }}">
-                                                {{ $clasificacion->nombre }}
-                                            </option>
-                                        @endforeach
-                                    </select>
+                                    <div class="col-md-6" style="display: inline-block;">
+
+                                        <div class="form-group {{ $errors->has('titulo') ? 'has-error' : '' }} ">
+                                            <label for="titulo">Título</label>
+                                            <input name="titulo" type="imput" class="form-control" id="titulo"
+                                                placeholder="..." value="{{ old('titulo') }}">
+                                            <!--- Muestro los errores de validacion.-->
+                                            {!! $errors->first('titulo', '<span class=error style=color:red>:message</span>') !!}
+                                        </div>
+                                        <div class="form-group {{ $errors->has('letra') ? 'has-error' : '' }} ">
+                                            <label for="letra">Letra</label>
+                                            <input name="letra" type="imput" class="form-control" id="letra"
+                                                placeholder="..." value="{{ old('letra') }}">
+                                            <!--- Muestro los errores de validacion.-->
+                                            {!! $errors->first('letra', '<span class=error style=color:red>:message</span>') !!}
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Fecha de Inicio</label>
+                                            <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                                                <input name="fechaInicio" type="text"
+                                                    class="form-control datetimepicker-input" data-target="#reservationdate"
+                                                    value="{{ old('fechaInicio') }}" />
+                                                <div class="input-group-append" data-target="#reservationdate"
+                                                    data-toggle="datetimepicker">
+                                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Fecha Fin</label>
+                                            <div class="input-group date" id="reservationdate2" data-target-input="nearest">
+                                                <input name="fechaFin" type="text"
+                                                    class="form-control datetimepicker-input"
+                                                    data-target="#reservationdate2" value="{{ old('fechaFin') }}" />
+                                                <div class="input-group-append" data-target="#reservationdate2"
+                                                    data-toggle="datetimepicker">
+                                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-6" style="display: inline-block;">
+                                        <div class="form-group {{ $errors->has('clasificacion_id') ? 'has-error' : '' }} ">
+                                            <label for="clasificacion_id">Clasificación</label>
+                                            <select name="clasificacion_id" class="form-control select2"
+                                                style="width: 100%;" id="clasificacion_id">
+                                                <option value=""> Seleccione una Clasificación
+                                                </option>
+                                                @foreach ($clasificaciones as $clasificacion)
+                                                    <option value="{{ $clasificacion->id }}">
+                                                        {{ $clasificacion->nombre }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group {{ $errors->has('ubicacion_id') ? 'has-error' : '' }} ">
+                                            <label for="ubicacion_id">Ubicacion</label>
+                                            <select name="ubicacion_id" class="form-control select2" style="width: 100%;"
+                                                id="ubicacion_id">
+                                                <option value=""> Seleccione una Ubicacion
+                                                </option>
+                                                @foreach ($ubicaciones as $ubicacion)
+                                                    <option value="{{ $ubicacion->id }}">
+                                                        {{ $ubicacion->nombre }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div
+                                            class="form-group {{ $errors->has('serie_documental_id') ? 'has-error' : '' }} ">
+                                            <label for="serie_documental_id">Serie Documental</label>
+                                            <select name="serie_documental_id" class="form-control select2"
+                                                style="width: 100%;" id="serie_documental_id">
+                                                <option value=""> Seleccione una Serie Documental
+                                                </option>
+                                                @foreach ($serieDocumental as $serie)
+                                                    <option value="{{ $serie->id }}">
+                                                        {{ $serie->nombre }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" style="display: inline-block;">
+                                        <label for="resumen">Resumen</label>
+                                        <textarea name="resumen" class="form-control" rows="5" id="resumen" value="{{ old('resumen') }}"></textarea>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="card-footer">
-                            <button type="button" class="btn btn-default" id="cerrarForm">Cerrar</button>
-                            <button class="btn btn-primary">Crear</button>
+                            <div class="card-footer">
+                                <button type="button" class="btn btn-default" id="cerrarForm">Cerrar</button>
+                                <button class="btn btn-primary">Crear</button>
+                            </div>
                         </div>
                     </div>
-                </div>
             </form>
 
         </div>
@@ -88,7 +160,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-8">
-                            <h3 class="card-title">Fichas Personales</h3>
+                            <h3 class="card-title">Dossier</h3>
                         </div>
                     </div>
 
@@ -100,16 +172,18 @@
                                     <th>Acciones</th>
                                     <th>ID</th>
                                     <th>Titulo</th>
+                                    <th>Letra</th>
                                     <th>Clasificacion</th>
+                                    <th>Ubicacion</th>
                                 </tr>
                             </thead>
 
                             <tbody>
 
-                                @foreach ($fichasImperRel as $fichasImper)
+                                @foreach ($dossierRel as $dossier)
                                     <tr>
                                         <form method="POST"
-                                            href="/fichaImpersonalRelacionada/{{ $fichaTitular->id }}/{{ $fichaTitular->tipo }}"
+                                            href="/dossierRelacionada/{{ $fichaTitular->id }}/{{ $fichaTitular->tipo }}"
                                             style="display: inline"> {{ csrf_field() }}
                                             <td>
                                                 <button class="btn btn-md btn-success"><i
@@ -118,12 +192,14 @@
                                             <td>
                                                 <div class="form-group">
                                                     <input name="ficha_Id" type="imput" class="form-control"
-                                                        id="ficha_Id" value="{{ $fichasImper->id }}"readonly>
+                                                        id="ficha_Id" value="{{ $dossier->id }}"readonly>
                                                     </label>
                                                 </div>
                                             </td>
-                                            <td>{{ $fichasImper->nombre }}</td>
-                                            <td>{{ $fichasImper->clasificacionNombre }}</td>
+                                            <td>{{ $dossier->titulo }}</td>
+                                            <td>{{ $dossier->letra }}</td>
+                                            <td>{{ $dossier->clasificacionNombre }}</td>
+                                            <td>{{ $dossier->ubicacionNombre }}</td>
 
                                         </form>
                                     </tr>
@@ -136,7 +212,7 @@
 
                     <div class="row">
                         <div class="form-group">
-                            <label for="nuevaPersona">¿No encuentra la ficha deseada?</label>
+                            <label for="nuevaPersona">¿No encuentra el dossier deseado?</label>
                             <button style="float: rigth; padding: 10px; margin-left:10px" class="btn btn-xs btn-info"
                                 id="mostrarNuevaFicha">Agregar Nueva</i></button>
                         </div>
@@ -154,6 +230,8 @@
 
 
 @push('styles')
+    <link rel="stylesheet" href="adminLTE/plugins/daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="adminLTE/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
     <!-- Select2 -->
     <link rel="stylesheet" href="/adminLTE/plugins/select2/css/select2.min.css">
     <link rel="stylesheet" href="/adminLTE/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
