@@ -32,6 +32,10 @@
                         <a style="float: right;"href="{{ route('fichasImpersonales.editarFicha', $fichaTitular->id) }}"
                             class="btn btn-block btn-outline-primary">Atrás</a>
                     @break
+                    @case('dossier')
+                        <a style="float: right;"href="{{ route('dossier.editarDossier', $fichaTitular->id) }}"
+                            class="btn btn-block btn-outline-primary">Atrás</a>
+                    @break
                 @endswitch
             </div>
 
@@ -49,8 +53,6 @@
                 <div class="card-dialog card-lg" role="document">
                     <div class="card-content">
                         <div class="card-body">
-                            <div class="row">
-
                                 <div class="form-group {{ $errors->has('nombre') ? 'has-error' : '' }} ">
                                     <label for="nombre">Título</label>
                                     <input name="nombre" type="imput" class="form-control" id="nombre"
@@ -72,7 +74,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                            </div>
+                           
                         </div>
                         <div class="card-footer">
                             <button type="button" class="btn btn-default" id="cerrarForm">Cerrar</button>

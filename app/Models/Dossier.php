@@ -29,5 +29,10 @@ class Dossier extends Model
     public function tema()
     {
         return $this->belongsToMany(Tema::class);
+
+    }
+    public function photos()
+    {
+        return $this->hasMany(Photo::class);
     }
 }

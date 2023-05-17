@@ -14,6 +14,9 @@
                         @case('fichaImpersonal')
                             <small>• Relacionar Con: {{ $fichaPerTitular->nombre }}</small>
                         @break
+                        @case('dossier')
+                            <small>• Relacionar Con: {{ $fichaPerTitular->nombre }}</small>
+                        @break
                     </h4>
                 @endswitch
             </div>
@@ -26,6 +29,10 @@
 
                     @case('fichaImpersonal')
                         <a style="float: right;"href="{{ route('fichasImpersonales.editarFicha', $fichaPerTitular->id) }}"
+                            class="btn btn-block btn-outline-primary">Atrás</a>
+                    @break
+                    @case('dossier')
+                        <a style="float: right;"href="{{ route('dossier.editarDossier', $fichaPerTitular->id) }}"
                             class="btn btn-block btn-outline-primary">Atrás</a>
                     @break
                 @endswitch

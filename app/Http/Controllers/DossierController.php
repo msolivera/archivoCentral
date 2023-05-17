@@ -71,12 +71,23 @@ class DossierController extends Controller
         $ubicaciones = Ubicacion::all();
         $serieDocumental = SerieDocumental::all();
 
-        $fichasPerRel = DB::table('ficha_personals')
-            ->select('ficha_personals.id', 'ficha_personals.cedula', 'ficha_personals.primerNombre', 'ficha_personals.segundoNombre', 'ficha_personals.primerApellido', 'ficha_personals.segundoApellido')
-            ->whereIn('ficha_personals.id', DB::table('ficha_personal_relacionadas')->select('ficha_personal_id')
-                ->where('ficha_personal_relacionadas.ficha_id', '=', $dossierId)
-                ->where('ficha_personal_relacionadas.tipoRelacion', '=', 'dossier'))
+        $fichasPersonalesAgregadas = DB::table('ficha_personal_relacionadas')
+            ->select(
+                'ficha_personals.id AS fichaPerId',
+                'ficha_personal_relacionadas.ficha_personal_id',
+                'ficha_personal_relacionadas.id',
+                'ficha_personal_relacionadas.tipoRelacion',
+                'ficha_personals.cedula',
+                'ficha_personals.primerNombre',
+                'ficha_personals.segundoNombre',
+                'ficha_personals.primerApellido',
+                'ficha_personals.segundoApellido'
+            )
+            ->join('ficha_personals', 'ficha_personal_id', 'ficha_personals.id')
+            ->where('ficha_personal_relacionadas.ficha_id', '=', $dossierId)
+            ->where('ficha_personal_relacionadas.tipoRelacion', '=', 'dossier')
             ->get();
+
 
         $dossierRel = Dossier::select('*')
             ->join('dossier_relacionadas', 'dossier_relacionadas.dossier_id', '=', 'dossiers.id')
@@ -84,11 +95,24 @@ class DossierController extends Controller
             ->where('dossier_relacionadas.tipoRelacion', '=', 'dossier')
             ->get()->all();
 
-        $fichasImpersonalesAgregadas = FichaImpersonal::select('*')
+        /*$fichasImpersonalesAgregadas = FichaImpersonal::select('*')
             ->join('ficha_impersonal_relacionadas', 'ficha_impersonal_relacionadas.ficha_impersonal_id', '=', 'ficha_impersonals.id')
             ->where('ficha_impersonal_relacionadas.ficha_id', $dossierId)
             ->where('ficha_impersonal_relacionadas.tipoRelacion', '=', 'dossier')
-            ->get()->all();
+            ->get()->all();*/
+        
+        $fichasImpersonalesAgregadas = DB::table('ficha_impersonal_relacionadas')
+            ->select(
+                'ficha_impersonals.id AS fichaImperId',
+                'ficha_impersonal_relacionadas.ficha_impersonal_id',
+                'ficha_impersonal_relacionadas.id',
+                'ficha_impersonal_relacionadas.tipoRelacion',
+                'ficha_impersonals.nombre'
+            )
+            ->join('ficha_impersonals', 'ficha_impersonal_id', 'ficha_impersonals.id')
+            ->where('ficha_impersonal_relacionadas.ficha_id', '=', $dossierId)
+            ->where('ficha_impersonal_relacionadas.tipoRelacion', '=', 'dossier')
+            ->get();
 
         $dossierTemas = Tema::join('dossier_tema', 'tema_Id', '=', 'temas.id')
             ->select('*')
@@ -107,7 +131,7 @@ class DossierController extends Controller
             'serieDocumental',
             'dossierObservaciones',
             'fichasImpersonalesAgregadas',
-            'fichasPerRel',
+            'fichasPersonalesAgregadas',
             'dossierRel'
         ));
 

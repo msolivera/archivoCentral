@@ -46,9 +46,6 @@
                             <td>
                                 {{ $fichaPariente->segundoApellido }}
                             </td>
-                            <td>
-                                {{ $fichaPariente->nombreClasificacion }}
-                            </td>
 
 
                             <td>

@@ -166,8 +166,9 @@ class FichaPersonalRelacionadaController extends Controller
     {
         $fichaRelacion = FichaPersonalRelacionada::find($fichaRelId);
         $fichaRelacion->delete();
+       
 
-        return back()->with('flash', 'Registro eliminado con exito');
+       return back()->with('flash', 'Registro eliminado con exito');
     }
 
     public function store(Request $request,  $fichaTitular, $fichaTipo)

@@ -102,20 +102,20 @@ class FichaImpersonalController extends Controller
             ->where('ficha_impersonal_relacionadas.tipoRelacion', '=', 'fichaImpersonal')
             ->get()->all();
 
-        /*
-            SELECT ficha_personal_relacionadas.ficha_id, 
-ficha_personal_relacionadas.ficha_personal_id,
-ficha_personal_relacionadas.tipoRelacion,
-ficha_personals.cedula,
-ficha_personals.primerNombre,
-ficha_personals.segundoNombre,
-ficha_personals.primerApellido,
-ficha_personals.segundoApellido,
-ficha_personals.clasificacion_id
-from archivocentral.ficha_personal_relacionadas
-inner join ficha_personals on ficha_personal_id = ficha_personals.id
-where ficha_personal_relacionadas.ficha_id = 1 and ficha_personal_relacionadas.tipoRelacion = 'fichaImpersonal'
-*/
+                    
+            /*SELECT ficha_personal_relacionadas.ficha_id, 
+            ficha_personal_relacionadas.ficha_personal_id,
+            ficha_personal_relacionadas.tipoRelacion,
+            ficha_personals.cedula,
+            ficha_personals.primerNombre,
+            ficha_personals.segundoNombre,
+            ficha_personals.primerApellido,
+            ficha_personals.segundoApellido,
+            ficha_personals.clasificacion_id
+            from archivocentral.ficha_personal_relacionadas
+            inner join ficha_personals on ficha_personal_id = ficha_personals.id
+            where ficha_personal_relacionadas.ficha_id = 1 and ficha_personal_relacionadas.tipoRelacion = 'fichaImpersonal'*/ 
+            
         $fichasPersonalesAgregadas = DB::table('ficha_personal_relacionadas')
             ->select(
                 'ficha_personals.id',

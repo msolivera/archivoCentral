@@ -16,12 +16,13 @@ class FichaImpersonalRelacionada extends Model
     {
         return $this->belongsTo(FichaImpersonal::class, 'ficha_id');
     }
+    public function dossier()
+    {
+        return $this->belongsTo(Dossier::class, 'dossier_id');
+    }
     /*public function documento()
     {
         return $this->belongsTo(FichaPersonal::class, 'documento_id');
     }
-    public function dossier()
-    {
-        return $this->belongsTo(FichaPersonal::class, 'dossier_id');
-    }*/
+    */
 }

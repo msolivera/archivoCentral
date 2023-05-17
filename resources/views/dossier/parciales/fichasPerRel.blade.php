@@ -24,8 +24,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($fichasPerRel as $fichaPer)
+                    @foreach ($fichasPersonalesAgregadas as $fichaPer)
                         <tr>
+                            
                             <td>
                                 {{ $fichaPer->primerNombre }}
                             </td>

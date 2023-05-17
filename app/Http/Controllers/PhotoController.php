@@ -28,4 +28,13 @@ class PhotoController extends Controller
         'ficha_impersonal_Id' => $fichaImperId
     ]);
    }
+   public function StoreDossier ($dossierId){
+
+    $archivo = request()->file('archivo')->store('public');
+
+    Photo::create([
+        'url' => Storage::url($archivo),
+        'dossier_Id' => $dossierId
+    ]);
+   }
 }

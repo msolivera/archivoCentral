@@ -17,7 +17,6 @@
                 <thead>
                     <tr>
                         <th>Titulo</th>
-                        <th>Clasificacion</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -26,9 +25,6 @@
                         <tr>
                             <td>
                                 {{ $fichaImper->nombre }}
-                            </td>
-                            <td>
-                                {{ $fichaImper->clasificacion->nombre }}
                             </td>
                             <td>
                                 <form method="POST" action="{{ route('fichaImpersonalRelacionada.destroy', $fichaImper->id)}}"

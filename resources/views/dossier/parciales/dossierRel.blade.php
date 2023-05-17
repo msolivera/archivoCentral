@@ -8,6 +8,7 @@
                 </div>
                 <div class="col-4">
                     <a style="float: right; padding: 15px;"
+                    
                         href="/dossierRelacionada/{{ $dossier->id }}/{{ $dossier->tipo }}"
                         class="btn btn-xs btn-info"><i class="fa fa-regular fa-plus"></i></a>
 
@@ -19,7 +20,6 @@
                         <th>Titulo</th>
                         <th>Letra</th>
                         <th>Ubicacion</th>
-                        <th>Clasificacion</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -31,9 +31,6 @@
                             </td>
                             <td>
                                 {{ $dossier->letra }}
-                            </td>
-                            <td>
-                                {{ $dossier->Clasificacion->Nombre }}
                             </td>
                             <td>
                                 {{ $dossier->Ubicacion->Nombre }}

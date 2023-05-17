@@ -210,6 +210,7 @@ Route::group(
         //fotos
         Route::post('/photos/{fichaPersona}', [App\Http\Controllers\PhotoController::class, 'store'])->name('photo.store');
         Route::post('/photosImper/{fichaImpersonal}', [App\Http\Controllers\PhotoController::class, 'storeImpersonal'])->name('photo.storeImpersonal');
+        Route::post('/photosDossier/{dossier}', [App\Http\Controllers\PhotoController::class, 'storeDossier'])->name('photo.storeDossier');
         //fichas impersonales
         Route::get('/fichaImpersonal', [App\Http\Controllers\FichaImpersonalController::class, 'index'])->name('fichaImpersonal.index');
         Route::get('/fichaImpersonal/{fichaImpersonal}', [App\Http\Controllers\FichaImpersonalController::class, 'show'])->name('fichasImpersonales.verFicha');

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedInteger('ficha_personal_Id')->default(0);
             $table->unsignedInteger('ficha_impersonal_Id')->default(0);
             $table->unsignedInteger('documento_Id')->default(0);
+            $table->unsignedInteger('dossier_Id')->default(0);
             $table->string('url');
             $table->timestamps();
         });

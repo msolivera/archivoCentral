@@ -173,8 +173,7 @@
                                     <th>ID</th>
                                     <th>Titulo</th>
                                     <th>Letra</th>
-                                    <th>Clasificacion</th>
-                                    <th>Ubicacion</th>
+                                   
                                 </tr>
                             </thead>
 
@@ -198,8 +197,6 @@
                                             </td>
                                             <td>{{ $dossier->titulo }}</td>
                                             <td>{{ $dossier->letra }}</td>
-                                            <td>{{ $dossier->clasificacionNombre }}</td>
-                                            <td>{{ $dossier->ubicacionNombre }}</td>
 
                                         </form>
                                     </tr>

@@ -8,7 +8,9 @@ use App\Models\DossierRelacionada;
 use App\Models\FichaImpersonal;
 use App\Models\FichaPersonal;
 use App\Models\FichaPersonalRelacionada;
+use App\Models\SerieDocumental;
 use App\Models\Tema;
+use App\Models\Ubicacion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -48,21 +50,23 @@ class DossierRelacionadaController extends Controller
                 $fichaTitular = Dossier::find($fichaId);
 
                 $dossierRel = DB::table('dossiers')
-                    ->select('dossiers.id', 'dossiers.titulo', 'clasificacions_id', 'clasificacions.nombre AS clasificacionNombre')
-                    ->join('clasificacions', 'dossiers.id', '=', 'clasificacions.id')
+                    ->select('dossiers.id', 'dossiers.titulo','dossiers.letra')
                     ->whereNotIn('dossiers.id', DB::table('dossier_relacionadas')->select('dossier_id')
                         ->where('dossier_relacionadas.ficha_id', '=', $fichaId)
                         ->where('dossier_relacionadas.tipoRelacion', '=', 'dossier'))
                     ->get();
                 $temas = Tema::all();
                 $clasificaciones = Clasificacion::all();
+                $ubicaciones = Ubicacion::all();
+                $serieDocumental = SerieDocumental::all();
 
-                return view('fichaImpersonalRelacionada.index', compact(
+                return view('dossierRelacionada.index', compact(
                     'dossierRel',
                     'fichaTitular',
-
                     'temas',
-                    'clasificaciones'
+                    'clasificaciones',
+                    'ubicaciones',
+                    'serieDocumental'
                 ));
                 break;
             case ('fichaImpersonal'):

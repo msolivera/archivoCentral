@@ -83,14 +83,14 @@ and ficha_impersonals.id
 not in (select ficha_impersonal_id from ficha_impersonal_relacionadas 
 where ficha_id = '1' and ficha_impersonal_relacionadas.tipoRelacion= 'fichaImpersonal') */
 
-$fichasImperRel  = DB::table('ficha_impersonals')
-->select('ficha_impersonals.id', 'ficha_impersonals.nombre', 'clasificacion_id', 'clasificacions.nombre AS clasificacionNombre')
-->join('clasificacions', 'ficha_impersonals.clasificacion_id', '=', 'clasificacions.id')
-->where('ficha_impersonals.id', '<>', $fichaId)
-->whereNotIn('ficha_impersonals.id', DB::table('ficha_impersonal_relacionadas')->select('ficha_impersonal_id')
-->where('ficha_impersonal_relacionadas.ficha_id', '=', $fichaId)
-->where('ficha_impersonal_relacionadas.tipoRelacion', '=', 'fichaImpersonal'))
-->get();
+                $fichasImperRel  = DB::table('ficha_impersonals')
+                    ->select('ficha_impersonals.id', 'ficha_impersonals.nombre', 'clasificacion_id', 'clasificacions.nombre AS clasificacionNombre')
+                    ->join('clasificacions', 'ficha_impersonals.clasificacion_id', '=', 'clasificacions.id')
+                    ->where('ficha_impersonals.id', '<>', $fichaId)
+                    ->whereNotIn('ficha_impersonals.id', DB::table('ficha_impersonal_relacionadas')->select('ficha_impersonal_id')
+                        ->where('ficha_impersonal_relacionadas.ficha_id', '=', $fichaId)
+                        ->where('ficha_impersonal_relacionadas.tipoRelacion', '=', 'fichaImpersonal'))
+                    ->get();
 
 
                 $temas = Tema::all();
