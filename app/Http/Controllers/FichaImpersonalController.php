@@ -8,7 +8,9 @@ use App\Models\FichaImpersonal;
 use App\Models\Clasificacion;
 use App\Models\Tema;
 use App\Models\Unidad;
+use App\Models\Dossier;
 use App\Models\FichaImpersonalObservaciones;
+
 //use App\Models\Observaciones;
 
 class FichaImpersonalController extends Controller
@@ -101,7 +103,11 @@ class FichaImpersonalController extends Controller
             ->where('ficha_impersonal_relacionadas.ficha_id', $fichaImpersonalId)
             ->where('ficha_impersonal_relacionadas.tipoRelacion', '=', 'fichaImpersonal')
             ->get()->all();
-
+        $dossierAgregados = Dossier::select('*')
+            ->join('dossier_relacionadas', 'dossier_relacionadas.dossier_id', '=', 'dossiers.id')
+            ->where('dossier_relacionadas.ficha_id',  $fichaImpersonalId)
+            ->where('dossier_relacionadas.tipoRelacion', '=', 'fichaImpersonal')
+            ->get()->all();
                     
             /*SELECT ficha_personal_relacionadas.ficha_id, 
             ficha_personal_relacionadas.ficha_personal_id,
@@ -145,7 +151,7 @@ class FichaImpersonalController extends Controller
             ->where('ficha_Impersonal_Id', $fichaImpersonal->id)
             ->get()->all();
 
-        return view('fichasImpersonales.editarFicha', compact('fichaImpersonal', 'temas', 'unidades', 'clasificaciones', 'fichaTemas', 'fichaUnidades', 'fichasImpersonalesAgregadas', 'fichasObservaciones', 'fichasPersonalesAgregadas'));
+        return view('fichasImpersonales.editarFicha', compact('fichaImpersonal', 'temas', 'unidades', 'clasificaciones', 'fichaTemas', 'fichaUnidades', 'fichasImpersonalesAgregadas', 'fichasObservaciones', 'fichasPersonalesAgregadas','dossierAgregados'));
     }
     public function update(Request $request, $fichaImpersonalId)
     {

@@ -7,7 +7,7 @@
                 </div>
                 <div class="col-4">
                     <a style="float: right; padding: 15px;"
-                        href="/dossierRelacionada/{{ $fichaPer->id }}/{{ $fichaPer->tipo }}"
+                        href="/dossierRelacionada/{{ $fichaImpersonal->id }}/{{ $fichaImpersonal->tipo }}"
                         class="btn btn-xs btn-info"><i class="fa fa-regular fa-plus"></i></a>
                 </div>
             </div>
@@ -29,7 +29,7 @@
                                 {{ $dossier->letra }}
                             </td>
                             <td>
-                                <form method="POST" action="{{ route('dossierRelacionada.destroy', $fichaPer->id)}}"
+                                <form method="POST" action="{{ route('dossierRelacionada.destroy', $fichaImpersonal->id)}}"
                                     style="display: inline">
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}

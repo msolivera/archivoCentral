@@ -46,7 +46,7 @@
 
 @section('content')
     <section class="content">
-        <div class="card" id="parientes" style="display: none;">
+        <div class="card" id="parientes" style="display: none ">
             <form method="POST" action="{{ route('dossier.store') }}">
                 {{ csrf_field() }}
                 <div class="card-dialog card-lg" role="document">
@@ -153,12 +153,12 @@
                         </div>
                     </div>
             </form>
-
         </div>
-        <div class="col-12" id="parientes">
-            <div class="card" style="background-color: #E6EFF6;">
+    </section>
+    <section class="content">
+        <div class="card" style="background-color: #E6EFF6;">
                 <div class="card-body">
-                    <div class="row">
+                    <div class="row" style="display: flex">
                         <div class="col-8">
                             <h3 class="card-title">Dossier</h3>
                         </div>
@@ -166,14 +166,14 @@
 
                     <div class="row">
 
-                        <table id="parientesTable" class="table table-bordered table-striped ">
+                        <table id="parientesTable" class="table table-bordered  ">
                             <thead>
                                 <tr>
                                     <th>Acciones</th>
                                     <th>ID</th>
                                     <th>Titulo</th>
                                     <th>Letra</th>
-                                   
+
                                 </tr>
                             </thead>
 
@@ -215,8 +215,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
         </div>
 
     </section>
@@ -227,8 +225,6 @@
 
 
 @push('styles')
-    <link rel="stylesheet" href="adminLTE/plugins/daterangepicker/daterangepicker.css">
-    <link rel="stylesheet" href="adminLTE/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
     <!-- Select2 -->
     <link rel="stylesheet" href="/adminLTE/plugins/select2/css/select2.min.css">
     <link rel="stylesheet" href="/adminLTE/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">

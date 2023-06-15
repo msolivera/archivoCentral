@@ -127,6 +127,15 @@
                                         class="btn btn-xs btn-info" id="mostrarObservaciones">Monstrar Panel</i></button>
                                 </td>
                             </tr>
+                            <tr>
+                                <td>
+                                    <label for="Dossier">Dossier</label>
+                                </td>
+                                <td>
+                                    <button style="float: rigth; padding: 10px; margin-left:10px"
+                                        class="btn btn-xs btn-info" id="mostrarDossier">Monstrar Panel</i></button>
+                                </td>
+                            </tr>
                         </tbody>
                         <tfoot>
                             <tr>
@@ -150,6 +159,9 @@
                 </div>
                 <div class="row" id=Observaciones style="display: none;">
                     @include('fichasImpersonales.parciales.fichaImpersonalObservaciones')
+                </div>
+                <div class="row" id=Dossier style="display: none;">
+                    @include('fichasImpersonales.parciales.dossierRel')
                 </div>
 
             </div>
@@ -223,12 +235,23 @@
                 $('#Observaciones').hide();
             });
         });
+        $(document).ready(function() {
+            $('#mostrarDossier').click(function() {
+                $('#Dossier').slideToggle("fast");
+            });
+        });
+        $(document).ready(function() {
+            $('#cerrarForm').click(function() {
+                $('#Dossier').hide();
+            });
+        });
 
         $(document).ready(function(){
             $('#cerrarTodos').click(function(){
                 $('#fichaPer').hide();
                 $('#fichaImper').hide();
                 $('#Observaciones').hide();
+                $('#Dossier').hide();
 
             })
         });
@@ -237,6 +260,7 @@
                 $('#fichaPer').slideToggle("fast");
                 $('#fichaImper').slideToggle("fast");
                 $('#Observaciones').slideToggle("fast");
+                $('#Dossier').slideToggle("fast");
             })
         });
 

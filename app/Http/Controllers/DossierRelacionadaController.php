@@ -30,7 +30,7 @@ class DossierRelacionadaController extends Controller
                 $fichaTitular = FichaPersonal::find($fichaId);
 
                 $dossierRel = DB::table('dossiers')
-                    ->select('dossiers.id', 'dossiers.titulo','ubicacion_id', 'clasificacions_id', 'clasificacions.nombre AS clasificacionNombre')
+                    ->select('dossiers.id', 'dossiers.titulo','dossiers.letra' , 'ubicacion_id', 'clasificacions_id', 'clasificacions.nombre AS clasificacionNombre')
                     ->join('clasificacions', 'dossiers.id', '=', 'clasificacions.id')
                     ->whereNotIn('dossiers.id', DB::table('dossier_relacionadas')->select('dossier_id')
                         ->where('dossier_relacionadas.ficha_id', '=', $fichaId)
@@ -38,19 +38,22 @@ class DossierRelacionadaController extends Controller
                     ->get();
                 $temas = Tema::all();
                 $clasificaciones = Clasificacion::all();
-
-                return view('fichaImpersonalRelacionada.index', compact(
+                $ubicaciones = Ubicacion::all();
+                $serieDocumental = SerieDocumental::all();
+                return view('dossierRelacionada.index', compact(
                     'dossierRel',
                     'fichaTitular',
                     'temas',
-                    'clasificaciones'
+                    'clasificaciones',
+                    'ubicaciones',
+                    'serieDocumental'
                 ));
                 break;
             case ('dossier'):
                 $fichaTitular = Dossier::find($fichaId);
 
                 $dossierRel = DB::table('dossiers')
-                    ->select('dossiers.id', 'dossiers.titulo','dossiers.letra')
+                    ->select('dossiers.id', 'dossiers.titulo', 'dossiers.letra')
                     ->whereNotIn('dossiers.id', DB::table('dossier_relacionadas')->select('dossier_id')
                         ->where('dossier_relacionadas.ficha_id', '=', $fichaId)
                         ->where('dossier_relacionadas.tipoRelacion', '=', 'dossier'))
@@ -73,7 +76,7 @@ class DossierRelacionadaController extends Controller
                 $fichaTitular = FichaImpersonal::find($fichaId);
 
                 $dossierRel = DB::table('dossiers')
-                    ->select('dossiers.id', 'dossiers.titulo','ubicacion_id', 'clasificacions_id', 'clasificacions.nombre AS clasificacionNombre')
+                    ->select('dossiers.id', 'dossiers.titulo','dossiers.letra', 'ubicacion_id', 'clasificacions_id', 'clasificacions.nombre AS clasificacionNombre')
                     ->join('clasificacions', 'dossiers.id', '=', 'clasificacions.id')
                     ->whereNotIn('dossiers.id', DB::table('dossier_relacionadas')->select('dossier_id')
                         ->where('dossier_relacionadas.ficha_id', '=', $fichaId)
@@ -82,13 +85,17 @@ class DossierRelacionadaController extends Controller
                 $temas = Tema::all();
                 $clasificaciones = Clasificacion::all();
                 $fichasRelacionadas = FichaPersonalRelacionada::all();
+                $ubicaciones = Ubicacion::all();
+                $serieDocumental = SerieDocumental::all();
 
                 return view('dossierRelacionada.index', compact(
                     'dossierRel',
                     'fichaTitular',
                     'fichasRelacionadas',
                     'temas',
-                    'clasificaciones'
+                    'clasificaciones',
+                    'ubicaciones',
+                    'serieDocumental'
                 ));
                 break;
             default:
@@ -108,9 +115,10 @@ class DossierRelacionadaController extends Controller
     public function store(Request $request,  $fichaTitular, $fichaTipo)
     {
 
+
         $fichaRelacionada = new DossierRelacionada();
         $fichaRelacionada->ficha_id = $fichaTitular;
-        $fichaRelacionada->dossier_id = $request->dossier_Id;
+        $fichaRelacionada->dossier_id = $request->ficha_Id;
         $fichaRelacionada->tipoRelacion = $fichaTipo;
         $fichaRelacionada->save();
 
@@ -118,7 +126,6 @@ class DossierRelacionadaController extends Controller
     }
     public function edit($fichaId)
     {
-
     }
 
     public function update(Request $request, $fichaId)

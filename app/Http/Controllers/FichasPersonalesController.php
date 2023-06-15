@@ -29,6 +29,7 @@ use App\Models\Anotacion;
 use App\Models\FichaPersonalRelacionada;
 use App\Models\Parentesco;
 use App\Models\FichaImpersonal;
+use App\Models\Dossier;
 
 
 class FichasPersonalesController extends Controller
@@ -353,6 +354,12 @@ class FichasPersonalesController extends Controller
             ->where('ficha_impersonal_relacionadas.tipoRelacion', '=', 'fichaPersonal')
             ->get()->all();
 
+        $dossierAgregados = Dossier::select('*')
+            ->join('dossier_relacionadas', 'dossier_relacionadas.dossier_id', '=', 'dossiers.id')
+            ->where('dossier_relacionadas.ficha_id',  $fichaPer->id)
+            ->where('dossier_relacionadas.tipoRelacion', '=', 'fichaPersonal')
+            ->get()->all();
+
 
         return view(
             'fichasPersonales.editarFicha',
@@ -383,7 +390,8 @@ class FichasPersonalesController extends Controller
                 'fichasAnotaciones',
                 'fichasParientes',
                 'fichasImpersonalesAgregadas',
-                'parentescos'
+                'parentescos',
+                'dossierAgregados'
 
             )
         );
